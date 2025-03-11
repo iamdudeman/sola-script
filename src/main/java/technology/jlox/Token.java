@@ -1,6 +1,6 @@
 package technology.jlox;
 
-public record Token(
+record Token(
   TokenType type,
   String lexeme,
   Object literal,
