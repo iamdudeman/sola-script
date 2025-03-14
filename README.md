@@ -23,3 +23,26 @@ dependencies {
 ```
 
 [sola-script jar downloads](https://github.com/iamdudeman/sola-script/releases) hosted on GitHub releases.
+
+
+## Grammar
+
+### Rules
+
+```
+expression  := literal | unary | binary | grouping ;
+literal     := NUMBER | STRING | BOOLEAN | NIL ;
+grouping    := "(" expression ")"
+unary       := ( "-" | "!" ) expression ;
+binary      := expression operator expression ;
+operator    := "==" | "!=" | "<" | "<=" | ">" | ">=" | "+" | "-" | "*" | "/" ;
+```
+
+### Terminals
+
+```
+STRING   := \".*\"
+NUMBER   := [1-9][0-9]*(\.[0-9]+)?
+BOOLEAN  := "true" | "false"
+NIL      := "nil"
+```
