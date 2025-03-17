@@ -30,12 +30,13 @@ dependencies {
 ### Rules
 
 ```
-expression  := literal | unary | binary | grouping ;
-literal     := NUMBER | STRING | BOOLEAN | NIL ;
-grouping    := "(" expression ")"
-unary       := ( "-" | "!" ) expression ;
-binary      := expression operator expression ;
-operator    := "==" | "!=" | "<" | "<=" | ">" | ">=" | "+" | "-" | "*" | "/" ;
+expression  := equality ;
+equality    := comparison ( ( "!=" | "==" ) comparison )* ;
+comparison  := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+term        := factor ( ( "-" | "+" ) factor )* ;
+factor      := unary ( ( "/" | "*" ) unary )*
+unary       := ( "!" | "-" ) unary | primary ;
+primayry    := NUMBER | STRING | BOOLEAN | NIL | "(" expression ")" ;
 ```
 
 ### Terminals

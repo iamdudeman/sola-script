@@ -172,7 +172,7 @@ class Scanner {
   }
 
   private char peekNext() {
-    if (current +1 >= source.length()) {
+    if (current + 1 >= source.length()) {
       return '\0';
     }
 
