@@ -30,25 +30,31 @@ dependencies {
 ### Rules
 
 ```
-program     := statement* EOF ;
-statement   := exprStmt | printStmt
-exprStmt    := expression ";" ;
-printStmt   := "print" expression ";" ;
-expression  := equality ;
-equality    := comparison ( ( "!=" | "==" ) comparison )* ;
-comparison  := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
-term        := factor ( ( "-" | "+" ) factor )* ;
-factor      := unary ( ( "/" | "*" ) unary )*
-unary       := ( "!" | "-" ) unary | primary ;
-primary     := NUMBER | STRING | BOOLEAN | NIL | "(" expression ")" ;
+program      := declaration* EOF ;
+
+declaration  := varDecl | statement ;
+varDecl      := "var" IDENTIFIER ( "=" expression )? ";" ;
+
+statement    := exprStmt | printStmt
+exprStmt     := expression ";" ;
+printStmt    := "print" expression ";" ;
+
+expression   := equality ;
+equality     := comparison ( ( "!=" | "==" ) comparison )* ;
+comparison   := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+term         := factor ( ( "-" | "+" ) factor )* ;
+factor       := unary ( ( "/" | "*" ) unary )*
+unary        := ( "!" | "-" ) unary | primary ;
+primary      := NUMBER | STRING | BOOLEAN | NIL | "(" expression ")" | IDENTIFIER ;
 ```
 
 ### Terminals
 
 ```
-STRING   := \".*\"
-NUMBER   := [1-9][0-9]*(\.[0-9]+)?
-BOOLEAN  := "true" | "false"
-NIL      := "nil"
-EOF      := // end of file
+STRING      := \".*\"
+NUMBER      := [1-9][0-9]*(\.[0-9]+)?
+BOOLEAN     := "true" | "false"
+NIL         := "nil"
+IDENTIFIER  :=
+EOF         := // end of file
 ```
