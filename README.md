@@ -30,13 +30,17 @@ dependencies {
 ### Rules
 
 ```
+program     := statement* EOF ;
+statement   := exprStmt | printStmt
+exprStmt    := expression ";" ;
+printStmt   := "print" expression ";" ;
 expression  := equality ;
 equality    := comparison ( ( "!=" | "==" ) comparison )* ;
 comparison  := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
 term        := factor ( ( "-" | "+" ) factor )* ;
 factor      := unary ( ( "/" | "*" ) unary )*
 unary       := ( "!" | "-" ) unary | primary ;
-primayry    := NUMBER | STRING | BOOLEAN | NIL | "(" expression ")" ;
+primary     := NUMBER | STRING | BOOLEAN | NIL | "(" expression ")" ;
 ```
 
 ### Terminals
@@ -46,4 +50,5 @@ STRING   := \".*\"
 NUMBER   := [1-9][0-9]*(\.[0-9]+)?
 BOOLEAN  := "true" | "false"
 NIL      := "nil"
+EOF      := // end of file
 ```
