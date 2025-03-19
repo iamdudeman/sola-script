@@ -52,6 +52,12 @@ for (var i = 1; a < 10000; i = temp + i) {
   a = i;
 }
 
+fun greeting(name) {
+  print "Hello " + name + "!";
+}
+
+greeting("Test Program");
+
 // Native function call
 print "Script run in (ms)";
 print clock() - startTime;
