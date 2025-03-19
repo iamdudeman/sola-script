@@ -1,3 +1,4 @@
+var startTime = clock();
 var a = "global a";
 var b = "global b";
 var c = "global c";
@@ -50,3 +51,7 @@ for (var i = 1; a < 10000; i = temp + i) {
   temp = a;
   a = i;
 }
+
+// Native function call
+print "Script run in (ms)";
+print clock() - startTime;
