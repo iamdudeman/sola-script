@@ -42,7 +42,7 @@ while (count < 10) {
   count = count + 1;
 }
 
-// Fibonacci
+// manual Fibonacci
 var a = 0;
 var temp;
 
@@ -57,6 +57,15 @@ fun greeting(name) {
 }
 
 greeting("Test Program");
+
+fun fib(n) {
+  if (n <= 1) return n;
+
+  return fib(n - 2) + fib(n - 1);
+}
+
+print "Fib(7)";
+print fib(7);
 
 // Native function call
 print "Script run in (ms)";
