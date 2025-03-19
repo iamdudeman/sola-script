@@ -22,3 +22,11 @@ var c = "global c";
 print a;
 print b;
 print c;
+
+if (true) {
+  print "true";
+}
+
+if (false) {
+  print "false";
+}
