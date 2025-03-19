@@ -16,6 +16,7 @@ public class GenerateAst {
     String outputDirectory = args.length == 0 ? "src/main/java/technology/jlox" : args[0];
 
     defineAst(outputDirectory, "Expr", Arrays.asList(
+      "Assign    : Token name, Expr value",
       "Binary    : Expr left, Token operator, Expr right",
       "Grouping  : Expr expression",
       "Literal   : Object value",
