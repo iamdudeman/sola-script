@@ -7,7 +7,7 @@ class AstPrinter implements Expr.Visitor<String> {
 
   @Override
   public String visitAssignExpr(Expr.Assign expr) {
-    return parenthesize(expr.name.lexeme(), expr.value);
+    throw new UnsupportedOperationException("Not supported yet.");
   }
 
   @Override
@@ -23,6 +23,11 @@ class AstPrinter implements Expr.Visitor<String> {
   @Override
   public String visitLiteralExpr(Expr.Literal expr) {
     return expr.value == null ? "nil" : expr.value.toString();
+  }
+
+  @Override
+  public String visitLogicalExpr(Expr.Logical expr) {
+    throw new UnsupportedOperationException("Not supported yet.");
   }
 
   @Override

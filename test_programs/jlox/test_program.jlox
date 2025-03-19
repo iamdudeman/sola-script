@@ -30,3 +30,6 @@ if (true) {
 if (false) {
   print "false";
 }
+
+print nil or "hello";
+print nil and "hello";
