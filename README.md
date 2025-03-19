@@ -35,8 +35,9 @@ program      := declaration* EOF ;
 declaration  := varDecl | statement ;
 varDecl      := "var" IDENTIFIER ( "=" expression )? ";" ;
 
-statement    := exprStmt | ifStmt | printStmt | whileStmt | block
+statement    := exprStmt | forStmt | ifStmt | printStmt | whileStmt | block
 exprStmt     := expression ";" ;
+forStmt      := "for" "(" ( varDecl | exprStmt | ";" ) expression? ";" expression? ")" statement ;
 ifStmt       := "if" "(" expression ")" statement ( "else" statement )? ;
 printStmt    := "print" expression ";" ;
 whileStmt    := "while" "(" expression ")" statement ;
