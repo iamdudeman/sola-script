@@ -84,6 +84,19 @@ var counter = makeCounter();
 counter();
 counter();
 
+// variable resolution bug test
+var a = "global";
+
+{
+  fun showA() {
+    print a;
+  }
+
+  showA();
+  var a = "block";
+  showA();
+}
+
 // Native function call
 print "Script run in (ms)";
 print clock() - startTime;
