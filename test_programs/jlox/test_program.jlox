@@ -104,7 +104,12 @@ class DevonshireCream {
 }
 
 print DevonshireCream;
-print DevonshireCream();
+
+var instance = DevonshireCream();
+
+print instance;
+instance.testField = "hello";
+print instance.testField;
 
 // Native function call
 print "Script run in (ms)";
