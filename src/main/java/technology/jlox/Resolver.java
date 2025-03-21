@@ -27,6 +27,12 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     declare(stmt.name);
     define(stmt.name);
 
+    for (Stmt.Function method : stmt.methods) {
+      FunctionType declaration = FunctionType.METHOD;
+
+      resolveFunction(method, declaration);
+    }
+
     return null;
   }
 
@@ -250,6 +256,7 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
 
   private enum FunctionType {
     NONE,
+    METHOD,
     FUNCTION,
   }
 }

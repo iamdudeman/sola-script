@@ -110,6 +110,7 @@ var instance = DevonshireCream();
 print instance;
 instance.testField = "hello";
 print instance.testField;
+print instance.serveOn();
 
 // Native function call
 print "Script run in (ms)";
