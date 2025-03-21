@@ -97,6 +97,14 @@ var a = "global";
   showA();
 }
 
+class DevonshireCream {
+  serveOn() {
+    return "Scones";
+  }
+}
+
+print DevonshireCream;
+
 // Native function call
 print "Script run in (ms)";
 print clock() - startTime;
