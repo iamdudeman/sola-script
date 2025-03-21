@@ -98,8 +98,12 @@ var a = "global";
 }
 
 class DevonshireCream {
+  init() {
+    this.value = "Scones";
+  }
+
   serveOn() {
-    return "Scones";
+    return this.value;
   }
 
   temp() {
