@@ -101,6 +101,10 @@ class DevonshireCream {
   serveOn() {
     return "Scones";
   }
+
+  temp() {
+    return this;
+  }
 }
 
 print DevonshireCream;
@@ -111,6 +115,7 @@ print instance;
 instance.testField = "hello";
 print instance.testField;
 print instance.serveOn();
+print instance.temp();
 
 // Native function call
 print "Script run in (ms)";
