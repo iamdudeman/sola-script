@@ -104,6 +104,7 @@ class DevonshireCream {
 }
 
 print DevonshireCream;
+print DevonshireCream();
 
 // Native function call
 print "Script run in (ms)";
