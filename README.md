@@ -59,7 +59,7 @@ factor       := unary ( ( "/" | "*" ) unary )*
 unary        := ( "!" | "-" ) unary | call ;
 call         := primary ( "(" arguments? ")" | "." IDENTIFIER )*;
 arguments    := expression ( "," expression )* ;
-primary      := NUMBER | STRING | BOOLEAN | NIL | "(" expression ")" | IDENTIFIER ;
+primary      := NUMBER | STRING | BOOLEAN | NIL | "this" | "(" expression ")" | IDENTIFIER | "super" "." IDENTIFIER ;
 ```
 
 ### Terminals

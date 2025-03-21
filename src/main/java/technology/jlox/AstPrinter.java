@@ -51,6 +51,11 @@ class AstPrinter implements Expr.Visitor<String> {
   }
 
   @Override
+  public String visitSuperExpr(Expr.Super expr) {
+    throw new UnsupportedOperationException("Not supported yet.");
+  }
+
+  @Override
   public String visitVariableExpr(Expr.Variable expr) {
     return expr.name.lexeme();
   }

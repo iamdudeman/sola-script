@@ -112,6 +112,11 @@ class DevonshireCream < SomeTestBaseClass {
     return this.value;
   }
 
+  heyThere() {
+    print "what's up?";
+    super.heyThere();
+  }
+
   temp() {
     return this;
   }
