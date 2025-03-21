@@ -97,7 +97,13 @@ var a = "global";
   showA();
 }
 
-class DevonshireCream {
+class SomeTestBaseClass {
+  heyThere() {
+    print "hey there";
+  }
+}
+
+class DevonshireCream < SomeTestBaseClass {
   init() {
     this.value = "Scones";
   }
@@ -120,6 +126,7 @@ instance.testField = "hello";
 print instance.testField;
 print instance.serveOn();
 print instance.temp();
+print instance.heyThere();
 
 // Native function call
 print "Script run in (ms)";

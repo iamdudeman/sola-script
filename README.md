@@ -25,7 +25,7 @@ dependencies {
 [sola-script jar downloads](https://github.com/iamdudeman/sola-script/releases) hosted on GitHub releases.
 
 
-## Grammar
+## Lox Grammar
 
 ### Rules
 
@@ -33,7 +33,7 @@ dependencies {
 program      := declaration* EOF ;
 
 declaration  := classDecl | funDecl | varDecl | statement ;
-classDecl    := "class" IDENTIFIER "(" function* "} ;
+classDecl    := "class" IDENTIFIER ( "<" IDENTIFIER )? "{" function* "} ;
 funDecl      := "fun" function ;
 function     := IDENTIFIER "(" parameters? ")" block ;
 parameters   := IDENTIFIER ( "," IDENTIFIER )* ;
