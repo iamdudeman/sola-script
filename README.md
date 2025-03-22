@@ -116,5 +116,15 @@ EOF          := // end of file
 // consider swapping "fun" for "function"
 // consider swapping "nil" for "null"
 
-and | class | else | false | for | fun | if | nil | or | print | return | super | this | true | var | while
+# declarations
+"class" | "fun" | "var"
+
+# statements
+"else" | "for" | "if" | "while"
+
+# values
+"false" | "nil" | "super" | "this" | "true"
+
+# etc
+"and" | "or" | "print" | "return"
 ```
