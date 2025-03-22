@@ -72,3 +72,49 @@ NIL         := "nil"
 IDENTIFIER  :=
 EOF         := // end of file
 ```
+
+
+## Sola grammar
+
+```
+program      := declaration* EOF ;
+```
+
+### Declarations
+
+```
+declaration  := todo
+```
+
+### Statements
+
+```
+statement    := todo
+```
+
+### Expressions
+
+```
+expression   := todo
+```
+
+### Terminals
+
+```
+STRING       := \".*\"
+NUMBER       := [1-9][0-9]*(\.[0-9]+)?
+IDENTIFIER   :=
+EOF          := // end of file
+```
+
+### Keywords
+
+```
+// consider swapping "or" for "||" and "and" for "&&"
+// consider removing "print"
+// consider adding "val"
+// consider swapping "fun" for "function"
+// consider swapping "nil" for "null"
+
+and | class | else | false | for | fun | if | nil | or | print | return | super | this | true | var | while
+```
