@@ -1,5 +1,8 @@
 package technology.sola.script.tokenizer;
 
+import technology.sola.script.error.ParseError;
+import technology.sola.script.error.ScriptError;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +12,7 @@ public class Tokenizer {
   private final KeywordMap keywordMap = new KeywordMap();
   private final String source;
   private final List<Token> tokens = new ArrayList<>();
+  private final List<ScriptError> errors = new ArrayList<>();
   private int start = 0;
   private int current = 0;
   private int line = 1;
@@ -18,7 +22,7 @@ public class Tokenizer {
     this.source = source;
   }
 
-  public List<Token> tokenize() {
+  public TokenizeResult tokenize() {
     while (!isAtEnd()) {
       start = current;
       nextToken();
@@ -26,7 +30,7 @@ public class Tokenizer {
 
     tokens.add(new Token(TokenType.EOF, "", null, line, column));
 
-    return tokens;
+    return new TokenizeResult(tokens, errors);
   }
 
   private void nextToken() {
@@ -34,14 +38,31 @@ public class Tokenizer {
 
     switch (c) {
 
+      case '/':
+        if (advanceExpected('/')) {
+          while (peek() != '\n' && !isAtEnd()) {
+            advance();
+          }
+        } else {
+          addToken(TokenType.SLASH);
+        }
+
+        break;
+
       // whitespace
+      case ' ':
+      case '\r':
+      case '\t':
+        break;
       case '\n':
         line++;
         column = 1;
         break;
-    }
 
-    throw new UnsupportedOperationException("not implemented yet");
+      default:
+        errors.add(new ParseError(line, column, "Unexpected character '" + c + "'"));
+        break;
+    }
   }
 
   // todo tokenString
@@ -95,5 +116,15 @@ public class Tokenizer {
 
   private boolean isAtEnd() {
     return current >= source.length();
+  }
+
+  private void addToken(TokenType type) {
+    addToken(type, null);
+  }
+
+  private void addToken(TokenType type, Object literal) {
+    String lexeme = source.substring(start, current);
+
+    tokens.add(new Token(type, lexeme, literal, line, column));
   }
 }
