@@ -15,7 +15,7 @@ public class ErrorContainer {
     errorList.addAll(errors);
   }
 
-  public boolean hasErrors() {
+  public boolean hasError() {
     return !errorList.isEmpty();
   }
 
