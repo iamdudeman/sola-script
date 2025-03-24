@@ -68,6 +68,7 @@ public class Tokenizer {
   // todo tokenIdentifier
 
   private char advance() {
+    column++;
     return source.charAt(current++);
   }
 
@@ -80,6 +81,7 @@ public class Tokenizer {
       return false;
     }
 
+    column++;
     current++;
     return true;
   }
