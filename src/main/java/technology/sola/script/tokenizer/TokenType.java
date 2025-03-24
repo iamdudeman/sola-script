@@ -11,13 +11,20 @@ public enum TokenType {
   // One or two character tokens
   BANG, BANG_EQUAL, EQUAL, EQUAL_EQUAL,
   GREATER, GREATER_EQUAL, LESS, LESS_EQUAL,
+  AND_CONDITIONAL, OR_CONDITIONAL,
 
-  // literals
+  // Literals
   IDENTIFIER, STRING, NUMBER,
 
-  // Keywords
-  AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL, OR,
-  PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
+  // Keywords - declarations
+  CLASS, FUN, VAR, VAL,
 
+  // Keywords - statements
+  ELSE, FOR, IF, RETURN, WHILE,
+
+  // Keywords - values
+  FALSE, NULL, SUPER, THIS, TRUE,
+
+  // Special end of file
   EOF
 }
