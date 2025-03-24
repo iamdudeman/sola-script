@@ -1,11 +1,22 @@
 package technology.sola.script.error;
 
-public interface ScriptError {
-  int line();
+import technology.sola.script.tokenizer.Token;
 
-  int column();
+public record ScriptError(
+  ScriptErrorType type,
+  int line,
+  int column,
+  String message
+) {
+  public ScriptError(ScriptErrorType type, Token token, String message) {
+    this(type, token.line(), token.column(), message);
+  }
 
-  String message();
+  @Override
+  public String toString() {
+    String where = "[" + line() + ":" + column() + "]";
+    String kind = type().name();
 
-  ScriptErrorType type();
+    return where + " " + kind + ": " + message();
+  }
 }

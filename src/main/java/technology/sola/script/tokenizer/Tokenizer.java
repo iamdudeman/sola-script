@@ -1,12 +1,10 @@
 package technology.sola.script.tokenizer;
 
-import technology.sola.script.error.ParseError;
 import technology.sola.script.error.ScriptError;
+import technology.sola.script.error.ScriptErrorType;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Tokenizer {
   private final KeywordMap keywordMap = new KeywordMap();
@@ -60,7 +58,7 @@ public class Tokenizer {
         break;
 
       default:
-        errors.add(new ParseError(line, column, "Unexpected character '" + c + "'"));
+        errors.add(new ScriptError(ScriptErrorType.PARSE, line, column, "Unexpected character '" + c + "'"));
         break;
     }
   }

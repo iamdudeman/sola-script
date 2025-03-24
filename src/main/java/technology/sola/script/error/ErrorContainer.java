@@ -1,6 +1,7 @@
 package technology.sola.script.error;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ErrorContainer {
@@ -8,6 +9,10 @@ public class ErrorContainer {
 
   public void addError(ScriptError error) {
     errorList.add(error);
+  }
+
+  public void addErrors(Collection<ScriptError> errors) {
+    errorList.addAll(errors);
   }
 
   public boolean hasErrors() {
@@ -19,11 +24,6 @@ public class ErrorContainer {
   }
 
   public void printErrors() {
-    errorList.forEach(error -> {
-      String where = "[" + error.line() + ":" + error.column() + "]";
-      String kind = error.type().name();
-
-      System.err.println(where + " " + kind + " " + error.message());
-    });
+    errorList.forEach(System.err::println);
   }
 }
