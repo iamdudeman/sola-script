@@ -1,5 +1,6 @@
 package technology.sola.script.tokenizer;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -73,25 +74,59 @@ class TokenizerTest {
       .verify(source);
   }
 
-  @Test
-  void slashSpecialCase() {
-    var source = """
+  @Nested
+  class specialCases {
+    @Test
+    void slash() {
+      var source = """
       // this is all ignored
       /
       // this is also ignored
       """;
 
-    new TokenizerTester()
-      .next(TokenType.SLASH)
-      .next(TokenType.EOF)
-      .verify(source);
+      new TokenizerTester()
+        .next(TokenType.SLASH)
+        .next(TokenType.EOF)
+        .verify(source);
+    }
+
+    @Nested
+    class string {
+      @Test
+      void validString() {
+        var source = """
+          "This is a test string"
+        """;
+
+        new TokenizerTester()
+          .next(TokenType.STRING, "This is a test string")
+          .next(TokenType.EOF)
+          .verify(source);
+      }
+
+      @Test
+      void invalidString() {
+        var source = """
+            "This is a test string
+          """;
+
+        new TokenizerTester()
+          .nextError(2, 2, "Unterminated string.")
+          .next(TokenType.EOF)
+          .verify(source);
+      }
+    }
   }
 
   private record ExpectedToken(TokenType type, Object literal) {
   }
 
+  private record ExpectedError(int line, int column, String message) {
+  }
+
   private static class TokenizerTester {
-    private List<ExpectedToken> expectedTokens = new ArrayList<>();
+    private final List<ExpectedToken> expectedTokens = new ArrayList<>();
+    private final List<ExpectedError> expectedErrors = new ArrayList<>();
 
     TokenizerTester next(TokenType type) {
       expectedTokens.add(new ExpectedToken(type, null));
@@ -105,11 +140,26 @@ class TokenizerTest {
       return this;
     }
 
+    TokenizerTester nextError(int line, int column, String message) {
+      expectedErrors.add(new ExpectedError(line, column, message));
+
+      return this;
+    }
+
     void verify(String source) {
       var tokenizer = new Tokenizer(source);
       var result = tokenizer.tokenize();
 
-      assertEquals(0, result.errors().size(), "Expected no errors.");
+      assertEquals(expectedErrors.size(), result.errors().size());
+
+      for (int i = 0; i < expectedErrors.size(); i++) {
+        var expectedError = expectedErrors.get(i);
+
+        assertEquals(expectedError.line, result.errors().get(i).line());
+        assertEquals(expectedError.column, result.errors().get(i).column());
+        assertEquals(expectedError.message, result.errors().get(i).message());
+      }
+
       assertEquals(expectedTokens.size(), result.tokens().size());
 
       for (int i = 0; i < expectedTokens.size(); i++) {

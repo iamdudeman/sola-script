@@ -77,6 +77,10 @@ public class Tokenizer {
 
         break;
 
+      case '"':
+        tokenString();
+        break;
+
       // whitespace
       case ' ':
       case '\r':
@@ -92,10 +96,6 @@ public class Tokenizer {
         break;
     }
   }
-
-  // todo tokenString
-  // todo tokenNumber
-  // todo tokenIdentifier
 
   private char advance() {
     column++;
@@ -157,4 +157,29 @@ public class Tokenizer {
 
     tokens.add(new Token(type, lexeme, literal, line, column));
   }
+
+  private void tokenString() {
+    while (peek() != '"' && !isAtEnd()) {
+      if (peek() == '\n') {
+        line++;
+        column = 1;
+      }
+
+      advance();
+    }
+
+    if (isAtEnd()) {
+      errors.add(new ScriptError(ScriptErrorType.PARSE, line, column, "Unterminated string."));
+      return;
+    }
+
+    advance();
+
+    String value = source.substring(start + 1, current - 1);
+
+    addToken(TokenType.STRING, value);
+  }
+
+  // todo tokenNumber
+  // todo tokenIdentifier
 }
