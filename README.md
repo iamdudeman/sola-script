@@ -77,54 +77,50 @@ EOF         := // end of file
 ## Sola grammar
 
 ```
-program      := declaration* EOF ;
+program         := declaration* EOF ;
 ```
 
 ### Declarations
 
 ```
-declaration  := todo
+declaration     := todo
 ```
 
 ### Statements
 
 ```
-statement    := todo
+statement       := todo
 ```
 
 ### Expressions
 
 ```
-expression   := todo
+expression      := todo
 ```
 
 ### Terminals
 
 ```
-STRING       := \".*\"
-NUMBER       := [1-9][0-9]*(\.[0-9]+)?
-IDENTIFIER   :=
-EOF          := // end of file
+STRING          := \".*\"
+NUMBER          := [1-9][0-9]*(\.[0-9]+)?
+IDENTIFIER      := [a-zA-Z_][a-zA-Z0-9_]*
+AND_CONDITONAL  := "&&"
+OR_CONDITONAL   := "||"
+EOF             := special for end of the file
 ```
 
 ### Keywords
 
 ```
-// consider swapping "or" for "||" and "and" for "&&"
-// consider removing "print"
-// consider adding "val"
-// consider swapping "fun" for "function"
-// consider swapping "nil" for "null"
-
 # declarations
-"class" | "fun" | "var"
+"class" | "fun" | "var" | "val"
 
 # statements
 "else" | "for" | "if" | "while"
 
 # values
-"false" | "nil" | "super" | "this" | "true"
+"false" | "null" | "super" | "this" | "true"
 
 # etc
-"and" | "or" | "print" | "return"
+"and" | "or" | "return"
 ```
