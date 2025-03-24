@@ -92,7 +92,12 @@ public class Tokenizer {
         break;
 
       default:
-        errors.add(new ScriptError(ScriptErrorType.PARSE, line, column, "Unexpected character '" + c + "'"));
+        if (isDigit(c)) {
+          tokenNumber();
+        } else {
+          errors.add(new ScriptError(ScriptErrorType.PARSE, line, column, "Unexpected character '" + c + "'"));
+        }
+
         break;
     }
   }
@@ -180,6 +185,19 @@ public class Tokenizer {
     addToken(TokenType.STRING, value);
   }
 
-  // todo tokenNumber
+  private void tokenNumber() {
+      while (isDigit(peek())) {
+        advance();
+      }
+
+      if (peek() == '.' && isDigit(peekNext())) {
+        do {
+          advance();
+        } while (isDigit(peek()));
+      }
+
+      addToken(TokenType.NUMBER, Double.parseDouble(source.substring(start, current)));
+  }
+
   // todo tokenIdentifier
 }

@@ -116,6 +116,46 @@ class TokenizerTest {
           .verify(source);
       }
     }
+
+    @Nested
+    class number {
+      @Test
+      void withDecimal() {
+        var source = """
+            12.32
+          """;
+
+        new TokenizerTester()
+          .next(TokenType.NUMBER, 12.32d)
+          .next(TokenType.EOF)
+          .verify(source);
+      }
+
+      @Test
+      void withoutDecimal() {
+        var source = """
+            12
+          """;
+
+        new TokenizerTester()
+          .next(TokenType.NUMBER, 12d)
+          .next(TokenType.EOF)
+          .verify(source);
+      }
+
+      @Test
+      void withUnfinishedDecimal() {
+        var source = """
+            12.
+          """;
+
+        new TokenizerTester()
+          .next(TokenType.NUMBER, 12d)
+          .next(TokenType.DOT)
+          .next(TokenType.EOF)
+          .verify(source);
+      }
+    }
   }
 
   private record ExpectedToken(TokenType type, Object literal) {
@@ -150,7 +190,7 @@ class TokenizerTest {
       var tokenizer = new Tokenizer(source);
       var result = tokenizer.tokenize();
 
-      assertEquals(expectedErrors.size(), result.errors().size());
+      assertEquals(expectedErrors.size(), result.errors().size(), "Expected errors did not match");
 
       for (int i = 0; i < expectedErrors.size(); i++) {
         var expectedError = expectedErrors.get(i);
@@ -160,7 +200,7 @@ class TokenizerTest {
         assertEquals(expectedError.message, result.errors().get(i).message());
       }
 
-      assertEquals(expectedTokens.size(), result.tokens().size());
+      assertEquals(expectedTokens.size(), result.tokens().size(), "Expected tokens did not match");
 
       for (int i = 0; i < expectedTokens.size(); i++) {
         assertEquals(expectedTokens.get(i).type, result.tokens().get(i).type());
