@@ -20,11 +20,20 @@ class TokenizerTest {
   @Test
   void singleCharacter() {
     var source = """
-      (
+      ( ) { } , . - + ; *
       """;
 
     new TokenizerTester()
       .next(TokenType.LEFT_PAREN)
+      .next(TokenType.RIGHT_PAREN)
+      .next(TokenType.LEFT_BRACE)
+      .next(TokenType.RIGHT_BRACE)
+      .next(TokenType.COMMA)
+      .next(TokenType.DOT)
+      .next(TokenType.MINUS)
+      .next(TokenType.PLUS)
+      .next(TokenType.SEMICOLON)
+      .next(TokenType.STAR)
       .next(TokenType.EOF)
       .verify(source);
   }
@@ -33,11 +42,20 @@ class TokenizerTest {
   void singleOrDoubleCharacter() {
     var source = """
       ! !=
+      = ==
+      < <=
+      > >=
       """;
 
     new TokenizerTester()
       .next(TokenType.BANG)
       .next(TokenType.BANG_EQUAL)
+      .next(TokenType.EQUAL)
+      .next(TokenType.EQUAL_EQUAL)
+      .next(TokenType.LESS)
+      .next(TokenType.LESS_EQUAL)
+      .next(TokenType.GREATER)
+      .next(TokenType.GREATER_EQUAL)
       .next(TokenType.EOF)
       .verify(source);
   }
