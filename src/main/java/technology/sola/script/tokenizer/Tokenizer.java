@@ -12,6 +12,7 @@ public class Tokenizer {
   private int start = 0;
   private int current = 0;
   private int line = 1;
+  private int column = 1;
 
   public Tokenizer(String source) {
     this.source = source;
@@ -23,12 +24,23 @@ public class Tokenizer {
       nextToken();
     }
 
-    tokens.add(new Token(TokenType.EOF, "", null, line));
+    tokens.add(new Token(TokenType.EOF, "", null, line, column));
 
     return tokens;
   }
 
   private void nextToken() {
+    char c = advance();
+
+    switch (c) {
+
+      // whitespace
+      case '\n':
+        line++;
+        column = 1;
+        break;
+    }
+
     throw new UnsupportedOperationException("not implemented yet");
   }
 
@@ -40,23 +52,7 @@ public class Tokenizer {
     return source.charAt(current++);
   }
 
-  private char peek() {
-    if (isAtEnd()) {
-      return '\0';
-    }
-
-    return source.charAt(current);
-  }
-
-  private char peekNext() {
-    if (current +1 >= source.length()) {
-      return '\0';
-    }
-
-    return source.charAt(current + 1);
-  }
-
-  private boolean match(char expected) {
+  private boolean advanceExpected(char expected) {
     if (isAtEnd()) {
       return false;
     }
@@ -67,6 +63,22 @@ public class Tokenizer {
 
     current++;
     return true;
+  }
+
+  private char peek() {
+    if (isAtEnd()) {
+      return '\0';
+    }
+
+    return source.charAt(current);
+  }
+
+  private char peekNext() {
+    if (current + 1 >= source.length()) {
+      return '\0';
+    }
+
+    return source.charAt(current + 1);
   }
 
   private boolean isDigit(char c) {
