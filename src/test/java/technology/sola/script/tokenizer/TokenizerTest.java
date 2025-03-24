@@ -156,6 +156,37 @@ class TokenizerTest {
           .verify(source);
       }
     }
+
+    @Nested
+    class identifier {
+      @Test
+      void nonKeywordIdentifier() {
+        var source = """
+           someVar
+          """;
+
+        new TokenizerTester()
+          .next(TokenType.IDENTIFIER, "someVar")
+          .next(TokenType.EOF)
+          .verify(source);
+      }
+
+      @Test
+      void keywords() {
+        var source = """
+           class fun var val
+           else for if return while
+           false null super this true
+          """;
+
+        new TokenizerTester()
+          .next(TokenType.CLASS).next(TokenType.FUN).next(TokenType.VAR).next(TokenType.VAL)
+          .next(TokenType.ELSE).next(TokenType.FOR).next(TokenType.IF).next(TokenType.RETURN).next(TokenType.WHILE)
+          .next(TokenType.FALSE).next(TokenType.NULL).next(TokenType.SUPER).next(TokenType.THIS).next(TokenType.TRUE)
+          .next(TokenType.EOF)
+          .verify(source);
+      }
+    }
   }
 
   private record ExpectedToken(TokenType type, Object literal) {

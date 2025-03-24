@@ -94,6 +94,8 @@ public class Tokenizer {
       default:
         if (isDigit(c)) {
           tokenNumber();
+        } else if (isAlpha(c)) {
+          tokenIdentifier();
         } else {
           errors.add(new ScriptError(ScriptErrorType.PARSE, line, column, "Unexpected character '" + c + "'"));
         }
@@ -186,18 +188,27 @@ public class Tokenizer {
   }
 
   private void tokenNumber() {
-      while (isDigit(peek())) {
+    while (isDigit(peek())) {
+      advance();
+    }
+
+    if (peek() == '.' && isDigit(peekNext())) {
+      do {
         advance();
-      }
+      } while (isDigit(peek()));
+    }
 
-      if (peek() == '.' && isDigit(peekNext())) {
-        do {
-          advance();
-        } while (isDigit(peek()));
-      }
-
-      addToken(TokenType.NUMBER, Double.parseDouble(source.substring(start, current)));
+    addToken(TokenType.NUMBER, Double.parseDouble(source.substring(start, current)));
   }
 
-  // todo tokenIdentifier
+  private void tokenIdentifier() {
+    while (isAlphaNumeric(peek())) {
+      advance();
+    }
+
+    String lexeme = source.substring(start, current);
+    TokenType type = keywordMap.getTokenType(lexeme);
+
+    addToken(type);
+  }
 }
