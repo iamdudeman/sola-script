@@ -104,8 +104,6 @@ expression      := todo
 STRING          := \".*\"
 NUMBER          := [1-9][0-9]*(\.[0-9]+)?
 IDENTIFIER      := [a-zA-Z_][a-zA-Z0-9_]*
-AND_CONDITONAL  := "&&"
-OR_CONDITONAL   := "||"
 EOF             := special for end of the file
 ```
 

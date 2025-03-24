@@ -35,7 +35,25 @@ public class Tokenizer {
     char c = advance();
 
     switch (c) {
+      // single character
+      case '(': addToken(TokenType.LEFT_PAREN); break;
 
+      // single or double character
+      case '!': addToken(advanceExpected('=') ? TokenType.BANG_EQUAL : TokenType.BANG); break;
+
+      // double character
+      case '&':
+        if (advanceExpected('&')) {
+          addToken(TokenType.AMP_AMP);
+        }
+        break;
+      case '|':
+        if (advanceExpected('|')) {
+          addToken(TokenType.BAR_BAR);
+        }
+        break;
+
+      // special cases
       case '/':
         if (advanceExpected('/')) {
           while (peek() != '\n' && !isAtEnd()) {
