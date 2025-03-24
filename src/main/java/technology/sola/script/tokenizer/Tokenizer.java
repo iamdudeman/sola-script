@@ -6,6 +6,9 @@ import technology.sola.script.error.ScriptErrorType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Tokenizer provides functionality for tokenizing a source string into {@link Token}s to be parsed and interpreted.
+ */
 public class Tokenizer {
   private final KeywordMap keywordMap = new KeywordMap();
   private final String source;
@@ -16,11 +19,25 @@ public class Tokenizer {
   private int line = 1;
   private int column = 1;
 
+  /**
+   * Creates a Tokenizer instance for desired source string.
+   *
+   * @param source the source
+   */
   public Tokenizer(String source) {
     this.source = source;
   }
 
+  /**
+   * Tokenizes the source string and includes any errors found.
+   *
+   * @return the {@link TokenizeResult}
+   */
   public TokenizeResult tokenize() {
+    if (!tokens.isEmpty()) {
+      return new TokenizeResult(tokens, errors);
+    }
+
     while (!isAtEnd()) {
       start = current;
       nextToken();
@@ -36,22 +53,50 @@ public class Tokenizer {
 
     switch (c) {
       // single character
-      case '(': addToken(TokenType.LEFT_PAREN); break;
-      case ')': addToken(TokenType.RIGHT_PAREN); break;
-      case '{': addToken(TokenType.LEFT_BRACE); break;
-      case '}': addToken(TokenType.RIGHT_BRACE); break;
-      case ',': addToken(TokenType.COMMA); break;
-      case '.': addToken(TokenType.DOT); break;
-      case '-': addToken(TokenType.MINUS); break;
-      case '+': addToken(TokenType.PLUS); break;
-      case ';': addToken(TokenType.SEMICOLON); break;
-      case '*': addToken(TokenType.STAR); break;
+      case '(':
+        addToken(TokenType.LEFT_PAREN);
+        break;
+      case ')':
+        addToken(TokenType.RIGHT_PAREN);
+        break;
+      case '{':
+        addToken(TokenType.LEFT_BRACE);
+        break;
+      case '}':
+        addToken(TokenType.RIGHT_BRACE);
+        break;
+      case ',':
+        addToken(TokenType.COMMA);
+        break;
+      case '.':
+        addToken(TokenType.DOT);
+        break;
+      case '-':
+        addToken(TokenType.MINUS);
+        break;
+      case '+':
+        addToken(TokenType.PLUS);
+        break;
+      case ';':
+        addToken(TokenType.SEMICOLON);
+        break;
+      case '*':
+        addToken(TokenType.STAR);
+        break;
 
       // single or double character
-      case '!': addToken(advanceExpected('=') ? TokenType.BANG_EQUAL : TokenType.BANG); break;
-      case '=': addToken(advanceExpected('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL); break;
-      case '<': addToken(advanceExpected('=') ? TokenType.LESS_EQUAL : TokenType.LESS); break;
-      case '>': addToken(advanceExpected('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER); break;
+      case '!':
+        addToken(advanceExpected('=') ? TokenType.BANG_EQUAL : TokenType.BANG);
+        break;
+      case '=':
+        addToken(advanceExpected('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL);
+        break;
+      case '<':
+        addToken(advanceExpected('=') ? TokenType.LESS_EQUAL : TokenType.LESS);
+        break;
+      case '>':
+        addToken(advanceExpected('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER);
+        break;
 
       // double character
       case '&':

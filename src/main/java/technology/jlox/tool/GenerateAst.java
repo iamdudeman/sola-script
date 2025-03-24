@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
-public class GenerateAst {
+class GenerateAst {
   public static void main(String[] args) throws IOException {
     if (args.length != 1) {
       System.out.println("Usage: generate_ast <output_directory>");

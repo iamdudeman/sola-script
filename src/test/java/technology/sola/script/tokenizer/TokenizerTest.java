@@ -172,6 +172,19 @@ class TokenizerTest {
       }
 
       @Test
+      void cannotStartWithNumber() {
+        var source = """
+           12someVar
+          """;
+
+        new TokenizerTester()
+          .next(TokenType.NUMBER, 12d)
+          .next(TokenType.IDENTIFIER, "someVar")
+          .next(TokenType.EOF)
+          .verify(source);
+      }
+
+      @Test
       void keywords() {
         var source = """
            class fun var val

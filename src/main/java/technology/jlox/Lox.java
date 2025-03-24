@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class Lox {
+class Lox {
   static boolean hadError = false;
   static boolean hadRuntimeError = false;
   private static final Interpreter interpreter = new Interpreter();
