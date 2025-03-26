@@ -1,7 +1,9 @@
 package technology.sola.script.parser;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.script.error.ScriptError;
+import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.tokenizer.Tokenizer;
 
 import java.util.List;
@@ -10,9 +12,25 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParserTest {
-  @Test
-  void primary() {
-    var source = """
+  @Nested
+  class stmtExpression {
+    @Test
+    void invalid() {
+      var source = """
+      false
+      """;
+
+      var result = visualizeScriptParsing(source);
+
+      assertEquals(1, result.errors.size());
+      var error = result.errors.get(0);
+      assertEquals(ScriptErrorType.PARSE, error.type());
+      assertEquals("Expect ';' after expression.", error.message());
+    }
+
+    @Test
+    void validPrimary() {
+      var source = """
       false;
       true;
       null;
@@ -23,7 +41,7 @@ class ParserTest {
       this;
       super.someMethod;
       """;
-    var expected = """
+      var expected = """
       false
       true
       null
@@ -34,10 +52,11 @@ class ParserTest {
       this
       super.someMethod
       """.trim();
-    var result = visualizeScriptParsing(source);
+      var result = visualizeScriptParsing(source);
 
-    assertEquals(0, result.errors.size());
-    assertEquals(expected, result.parsedScript);
+      assertEquals(0, result.errors.size());
+      assertEquals(expected, result.parsedScript);
+    }
   }
 
   private TestResult visualizeScriptParsing(String source) {

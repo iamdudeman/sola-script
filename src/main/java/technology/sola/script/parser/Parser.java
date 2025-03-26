@@ -24,7 +24,11 @@ public class Parser {
     }
 
     while (!isAtEnd()) {
-      statements.add(stmtDeclaration());
+      var declaration = stmtDeclaration();
+
+      if (declaration != null) {
+        statements.add(declaration);
+      }
     }
 
     return new ParserResult(statements, errors);
