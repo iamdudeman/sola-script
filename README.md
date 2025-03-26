@@ -25,55 +25,6 @@ dependencies {
 [sola-script jar downloads](https://github.com/iamdudeman/sola-script/releases) hosted on GitHub releases.
 
 
-## Lox Grammar
-
-### Rules
-
-```
-program      := declaration* EOF ;
-
-declaration  := classDecl | funDecl | varDecl | statement ;
-classDecl    := "class" IDENTIFIER ( "<" IDENTIFIER )? "{" function* "} ;
-funDecl      := "fun" function ;
-function     := IDENTIFIER "(" parameters? ")" block ;
-parameters   := IDENTIFIER ( "," IDENTIFIER )* ;
-varDecl      := "var" IDENTIFIER ( "=" expression )? ";" ;
-
-statement    := exprStmt | forStmt | ifStmt | printStmt | returnStmt | whileStmt | block
-exprStmt     := expression ";" ;
-forStmt      := "for" "(" ( varDecl | exprStmt | ";" ) expression? ";" expression? ")" statement ;
-ifStmt       := "if" "(" expression ")" statement ( "else" statement )? ;
-printStmt    := "print" expression ";" ;
-returnStmt   := "return" expression? ";" ;
-whileStmt    := "while" "(" expression ")" statement ;
-block        := "{" declaration* "}"
-
-expression   := assignment ;
-assignment   := ( call "." )? IDENTIFIER "=" assignment | logic_or ;
-logic_or     := logic_and ( "or" logic_and )* ;
-logic_and    := equality ( "and" equality )* ;
-equality     := comparison ( ( "!=" | "==" ) comparison )* ;
-comparison   := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
-term         := factor ( ( "-" | "+" ) factor )* ;
-factor       := unary ( ( "/" | "*" ) unary )*
-unary        := ( "!" | "-" ) unary | call ;
-call         := primary ( "(" arguments? ")" | "." IDENTIFIER )*;
-arguments    := expression ( "," expression )* ;
-primary      := NUMBER | STRING | BOOLEAN | NIL | "this" | "(" expression ")" | IDENTIFIER | "super" "." IDENTIFIER ;
-```
-
-### Terminals
-
-```
-STRING      := \".*\"
-NUMBER      := [1-9][0-9]*(\.[0-9]+)?
-BOOLEAN     := "true" | "false"
-NIL         := "nil"
-IDENTIFIER  :=
-EOF         := // end of file
-```
-
-
 ## Sola grammar
 
 ```
@@ -96,6 +47,8 @@ statement       := todo
 
 ```
 expression      := todo
+
+primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER | "this" | "super" "." IDENTIFIER ;
 ```
 
 ### Terminals

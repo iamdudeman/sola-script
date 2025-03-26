@@ -1,6 +1,7 @@
 package technology.sola.script;
 
 import technology.sola.script.error.ErrorContainer;
+import technology.sola.script.parser.Parser;
 import technology.sola.script.tokenizer.Tokenizer;
 
 import java.io.BufferedReader;
@@ -64,10 +65,11 @@ public class SolaScriptMain {
     var errorContainer = new ErrorContainer();
     var tokenizer = new Tokenizer(source);
     var tokenizeResult = tokenizer.tokenize();
-
-    // todo hook up parser
+    var parser = new Parser(tokenizeResult.tokens());
+    var parserResult = parser.parse();
 
     errorContainer.addErrors(tokenizeResult.errors());
+    errorContainer.addErrors(parserResult.errors());
 
     if (errorContainer.hasError()) {
       errorContainer.printErrors();
