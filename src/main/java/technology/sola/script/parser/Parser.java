@@ -35,16 +35,39 @@ public class Parser {
 
   private Stmt stmtDeclaration() {
     try {
-      // todo implement
-      throw new UnsupportedOperationException("Not supported yet.");
+      // todo function
+      // todo class
+      // todo var
+      // todo val
+
+      return statement();
     } catch (ParseError error) {
       synchronize();
       return null;
     }
   }
 
+  private Stmt statement() {
+    // todo if
+    // todo while
+    // todo for
+    // todo return
+    // todo block
+
+    return stmtExpression();
+  }
+
+  private Stmt stmtExpression() {
+    var expr = expression();
+
+    eat(TokenType.SEMICOLON, "Expect ';' after expression.");
+
+    return new Stmt.Expression(expr);
+  }
+
   private Expr expression() {
-    throw new UnsupportedOperationException("Not supported yet.");
+    // todo replace with real implementation
+    return exprPrimary();
   }
 
   private Expr exprPrimary() {
