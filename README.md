@@ -47,6 +47,8 @@ statement       := todo
 
 ```
 expression      := todo
+
+primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER | "this" | "super" "." IDENTIFIER ;
 ```
 
 ### Terminals

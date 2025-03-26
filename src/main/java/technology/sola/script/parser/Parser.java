@@ -24,7 +24,7 @@ public class Parser {
     }
 
     while (!isAtEnd()) {
-      statements.add(declaration());
+      statements.add(stmtDeclaration());
     }
 
     return new ParserResult(statements, errors);
@@ -33,7 +33,7 @@ public class Parser {
 
   // declarations, statements, expressions below -----------------------------------------------------------
 
-  private Stmt declaration() {
+  private Stmt stmtDeclaration() {
     try {
       // todo implement
       throw new UnsupportedOperationException("Not supported yet.");
@@ -41,6 +41,58 @@ public class Parser {
       synchronize();
       return null;
     }
+  }
+
+  private Expr expression() {
+    throw new UnsupportedOperationException("Not supported yet.");
+  }
+
+  private Expr exprPrimary() {
+    if (advanceExpected(TokenType.FALSE)) {
+      return new Expr.Literal(false);
+    }
+
+    if (advanceExpected(TokenType.TRUE)) {
+      return new Expr.Literal(true);
+    }
+
+    if (advanceExpected(TokenType.NULL)) {
+      return new Expr.Literal(null);
+    }
+
+    if (advanceExpected(TokenType.NUMBER, TokenType.STRING)) {
+      return new Expr.Literal(previous().literal());
+    }
+
+    if (advanceExpected(TokenType.LEFT_PAREN)) {
+      var expr = expression();
+
+      eat(TokenType.RIGHT_PAREN, "Expect ')' after expression.");
+
+      return new Expr.Grouping(expr);
+    }
+
+    if (advanceExpected(TokenType.IDENTIFIER)) {
+      return new Expr.Variable(previous());
+    }
+
+    if (advanceExpected(TokenType.THIS)) {
+      return new Expr.This(previous());
+    }
+
+    if (advanceExpected(TokenType.SUPER)) {
+      var keyword = previous();
+
+      eat(TokenType.DOT, "Expect '.' after super.");
+
+      var method = eat(TokenType.IDENTIFIER, "Expect superclass method name.");
+
+      return new Expr.Super(keyword, method);
+    }
+
+    errors.add(new ScriptError(ScriptErrorType.PARSE, previous(), "Expect expression."));
+
+    throw new ParseError();
   }
 
 
