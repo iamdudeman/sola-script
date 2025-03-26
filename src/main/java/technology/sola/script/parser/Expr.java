@@ -2,6 +2,9 @@ package technology.sola.script.parser;
 
 import technology.sola.script.tokenizer.Token;
 
+/**
+ * Expr represents code that evaluates to a value.
+ */
 public interface Expr {
   <R> R accept(Visitor<R> visitor);
 

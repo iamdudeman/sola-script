@@ -1,5 +1,8 @@
 package technology.sola.script.parser;
 
+/**
+ * Stmt represents a piece of code that performs an action or controls the flow of the program.
+ */
 public interface Stmt {
   <R> R accept(Visitor<R> visitor);
 
