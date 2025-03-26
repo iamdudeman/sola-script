@@ -7,7 +7,6 @@ import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.tokenizer.Tokenizer;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -62,11 +61,9 @@ class ParserTest {
   private TestResult visualizeScriptParsing(String source) {
     var tokenizer = new Tokenizer(source);
     var parser = new Parser(tokenizer.tokenize().tokens());
-    var astPrinter = new AstPrinter();
+    var parserResultPrinter = new ParserResultPrinter();
     var parserResult = parser.parse();
-    var parsedScript = parserResult.statements().stream()
-      .map(astPrinter::print)
-      .collect(Collectors.joining("\n"));
+    var parsedScript = parserResultPrinter.print(parserResult);
 
     return new TestResult(
       parsedScript,

@@ -8,16 +8,29 @@ import technology.sola.script.tokenizer.TokenType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parser takes a list of {@link Token}s and parses them into {@link Stmt}s that can be later interpreted.
+ */
 public class Parser {
   private final List<Token> tokens;
   private final List<Stmt> statements = new ArrayList<>();
   private final List<ScriptError> errors = new ArrayList<>();
   private int current = 0;
 
+  /**
+   * Creates an instance for a desired list of {@link Token}s.
+   *
+   * @param tokens the {@link Token}s for the program
+   */
   public Parser(List<Token> tokens) {
     this.tokens = tokens;
   }
 
+  /**
+   * Parses the {@link Token}s into a {@link ParserResult} containing the list of identified {@link Stmt}s.
+   *
+   * @return the parsing result
+   */
   public ParserResult parse() {
     if (!statements.isEmpty()) {
       return new ParserResult(statements, errors);

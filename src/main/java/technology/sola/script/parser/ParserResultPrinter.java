@@ -1,14 +1,31 @@
 package technology.sola.script.parser;
 
-public class AstPrinter {
+import java.util.stream.Collectors;
+
+/**
+ * ParserResultPrinter serializes a {@link ParserResult} in a human-readable way.
+ */
+public class ParserResultPrinter {
   private final StmtPrinter stmtPrinter = new StmtPrinter();
   private final ExprPrinter exprPrinter = new ExprPrinter();
 
-  public String print(Stmt stmt) {
+  /**
+   * Converts a {@link ParserResult} into a human-readable string.
+   *
+   * @param result the {@link ParserResult}
+   * @return the stringified parser result
+   */
+  public String print(ParserResult result) {
+    return result.statements().stream()
+      .map(this::print)
+      .collect(Collectors.joining("\n"));
+  }
+
+  private String print(Stmt stmt) {
     return stmt.accept(stmtPrinter);
   }
 
-  public String print(Expr expr) {
+  private String print(Expr expr) {
     return expr.accept(exprPrinter);
   }
 
