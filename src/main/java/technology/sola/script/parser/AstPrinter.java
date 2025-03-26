@@ -17,19 +17,9 @@ public class AstPrinter {
     public String expression(Stmt.Expression expr) {
       return print(expr.expr());
     }
-
-    @Override
-    public String block(Stmt.Block stmt) {
-      return "{" + stmt.accept(this) + "}";
-    }
   }
 
   private class ExprPrinter implements Expr.Visitor<String> {
-    @Override
-    public String assign(Expr.Assign expr) {
-      throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     @Override
     public String thisVisit(Expr.This expr) {
       return "this";
@@ -47,7 +37,7 @@ public class AstPrinter {
 
     @Override
     public String grouping(Expr.Grouping expr) {
-      return "(" + AstPrinter.this.print(expr.expression()) + ")";
+      return "(" + print(expr.expression()) + ")";
     }
 
     @Override

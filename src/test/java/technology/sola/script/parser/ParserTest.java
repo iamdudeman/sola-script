@@ -14,9 +14,25 @@ class ParserTest {
   void primary() {
     var source = """
       false;
+      true;
+      null;
+      "string";
+      12.37;
+      ( true );
+      testVar;
+      this;
+      super.someMethod;
       """;
     var expected = """
       false
+      true
+      null
+      string
+      12.37
+      (true)
+      testVar
+      this
+      super.someMethod
       """.trim();
     var result = visualizeScriptParsing(source);
 

@@ -6,8 +6,6 @@ public interface Expr {
   <R> R accept(Visitor<R> visitor);
 
   interface Visitor<R> {
-    R assign(Assign expr);
-
     R thisVisit(This expr);
 
     R superVisit(Super expr);
@@ -17,13 +15,6 @@ public interface Expr {
     R grouping(Grouping expr);
 
     R literal(Literal expr);
-  }
-
-  record Assign(Token name, Expr value) implements Expr {
-    @Override
-    public <R> R accept(Visitor<R> visitor) {
-      return visitor.assign(this);
-    }
   }
 
   record This(Token keyword) implements Expr {
