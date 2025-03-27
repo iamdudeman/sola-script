@@ -6,18 +6,107 @@ import technology.sola.script.error.ScriptError;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.tokenizer.Tokenizer;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParserTest {
   @Nested
   class stmtExpression {
+    @Nested
+    class call {
+      @Test
+      void valid() {
+        var source = """
+          methodCall();
+          methodCallArgs("test", 5);
+          objectGetter.someValue;
+          """;
+        var expected = """
+          methodCall()
+          methodCallArgs(test, 5)
+          objectGetter.someValue
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+
+      @Test
+      void invalid() {
+        var source = """
+          invalidMethodCall(test;
+          invalidGetter.;
+          """;
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(2, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Expect ')' after arguments.", error.message());
+
+        error = result.errors.get(1);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Expect property name after '.'.", error.message());
+      }
+
+      @Test
+      void invalidArgumentCount() {
+        var arguments = new String[256];
+        Arrays.fill(arguments, "test");
+        var source = """
+          methodCall(%s);
+          """.formatted(Arrays.stream(arguments).map(Object::toString).collect(Collectors.joining(",")));
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(1, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.SEMANTIC, error.type());
+        assertEquals("Can't have more than 255 arguments.", error.message());
+      }
+    }
+
+    @Nested
+    class primary {
+      @Test
+      void valid() {
+        var source = """
+          false;
+          true;
+          null;
+          "string";
+          12.37;
+          ( true );
+          testVar;
+          this;
+          super.someMethod;
+          """;
+        var expected = """
+          false
+          true
+          null
+          string
+          12.37
+          (true)
+          testVar
+          this
+          super.someMethod
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+    }
+
     @Test
-    void invalid() {
+    void invalidPrimary() {
       var source = """
-      false
-      """;
+        false
+        """;
 
       var result = visualizeScriptParsing(source);
 
@@ -25,36 +114,6 @@ class ParserTest {
       var error = result.errors.get(0);
       assertEquals(ScriptErrorType.PARSE, error.type());
       assertEquals("Expect ';' after expression.", error.message());
-    }
-
-    @Test
-    void validPrimary() {
-      var source = """
-      false;
-      true;
-      null;
-      "string";
-      12.37;
-      ( true );
-      testVar;
-      this;
-      super.someMethod;
-      """;
-      var expected = """
-      false
-      true
-      null
-      string
-      12.37
-      (true)
-      testVar
-      this
-      super.someMethod
-      """.trim();
-      var result = visualizeScriptParsing(source);
-
-      assertEquals(0, result.errors.size());
-      assertEquals(expected, result.parsedScript);
     }
   }
 

@@ -38,6 +38,21 @@ public class ParserResultPrinter {
 
   private class ExprPrinter implements Expr.Visitor<String> {
     @Override
+    public String call(Expr.Call expr) {
+      var arguments = expr.arguments()
+        .stream()
+        .map(ParserResultPrinter.this::print)
+        .collect(Collectors.joining(", "));
+
+      return print(expr.callee()) + "(" + arguments +  ")";
+    }
+
+    @Override
+    public String get(Expr.Get expr) {
+      return print(expr.object()) + "." + expr.name().lexeme();
+    }
+
+    @Override
     public String thisVisit(Expr.This expr) {
       return "this";
     }
@@ -59,7 +74,17 @@ public class ParserResultPrinter {
 
     @Override
     public String literal(Expr.Literal expr) {
-      return expr.value() == null ? "null" : expr.value().toString();
+      if (expr.value() == null) {
+        return "null";
+      }
+
+      var value = expr.value().toString();
+
+      if (expr.value() instanceof Double) {
+        return value.endsWith(".0") ? value.substring(0, value.length() - 2) : value;
+      }
+
+      return value;
     }
   }
 }

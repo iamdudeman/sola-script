@@ -2,6 +2,8 @@ package technology.sola.script.parser;
 
 import technology.sola.script.tokenizer.Token;
 
+import java.util.List;
+
 /**
  * Expr represents code that evaluates to a value.
  */
@@ -9,6 +11,10 @@ public interface Expr {
   <R> R accept(Visitor<R> visitor);
 
   interface Visitor<R> {
+    R call(Call expr);
+
+    R get(Get expr);
+
     R thisVisit(This expr);
 
     R superVisit(Super expr);
@@ -18,6 +24,20 @@ public interface Expr {
     R grouping(Grouping expr);
 
     R literal(Literal expr);
+  }
+
+  record Call(Expr callee, Token paren, List<Expr> arguments) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.call(this);
+    }
+  }
+
+  record Get(Expr object, Token name) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.get(this);
+    }
   }
 
   record This(Token keyword) implements Expr {

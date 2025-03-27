@@ -46,9 +46,15 @@ statement       := todo
 ### Expressions
 
 ```
-expression      := todo
-
+expression      := call
+call            := primary ( "(" arguments? ")" ) | "." IDENTIFIER )* ;
 primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER | "this" | "super" "." IDENTIFIER ;
+```
+
+#### Expression Helpers
+
+```
+arguments       := expression ( "," expression )* ;
 ```
 
 ### Terminals

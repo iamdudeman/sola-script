@@ -84,7 +84,39 @@ public class Parser {
 
   private Expr expression() {
     // todo replace with real implementation
-    return exprPrimary();
+    return exprCall();
+  }
+
+  private Expr exprCall() {
+    Expr expr = exprPrimary();
+
+    while (true) {
+      if (advanceExpected(TokenType.LEFT_PAREN)) {
+        List<Expr> arguments = new ArrayList<>();
+
+        if (!check(TokenType.RIGHT_PAREN)) {
+          do {
+            if (arguments.size() >= 255) {
+              errors.add(new ScriptError(ScriptErrorType.SEMANTIC, peek(), "Can't have more than 255 arguments."));
+            }
+
+            arguments.add(expression());
+          } while (advanceExpected(TokenType.COMMA));
+        }
+
+        Token paren = eat(TokenType.RIGHT_PAREN, "Expect ')' after arguments.");
+
+        expr = new Expr.Call(expr, paren, arguments);
+      } else if (advanceExpected(TokenType.DOT)) {
+        Token name = eat(TokenType.IDENTIFIER, "Expect property name after '.'.");
+
+        expr = new Expr.Get(expr, name);
+      } else {
+        break;
+      }
+    }
+
+    return expr;
   }
 
   private Expr exprPrimary() {
