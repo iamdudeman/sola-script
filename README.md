@@ -46,7 +46,8 @@ statement       := todo
 ### Expressions
 
 ```
-expression      := logic_and ;
+expression      := assignment ;
+assignment      := ( call ".")? IDENTIFIER "=" assignment | logic_or ;
 logic_or        := logic_and ( "||" logic_and )* ;
 logic_and       := equality ( "&&" equality )* ;
 equality        := comparison ( ( "!=" | "==" ) comparison )* ;

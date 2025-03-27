@@ -16,6 +16,38 @@ class ParserTest {
   @Nested
   class stmtExpression {
     @Nested
+    class exprAssignment {
+      @Test
+      void valid() {
+        var source = """
+          test = 5;
+          someObj.test = 5;
+          """;
+        var expected = """
+          test = 5
+          someObj.test = 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+
+      @Test
+      void invalid() {
+        var source = """
+          4 = 5;
+          """;
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(1, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Invalid assignment target.", error.message());
+      }
+    }
+
+    @Nested
     class exprLogicOr {
       @Test
       void valid() {

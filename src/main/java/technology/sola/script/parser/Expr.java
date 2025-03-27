@@ -11,6 +11,10 @@ public interface Expr {
   <R> R accept(Visitor<R> visitor);
 
   interface Visitor<R> {
+    R set(Set expr);
+
+    R assign(Assign expr);
+
     R logical(Logical expr);
 
     R binary(Binary expr);
@@ -30,6 +34,20 @@ public interface Expr {
     R grouping(Grouping expr);
 
     R literal(Literal expr);
+  }
+
+  record Set(Expr object, Token name, Expr value) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.set(this);
+    }
+  }
+
+  record Assign(Token name, Expr value) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.assign(this);
+    }
   }
 
   record Logical(Expr left, Token operator, Expr right) implements Expr {

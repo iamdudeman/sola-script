@@ -83,8 +83,28 @@ public class Parser {
   }
 
   private Expr expression() {
-    // todo replace with real implementation
-    return exprLogicOr();
+    return exprAssignment();
+  }
+
+  private Expr exprAssignment() {
+    Expr expr = exprLogicOr();
+
+    if (advanceExpected(TokenType.EQUAL)) {
+      Token equals = previous();
+      Expr value = exprAssignment();
+
+      if (expr instanceof Expr.Variable varExpr) {
+        Token name = varExpr.name();
+
+        return new Expr.Assign(name, value);
+      } else if (expr instanceof Expr.Get getExpr) {
+        return new Expr.Set(getExpr.object(), getExpr.name(), value);
+      }
+
+      errors.add(new ScriptError(ScriptErrorType.PARSE, equals, "Invalid assignment target."));
+    }
+
+    return expr;
   }
 
   private Expr exprLogicOr() {

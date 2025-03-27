@@ -38,6 +38,16 @@ public class ParserResultPrinter {
 
   private class ExprPrinter implements Expr.Visitor<String> {
     @Override
+    public String set(Expr.Set expr) {
+      return print(expr.object()) + "." + expr.name().lexeme() + " = " + print(expr.value());
+    }
+
+    @Override
+    public String assign(Expr.Assign expr) {
+      return expr.name().lexeme() + " = " + print(expr.value());
+    }
+
+    @Override
     public String logical(Expr.Logical expr) {
       return print(expr.left()) + " " + expr.operator().lexeme() + " " + print(expr.right());
     }
