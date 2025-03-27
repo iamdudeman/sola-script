@@ -84,7 +84,59 @@ public class Parser {
 
   private Expr expression() {
     // todo replace with real implementation
-    return exprUnary();
+    return exprEquality();
+  }
+
+  private Expr exprEquality() {
+    Expr expr = exprComparison();
+
+    while (advanceExpected(TokenType.BANG_EQUAL, TokenType.EQUAL_EQUAL)) {
+      Token operator = previous();
+      Expr right = exprComparison();
+
+      expr = new Expr.Binary(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprComparison() {
+    Expr expr = exprTerm();
+
+    while (advanceExpected(TokenType.GREATER, TokenType.LESS, TokenType.GREATER_EQUAL, TokenType.LESS_EQUAL)) {
+      Token operator = previous();
+      Expr right = exprTerm();
+
+      expr = new Expr.Binary(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprTerm() {
+    Expr expr = exprFactor();
+
+    while (advanceExpected(TokenType.MINUS, TokenType.PLUS)) {
+      Token operator = previous();
+      Expr right = exprFactor();
+
+      expr = new Expr.Binary(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprFactor() {
+    Expr expr = exprUnary();
+
+    while (advanceExpected(TokenType.SLASH, TokenType.STAR)) {
+      Token operator = previous();
+      Expr right = exprUnary();
+
+      expr = new Expr.Binary(expr, operator, right);
+    }
+
+    return expr;
   }
 
   private Expr exprUnary() {

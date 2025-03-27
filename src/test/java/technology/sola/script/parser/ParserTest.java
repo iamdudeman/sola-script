@@ -16,6 +16,86 @@ class ParserTest {
   @Nested
   class stmtExpression {
     @Nested
+    class exprEquality {
+      @Test
+      void valid() {
+        var source = """
+          12.32 == 5;
+          12.32 != 5;
+          """;
+        var expected = """
+          12.32 == 5
+          12.32 != 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+    }
+
+    @Nested
+    class exprComparison {
+      @Test
+      void valid() {
+        var source = """
+          12.32 > 5;
+          12.32 < 5;
+          12.32 >= 5;
+          12.32 <= 5;
+          """;
+        var expected = """
+          12.32 > 5
+          12.32 < 5
+          12.32 >= 5
+          12.32 <= 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+    }
+
+    @Nested
+    class exprTerm {
+      @Test
+      void valid() {
+        var source = """
+          12.32 + 5;
+          12.32 - 5;
+          """;
+        var expected = """
+          12.32 + 5
+          12.32 - 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+    }
+
+    @Nested
+    class exprFactor {
+      @Test
+      void valid() {
+        var source = """
+          12.32 * 5;
+          12.32 / 5;
+          """;
+        var expected = """
+          12.32 * 5
+          12.32 / 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+    }
+
+    @Nested
     class exprUnary {
       @Test
       void valid() {

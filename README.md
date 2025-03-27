@@ -46,7 +46,11 @@ statement       := todo
 ### Expressions
 
 ```
-expression      := call
+expression      := equality
+equality        := comparison ( ( "!=" | "==" ) comparison )* ;
+comparison      := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+term            := factor ( ( "-" | "+" ) factor )* ;
+factor          := unary ( ( "/" | "*" ) unary )*
 unary           := ( "!" | "-" ) unary | call ;
 call            := primary ( "(" arguments? ")" ) | "." IDENTIFIER )* ;
 primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER | "this" | "super" "." IDENTIFIER ;
