@@ -38,6 +38,11 @@ public class ParserResultPrinter {
 
   private class ExprPrinter implements Expr.Visitor<String> {
     @Override
+    public String unary(Expr.Unary expr) {
+      return expr.operator().lexeme() + print(expr.right());
+    }
+
+    @Override
     public String call(Expr.Call expr) {
       var arguments = expr.arguments()
         .stream()

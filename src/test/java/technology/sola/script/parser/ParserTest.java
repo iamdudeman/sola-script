@@ -16,7 +16,26 @@ class ParserTest {
   @Nested
   class stmtExpression {
     @Nested
-    class call {
+    class exprUnary {
+      @Test
+      void valid() {
+        var source = """
+          -12.32;
+          !false;
+          """;
+        var expected = """
+          -12.32
+          !false
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+    }
+
+    @Nested
+    class exprCall {
       @Test
       void valid() {
         var source = """
@@ -70,7 +89,7 @@ class ParserTest {
     }
 
     @Nested
-    class primary {
+    class exprPrimary {
       @Test
       void valid() {
         var source = """

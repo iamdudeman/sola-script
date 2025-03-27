@@ -84,6 +84,17 @@ public class Parser {
 
   private Expr expression() {
     // todo replace with real implementation
+    return exprUnary();
+  }
+
+  private Expr exprUnary() {
+    if (advanceExpected(TokenType.BANG, TokenType.MINUS)) {
+      Token operator = previous();
+      Expr right = exprUnary();
+
+      return new Expr.Unary(operator, right);
+    }
+
     return exprCall();
   }
 

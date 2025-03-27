@@ -47,6 +47,7 @@ statement       := todo
 
 ```
 expression      := call
+unary           := ( "!" | "-" ) unary | call ;
 call            := primary ( "(" arguments? ")" ) | "." IDENTIFIER )* ;
 primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER | "this" | "super" "." IDENTIFIER ;
 ```
