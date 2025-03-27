@@ -84,7 +84,33 @@ public class Parser {
 
   private Expr expression() {
     // todo replace with real implementation
-    return exprEquality();
+    return exprLogicOr();
+  }
+
+  private Expr exprLogicOr() {
+    Expr expr = exprLogicAnd();
+
+    while (advanceExpected(TokenType.BAR_BAR)) {
+      Token operator = previous();
+      Expr right = exprLogicAnd();
+
+      expr = new Expr.Logical(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprLogicAnd() {
+    Expr expr = exprEquality();
+
+    while (advanceExpected(TokenType.AMP_AMP)) {
+      Token operator = previous();
+      Expr right = exprEquality();
+
+      expr = new Expr.Logical(expr, operator, right);
+    }
+
+    return expr;
   }
 
   private Expr exprEquality() {

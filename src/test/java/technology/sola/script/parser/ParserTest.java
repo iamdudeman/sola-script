@@ -16,6 +16,40 @@ class ParserTest {
   @Nested
   class stmtExpression {
     @Nested
+    class exprLogicOr {
+      @Test
+      void valid() {
+        var source = """
+          12.32 || 5;
+          """;
+        var expected = """
+          12.32 || 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+    }
+
+    @Nested
+    class exprLogicAnd {
+      @Test
+      void valid() {
+        var source = """
+          12.32 && 5;
+          """;
+        var expected = """
+          12.32 && 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+    }
+
+    @Nested
     class exprEquality {
       @Test
       void valid() {
@@ -199,20 +233,20 @@ class ParserTest {
         assertEquals(0, result.errors.size());
         assertEquals(expected, result.parsedScript);
       }
-    }
 
-    @Test
-    void invalidPrimary() {
-      var source = """
+      @Test
+      void invalid() {
+        var source = """
         false
         """;
 
-      var result = visualizeScriptParsing(source);
+        var result = visualizeScriptParsing(source);
 
-      assertEquals(1, result.errors.size());
-      var error = result.errors.get(0);
-      assertEquals(ScriptErrorType.PARSE, error.type());
-      assertEquals("Expect ';' after expression.", error.message());
+        assertEquals(1, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Expect ';' after expression.", error.message());
+      }
     }
   }
 
