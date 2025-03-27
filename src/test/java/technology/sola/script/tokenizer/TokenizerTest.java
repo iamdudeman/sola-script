@@ -111,7 +111,7 @@ class TokenizerTest {
           """;
 
         new TokenizerTester()
-          .nextError(2, 2, "Unterminated string.")
+          .nextError(2, 3, "Unterminated string.")
           .next(TokenType.EOF)
           .verify(source);
       }
