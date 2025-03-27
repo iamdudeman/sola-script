@@ -37,13 +37,18 @@ class ParserTest {
       void invalid() {
         var source = """
           4 = 5;
+          = 5;
           """;
         var result = visualizeScriptParsing(source);
 
-        assertEquals(1, result.errors.size());
+        assertEquals(2, result.errors.size());
         var error = result.errors.get(0);
         assertEquals(ScriptErrorType.PARSE, error.type());
         assertEquals("Invalid assignment target.", error.message());
+
+        error = result.errors.get(1);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
       }
     }
 
@@ -60,6 +65,25 @@ class ParserTest {
         var result = visualizeScriptParsing(source);
 
         assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+
+      @Test
+      void invalid() {
+        var source = """
+          2 || 5;
+          || 5;
+          """;
+        var expected = """
+          2 || 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(1, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
         assertEquals(expected, result.parsedScript);
       }
     }
@@ -79,6 +103,25 @@ class ParserTest {
         assertEquals(0, result.errors.size());
         assertEquals(expected, result.parsedScript);
       }
+
+      @Test
+      void invalid() {
+        var source = """
+          2 && 5;
+          && 5;
+          """;
+        var expected = """
+          2 && 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(1, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
+        assertEquals(expected, result.parsedScript);
+      }
     }
 
     @Nested
@@ -96,6 +139,32 @@ class ParserTest {
         var result = visualizeScriptParsing(source);
 
         assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+
+      @Test
+      void invalid() {
+        var source = """
+          2 == 5;
+          == 5;
+          != 5;
+          5 != 2;
+          """;
+        var expected = """
+          2 == 5
+          5 != 2
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(2, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
+        error = result.errors.get(1);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
         assertEquals(expected, result.parsedScript);
       }
     }
@@ -121,6 +190,46 @@ class ParserTest {
         assertEquals(0, result.errors.size());
         assertEquals(expected, result.parsedScript);
       }
+
+      @Test
+      void invalid() {
+        var source = """
+          2 > 5;
+          2 < 5;
+          > 5;
+          < 5;
+          5 >= 2;
+          5 <= 2;
+          >= 5;
+          <= 5;
+          """;
+        var expected = """
+          2 > 5
+          2 < 5
+          5 >= 2
+          5 <= 2
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(4, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
+        error = result.errors.get(1);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
+        error = result.errors.get(2);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
+        error = result.errors.get(3);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
+        assertEquals(expected, result.parsedScript);
+      }
     }
 
     @Nested
@@ -140,6 +249,25 @@ class ParserTest {
         assertEquals(0, result.errors.size());
         assertEquals(expected, result.parsedScript);
       }
+
+      @Test
+      void invalid() {
+        var source = """
+          2 + 5;
+          + 5;
+          """;
+        var expected = """
+          2 + 5
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(1, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
+        assertEquals(expected, result.parsedScript);
+      }
     }
 
     @Nested
@@ -157,6 +285,32 @@ class ParserTest {
         var result = visualizeScriptParsing(source);
 
         assertEquals(0, result.errors.size());
+        assertEquals(expected, result.parsedScript);
+      }
+
+      @Test
+      void invalid() {
+        var source = """
+          2 * 5;
+          * 5;
+          / 5;
+          5 / 2;
+          """;
+        var expected = """
+          2 * 5
+          5 / 2
+          """.trim();
+        var result = visualizeScriptParsing(source);
+
+        assertEquals(2, result.errors.size());
+        var error = result.errors.get(0);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
+        error = result.errors.get(1);
+        assertEquals(ScriptErrorType.PARSE, error.type());
+        assertEquals("Binary expression missing left operand.", error.message());
+
         assertEquals(expected, result.parsedScript);
       }
     }

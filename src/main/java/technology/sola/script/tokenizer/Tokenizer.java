@@ -15,6 +15,7 @@ public class Tokenizer {
   private final List<Token> tokens = new ArrayList<>();
   private final List<ScriptError> errors = new ArrayList<>();
   private int start = 0;
+  private int startColumn = 1;
   private int current = 0;
   private int line = 1;
   private int column = 1;
@@ -40,10 +41,11 @@ public class Tokenizer {
 
     while (!isAtEnd()) {
       start = current;
+      startColumn = column;
       nextToken();
     }
 
-    tokens.add(new Token(TokenType.EOF, "", null, line, column));
+    tokens.add(new Token(TokenType.EOF, "", null, line, startColumn));
 
     return new TokenizeResult(tokens, errors);
   }
@@ -142,7 +144,7 @@ public class Tokenizer {
         } else if (isAlpha(c)) {
           tokenIdentifier();
         } else {
-          errors.add(new ScriptError(ScriptErrorType.PARSE, line, column, "Unexpected character '" + c + "'"));
+          errors.add(new ScriptError(ScriptErrorType.PARSE, line, startColumn, "Unexpected character '" + c + "'"));
         }
 
         break;
@@ -207,7 +209,7 @@ public class Tokenizer {
   private void addToken(TokenType type, Object literal) {
     String lexeme = source.substring(start, current);
 
-    tokens.add(new Token(type, lexeme, literal, line, column));
+    tokens.add(new Token(type, lexeme, literal, line, startColumn));
   }
 
   private void tokenString() {
@@ -221,7 +223,7 @@ public class Tokenizer {
     }
 
     if (isAtEnd()) {
-      errors.add(new ScriptError(ScriptErrorType.PARSE, line, column, "Unterminated string."));
+      errors.add(new ScriptError(ScriptErrorType.PARSE, line, startColumn, "Unterminated string."));
       return;
     }
 

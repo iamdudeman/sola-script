@@ -274,6 +274,20 @@ public class Parser {
       return new Expr.Super(keyword, method);
     }
 
+    if (advanceExpected(
+      TokenType.STAR, TokenType.SLASH,
+      TokenType.PLUS, // note MINUS is okay since it is unary
+      TokenType.EQUAL_EQUAL, TokenType.BANG_EQUAL,
+      TokenType.LESS, TokenType.GREATER, TokenType.LESS_EQUAL, TokenType.GREATER_EQUAL,
+      TokenType.AMP_AMP, TokenType.BAR_BAR,
+      TokenType.EQUAL
+    )) {
+
+      errors.add(new ScriptError(ScriptErrorType.PARSE, previous(), "Binary expression missing left operand."));
+
+      throw new ParseError();
+    }
+
     errors.add(new ScriptError(ScriptErrorType.PARSE, previous(), "Expect expression."));
 
     throw new ParseError();
