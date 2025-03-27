@@ -2,6 +2,8 @@ package technology.sola.script.parser;
 
 import technology.sola.script.tokenizer.Token;
 
+import java.util.List;
+
 /**
  * Expr represents code that evaluates to a value.
  */
@@ -9,6 +11,20 @@ public interface Expr {
   <R> R accept(Visitor<R> visitor);
 
   interface Visitor<R> {
+    R set(Set expr);
+
+    R assign(Assign expr);
+
+    R logical(Logical expr);
+
+    R binary(Binary expr);
+
+    R unary(Unary expr);
+
+    R call(Call expr);
+
+    R get(Get expr);
+
     R thisVisit(This expr);
 
     R superVisit(Super expr);
@@ -18,6 +34,55 @@ public interface Expr {
     R grouping(Grouping expr);
 
     R literal(Literal expr);
+  }
+
+  record Set(Expr object, Token name, Expr value) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.set(this);
+    }
+  }
+
+  record Assign(Token name, Expr value) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.assign(this);
+    }
+  }
+
+  record Logical(Expr left, Token operator, Expr right) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.logical(this);
+    }
+  }
+
+  record Binary(Expr left, Token operator, Expr right) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.binary(this);
+    }
+  }
+
+  record Unary(Token operator, Expr right) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.unary(this);
+    }
+  }
+
+  record Call(Expr callee, Token paren, List<Expr> arguments) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.call(this);
+    }
+  }
+
+  record Get(Expr object, Token name) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.get(this);
+    }
   }
 
   record This(Token keyword) implements Expr {

@@ -48,7 +48,7 @@ public class Parser {
   }
 
 
-  // declarations, statements, expressions below -----------------------------------------------------------
+  // declarations, statements below ------------------------------------------------------------------------------------
 
   private Stmt stmtDeclaration() {
     try {
@@ -82,9 +82,153 @@ public class Parser {
     return new Stmt.Expression(expr);
   }
 
+
+  // expressions below -------------------------------------------------------------------------------------------------
+
   private Expr expression() {
-    // todo replace with real implementation
-    return exprPrimary();
+    return exprAssignment();
+  }
+
+  private Expr exprAssignment() {
+    Expr expr = exprLogicOr();
+
+    if (advanceExpected(TokenType.EQUAL)) {
+      Token equals = previous();
+      Expr value = exprAssignment();
+
+      if (expr instanceof Expr.Variable varExpr) {
+        Token name = varExpr.name();
+
+        return new Expr.Assign(name, value);
+      } else if (expr instanceof Expr.Get getExpr) {
+        return new Expr.Set(getExpr.object(), getExpr.name(), value);
+      }
+
+      errors.add(new ScriptError(ScriptErrorType.PARSE, equals, "Invalid assignment target."));
+    }
+
+    return expr;
+  }
+
+  private Expr exprLogicOr() {
+    Expr expr = exprLogicAnd();
+
+    while (advanceExpected(TokenType.BAR_BAR)) {
+      Token operator = previous();
+      Expr right = exprLogicAnd();
+
+      expr = new Expr.Logical(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprLogicAnd() {
+    Expr expr = exprEquality();
+
+    while (advanceExpected(TokenType.AMP_AMP)) {
+      Token operator = previous();
+      Expr right = exprEquality();
+
+      expr = new Expr.Logical(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprEquality() {
+    Expr expr = exprComparison();
+
+    while (advanceExpected(TokenType.BANG_EQUAL, TokenType.EQUAL_EQUAL)) {
+      Token operator = previous();
+      Expr right = exprComparison();
+
+      expr = new Expr.Binary(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprComparison() {
+    Expr expr = exprTerm();
+
+    while (advanceExpected(TokenType.GREATER, TokenType.LESS, TokenType.GREATER_EQUAL, TokenType.LESS_EQUAL)) {
+      Token operator = previous();
+      Expr right = exprTerm();
+
+      expr = new Expr.Binary(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprTerm() {
+    Expr expr = exprFactor();
+
+    while (advanceExpected(TokenType.MINUS, TokenType.PLUS)) {
+      Token operator = previous();
+      Expr right = exprFactor();
+
+      expr = new Expr.Binary(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprFactor() {
+    Expr expr = exprUnary();
+
+    while (advanceExpected(TokenType.SLASH, TokenType.STAR)) {
+      Token operator = previous();
+      Expr right = exprUnary();
+
+      expr = new Expr.Binary(expr, operator, right);
+    }
+
+    return expr;
+  }
+
+  private Expr exprUnary() {
+    if (advanceExpected(TokenType.BANG, TokenType.MINUS)) {
+      Token operator = previous();
+      Expr right = exprUnary();
+
+      return new Expr.Unary(operator, right);
+    }
+
+    return exprCall();
+  }
+
+  private Expr exprCall() {
+    Expr expr = exprPrimary();
+
+    while (true) {
+      if (advanceExpected(TokenType.LEFT_PAREN)) {
+        List<Expr> arguments = new ArrayList<>();
+
+        if (!check(TokenType.RIGHT_PAREN)) {
+          do {
+            if (arguments.size() >= 255) {
+              errors.add(new ScriptError(ScriptErrorType.SEMANTIC, peek(), "Can't have more than 255 arguments."));
+            }
+
+            arguments.add(expression());
+          } while (advanceExpected(TokenType.COMMA));
+        }
+
+        Token paren = eat(TokenType.RIGHT_PAREN, "Expect ')' after arguments.");
+
+        expr = new Expr.Call(expr, paren, arguments);
+      } else if (advanceExpected(TokenType.DOT)) {
+        Token name = eat(TokenType.IDENTIFIER, "Expect property name after '.'.");
+
+        expr = new Expr.Get(expr, name);
+      } else {
+        break;
+      }
+    }
+
+    return expr;
   }
 
   private Expr exprPrimary() {
@@ -130,13 +274,27 @@ public class Parser {
       return new Expr.Super(keyword, method);
     }
 
+    if (advanceExpected(
+      TokenType.STAR, TokenType.SLASH,
+      TokenType.PLUS, // note MINUS is okay since it is unary
+      TokenType.EQUAL_EQUAL, TokenType.BANG_EQUAL,
+      TokenType.LESS, TokenType.GREATER, TokenType.LESS_EQUAL, TokenType.GREATER_EQUAL,
+      TokenType.AMP_AMP, TokenType.BAR_BAR,
+      TokenType.EQUAL
+    )) {
+
+      errors.add(new ScriptError(ScriptErrorType.PARSE, previous(), "Binary expression missing left operand."));
+
+      throw new ParseError();
+    }
+
     errors.add(new ScriptError(ScriptErrorType.PARSE, previous(), "Expect expression."));
 
     throw new ParseError();
   }
 
 
-  // "hardware" methods below ------------------------------------------------------------------------------
+  // "hardware" methods below ------------------------------------------------------------------------------------------
 
   private Token eat(TokenType tokenType, String message) {
     if (check(tokenType)) {

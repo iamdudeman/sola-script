@@ -34,21 +34,36 @@ program         := declaration* EOF ;
 ### Declarations
 
 ```
-declaration     := todo
+declaration     := statement
 ```
 
 ### Statements
 
 ```
-statement       := todo
+statement       := exprStmt
+exprStmt        := expression ";" ;
 ```
 
 ### Expressions
 
 ```
-expression      := todo
-
+expression      := assignment ;
+assignment      := ( call ".")? IDENTIFIER "=" assignment | logic_or ;
+logic_or        := logic_and ( "||" logic_and )* ;
+logic_and       := equality ( "&&" equality )* ;
+equality        := comparison ( ( "!=" | "==" ) comparison )* ;
+comparison      := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+term            := factor ( ( "-" | "+" ) factor )* ;
+factor          := unary ( ( "/" | "*" ) unary )*
+unary           := ( "!" | "-" ) unary | call ;
+call            := primary ( "(" arguments? ")" ) | "." IDENTIFIER )* ;
 primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER | "this" | "super" "." IDENTIFIER ;
+```
+
+#### Expression Helpers
+
+```
+arguments       := expression ( "," expression )* ;
 ```
 
 ### Terminals
