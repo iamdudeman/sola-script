@@ -48,7 +48,7 @@ public class Parser {
   }
 
 
-  // declarations, statements, expressions below -----------------------------------------------------------
+  // declarations, statements below ------------------------------------------------------------------------------------
 
   private Stmt stmtDeclaration() {
     try {
@@ -81,6 +81,9 @@ public class Parser {
 
     return new Stmt.Expression(expr);
   }
+
+
+  // expressions below -------------------------------------------------------------------------------------------------
 
   private Expr expression() {
     return exprAssignment();
@@ -277,7 +280,7 @@ public class Parser {
   }
 
 
-  // "hardware" methods below ------------------------------------------------------------------------------
+  // "hardware" methods below ------------------------------------------------------------------------------------------
 
   private Token eat(TokenType tokenType, String message) {
     if (check(tokenType)) {
