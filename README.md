@@ -34,13 +34,14 @@ program         := declaration* EOF ;
 ### Declarations
 
 ```
-declaration     := todo
+declaration     := statement
 ```
 
 ### Statements
 
 ```
-statement       := todo
+statement       := exprStmt
+exprStmt        := expression ";" ;
 ```
 
 ### Expressions
