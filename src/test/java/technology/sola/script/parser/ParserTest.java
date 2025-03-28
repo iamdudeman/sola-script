@@ -3,7 +3,6 @@ package technology.sola.script.parser;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.script.error.ScriptErrorType;
-import technology.sola.script.error.ScriptError;
 import technology.sola.script.tokenizer.Tokenizer;
 
 import java.util.ArrayList;
