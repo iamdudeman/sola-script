@@ -8,6 +8,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// todo update error check stuff
+
 class TokenizerTest {
   @Test
   void whitespace() {
@@ -241,7 +243,7 @@ class TokenizerTest {
 
         assertEquals(expectedError.line, result.errors().get(i).line());
         assertEquals(expectedError.column, result.errors().get(i).column());
-        assertEquals(expectedError.message, result.errors().get(i).message());
+        assertEquals(expectedError.message, result.errors().get(i).type().formatMessage());
       }
 
       assertEquals(expectedTokens.size(), result.tokens().size(), "Expected tokens did not match");

@@ -35,6 +35,8 @@ public enum ErrorMessage {
    */
   INVALID_BINARY_EXPRESSION(ScriptErrorStage.PARSE, "Binary expression missing left operand."),
 
+  ONLY_INSTANCES_HAVE_PROPERTIES(ScriptErrorStage.RUNTIME, "Only instances have properties."),
+
   /**
    * Semantic error when a function or method has been declared with too many arguments. Maximum number of arguments
    * allowed is {@link technology.sola.script.parser.ParserConstants#MAX_ARGUMENTS}.
@@ -51,6 +53,7 @@ public enum ErrorMessage {
    * terminated.
    */
   UNTERMINATED_STRING(ScriptErrorStage.PARSE, "Unterminated string."),
+
   ;
 
   /**

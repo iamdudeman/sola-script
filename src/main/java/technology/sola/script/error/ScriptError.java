@@ -32,8 +32,8 @@ public record ScriptError(
   @Override
   public String toString() {
     String where = "[" + line() + ":" + column() + "]";
-    String kind = type().name();
+    String stage = type.stage.name();
 
-    return where + " " + kind + ": " + type.formatMessage(errorArgs);
+    return where + " " + stage + ": " + type.formatMessage(errorArgs);
   }
 }
