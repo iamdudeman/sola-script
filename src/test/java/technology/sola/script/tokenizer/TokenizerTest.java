@@ -2,6 +2,7 @@ package technology.sola.script.tokenizer;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.script.error.ScriptErrorType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TokenizerTest {
+  @Test
+  void unexpectedCharacter() {
+    var source = """
+      @
+      """;
+
+    new TokenizerTester()
+      .nextError(1, 1, ScriptErrorType.UNEXPECTED_CHARACTER)
+      .next(TokenType.EOF)
+      .verify(source);
+  }
+
   @Test
   void whitespace() {
     var source = "\t \n \t \r   \n";
@@ -111,7 +124,7 @@ class TokenizerTest {
           """;
 
         new TokenizerTester()
-          .nextError(2, 3, "Unterminated string.")
+          .nextError(2, 3, ScriptErrorType.UNTERMINATED_STRING)
           .next(TokenType.EOF)
           .verify(source);
       }
@@ -205,7 +218,7 @@ class TokenizerTest {
   private record ExpectedToken(TokenType type, Object literal) {
   }
 
-  private record ExpectedError(int line, int column, String message) {
+  private record ExpectedError(int line, int column, ScriptErrorType type) {
   }
 
   private static class TokenizerTester {
@@ -224,8 +237,8 @@ class TokenizerTest {
       return this;
     }
 
-    TokenizerTester nextError(int line, int column, String message) {
-      expectedErrors.add(new ExpectedError(line, column, message));
+    TokenizerTester nextError(int line, int column, ScriptErrorType type) {
+      expectedErrors.add(new ExpectedError(line, column, type));
 
       return this;
     }
@@ -241,7 +254,7 @@ class TokenizerTest {
 
         assertEquals(expectedError.line, result.errors().get(i).line());
         assertEquals(expectedError.column, result.errors().get(i).column());
-        assertEquals(expectedError.message, result.errors().get(i).message());
+        assertEquals(expectedError.type, result.errors().get(i).type());
       }
 
       assertEquals(expectedTokens.size(), result.tokens().size(), "Expected tokens did not match");

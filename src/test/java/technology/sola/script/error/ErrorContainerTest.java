@@ -14,7 +14,7 @@ class ErrorContainerTest {
     assertFalse(errorContainer.hasRuntimeError());
 
     errorContainer.addError(
-      new ScriptError(ScriptErrorType.PARSE, 10, 1, "Test message")
+      new ScriptError(ScriptErrorType.EXPECT_EXPRESSION, 10, 1)
     );
 
     assertTrue(errorContainer.hasError());
@@ -29,7 +29,7 @@ class ErrorContainerTest {
     assertFalse(errorContainer.hasRuntimeError());
 
     errorContainer.addError(
-      new ScriptError(ScriptErrorType.RUNTIME, 10, 1, "Test message")
+      new ScriptError(ScriptErrorType.ONLY_INSTANCES_HAVE_PROPERTIES, 10, 1)
     );
 
     assertTrue(errorContainer.hasError());

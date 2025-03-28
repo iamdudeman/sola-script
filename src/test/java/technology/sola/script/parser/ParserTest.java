@@ -2,10 +2,10 @@ package technology.sola.script.parser;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.script.error.ScriptError;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.tokenizer.Tokenizer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,11 +26,10 @@ class ParserTest {
         var expected = """
           test = 5
           someObj.test = 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
 
       @Test
@@ -39,16 +38,10 @@ class ParserTest {
           4 = 5;
           = 5;
           """;
-        var result = visualizeScriptParsing(source);
 
-        assertEquals(2, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Invalid assignment target.", error.message());
-
-        error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.INVALID_ASSIGNMENT_TARGET, ScriptErrorType.INVALID_BINARY_EXPRESSION)
+          .verify("4");
       }
     }
 
@@ -61,11 +54,10 @@ class ParserTest {
           """;
         var expected = """
           12.32 || 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
 
       @Test
@@ -76,15 +68,11 @@ class ParserTest {
           """;
         var expected = """
           2 || 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(1, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.INVALID_BINARY_EXPRESSION)
+          .verify(expected);
       }
     }
 
@@ -97,11 +85,10 @@ class ParserTest {
           """;
         var expected = """
           12.32 && 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
 
       @Test
@@ -112,15 +99,11 @@ class ParserTest {
           """;
         var expected = """
           2 && 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(1, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.INVALID_BINARY_EXPRESSION)
+          .verify(expected);
       }
     }
 
@@ -135,11 +118,10 @@ class ParserTest {
         var expected = """
           12.32 == 5
           12.32 != 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
 
       @Test
@@ -153,19 +135,11 @@ class ParserTest {
         var expected = """
           2 == 5
           5 != 2
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(2, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.INVALID_BINARY_EXPRESSION, ScriptErrorType.INVALID_BINARY_EXPRESSION)
+          .verify(expected);
       }
     }
 
@@ -184,11 +158,10 @@ class ParserTest {
           12.32 < 5
           12.32 >= 5
           12.32 <= 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
 
       @Test
@@ -208,27 +181,14 @@ class ParserTest {
           2 < 5
           5 >= 2
           5 <= 2
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(4, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        error = result.errors.get(2);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        error = result.errors.get(3);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .withErrors(
+            ScriptErrorType.INVALID_BINARY_EXPRESSION, ScriptErrorType.INVALID_BINARY_EXPRESSION,
+            ScriptErrorType.INVALID_BINARY_EXPRESSION, ScriptErrorType.INVALID_BINARY_EXPRESSION
+          )
+          .verify(expected);
       }
     }
 
@@ -243,11 +203,10 @@ class ParserTest {
         var expected = """
           12.32 + 5
           12.32 - 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
 
       @Test
@@ -258,15 +217,11 @@ class ParserTest {
           """;
         var expected = """
           2 + 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(1, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.INVALID_BINARY_EXPRESSION)
+          .verify(expected);
       }
     }
 
@@ -281,11 +236,10 @@ class ParserTest {
         var expected = """
           12.32 * 5
           12.32 / 5
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
 
       @Test
@@ -299,19 +253,11 @@ class ParserTest {
         var expected = """
           2 * 5
           5 / 2
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(2, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.message());
-
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.INVALID_BINARY_EXPRESSION, ScriptErrorType.INVALID_BINARY_EXPRESSION)
+          .verify(expected);
       }
     }
 
@@ -326,11 +272,10 @@ class ParserTest {
         var expected = """
           -12.32
           !false
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
     }
 
@@ -347,11 +292,10 @@ class ParserTest {
           methodCall()
           methodCallArgs(test, 5)
           objectGetter.someValue
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
 
       @Test
@@ -360,16 +304,10 @@ class ParserTest {
           invalidMethodCall(test;
           invalidGetter.;
           """;
-        var result = visualizeScriptParsing(source);
 
-        assertEquals(2, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Expect ')' after arguments.", error.message());
-
-        error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Expect property name after '.'.", error.message());
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_ARGUMENTS, ScriptErrorType.EXPECT_PROPERTY_NAME_AFTER_DOT)
+          .verify("");
       }
 
       @Test
@@ -379,12 +317,10 @@ class ParserTest {
         var source = """
           methodCall(%s);
           """.formatted(Arrays.stream(arguments).map(Object::toString).collect(Collectors.joining(",")));
-        var result = visualizeScriptParsing(source);
 
-        assertEquals(1, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.SEMANTIC, error.type());
-        assertEquals("Can't have more than 255 arguments.", error.message());
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.TOO_MANY_ARGUMENTS)
+          .verify(null);
       }
     }
 
@@ -413,42 +349,60 @@ class ParserTest {
           testVar
           this
           super.someMethod
-          """.trim();
-        var result = visualizeScriptParsing(source);
+          """;
 
-        assertEquals(0, result.errors.size());
-        assertEquals(expected, result.parsedScript);
+        new ParserTester(source)
+          .verify(expected);
       }
 
       @Test
       void invalid() {
         var source = """
-        false
-        """;
+          false
+          """;
 
-        var result = visualizeScriptParsing(source);
-
-        assertEquals(1, result.errors.size());
-        var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Expect ';' after expression.", error.message());
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.EXPECT_SEMI_AFTER_EXPRESSION)
+          .verify("");
       }
     }
   }
 
-  private TestResult visualizeScriptParsing(String source) {
-    var tokenizer = new Tokenizer(source);
-    var parser = new Parser(tokenizer.tokenize().tokens());
-    var parserResultPrinter = new ParserResultPrinter();
-    var parserResult = parser.parse();
-    var parsedScript = parserResultPrinter.print(parserResult);
+  private static class ParserTester {
+    private final String source;
+    private final List<ScriptErrorType> expectedErrors = new ArrayList<>();
 
-    return new TestResult(
-      parsedScript,
-      parserResult.errors()
-    );
-  }
+    ParserTester(String source) {
+      this.source = source;
+    }
 
-  private record TestResult(String parsedScript, List<ScriptError> errors) {
+    ParserTester withErrors(ScriptErrorType... expectedErrors) {
+      if (expectedErrors != null) {
+        this.expectedErrors.addAll(Arrays.asList(expectedErrors));
+      }
+
+      return this;
+    }
+
+    void verify(String expectedVisualization) {
+      var tokenizer = new Tokenizer(source);
+      var parser = new Parser(tokenizer.tokenize().tokens());
+      var parserResultPrinter = new ParserResultPrinter();
+      var parserResult = parser.parse();
+      var parsedScript = parserResultPrinter.print(parserResult);
+      var errors = parserResult.errors();
+
+      assertEquals(expectedErrors.size(), errors.size(), "Expected errors are present or missing.");
+
+      for (int i = 0; i < errors.size(); i++) {
+        var error = errors.get(i);
+
+        assertEquals(expectedErrors.get(i), error.type(), "Expected error at position " + i + " was wrong.");
+      }
+
+      if (expectedVisualization != null) {
+        assertEquals(expectedVisualization.trim(), parsedScript);
+      }
+    }
   }
 }

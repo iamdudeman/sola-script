@@ -10,11 +10,10 @@ class ScriptErrorTest {
   @Test
   void shouldFormatWithExpectedType() {
     var token = new Token(TokenType.EOF, "", null, 10, 1);
-    var message = "Test error message";
-    var scriptError = new ScriptError(ScriptErrorType.SEMANTIC, token, message);
+    var scriptError = new ScriptError(ScriptErrorType.EXPECT_EXPRESSION, token);
 
     assertEquals(
-      "[10:1] SEMANTIC: Test error message",
+      "[10:1] PARSE: Expect expression.",
       scriptError.toString()
     );
   }

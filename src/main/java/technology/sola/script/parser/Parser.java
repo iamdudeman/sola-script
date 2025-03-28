@@ -1,7 +1,7 @@
 package technology.sola.script.parser;
 
-import technology.sola.script.error.ScriptError;
 import technology.sola.script.error.ScriptErrorType;
+import technology.sola.script.error.ScriptError;
 import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
 
@@ -77,7 +77,7 @@ public class Parser {
   private Stmt stmtExpression() {
     var expr = expression();
 
-    eat(TokenType.SEMICOLON, "Expect ';' after expression.");
+    eat(TokenType.SEMICOLON, ScriptErrorType.EXPECT_SEMI_AFTER_EXPRESSION);
 
     return new Stmt.Expression(expr);
   }
@@ -104,7 +104,7 @@ public class Parser {
         return new Expr.Set(getExpr.object(), getExpr.name(), value);
       }
 
-      errors.add(new ScriptError(ScriptErrorType.PARSE, equals, "Invalid assignment target."));
+      errors.add(new ScriptError(ScriptErrorType.INVALID_ASSIGNMENT_TARGET, equals));
     }
 
     return expr;
@@ -208,19 +208,19 @@ public class Parser {
 
         if (!check(TokenType.RIGHT_PAREN)) {
           do {
-            if (arguments.size() >= 255) {
-              errors.add(new ScriptError(ScriptErrorType.SEMANTIC, peek(), "Can't have more than 255 arguments."));
+            if (arguments.size() >= ParserConstants.MAX_ARGUMENTS) {
+              errors.add(new ScriptError(ScriptErrorType.TOO_MANY_ARGUMENTS, peek()));
             }
 
             arguments.add(expression());
           } while (advanceExpected(TokenType.COMMA));
         }
 
-        Token paren = eat(TokenType.RIGHT_PAREN, "Expect ')' after arguments.");
+        Token paren = eat(TokenType.RIGHT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_ARGUMENTS);
 
         expr = new Expr.Call(expr, paren, arguments);
       } else if (advanceExpected(TokenType.DOT)) {
-        Token name = eat(TokenType.IDENTIFIER, "Expect property name after '.'.");
+        Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_PROPERTY_NAME_AFTER_DOT);
 
         expr = new Expr.Get(expr, name);
       } else {
@@ -251,7 +251,7 @@ public class Parser {
     if (advanceExpected(TokenType.LEFT_PAREN)) {
       var expr = expression();
 
-      eat(TokenType.RIGHT_PAREN, "Expect ')' after expression.");
+      eat(TokenType.RIGHT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_EXPRESSION);
 
       return new Expr.Grouping(expr);
     }
@@ -267,9 +267,9 @@ public class Parser {
     if (advanceExpected(TokenType.SUPER)) {
       var keyword = previous();
 
-      eat(TokenType.DOT, "Expect '.' after super.");
+      eat(TokenType.DOT, ScriptErrorType.EXPECT_DOT_AFTER_SUPER);
 
-      var method = eat(TokenType.IDENTIFIER, "Expect superclass method name.");
+      var method = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_SUPERCLASS_METHOD_NAME);
 
       return new Expr.Super(keyword, method);
     }
@@ -283,12 +283,12 @@ public class Parser {
       TokenType.EQUAL
     )) {
 
-      errors.add(new ScriptError(ScriptErrorType.PARSE, previous(), "Binary expression missing left operand."));
+      errors.add(new ScriptError(ScriptErrorType.INVALID_BINARY_EXPRESSION, previous()));
 
       throw new ParseError();
     }
 
-    errors.add(new ScriptError(ScriptErrorType.PARSE, previous(), "Expect expression."));
+    errors.add(new ScriptError(ScriptErrorType.EXPECT_EXPRESSION, previous()));
 
     throw new ParseError();
   }
@@ -296,12 +296,12 @@ public class Parser {
 
   // "hardware" methods below ------------------------------------------------------------------------------------------
 
-  private Token eat(TokenType tokenType, String message) {
+  private Token eat(TokenType tokenType, ScriptErrorType type, Object... errorArgs) {
     if (check(tokenType)) {
       return advance();
     }
 
-    errors.add(new ScriptError(ScriptErrorType.PARSE, previous(), message));
+    errors.add(new ScriptError(type, previous(), errorArgs));
 
     throw new ParseError();
   }
