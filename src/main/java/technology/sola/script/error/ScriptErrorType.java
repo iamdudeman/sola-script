@@ -11,16 +11,34 @@ public enum ScriptErrorType {
    */
   EXPECT_EXPRESSION(ScriptErrorStage.PARSE, "Expect expression."),
 
+  /**
+   * Parsing error when a '.' property accessor was not found after 'super'.
+   */
   EXPECT_DOT_AFTER_SUPER(ScriptErrorStage.PARSE, "Expect '.' after super."),
 
+  /**
+   * Parsing error when a semicolon was not found after an expression statement.
+   */
   EXPECT_SEMI_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ';' after expression."),
 
+  /**
+   * Parsing error when a closing parenthesis was not found after function arguments.
+   */
   EXPECT_PAREN_AFTER_ARGUMENTS(ScriptErrorStage.PARSE, "Expect ')' after arguments."),
 
+  /**
+   * Parsing error when a closing parenthesis was not found after an expression that followed an open parenthesis.
+   */
   EXPECT_PAREN_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ')' after expression."),
 
+  /**
+   * Parsing error when a property name was not found after a '.' property accessor.
+   */
   EXPECT_PROPERTY_NAME_AFTER_DOT(ScriptErrorStage.PARSE, "Expect property name after '.'."),
 
+  /**
+   * Parsing error when a method name was not found after a superclass accessor.
+   */
   EXPECT_SUPERCLASS_METHOD_NAME(ScriptErrorStage.PARSE, "Expect superclass method name."),
 
   /**
@@ -33,6 +51,9 @@ public enum ScriptErrorType {
    */
   INVALID_BINARY_EXPRESSION(ScriptErrorStage.PARSE, "Binary expression missing left operand."),
 
+  /**
+   * Runtime error when a property accessor is found on something that is not an object.
+   */
   ONLY_INSTANCES_HAVE_PROPERTIES(ScriptErrorStage.RUNTIME, "Only instances have properties."),
 
   /**

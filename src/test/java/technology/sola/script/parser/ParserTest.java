@@ -12,9 +12,6 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// todo update error check stuff
-
-
 class ParserTest {
   @Nested
   class stmtExpression {
