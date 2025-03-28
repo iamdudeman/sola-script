@@ -2,8 +2,8 @@ package technology.sola.script.parser;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.script.error.ErrorMessage;
 import technology.sola.script.error.ScriptError;
-import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.tokenizer.Tokenizer;
 
 import java.util.Arrays;
@@ -46,12 +46,10 @@ class ParserTest {
 
         assertEquals(2, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Invalid assignment target.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_ASSIGNMENT_TARGET, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
       }
     }
 
@@ -84,8 +82,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -120,8 +117,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -161,12 +157,10 @@ class ParserTest {
 
         assertEquals(2, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -216,20 +210,16 @@ class ParserTest {
 
         assertEquals(4, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(2);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(3);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -266,8 +256,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -307,12 +296,10 @@ class ParserTest {
 
         assertEquals(2, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Binary expression missing left operand.", error.type().formatMessage());
+        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -367,12 +354,10 @@ class ParserTest {
 
         assertEquals(2, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Expect ')' after arguments.", error.type().formatMessage());
+        assertEquals(ErrorMessage.EXPECT_PAREN_AFTER_ARGUMENTS, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Expect property name after '.'.", error.type().formatMessage());
+        assertEquals(ErrorMessage.EXPECT_PROPERTY_NAME_AFTER_DOT, error.type());
       }
 
       @Test
@@ -386,8 +371,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.SEMANTIC, error.type());
-        assertEquals("Can't have more than 255 arguments.", error.type().formatMessage());
+        assertEquals(ErrorMessage.TOO_MANY_ARGUMENTS, error.type());
       }
     }
 
@@ -433,8 +417,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ScriptErrorType.PARSE, error.type());
-        assertEquals("Expect ';' after expression.", error.type().formatMessage());
+        assertEquals(ErrorMessage.EXPECT_SEMI_AFTER_EXPRESSION, error.type());
       }
     }
   }

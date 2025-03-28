@@ -237,8 +237,8 @@ class TokenizerTest {
       return this;
     }
 
-    TokenizerTester nextError(int line, int column, ErrorMessage message) {
-      expectedErrors.add(new ExpectedError(line, column, message));
+    TokenizerTester nextError(int line, int column, ErrorMessage type) {
+      expectedErrors.add(new ExpectedError(line, column, type));
 
       return this;
     }
