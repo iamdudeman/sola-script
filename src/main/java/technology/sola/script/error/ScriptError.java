@@ -12,6 +12,7 @@ import technology.sola.script.tokenizer.Token;
  * @param message the additional details about the error
  */
 public record ScriptError(
+  // todo replace type and message with the new ErrorMessage stuff
   ScriptErrorType type,
   int line,
   int column,

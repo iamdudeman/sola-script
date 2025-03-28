@@ -1,14 +1,13 @@
 package technology.sola.script.error;
 
 /**
- * ScriptErrorType holds the various types of errors that happen while parsing and executing a sola script.
+ * ScriptErrorStage holds the various stages where errors can occur while parsing and executing a sola script.
  * <p>
  * Order of occurrence:
  * <p>
- * {@link ScriptErrorType#PARSE} -> {@link ScriptErrorType#SEMANTIC} -> {@link ScriptErrorType#RUNTIME}
+ * {@link ScriptErrorStage#PARSE} -> {@link ScriptErrorStage#SEMANTIC} -> {@link ScriptErrorStage#RUNTIME}
  */
-@Deprecated
-public enum ScriptErrorType {
+public enum ScriptErrorStage {
   /**
    * Parse errors happen before code is executed. The code is not in a state that makes sense.
    */
