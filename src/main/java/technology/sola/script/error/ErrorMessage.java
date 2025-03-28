@@ -7,9 +7,37 @@ package technology.sola.script.error;
  */
 public enum ErrorMessage {
   /**
-   * Error that happens during tokenization when an unexpected character is found in a script.
+   * Parsing error when an expression is expected, but not found.
    */
-  UNEXPECTED_CHARACTER(ScriptErrorStage.PARSE, "Unexpected character '%s'.");
+  EXPECTED_EXPRESSION(ScriptErrorStage.PARSE, "Expect expression."),
+
+  /**
+   * Parsing error when an assignment operation is detected, but the target is not valid.
+   */
+  INVALID_ASSIGNMENT_TARGET(ScriptErrorStage.PARSE, "Invalid assignment target."),
+
+  /**
+   * Parsing error when a binary operator is detected without a left operand.
+   */
+  INVALID_BINARY_EXPRESSION(ScriptErrorStage.PARSE, "Binary expression missing left operand."),
+
+  /**
+   * Semantic error when a function or method has been declared with too many arguments. Maximum number of arguments
+   * allowed is {@link technology.sola.script.parser.ParserConstants#MAX_ARGUMENTS}.
+   */
+  TOO_MANY_ARGUMENTS(ScriptErrorStage.SEMANTIC, "Can't have more than %s arguments."),
+
+  /**
+   * Parsing error that happens during tokenization when an unexpected character is found in a script.
+   */
+  UNEXPECTED_CHARACTER(ScriptErrorStage.PARSE, "Unexpected character '%s'."),
+
+  /**
+   * Parsing error when a {@link technology.sola.script.tokenizer.TokenType#STRING} has been detected, but has not been
+   * terminated.
+   */
+  UNTERMINATED_STRING(ScriptErrorStage.PARSE, "Unterminated string."),
+  ;
 
   /**
    * The {@link ScriptErrorStage} where the error occurs.

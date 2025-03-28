@@ -208,8 +208,8 @@ public class Parser {
 
         if (!check(TokenType.RIGHT_PAREN)) {
           do {
-            if (arguments.size() >= 255) {
-              errors.add(new ScriptError(ScriptErrorType.SEMANTIC, peek(), "Can't have more than 255 arguments."));
+            if (arguments.size() >= ParserConstants.MAX_ARGUMENTS) {
+              errors.add(new ScriptError(ScriptErrorType.SEMANTIC, peek(), "Can't have more than " + ParserConstants.MAX_ARGUMENTS + " arguments."));
             }
 
             arguments.add(expression());
