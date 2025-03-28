@@ -1,5 +1,6 @@
 package technology.sola.script.tokenizer;
 
+import technology.sola.script.error.ErrorMessage;
 import technology.sola.script.error.ScriptError;
 import technology.sola.script.error.ScriptErrorType;
 
@@ -144,7 +145,7 @@ public class Tokenizer {
         } else if (isAlpha(c)) {
           tokenIdentifier();
         } else {
-          errors.add(new ScriptError(ScriptErrorType.PARSE, line, startColumn, "Unexpected character '" + c + "'"));
+          errors.add(new ScriptError(ErrorMessage.UNEXPECTED_CHARACTER, line, startColumn, c));
         }
 
         break;
@@ -223,7 +224,7 @@ public class Tokenizer {
     }
 
     if (isAtEnd()) {
-      errors.add(new ScriptError(ScriptErrorType.PARSE, line, startColumn, "Unterminated string."));
+      errors.add(new ScriptError(ErrorMessage.UNTERMINATED_STRING, line, startColumn));
       return;
     }
 

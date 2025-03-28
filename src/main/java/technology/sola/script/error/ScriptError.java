@@ -6,28 +6,27 @@ import technology.sola.script.tokenizer.Token;
  * ScriptError holds information about what kind of error happened, where it happened, and a longer description for a
  * user to resolve it.
  *
- * @param type    the {@link ScriptErrorType}
- * @param line    the line where the error was detected
- * @param column  the column where the error was detected
- * @param message the additional details about the error
+ * @param type      the {@link ErrorMessage}
+ * @param line      the line where the error was detected
+ * @param column    the column where the error was detected
+ * @param errorArgs the additional details about the error
  */
 public record ScriptError(
-  // todo replace type and message with the new ErrorMessage stuff
-  ScriptErrorType type,
+  ErrorMessage type,
   int line,
   int column,
-  String message
+  Object... errorArgs
 ) {
   /**
    * ScriptError holds information about what kind of error happened, where it happened, and a longer description for a
    * user to resolve it.
    *
-   * @param type    the {@link ScriptErrorType}
-   * @param token   the {@link Token} where the error was detected
-   * @param message the additional details about the error
+   * @param type      the {@link ErrorMessage}
+   * @param token     the {@link Token} where the error was detected
+   * @param errorArgs the additional details about the error
    */
-  public ScriptError(ScriptErrorType type, Token token, String message) {
-    this(type, token.line(), token.column(), message);
+  public ScriptError(ErrorMessage type, Token token, Object... errorArgs) {
+    this(type, token.line(), token.column(), errorArgs);
   }
 
   @Override
@@ -35,6 +34,6 @@ public record ScriptError(
     String where = "[" + line() + ":" + column() + "]";
     String kind = type().name();
 
-    return where + " " + kind + ": " + message();
+    return where + " " + kind + ": " + type.formatMessage(errorArgs);
   }
 }

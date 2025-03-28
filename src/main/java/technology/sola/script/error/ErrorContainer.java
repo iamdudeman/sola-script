@@ -37,10 +37,10 @@ public class ErrorContainer {
   }
 
   /**
-   * @return true if there is at least one error with type {@link ScriptErrorType#RUNTIME}
+   * @return true if there is at least one error with type {@link ScriptErrorStage#RUNTIME}
    */
   public boolean hasRuntimeError() {
-    return errorList.stream().anyMatch(error -> error.type() == ScriptErrorType.RUNTIME);
+    return errorList.stream().anyMatch(error -> error.type().stage == ScriptErrorStage.RUNTIME);
   }
 
   /**

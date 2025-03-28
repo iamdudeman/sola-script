@@ -2,6 +2,8 @@ package technology.sola.script.error;
 
 // todo rename to ScriptErrorType
 
+import technology.sola.script.parser.ParserConstants;
+
 /**
  * ScriptErrorType contains various expected errors that may occur while parsing and executing a sola script.
  */
@@ -9,7 +11,19 @@ public enum ErrorMessage {
   /**
    * Parsing error when an expression is expected, but not found.
    */
-  EXPECTED_EXPRESSION(ScriptErrorStage.PARSE, "Expect expression."),
+  EXPECT_EXPRESSION(ScriptErrorStage.PARSE, "Expect expression."),
+
+  EXPECT_DOT_AFTER_SUPER(ScriptErrorStage.PARSE, "Expect '.' after super."),
+
+  EXPECT_SEMI_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ';' after expression."),
+
+  EXPECT_PAREN_AFTER_ARGUMENTS(ScriptErrorStage.PARSE, "Expect ')' after arguments."),
+
+  EXPECT_PAREN_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ')' after expression."),
+
+  EXPECT_PROPERTY_NAME_AFTER_DOT(ScriptErrorStage.PARSE, "Expect property name after '.'."),
+
+  EXPECT_SUPERCLASS_METHOD_NAME(ScriptErrorStage.PARSE, "Expect superclass method name."),
 
   /**
    * Parsing error when an assignment operation is detected, but the target is not valid.
@@ -25,7 +39,7 @@ public enum ErrorMessage {
    * Semantic error when a function or method has been declared with too many arguments. Maximum number of arguments
    * allowed is {@link technology.sola.script.parser.ParserConstants#MAX_ARGUMENTS}.
    */
-  TOO_MANY_ARGUMENTS(ScriptErrorStage.SEMANTIC, "Can't have more than %s arguments."),
+  TOO_MANY_ARGUMENTS(ScriptErrorStage.SEMANTIC, "Can't have more than " + ParserConstants.MAX_ARGUMENTS + " arguments."),
 
   /**
    * Parsing error that happens during tokenization when an unexpected character is found in a script.
