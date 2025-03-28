@@ -1,6 +1,6 @@
 package technology.sola.script.tokenizer;
 
-import technology.sola.script.error.ErrorMessage;
+import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptError;
 
 import java.util.ArrayList;
@@ -144,7 +144,7 @@ public class Tokenizer {
         } else if (isAlpha(c)) {
           tokenIdentifier();
         } else {
-          errors.add(new ScriptError(ErrorMessage.UNEXPECTED_CHARACTER, line, startColumn, c));
+          errors.add(new ScriptError(ScriptErrorType.UNEXPECTED_CHARACTER, line, startColumn, c));
         }
 
         break;
@@ -223,7 +223,7 @@ public class Tokenizer {
     }
 
     if (isAtEnd()) {
-      errors.add(new ScriptError(ErrorMessage.UNTERMINATED_STRING, line, startColumn));
+      errors.add(new ScriptError(ScriptErrorType.UNTERMINATED_STRING, line, startColumn));
       return;
     }
 

@@ -10,7 +10,7 @@ class ScriptErrorTest {
   @Test
   void shouldFormatWithExpectedType() {
     var token = new Token(TokenType.EOF, "", null, 10, 1);
-    var scriptError = new ScriptError(ErrorMessage.EXPECT_EXPRESSION, token);
+    var scriptError = new ScriptError(ScriptErrorType.EXPECT_EXPRESSION, token);
 
     assertEquals(
       "[10:1] PARSE: Expect expression.",

@@ -1,13 +1,11 @@
 package technology.sola.script.error;
 
-// todo rename to ScriptErrorType
-
 import technology.sola.script.parser.ParserConstants;
 
 /**
  * ScriptErrorType contains various expected errors that may occur while parsing and executing a sola script.
  */
-public enum ErrorMessage {
+public enum ScriptErrorType {
   /**
    * Parsing error when an expression is expected, but not found.
    */
@@ -62,7 +60,7 @@ public enum ErrorMessage {
   public final ScriptErrorStage stage;
   private final String messageFormat;
 
-  ErrorMessage(ScriptErrorStage stage, String messageFormat) {
+  ScriptErrorType(ScriptErrorStage stage, String messageFormat) {
     this.stage = stage;
     this.messageFormat = messageFormat;
   }

@@ -2,7 +2,7 @@ package technology.sola.script.parser;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.script.error.ErrorMessage;
+import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptError;
 import technology.sola.script.tokenizer.Tokenizer;
 
@@ -46,10 +46,10 @@ class ParserTest {
 
         assertEquals(2, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.INVALID_ASSIGNMENT_TARGET, error.type());
+        assertEquals(ScriptErrorType.INVALID_ASSIGNMENT_TARGET, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
       }
     }
 
@@ -82,7 +82,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -117,7 +117,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -157,10 +157,10 @@ class ParserTest {
 
         assertEquals(2, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -210,16 +210,16 @@ class ParserTest {
 
         assertEquals(4, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(2);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(3);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -256,7 +256,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -296,10 +296,10 @@ class ParserTest {
 
         assertEquals(2, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ErrorMessage.INVALID_BINARY_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.INVALID_BINARY_EXPRESSION, error.type());
 
         assertEquals(expected, result.parsedScript);
       }
@@ -354,10 +354,10 @@ class ParserTest {
 
         assertEquals(2, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.EXPECT_PAREN_AFTER_ARGUMENTS, error.type());
+        assertEquals(ScriptErrorType.EXPECT_PAREN_AFTER_ARGUMENTS, error.type());
 
         error = result.errors.get(1);
-        assertEquals(ErrorMessage.EXPECT_PROPERTY_NAME_AFTER_DOT, error.type());
+        assertEquals(ScriptErrorType.EXPECT_PROPERTY_NAME_AFTER_DOT, error.type());
       }
 
       @Test
@@ -371,7 +371,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.TOO_MANY_ARGUMENTS, error.type());
+        assertEquals(ScriptErrorType.TOO_MANY_ARGUMENTS, error.type());
       }
     }
 
@@ -417,7 +417,7 @@ class ParserTest {
 
         assertEquals(1, result.errors.size());
         var error = result.errors.get(0);
-        assertEquals(ErrorMessage.EXPECT_SEMI_AFTER_EXPRESSION, error.type());
+        assertEquals(ScriptErrorType.EXPECT_SEMI_AFTER_EXPRESSION, error.type());
       }
     }
   }

@@ -2,7 +2,7 @@ package technology.sola.script.tokenizer;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.script.error.ErrorMessage;
+import technology.sola.script.error.ScriptErrorType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ class TokenizerTest {
       """;
 
     new TokenizerTester()
-      .nextError(1, 1, ErrorMessage.UNEXPECTED_CHARACTER)
+      .nextError(1, 1, ScriptErrorType.UNEXPECTED_CHARACTER)
       .next(TokenType.EOF)
       .verify(source);
   }
@@ -124,7 +124,7 @@ class TokenizerTest {
           """;
 
         new TokenizerTester()
-          .nextError(2, 3, ErrorMessage.UNTERMINATED_STRING)
+          .nextError(2, 3, ScriptErrorType.UNTERMINATED_STRING)
           .next(TokenType.EOF)
           .verify(source);
       }
@@ -218,7 +218,7 @@ class TokenizerTest {
   private record ExpectedToken(TokenType type, Object literal) {
   }
 
-  private record ExpectedError(int line, int column, ErrorMessage type) {
+  private record ExpectedError(int line, int column, ScriptErrorType type) {
   }
 
   private static class TokenizerTester {
@@ -237,7 +237,7 @@ class TokenizerTest {
       return this;
     }
 
-    TokenizerTester nextError(int line, int column, ErrorMessage type) {
+    TokenizerTester nextError(int line, int column, ScriptErrorType type) {
       expectedErrors.add(new ExpectedError(line, column, type));
 
       return this;

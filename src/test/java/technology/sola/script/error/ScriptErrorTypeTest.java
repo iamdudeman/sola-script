@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ErrorMessageTest {
+class ScriptErrorTypeTest {
   @Nested
   class formatMessage {
     @Test
     void noArguments() {
       assertEquals(
         "Expect expression.",
-        ErrorMessage.EXPECT_EXPRESSION.formatMessage()
+        ScriptErrorType.EXPECT_EXPRESSION.formatMessage()
       );
     }
 
@@ -20,7 +20,7 @@ class ErrorMessageTest {
     void withArguments() {
       assertEquals(
         "Unexpected character 'a'.",
-        ErrorMessage.UNEXPECTED_CHARACTER.formatMessage('a')
+        ScriptErrorType.UNEXPECTED_CHARACTER.formatMessage('a')
       );
     }
   }

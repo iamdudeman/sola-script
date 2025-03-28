@@ -6,13 +6,13 @@ import technology.sola.script.tokenizer.Token;
  * ScriptError holds information about what kind of error happened, where it happened, and a longer description for a
  * user to resolve it.
  *
- * @param type      the {@link ErrorMessage}
+ * @param type      the {@link ScriptErrorType}
  * @param line      the line where the error was detected
  * @param column    the column where the error was detected
  * @param errorArgs the additional details about the error
  */
 public record ScriptError(
-  ErrorMessage type,
+  ScriptErrorType type,
   int line,
   int column,
   Object... errorArgs
@@ -21,11 +21,11 @@ public record ScriptError(
    * ScriptError holds information about what kind of error happened, where it happened, and a longer description for a
    * user to resolve it.
    *
-   * @param type      the {@link ErrorMessage}
+   * @param type      the {@link ScriptErrorType}
    * @param token     the {@link Token} where the error was detected
    * @param errorArgs the additional details about the error
    */
-  public ScriptError(ErrorMessage type, Token token, Object... errorArgs) {
+  public ScriptError(ScriptErrorType type, Token token, Object... errorArgs) {
     this(type, token.line(), token.column(), errorArgs);
   }
 
