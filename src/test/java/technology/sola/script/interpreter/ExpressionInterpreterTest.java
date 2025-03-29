@@ -24,7 +24,29 @@ class ExpressionInterpreterTest {
 
   @Nested
   class logical {
-    // todo
+    @Test
+    void or_whenLeftTruthy_shouldReturnLeft() {
+      assertEvaluation("true || 5;", true);
+      assertEvaluation("5 || true;", 5d);
+    }
+
+    @Test
+    void or_whenLeftNotTruthy_shouldReturnRight() {
+      assertEvaluation("false || 5;", 5d);
+      assertEvaluation("null || true;", true);
+    }
+
+    @Test
+    void and_whenLeftNotTruthy_shouldReturnLeft() {
+      assertEvaluation("false && 5;", false);
+      assertEvaluation("null && true;", null);
+    }
+
+    @Test
+    void and_whenLeftTruthy_shouldReturnRight() {
+      assertEvaluation("true && 5;", 5d);
+      assertEvaluation("5 && true;", true);
+    }
   }
 
   @Nested
