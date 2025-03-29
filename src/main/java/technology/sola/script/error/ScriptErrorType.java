@@ -67,6 +67,11 @@ public enum ScriptErrorType {
   OPERANDS_MUST_BE_NUMBERS(ScriptErrorStage.RUNTIME, "Operands must be numbers."),
 
   /**
+   * Runtime error when both operands are not numbers and at least one of the operands is not a string.
+   */
+  OPERANDS_MUST_BE_TWO_NUMBERS_OR_ONE_STRING(ScriptErrorStage.RUNTIME, "Operands must be two numbers or one must be a string."),
+
+  /**
    * Semantic error when a function or method has been declared with too many arguments. Maximum number of arguments
    * allowed is {@link technology.sola.script.parser.ParserConstants#MAX_ARGUMENTS}.
    */
