@@ -88,15 +88,47 @@ public class Interpreter {
           ValueUtils.assertNumberOperands(operator, left, right);
           return (double) left > (double) right;
         }
-        // todo greater equal
-        // todo less
-        // todo less equal
-        // todo equal equal
-        // todo bang equal
-        // todo minus
-        // todo plus
-        // todo slash
-        // todo star
+        case GREATER_EQUAL: {
+          ValueUtils.assertNumberOperands(operator, left, right);
+          return (double) left >= (double) right;
+        }
+        case LESS: {
+          ValueUtils.assertNumberOperands(operator, left, right);
+          return (double) left < (double) right;
+        }
+        case LESS_EQUAL: {
+          ValueUtils.assertNumberOperands(operator, left, right);
+          return (double) left <= (double) right;
+        }
+        case EQUAL_EQUAL: {
+          return ValueUtils.isEqual(left, right);
+        }
+        case BANG_EQUAL: {
+          return !ValueUtils.isEqual(left, right);
+        }
+        case MINUS: {
+          ValueUtils.assertNumberOperands(operator, left, right);
+          return (double) left - (double) right;
+        }
+        case PLUS: {
+          if (left instanceof Double && right instanceof Double) {
+            return (double) left + (double) right;
+          }
+
+          if (left instanceof String || right instanceof String) {
+            return ValueUtils.stringify(left) + ValueUtils.stringify(right);
+          }
+
+          throw new ScriptInterpretationException(expr.operator(), ScriptErrorType.OPERANDS_MUST_BE_TWO_NUMBERS_OR_ONE_STRING);
+        }
+        case SLASH: {
+          ValueUtils.assertNumberOperands(operator, left, right);
+          return (double) left / (double) right;
+        }
+        case STAR: {
+          ValueUtils.assertNumberOperands(operator, left, right);
+          return (double) left * (double) right;
+        }
       }
 
       // should be unreachable
