@@ -9,8 +9,6 @@ import technology.sola.script.tokenizer.Tokenizer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// todo test all the things that are implemented
-
 class ExpressionInterpreterTest {
   @Nested
   class set {
@@ -157,9 +155,85 @@ class ExpressionInterpreterTest {
       }
     }
 
-    // todo other cases
+    @Nested
+    class minus {
+      @Test
+      void whenNotNumbers_shouldThrow() {
+        assertThrows(
+          ScriptInterpretationException.class,
+          () -> evaluateExpressionStatementSource("true - 5;")
+        );
+      }
 
-    // todo star case
+      @Test
+      void test() {
+        assertEvaluation("5 - 3;", 2d);
+        assertEvaluation("3 - 5;", -2d);
+        assertEvaluation("5 - 5;", 0d);
+      }
+    }
+
+    @Nested
+    class plus {
+      @Test
+      void whenNotNumbersOrOneString_shouldThrow() {
+        assertThrows(
+          ScriptInterpretationException.class,
+          () -> evaluateExpressionStatementSource("true / 5;")
+        );
+      }
+
+      @Test
+      void whenNumbers_shouldAdd() {
+        assertEvaluation("6 + 3;", 9d);
+        assertEvaluation("3 + 6;", 9d);
+        assertEvaluation("5 + 5;", 10d);
+      }
+
+      @Test
+      void whenLeftOrRightString_shouldConcatenate() {
+        assertEvaluation("\"test\" + 3;", "test3");
+        assertEvaluation("3 + \"test\";", "3test");
+        assertEvaluation("false + \"test\";", "falsetest");
+        assertEvaluation("null + \"test\";", "nulltest");
+      }
+    }
+
+    @Nested
+    class slash {
+      @Test
+      void whenNotNumbers_shouldThrow() {
+        assertThrows(
+          ScriptInterpretationException.class,
+          () -> evaluateExpressionStatementSource("true / 5;")
+        );
+      }
+
+      @Test
+      void test() {
+        assertEvaluation("6 / 3;", 2d);
+        assertEvaluation("3 / 6;", 0.5d);
+        assertEvaluation("5 / 5;", 1d);
+      }
+    }
+
+    @Nested
+    class star {
+      @Test
+      void whenNotNumbers_shouldThrow() {
+        assertThrows(
+          ScriptInterpretationException.class,
+          () -> evaluateExpressionStatementSource("true * 5;")
+        );
+      }
+
+      @Test
+      void test() {
+        assertEvaluation("5 * 3;", 15d);
+        assertEvaluation("3 * 5;", 15d);
+        assertEvaluation("5 * 5;", 25d);
+      }
+    }
   }
 
   @Nested
