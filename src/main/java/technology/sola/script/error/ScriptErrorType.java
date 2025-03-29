@@ -57,6 +57,16 @@ public enum ScriptErrorType {
   ONLY_INSTANCES_HAVE_PROPERTIES(ScriptErrorStage.RUNTIME, "Only instances have properties."),
 
   /**
+   * Runtime error when an operand was expected to be a number.
+   */
+  OPERAND_MUST_BE_NUMBER(ScriptErrorStage.RUNTIME, "Operand must be a number."),
+
+  /**
+   * Runtime error when both operands were expected to be a number.
+   */
+  OPERANDS_MUST_BE_NUMBERS(ScriptErrorStage.RUNTIME, "Operands must be numbers."),
+
+  /**
    * Semantic error when a function or method has been declared with too many arguments. Maximum number of arguments
    * allowed is {@link technology.sola.script.parser.ParserConstants#MAX_ARGUMENTS}.
    */
