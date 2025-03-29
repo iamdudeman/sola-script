@@ -35,8 +35,8 @@ public class Interpreter {
     }
 
     @Override
-    public Void expression(Stmt.Expression expr) {
-      expressionInterpreter.evaluate(expr.expr());
+    public Void expression(Stmt.Expression stmt) {
+      expressionInterpreter.evaluate(stmt.expr());
       return null;
     }
   }
