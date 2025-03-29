@@ -2,12 +2,12 @@ package technology.sola.script.interpreter;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Parser;
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.tokenizer.Tokenizer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 // todo test all the things that are implemented
 
@@ -34,7 +34,25 @@ class ExpressionInterpreterTest {
 
   @Nested
   class unary {
-    // todo
+    @Test
+    void bang() {
+      assertEvaluation("!true;", false);
+      assertEvaluation("!false;", true);
+    }
+
+    @Test
+    void minus_whenNotNumber_shouldThrow() {
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> evaluateExpressionStatementSource("-false;")
+      );
+    }
+
+    @Test
+    void minus() {
+      assertEvaluation("-5;", -5d);
+      assertEvaluation("--5;", 5d);
+    }
   }
 
   @Nested
@@ -66,12 +84,7 @@ class ExpressionInterpreterTest {
   class grouping {
     @Test
     void test() {
-      var source = """
-      ( 3 ) ;
-      """;
-      var result = evaluateExpressionStatementSource(source);
-
-      assertEquals(3d, result);
+      assertEvaluation("( 3 );", 3d);
     }
   }
 
@@ -79,13 +92,14 @@ class ExpressionInterpreterTest {
   class literal {
     @Test
     void test() {
-      var source = """
-      3 ;
-      """;
-      var result = evaluateExpressionStatementSource(source);
-
-      assertEquals(3d, result);
+      assertEvaluation("3;", 3d);
     }
+  }
+
+  private void assertEvaluation(String source, Object expectedValue) {
+    var result = evaluateExpressionStatementSource(source);
+
+    assertEquals(expectedValue, result);
   }
 
   private Object evaluateExpressionStatementSource(String source) {
