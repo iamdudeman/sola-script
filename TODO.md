@@ -4,3 +4,6 @@
     * needs new tokens "?" and ":"
 * consider implementing optional chaining "?." for dealing with null conveniently
     * if so then also consider implementing nullish coalescence "??"
+* protect divide by zero in binary expression interpreter
+    * maybe throw an error?
+    * or should it be "Infinity"
