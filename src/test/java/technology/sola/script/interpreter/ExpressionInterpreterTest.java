@@ -24,34 +24,142 @@ class ExpressionInterpreterTest {
 
   @Nested
   class logical {
-    @Test
-    void or_whenLeftTruthy_shouldReturnLeft() {
-      assertEvaluation("true || 5;", true);
-      assertEvaluation("5 || true;", 5d);
+    @Nested
+    class or {
+      @Test
+      void whenLeftTruthy_shouldReturnLeft() {
+        assertEvaluation("true || 5;", true);
+        assertEvaluation("5 || true;", 5d);
+      }
+
+      @Test
+      void whenLeftNotTruthy_shouldReturnRight() {
+        assertEvaluation("false || 5;", 5d);
+        assertEvaluation("null || true;", true);
+      }
     }
 
-    @Test
-    void or_whenLeftNotTruthy_shouldReturnRight() {
-      assertEvaluation("false || 5;", 5d);
-      assertEvaluation("null || true;", true);
-    }
+    @Nested
+    class and {
+      @Test
+      void whenLeftNotTruthy_shouldReturnLeft() {
+        assertEvaluation("false && 5;", false);
+        assertEvaluation("null && true;", null);
+      }
 
-    @Test
-    void and_whenLeftNotTruthy_shouldReturnLeft() {
-      assertEvaluation("false && 5;", false);
-      assertEvaluation("null && true;", null);
-    }
-
-    @Test
-    void and_whenLeftTruthy_shouldReturnRight() {
-      assertEvaluation("true && 5;", 5d);
-      assertEvaluation("5 && true;", true);
+      @Test
+      void whenLeftTruthy_shouldReturnRight() {
+        assertEvaluation("true && 5;", 5d);
+        assertEvaluation("5 && true;", true);
+      }
     }
   }
 
   @Nested
   class binary {
-    // todo
+    @Nested
+    class greater {
+      @Test
+      void whenNotNumbers_shouldThrow() {
+        assertThrows(
+          ScriptInterpretationException.class,
+          () -> evaluateExpressionStatementSource("true > 5;")
+        );
+      }
+
+      @Test
+      void test() {
+        assertEvaluation("5 > 3;", true);
+        assertEvaluation("3 > 5;", false);
+        assertEvaluation("5 > 5;", false);
+      }
+    }
+
+    @Nested
+    class greaterEqual {
+      @Test
+      void whenNotNumbers_shouldThrow() {
+        assertThrows(
+          ScriptInterpretationException.class,
+          () -> evaluateExpressionStatementSource("true >= 5;")
+        );
+      }
+
+      @Test
+      void test() {
+        assertEvaluation("5 >= 3;", true);
+        assertEvaluation("3 >= 5;", false);
+        assertEvaluation("5 >= 5;", true);
+      }
+    }
+
+    @Nested
+    class less {
+      @Test
+      void whenNotNumbers_shouldThrow() {
+        assertThrows(
+          ScriptInterpretationException.class,
+          () -> evaluateExpressionStatementSource("true < 5;")
+        );
+      }
+
+      @Test
+      void test() {
+        assertEvaluation("5 < 3;", false);
+        assertEvaluation("3 < 5;", true);
+        assertEvaluation("5 < 5;", false);
+      }
+    }
+
+    @Nested
+    class lessEqual {
+      @Test
+      void whenNotNumbers_shouldThrow() {
+        assertThrows(
+          ScriptInterpretationException.class,
+          () -> evaluateExpressionStatementSource("true <= 5;")
+        );
+      }
+
+      @Test
+      void test() {
+        assertEvaluation("5 <= 3;", false);
+        assertEvaluation("3 <= 5;", true);
+        assertEvaluation("5 <= 5;", true);
+      }
+    }
+
+    @Nested
+    class equalEqual {
+      @Test
+      void test() {
+        assertEvaluation("null == null;", true);
+        assertEvaluation("5 == 5;", true);
+        assertEvaluation("\"test\" == \"test\";", true);
+
+        assertEvaluation("null == 5;", false);
+        assertEvaluation("5 == 3;", false);
+        assertEvaluation("\"test\" == \"test2\";", false);
+      }
+    }
+
+    @Nested
+    class bangEqual {
+      @Test
+      void test() {
+        assertEvaluation("null != null;", false);
+        assertEvaluation("5 != 5;", false);
+        assertEvaluation("\"test\" != \"test\";", false);
+
+        assertEvaluation("null != 5;", true);
+        assertEvaluation("5 != 3;", true);
+        assertEvaluation("\"test\" != \"test2\";", true);
+      }
+    }
+
+    // todo other cases
+
+    // todo star case
   }
 
   @Nested
