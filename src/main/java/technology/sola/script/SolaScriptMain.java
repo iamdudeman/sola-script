@@ -1,6 +1,7 @@
 package technology.sola.script;
 
 import technology.sola.script.error.ErrorContainer;
+import technology.sola.script.interpreter.Interpreter;
 import technology.sola.script.parser.Parser;
 import technology.sola.script.tokenizer.Tokenizer;
 
@@ -15,6 +16,8 @@ import java.nio.file.Paths;
  * SolaScriptMain contains the entry point for running sola scripts from the command line.
  */
 public class SolaScriptMain {
+  private static final Interpreter interpreter = new Interpreter();
+
   /**
    * Main entry point for running sola script as an executable.
    *
@@ -77,7 +80,9 @@ public class SolaScriptMain {
 
     // todo hook up resolver
 
-    // todo hook up interpreter
+    var interpretationErrors = interpreter.interpret(parserResult.statements());
+
+    errorContainer.addErrors(interpretationErrors);
 
     return errorContainer;
   }
