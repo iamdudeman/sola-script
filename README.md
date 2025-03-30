@@ -35,6 +35,10 @@ program         := declaration* EOF ;
 
 ```
 declaration     := statement
+classDecl #todo
+funDecl #todo
+varDecl #todo
+valDecl #todo
 ```
 
 ### Statements
@@ -42,6 +46,11 @@ declaration     := statement
 ```
 statement       := exprStmt
 exprStmt        := expression ";" ;
+forStmt #todo
+ifStmt #todo
+returnStmt #todo
+whileStmt #todo
+block           := "{" declaration* "}"
 ```
 
 ### Expressions
