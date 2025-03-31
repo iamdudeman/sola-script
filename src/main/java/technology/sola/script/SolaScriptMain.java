@@ -2,6 +2,7 @@ package technology.sola.script;
 
 import technology.sola.script.error.ErrorContainer;
 import technology.sola.script.interpreter.Interpreter;
+import technology.sola.script.library.StandardLibrary;
 import technology.sola.script.parser.Parser;
 import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.tokenizer.Tokenizer;
@@ -26,6 +27,8 @@ public class SolaScriptMain {
    * @throws IOException if there is an issue reading a file as input
    */
   public static void main(String[] args) throws IOException {
+    new StandardLibrary().addToRuntime(scriptRuntime);
+
     if (args.length > 1) {
       System.out.println("Usage: sola <file>");
       System.exit(64);
