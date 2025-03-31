@@ -24,7 +24,11 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   public Object assign(Expr.Assign expr) {
-    throw new UnsupportedOperationException("Not yet implemented.");
+    Object value = evaluate(expr.value());
+
+    scriptRuntime.assignVariable(expr, value);
+
+    return value;
   }
 
   @Override
@@ -144,7 +148,7 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   public Object variable(Expr.Variable expr) {
-    throw new UnsupportedOperationException("Not yet implemented.");
+    return scriptRuntime.lookUpVariable(expr.name(), expr);
   }
 
   @Override
