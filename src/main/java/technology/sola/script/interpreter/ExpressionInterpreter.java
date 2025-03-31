@@ -4,7 +4,11 @@ import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Expr;
 import technology.sola.script.runtime.ScriptRuntime;
+import technology.sola.script.runtime.SolaScriptCallable;
 import technology.sola.script.tokenizer.TokenType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class ExpressionInterpreter implements Expr.Visitor<Object> {
   private final ScriptRuntime scriptRuntime;
@@ -128,7 +132,22 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   public Object call(Expr.Call expr) {
-    throw new UnsupportedOperationException("Not yet implemented.");
+    Object callee = evaluate(expr.callee());
+    List<Object> arguments = new ArrayList<>();
+
+    for (Expr argument : expr.arguments()) {
+      arguments.add(evaluate(argument));
+    }
+
+    if (callee instanceof SolaScriptCallable solaScriptCallable) {
+      if (arguments.size() != solaScriptCallable.arity()) {
+        throw new ScriptInterpretationException(expr.paren(), ScriptErrorType.EXPECTED_ARGUMENTS_MISMATCH, solaScriptCallable.arity(), arguments.size());
+      }
+
+      return solaScriptCallable.call(arguments);
+    }
+
+    throw new ScriptInterpretationException(expr.paren(), ScriptErrorType.NOT_CALLABLE);
   }
 
   @Override

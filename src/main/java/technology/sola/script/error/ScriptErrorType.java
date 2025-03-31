@@ -57,6 +57,11 @@ public enum ScriptErrorType {
   EXPECT_VARIABLE_NAME(ScriptErrorStage.PARSE, "Expect variable name."),
 
   /**
+   * Runtime error when expected number of arguments were not provided.
+   */
+  EXPECTED_ARGUMENTS_MISMATCH(ScriptErrorStage.RUNTIME, "Expected %s arguments but got %s."),
+
+  /**
    * Parsing error when an assignment operation is detected, but the target is not valid.
    */
   INVALID_ASSIGNMENT_TARGET(ScriptErrorStage.PARSE, "Invalid assignment target."),
@@ -70,6 +75,11 @@ public enum ScriptErrorType {
    * Semantic error when a variable is used to initialize itself.
    */
   INVALID_SELF_INITIALIZATION(ScriptErrorStage.SEMANTIC, "Cannot use local variable '%s' in its own initializer."),
+
+  /**
+   * Runtime error when a call is detected on something that is not a function or class.
+   */
+  NOT_CALLABLE(ScriptErrorStage.RUNTIME, "Can only call functions and classes."),
 
   /**
    * Runtime error when a property accessor is found on something that is not an object.

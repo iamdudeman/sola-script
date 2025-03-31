@@ -4,7 +4,25 @@ import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.tokenizer.Token;
 
-class ValueUtils {
+public class ValueUtils {
+  public static String stringify(Object value) {
+    if (value == null) {
+      return "null";
+    }
+
+    if (value instanceof Double) {
+      String text = value.toString();
+
+      if (text.endsWith(".0")) {
+        text = text.substring(0, text.length() - 2);
+      }
+
+      return text;
+    }
+
+    return value.toString();
+  }
+
   static void assertNumberOperand(Token operator, Object operand) {
     if (operand instanceof Double) {
       return;
@@ -43,24 +61,6 @@ class ValueUtils {
     }
 
     return a.equals(b);
-  }
-
-  static String stringify(Object value) {
-    if (value == null) {
-      return "null";
-    }
-
-    if (value instanceof Double) {
-      String text = value.toString();
-
-      if (text.endsWith(".0")) {
-        text = text.substring(0, text.length() - 2);
-      }
-
-      return text;
-    }
-
-    return value.toString();
   }
 
   private ValueUtils() {
