@@ -45,9 +45,11 @@ public class SolaScriptMain {
     var errorContainer = run(new String(bytes, Charset.defaultCharset()));
 
     if (errorContainer.hasError()) {
+      errorContainer.printErrors();
       System.exit(65);
     }
     if (errorContainer.hasRuntimeError()) {
+      errorContainer.printErrors();
       System.exit(70);
     }
   }

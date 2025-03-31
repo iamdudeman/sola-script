@@ -8,4 +8,10 @@ var test = "test";
   print(test);
 }
 
+{
+  var newVariable = "hi";
+}
+
 print(test);
+
+print(newVariable);
