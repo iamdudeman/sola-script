@@ -9,15 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Interpreter {
-  private final ScriptRuntime scriptRuntime;
-  private final ExpressionInterpreter expressionInterpreter;
   private final StatementInterpreter statementInterpreter;
 
   public Interpreter(ScriptRuntime scriptRuntime) {
-    this.scriptRuntime = scriptRuntime;
-
-    statementInterpreter = new StatementInterpreter(scriptRuntime);
-    expressionInterpreter = new ExpressionInterpreter(scriptRuntime);
+    statementInterpreter = new StatementInterpreter(scriptRuntime, new ExpressionInterpreter(scriptRuntime));
   }
 
   public List<ScriptError> interpret(List<Stmt> statements) {
@@ -32,23 +27,5 @@ public class Interpreter {
     }
 
     return errors;
-  }
-
-  private class StatementInterpreter implements Stmt.Visitor<Void> {
-    private final ScriptRuntime runtime;
-
-    public StatementInterpreter(ScriptRuntime runtime) {
-      this.runtime = runtime;
-    }
-
-    void execute(Stmt statement) {
-      statement.accept(this);
-    }
-
-    @Override
-    public Void expression(Stmt.Expression stmt) {
-      expressionInterpreter.evaluate(stmt.expr());
-      return null;
-    }
   }
 }

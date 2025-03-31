@@ -1,5 +1,7 @@
 package technology.sola.script.parser;
 
+import technology.sola.script.tokenizer.Token;
+
 /**
  * Stmt represents a piece of code that performs an action or controls the flow of the program.
  */
@@ -19,6 +21,8 @@ public interface Stmt {
    * @param <R> the return type of the executed statement
    */
   interface Visitor<R> {
+    R var(Var stmt);
+
     /**
      * Executes an {@link Expression} statement and returns the value.
      *
@@ -26,6 +30,13 @@ public interface Stmt {
      * @return the evaluated value
      */
     R expression(Expression stmt);
+  }
+
+  record Var(Token name, Expr initializer) implements Stmt {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.var(this);
+    }
   }
 
   record Expression(Expr expr) implements Stmt {

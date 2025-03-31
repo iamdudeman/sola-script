@@ -2,6 +2,7 @@ package technology.sola.script.parser;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.script.error.ScriptErrorStage;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.tokenizer.Tokenizer;
 
@@ -13,6 +14,40 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParserTest {
+  @Nested
+  class declVar {
+    @Test
+    void valid() {
+      var source = """
+        var test = 5;
+        var test2;
+        """;
+      var expected = """
+        var test = 5
+        var test2
+        """;
+
+      new ParserTester(source)
+        .verify(expected);
+    }
+
+    @Test
+    void invalid() {
+      var source = """
+        var ;
+        var test
+        """;
+      var expected = """
+        var test = 5
+        """;
+
+      new ParserTester(source)
+        .withErrors(ScriptErrorType.EXPECT_VARIABLE_NAME)
+        .withErrors(ScriptErrorType.EXPECT_SEMI_AFTER_VARIABLE_DECLARATION)
+        .verify(null);
+    }
+  }
+
   @Nested
   class stmtExpression {
     @Nested

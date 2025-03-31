@@ -1,16 +1,26 @@
 package technology.sola.script.interpreter;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Parser;
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.runtime.ScriptRuntime;
+import technology.sola.script.tokenizer.Token;
+import technology.sola.script.tokenizer.TokenType;
 import technology.sola.script.tokenizer.Tokenizer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ExpressionInterpreterTest {
+  private ScriptRuntime scriptRuntime;
+
+  @BeforeEach
+  void setUp() {
+    scriptRuntime = new ScriptRuntime();
+  }
+
   @Nested
   class set {
     // todo not yet implemented to test
@@ -18,7 +28,16 @@ class ExpressionInterpreterTest {
 
   @Nested
   class assign {
-    // todo not yet implemented to test
+    @Test
+    void test() {
+      scriptRuntime.defineVariable("test", null);
+
+      assertEvaluation("test = 5;", 5d);
+
+      var value = scriptRuntime.lookUpVariable(new Token(TokenType.IDENTIFIER, "test", null, 1, 1), null);
+
+      assertEquals(5d, value);
+    }
   }
 
   @Nested
@@ -282,7 +301,12 @@ class ExpressionInterpreterTest {
 
   @Nested
   class variable {
-    // todo not yet implemented to test
+    @Test
+    void test() {
+      scriptRuntime.defineVariable("test", 5d);
+
+      assertEvaluation("test;", 5d);
+    }
   }
 
   @Nested
@@ -310,7 +334,7 @@ class ExpressionInterpreterTest {
   private Object evaluateExpressionStatementSource(String source) {
     var tokenizer = new Tokenizer(source);
     var parser = new Parser(tokenizer.tokenize().tokens());
-    var expressionInterpreter = new ExpressionInterpreter(new ScriptRuntime());
+    var expressionInterpreter = new ExpressionInterpreter(scriptRuntime);
     var statements = parser.parse().statements();
 
     if (statements.size() != 1) {

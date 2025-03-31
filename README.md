@@ -37,7 +37,7 @@ program         := declaration* EOF ;
 declaration     := statement
 classDecl #todo
 funDecl #todo
-varDecl #todo
+varDecl         := "var" IDENTIFIER ( "=" expression)? ";" ;
 valDecl #todo
 ```
 

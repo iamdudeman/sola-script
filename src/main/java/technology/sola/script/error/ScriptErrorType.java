@@ -27,6 +27,11 @@ public enum ScriptErrorType {
   EXPECT_SEMI_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ';' after expression."),
 
   /**
+   * Parsing error when a semicolon was not found after a variable declaration.
+   */
+  EXPECT_SEMI_AFTER_VARIABLE_DECLARATION(ScriptErrorStage.PARSE, "Expect ';' after variable declaration."),
+
+  /**
    * Parsing error when a closing parenthesis was not found after function arguments.
    */
   EXPECT_PAREN_AFTER_ARGUMENTS(ScriptErrorStage.PARSE, "Expect ')' after arguments."),
@@ -45,6 +50,11 @@ public enum ScriptErrorType {
    * Parsing error when a method name was not found after a superclass accessor.
    */
   EXPECT_SUPERCLASS_METHOD_NAME(ScriptErrorStage.PARSE, "Expect superclass method name."),
+
+  /**
+   * Parsing error when a variable name is expected.
+   */
+  EXPECT_VARIABLE_NAME(ScriptErrorStage.PARSE, "Expect variable name."),
 
   /**
    * Parsing error when an assignment operation is detected, but the target is not valid.

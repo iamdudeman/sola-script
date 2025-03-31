@@ -31,6 +31,15 @@ public class ParserResultPrinter {
 
   private class StmtPrinter implements Stmt.Visitor<String> {
     @Override
+    public String var(Stmt.Var stmt) {
+      if (stmt.initializer() == null) {
+        return "var " + stmt.name().lexeme();
+      }
+
+      return "var " + stmt.name().lexeme() + " = " + print(stmt.initializer());
+    }
+
+    @Override
     public String expression(Stmt.Expression stmt) {
       return print(stmt.expr());
     }

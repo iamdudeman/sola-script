@@ -22,6 +22,10 @@ public class ScriptRuntime {
     }
   }
 
+  public void defineVariable(String name, Object value) {
+    environment.define(name, value);
+  }
+
   public void assignVariable(Expr.Assign expr, Object value) {
     Integer distance = resolvedLocals.get(expr);
 
