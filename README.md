@@ -50,7 +50,7 @@ forStmt #todo
 ifStmt #todo
 returnStmt #todo
 whileStmt #todo
-block           := "{" declaration* "}"
+block #todo
 ```
 
 ### Expressions
