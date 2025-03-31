@@ -6,7 +6,7 @@ import technology.sola.script.tokenizer.Token;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Runtime {
+public class ScriptRuntime {
   private final Environment globals = new Environment();
   private Environment environment = globals;
   private final ScopeTable scopeTable = new ScopeTable();
@@ -30,9 +30,5 @@ public class Runtime {
     } else {
       environment.assignAt(distance, expr.name(), value);
     }
-  }
-
-  void resolveLocal(Expr expr, Token name) {
-    scopeTable.resolveLocal(expr, name);
   }
 }

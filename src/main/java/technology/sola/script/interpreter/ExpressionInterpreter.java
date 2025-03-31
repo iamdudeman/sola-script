@@ -3,9 +3,16 @@ package technology.sola.script.interpreter;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Expr;
+import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.tokenizer.TokenType;
 
 class ExpressionInterpreter implements Expr.Visitor<Object> {
+  private final ScriptRuntime scriptRuntime;
+
+  public ExpressionInterpreter(ScriptRuntime scriptRuntime) {
+    this.scriptRuntime = scriptRuntime;
+  }
+
   Object evaluate(Expr expr) {
     return expr.accept(this);
   }

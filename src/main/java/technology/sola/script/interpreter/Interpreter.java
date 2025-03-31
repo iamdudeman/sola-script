@@ -1,19 +1,24 @@
 package technology.sola.script.interpreter;
 
 import technology.sola.script.error.ScriptError;
-import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptInterpretationException;
-import technology.sola.script.parser.Expr;
 import technology.sola.script.parser.Stmt;
-import technology.sola.script.tokenizer.Token;
-import technology.sola.script.tokenizer.TokenType;
+import technology.sola.script.runtime.ScriptRuntime;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Interpreter {
-  private final ExpressionInterpreter expressionInterpreter = new ExpressionInterpreter();
-  private final StatementInterpreter statementInterpreter = new StatementInterpreter();
+  private final ScriptRuntime scriptRuntime;
+  private final ExpressionInterpreter expressionInterpreter;
+  private final StatementInterpreter statementInterpreter;
+
+  public Interpreter(ScriptRuntime scriptRuntime) {
+    this.scriptRuntime = scriptRuntime;
+
+    statementInterpreter = new StatementInterpreter(scriptRuntime);
+    expressionInterpreter = new ExpressionInterpreter(scriptRuntime);
+  }
 
   public List<ScriptError> interpret(List<Stmt> statements) {
     List<ScriptError> errors = new ArrayList<>();
@@ -30,6 +35,12 @@ public class Interpreter {
   }
 
   private class StatementInterpreter implements Stmt.Visitor<Void> {
+    private final ScriptRuntime runtime;
+
+    public StatementInterpreter(ScriptRuntime runtime) {
+      this.runtime = runtime;
+    }
+
     void execute(Stmt statement) {
       statement.accept(this);
     }
