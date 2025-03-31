@@ -7,9 +7,12 @@ import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Parser;
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.runtime.ScriptRuntime;
+import technology.sola.script.runtime.SolaScriptCallable;
 import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
 import technology.sola.script.tokenizer.Tokenizer;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -281,7 +284,52 @@ class ExpressionInterpreterTest {
 
   @Nested
   class call {
-    // todo not yet implemented to test
+    @Test
+    void whenWrongArguments_shouldThrow() {
+      scriptRuntime.defineVariable("test", new SolaScriptCallable() {
+        @Override
+        public int arity() {
+          return 0;
+        }
+
+        @Override
+        public Object call(List<Object> arguments) {
+          return null;
+        }
+      });
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> evaluateExpressionStatementSource("test(5);")
+      );
+    }
+
+    @Test
+    void whenNotCallable_shouldThrow() {
+      scriptRuntime.defineVariable("test", 5d);
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> evaluateExpressionStatementSource("test();")
+      );
+    }
+
+    @Test
+    void valid() {
+      scriptRuntime.defineVariable("test", new SolaScriptCallable() {
+        @Override
+        public int arity() {
+          return 1;
+        }
+
+        @Override
+        public Object call(List<Object> arguments) {
+          return arguments.get(0);
+        }
+      });
+
+      assertEquals(5d, evaluateExpressionStatementSource("test(5);"));
+    }
   }
 
   @Nested
