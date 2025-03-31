@@ -46,6 +46,19 @@ public class Interpreter {
     }
 
     @Override
+    public Void var(Stmt.Var stmt) {
+      Object value = null;
+
+      if (stmt.initializer() != null) {
+        value = expressionInterpreter.evaluate(stmt.initializer());
+      }
+
+      runtime.defineVariable(stmt.name().lexeme(), value);
+
+      return null;
+    }
+
+    @Override
     public Void expression(Stmt.Expression stmt) {
       expressionInterpreter.evaluate(stmt.expr());
       return null;

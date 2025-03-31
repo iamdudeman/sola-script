@@ -37,7 +37,7 @@ public class Parser {
     }
 
     while (!isAtEnd()) {
-      var declaration = stmtDeclaration();
+      var declaration = declaration();
 
       if (declaration != null) {
         statements.add(declaration);
@@ -50,11 +50,15 @@ public class Parser {
 
   // declarations, statements below ------------------------------------------------------------------------------------
 
-  private Stmt stmtDeclaration() {
+  private Stmt declaration() {
     try {
       // todo function
       // todo class
-      // todo var
+
+      if (advanceExpected(TokenType.VAR)) {
+        return declVar();
+      }
+
       // todo val
 
       return statement();
@@ -62,6 +66,19 @@ public class Parser {
       synchronize();
       return null;
     }
+  }
+
+  private Stmt declVar() {
+    Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_VARIABLE_NAME);
+    Expr initializer = null;
+
+    if (advanceExpected(TokenType.EQUAL)) {
+      initializer = expression();
+    }
+
+    eat(TokenType.SEMICOLON, ScriptErrorType.EXPECT_SEMI_AFTER_VARIABLE_DECLARATION);
+
+    return new Stmt.Var(name, initializer);
   }
 
   private Stmt statement() {
