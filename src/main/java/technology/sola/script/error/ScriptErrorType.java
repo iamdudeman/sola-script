@@ -7,6 +7,11 @@ import technology.sola.script.parser.ParserConstants;
  */
 public enum ScriptErrorType {
   /**
+   * Semantic error when a variable was already defined in this scope.
+   */
+  ALREADY_DEFINED_VARIABLE(ScriptErrorStage.SEMANTIC, "'%s' is already defined in this scope."),
+
+  /**
    * Parsing error when an expression is expected, but not found.
    */
   EXPECT_EXPRESSION(ScriptErrorStage.PARSE, "Expect expression."),
@@ -52,6 +57,11 @@ public enum ScriptErrorType {
   INVALID_BINARY_EXPRESSION(ScriptErrorStage.PARSE, "Binary expression missing left operand."),
 
   /**
+   * Semantic error when a variable is used to initialize itself.
+   */
+  INVALID_SELF_INITIALIZATION(ScriptErrorStage.SEMANTIC, "Cannot use local variable '%s' in its own initializer."),
+
+  /**
    * Runtime error when a property accessor is found on something that is not an object.
    */
   ONLY_INSTANCES_HAVE_PROPERTIES(ScriptErrorStage.RUNTIME, "Only instances have properties."),
@@ -76,6 +86,11 @@ public enum ScriptErrorType {
    * allowed is {@link technology.sola.script.parser.ParserConstants#MAX_ARGUMENTS}.
    */
   TOO_MANY_ARGUMENTS(ScriptErrorStage.SEMANTIC, "Can't have more than " + ParserConstants.MAX_ARGUMENTS + " arguments."),
+
+  /**
+   * Runtime error when a variable is used, but not defined in scope.
+   */
+  UNDEFINED_VARIABLE(ScriptErrorStage.RUNTIME, "Undefined variable '%s'."),
 
   /**
    * Parsing error that happens during tokenization when an unexpected character is found in a script.

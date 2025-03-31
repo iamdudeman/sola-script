@@ -8,31 +8,115 @@ import java.util.List;
  * Expr represents code that evaluates to a value.
  */
 public interface Expr {
+  /**
+   * Evaluate this expression via the desired {@link Visitor}
+   *
+   * @param visitor the {@link Visitor} to evaluate this expression
+   * @param <R>     the return type
+   * @return the evaluated value
+   */
   <R> R accept(Visitor<R> visitor);
 
+  /**
+   * Defines operations for the various {@link Expr} implementations.
+   *
+   * @param <R> the return type of the evaluated value
+   */
   interface Visitor<R> {
+    /**
+     * Evaluates a {@link Set} expression and returns the value.
+     *
+     * @param expr the {@link Set} expression
+     * @return the evaluated value
+     */
     R set(Set expr);
 
+    /**
+     * Evaluates a {@link Assign} expression and returns the value.
+     *
+     * @param expr the {@link Assign} expression
+     * @return the evaluated value
+     */
     R assign(Assign expr);
 
+    /**
+     * Evaluates a {@link Logical} expression and returns the value.
+     *
+     * @param expr the {@link Logical} expression
+     * @return the evaluated value
+     */
     R logical(Logical expr);
 
+    /**
+     * Evaluates a {@link Binary} expression and returns the value.
+     *
+     * @param expr the {@link Binary} expression
+     * @return the evaluated value
+     */
     R binary(Binary expr);
 
+    /**
+     * Evaluates a {@link Unary} expression and returns the value.
+     *
+     * @param expr the {@link Unary} expression
+     * @return the evaluated value
+     */
     R unary(Unary expr);
 
+    /**
+     * Evaluates a {@link Call} expression and returns the value.
+     *
+     * @param expr the {@link Call} expression
+     * @return the evaluated value
+     */
     R call(Call expr);
 
+    /**
+     * Evaluates a {@link Get} expression and returns the value.
+     *
+     * @param expr the {@link Get} expression
+     * @return the evaluated value
+     */
     R get(Get expr);
 
+    /**
+     * Evaluates a {@link This} expression and returns the value.
+     *
+     * @param expr the {@link This} expression
+     * @return the evaluated value
+     */
     R thisVisit(This expr);
 
+    /**
+     * Evaluates a {@link Super} expression and returns the value.
+     *
+     * @param expr the {@link Super} expression
+     * @return the evaluated value
+     */
     R superVisit(Super expr);
 
+    /**
+     * Evaluates a {@link Variable} expression and returns the value.
+     *
+     * @param expr the {@link Variable} expression
+     * @return the evaluated value
+     */
     R variable(Variable expr);
 
+    /**
+     * Evaluates a {@link Grouping} expression and returns the value.
+     *
+     * @param expr the {@link Grouping} expression
+     * @return the evaluated value
+     */
     R grouping(Grouping expr);
 
+    /**
+     * Evaluates a {@link Literal} expression and returns the value.
+     *
+     * @param expr the {@link Literal} expression
+     * @return the evaluated value
+     */
     R literal(Literal expr);
   }
 

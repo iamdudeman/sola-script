@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Parser;
 import technology.sola.script.parser.Stmt;
+import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.tokenizer.Tokenizer;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -309,7 +310,7 @@ class ExpressionInterpreterTest {
   private Object evaluateExpressionStatementSource(String source) {
     var tokenizer = new Tokenizer(source);
     var parser = new Parser(tokenizer.tokenize().tokens());
-    var expressionInterpreter = new ExpressionInterpreter();
+    var expressionInterpreter = new ExpressionInterpreter(new ScriptRuntime());
     var statements = parser.parse().statements();
 
     if (statements.size() != 1) {
