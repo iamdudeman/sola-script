@@ -35,4 +35,16 @@ public class ScriptRuntime {
       environment.assignAt(distance, expr.name(), value);
     }
   }
+
+  public EnvironmentHandle newEnvironment() {
+    var previous = this.environment;
+
+    this.environment = new Environment(this.environment);
+
+    return new EnvironmentHandle(previous);
+  }
+
+  public void restoreEnvironment(EnvironmentHandle handle) {
+    this.environment = handle.environment;
+  }
 }
