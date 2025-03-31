@@ -17,6 +17,11 @@ public enum ScriptErrorType {
   EXPECT_EXPRESSION(ScriptErrorStage.PARSE, "Expect expression."),
 
   /**
+   * Parsing error when a closing '}' is not found after a block.
+   */
+  EXPECT_BRACE_AFTER_BLOCK(ScriptErrorStage.PARSE, "Expect '}' after block."),
+
+  /**
    * Parsing error when a '.' property accessor was not found after 'super'.
    */
   EXPECT_DOT_AFTER_SUPER(ScriptErrorStage.PARSE, "Expect '.' after super."),

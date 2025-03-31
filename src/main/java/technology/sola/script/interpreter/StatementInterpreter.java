@@ -34,4 +34,9 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
     expressionInterpreter.evaluate(stmt.expr());
     return null;
   }
+
+  @Override
+  public Void block(Stmt.Block stmt) {
+    return null;
+  }
 }

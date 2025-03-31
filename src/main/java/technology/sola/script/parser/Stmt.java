@@ -2,6 +2,8 @@ package technology.sola.script.parser;
 
 import technology.sola.script.tokenizer.Token;
 
+import java.util.List;
+
 /**
  * Stmt represents a piece of code that performs an action or controls the flow of the program.
  */
@@ -30,6 +32,8 @@ public interface Stmt {
      * @return the evaluated value
      */
     R expression(Expression stmt);
+
+    R block(Block stmt);
   }
 
   record Var(Token name, Expr initializer) implements Stmt {
@@ -43,6 +47,13 @@ public interface Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.expression(this);
+    }
+  }
+
+  record Block(List<Stmt> statements) implements Stmt {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.block(this);
     }
   }
 }

@@ -44,13 +44,13 @@ valDecl #todo
 ### Statements
 
 ```
-statement       := exprStmt
+statement       := exprStmt | block
 exprStmt        := expression ";" ;
 forStmt #todo
 ifStmt #todo
 returnStmt #todo
 whileStmt #todo
-block #todo
+block           := "{" declaration* "}"
 ```
 
 ### Expressions

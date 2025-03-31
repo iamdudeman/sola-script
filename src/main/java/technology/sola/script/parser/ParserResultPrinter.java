@@ -43,6 +43,15 @@ public class ParserResultPrinter {
     public String expression(Stmt.Expression stmt) {
       return print(stmt.expr());
     }
+
+    @Override
+    public String block(Stmt.Block stmt) {
+      if (stmt.statements().isEmpty()) {
+        return "{}";
+      }
+
+      return "{\n  " + stmt.statements().stream().map(ParserResultPrinter.this::print).collect(Collectors.joining("\n  ")) + "\n}";
+    }
   }
 
   private class ExprPrinter implements Expr.Visitor<String> {
