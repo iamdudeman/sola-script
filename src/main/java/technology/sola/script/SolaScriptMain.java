@@ -67,7 +67,11 @@ public class SolaScriptMain {
         break;
       }
 
-      run(line);
+      var errorContainer = run(line);
+
+      if (errorContainer.hasError()) {
+        errorContainer.printErrors();
+      }
     }
   }
 
@@ -80,10 +84,6 @@ public class SolaScriptMain {
 
     errorContainer.addErrors(tokenizeResult.errors());
     errorContainer.addErrors(parserResult.errors());
-
-    if (errorContainer.hasError()) {
-      errorContainer.printErrors();
-    }
 
     Resolver resolver = new Resolver(scriptRuntime);
     var errors = resolver.resolve(parserResult.statements());
