@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.script.error.ScriptInterpretationException;
+import technology.sola.script.parser.Expr;
 import technology.sola.script.parser.Parser;
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.runtime.ScriptRuntime;
@@ -37,7 +38,8 @@ class ExpressionInterpreterTest {
 
       assertEvaluation("test = 5;", 5d);
 
-      var value = scriptRuntime.lookUpVariable(new Token(TokenType.IDENTIFIER, "test", null, 1, 1), null);
+      var variable = new Expr.Variable(new Token(TokenType.IDENTIFIER, "test", null, 1, 1));
+      var value = scriptRuntime.lookUpVariable(variable);
 
       assertEquals(5d, value);
     }

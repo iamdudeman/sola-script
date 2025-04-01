@@ -1,8 +1,11 @@
 package technology.sola.script.runtime;
 
 import technology.sola.script.parser.Expr;
-import technology.sola.script.tokenizer.Token;
 
+/**
+ * ScriptRuntime contains environment state information as well as a {@link ScopeTable} to keep track of nested scope
+ * variable resolutions.
+ */
 public class ScriptRuntime {
   private final Environment globals = new Environment();
   private Environment environment = globals;
@@ -41,8 +44,27 @@ public class ScriptRuntime {
     return scopeTable;
   }
 
-  public Object lookUpVariable(Token name, Expr expr) {
-    Integer distance = scopeTable.getDistance(expr);
+  /**
+   * Defines a variable with desired value in the current environment.
+   *
+   * @param name  the name of the variable
+   * @param value the value for the variable
+   */
+  public void defineVariable(String name, Object value) {
+    environment.define(name, value);
+  }
+
+  /**
+   * Looks up a variable's value utilizing the variable resolutions in the {@link ScopeTable} for the runtime.
+   * <p>
+   * If there is not a scope resolution for the expression then it will be retrieved as a global.
+   *
+   * @param expr the {@link Expr.Variable} to get the value for
+   * @return the variable's value
+   */
+  public Object lookUpVariable(Expr.Variable expr) {
+    var distance = scopeTable.getDistance(expr);
+    var name = expr.name();
 
     if (distance == null) {
       return globals.get(name);
@@ -51,10 +73,14 @@ public class ScriptRuntime {
     }
   }
 
-  public void defineVariable(String name, Object value) {
-    environment.define(name, value);
-  }
-
+  /**
+   * Assigns a variable's value utilizing the variable resolutions in the {@link ScopeTable} for the runtime.
+   * <p>
+   * If there is not a scope resolution for the expression then it will be assigned as a global.
+   *
+   * @param expr  the {@link Expr.Assign} expression
+   * @param value the value to assign to the variable
+   */
   public void assignVariable(Expr.Assign expr, Object value) {
     Integer distance = scopeTable.getDistance(expr);
 
