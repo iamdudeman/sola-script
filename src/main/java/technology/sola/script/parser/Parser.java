@@ -86,7 +86,10 @@ public class Parser {
     // todo while
     // todo for
     // todo return
-    // todo block
+
+    if (advanceExpected(TokenType.LEFT_BRACE)) {
+      return new Stmt.Block(parseBlockStatements());
+    }
 
     return stmtExpression();
   }
@@ -97,6 +100,18 @@ public class Parser {
     eat(TokenType.SEMICOLON, ScriptErrorType.EXPECT_SEMI_AFTER_EXPRESSION);
 
     return new Stmt.Expression(expr);
+  }
+
+  private List<Stmt> parseBlockStatements() {
+    List<Stmt> statements = new ArrayList<>();
+
+    while (!check(TokenType.RIGHT_BRACE) && !isAtEnd()) {
+      statements.add(declaration());
+    }
+
+    eat(TokenType.RIGHT_BRACE, ScriptErrorType.EXPECT_BRACE_AFTER_BLOCK);
+
+    return statements;
   }
 
 

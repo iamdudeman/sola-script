@@ -2,7 +2,6 @@ package technology.sola.script.parser;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.script.error.ScriptErrorStage;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.tokenizer.Tokenizer;
 
@@ -44,6 +43,37 @@ class ParserTest {
       new ParserTester(source)
         .withErrors(ScriptErrorType.EXPECT_VARIABLE_NAME)
         .withErrors(ScriptErrorType.EXPECT_SEMI_AFTER_VARIABLE_DECLARATION)
+        .verify(null);
+    }
+  }
+
+  @Nested
+  class block {
+    @Test
+    void valid() {
+      var source = """
+        {}
+        { test; }
+        """;
+      var expected = """
+        {}
+        {
+          test
+        }
+        """;
+
+      new ParserTester(source)
+        .verify(expected);
+    }
+
+    @Test
+    void invalid() {
+      var source = """
+        {
+        """;
+
+      new ParserTester(source)
+        .withErrors(ScriptErrorType.EXPECT_BRACE_AFTER_BLOCK)
         .verify(null);
     }
   }
