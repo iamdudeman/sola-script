@@ -4,6 +4,7 @@ import technology.sola.script.error.ErrorContainer;
 import technology.sola.script.interpreter.Interpreter;
 import technology.sola.script.library.StandardLibrary;
 import technology.sola.script.parser.Parser;
+import technology.sola.script.resolver.Resolver;
 import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.tokenizer.Tokenizer;
 
@@ -84,7 +85,10 @@ public class SolaScriptMain {
       errorContainer.printErrors();
     }
 
-    // todo hook up resolver
+    Resolver resolver = new Resolver(scriptRuntime);
+    var errors = resolver.resolve(parserResult.statements());
+
+    errorContainer.addErrors(errors);
 
     var interpretationErrors = new Interpreter(scriptRuntime).interpret(parserResult.statements());
 
