@@ -13,6 +13,20 @@ public class ScopeTable {
   }
 
   /**
+   * Begins a new scope for variables to be resolved.
+   */
+  public void beginScope() {
+    scopes.push(new HashMap<>());
+  }
+
+  /**
+   * Ends the current scope for variables to be resolved.
+   */
+  public void endScope() {
+    scopes.pop();
+  }
+
+  /**
    * Resolves the nested depth of a local variable usage for an {@link Expr}.
    *
    * @param expr the expression to resolve the local variable usage for
@@ -87,14 +101,5 @@ public class ScopeTable {
   // todo package only
   Map<Expr, Integer> getLocals() {
     return locals;
-  }
-
-
-  void beginScope() {
-    scopes.push(new HashMap<>());
-  }
-
-  void endScope() {
-    scopes.pop();
   }
 }

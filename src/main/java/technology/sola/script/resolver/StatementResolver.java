@@ -46,7 +46,16 @@ class StatementResolver implements Stmt.Visitor<Void> {
 
   @Override
   public Void block(Stmt.Block stmt) {
-    // todo
-    throw new UnsupportedOperationException("Not supported yet.");
+    var scopes = scriptRuntime.scopes();
+
+    scopes.beginScope();
+
+    for (var statement : stmt.statements()) {
+      statement.accept(this);
+    }
+
+    scopes.endScope();
+
+    return null;
   }
 }
