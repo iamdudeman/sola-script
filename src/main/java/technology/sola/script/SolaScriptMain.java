@@ -59,7 +59,7 @@ public class SolaScriptMain {
     InputStreamReader input = new InputStreamReader(System.in, Charset.defaultCharset());
     BufferedReader reader = new BufferedReader(input);
 
-    for (; ; ) {
+    for ( ; ; ) {
       System.out.print("> ");
       String line = reader.readLine();
 
@@ -85,13 +85,13 @@ public class SolaScriptMain {
     errorContainer.addErrors(tokenizeResult.errors());
     errorContainer.addErrors(parserResult.errors());
 
-    Resolver resolver = new Resolver(scriptRuntime);
-    var errors = resolver.resolve(parserResult.statements());
+    var resolver = new Resolver(scriptRuntime);
+    var interpreter = new Interpreter(scriptRuntime);
 
-    errorContainer.addErrors(errors);
+    var resolverErrors = resolver.resolve(parserResult.statements());
+    var interpretationErrors = interpreter.interpret(parserResult.statements());
 
-    var interpretationErrors = new Interpreter(scriptRuntime).interpret(parserResult.statements());
-
+    errorContainer.addErrors(resolverErrors);
     errorContainer.addErrors(interpretationErrors);
 
     return errorContainer;
