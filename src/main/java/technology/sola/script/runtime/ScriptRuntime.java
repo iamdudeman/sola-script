@@ -42,7 +42,7 @@ public class ScriptRuntime {
   }
 
   public Object lookUpVariable(Token name, Expr expr) {
-    Integer distance = scopeTable.getLocals().get(expr);
+    Integer distance = scopeTable.getDistance(expr);
 
     if (distance == null) {
       return globals.get(name);
@@ -56,7 +56,7 @@ public class ScriptRuntime {
   }
 
   public void assignVariable(Expr.Assign expr, Object value) {
-    Integer distance = scopeTable.getLocals().get(expr);
+    Integer distance = scopeTable.getDistance(expr);
 
     if (distance == null) {
       globals.assign(expr.name(), value);

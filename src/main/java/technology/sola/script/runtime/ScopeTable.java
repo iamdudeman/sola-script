@@ -5,11 +5,22 @@ import technology.sola.script.tokenizer.Token;
 
 import java.util.*;
 
+/**
+ * ScopeTable holds variable resolutions at various depths of scope.
+ */
 public class ScopeTable {
+  // If variable is in scopes and is false then it has been declared but not defined
   private final Stack<Map<String, Boolean>> scopes = new Stack<>();
   private final Map<Expr, Integer> locals = new HashMap<>();
 
-  ScopeTable() {
+  /**
+   * Gets the distance needed to resolve the correct value for the desired variable.
+   *
+   * @param expr the {@link Expr} to get the value for
+   * @return the distance to resolve the variable's value
+   */
+  public Integer getDistance(Expr expr) {
+    return locals.get(expr);
   }
 
   /**
@@ -51,9 +62,7 @@ public class ScopeTable {
       return;
     }
 
-    var scope = scopes.peek();
-
-    scope.put(name.lexeme(), false);
+    scopes.peek().put(name.lexeme(), false);
   }
 
   /**
@@ -78,6 +87,13 @@ public class ScopeTable {
     scopes.peek().put(name, true);
   }
 
+  /**
+   * Checks if a variable has been declared in the current scope or not. Return false if there has been no scope
+   * started.
+   *
+   * @param name the {@link Token} for the name of the variable
+   * @return true if the variable has already been declared in the current scope
+   */
   public boolean isDeclaredInScope(Token name) {
     if (scopes.isEmpty()) {
       return false;
@@ -96,10 +112,5 @@ public class ScopeTable {
    */
   public boolean isSelfReferenceVariableInitialization(Expr.Variable expression) {
     return !scopes.isEmpty() && scopes.peek().get(expression.name().lexeme()) == Boolean.FALSE;
-  }
-
-  // todo package only
-  Map<Expr, Integer> getLocals() {
-    return locals;
   }
 }
