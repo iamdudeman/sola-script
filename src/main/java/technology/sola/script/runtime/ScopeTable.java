@@ -47,6 +47,7 @@ class ScopeTable {
     var scope = scopes.peek();
 
     if (scope.containsKey(name.lexeme())) {
+      // todo consider returning boolean from this method and adding error to where this is called
       errors.add(new ScriptError(ScriptErrorType.ALREADY_DEFINED_VARIABLE, name, name.lexeme()));
     }
 

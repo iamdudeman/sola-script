@@ -10,6 +10,30 @@ public class ScriptRuntime {
 
   // todo maybe method to access scope table?
 
+  /**
+   * Creates a nested environment with the previous environment as its parent. This can be utilized, for example, when
+   * entering a new block of code.
+   *
+   * @return an {@link EnvironmentHandle} to the previous environment
+   */
+  public EnvironmentHandle createNestedEnvironment() {
+    var previous = this.environment;
+
+    this.environment = new Environment(this.environment);
+
+    return new EnvironmentHandle(previous);
+  }
+
+  /**
+   * Restores an environment utilizing its {@link EnvironmentHandle}. This can be utilized, for example, when existing
+   * a block of code.
+   *
+   * @param handle the {@link EnvironmentHandle} to restore the environment to
+   */
+  public void restoreEnvironment(EnvironmentHandle handle) {
+    this.environment = handle.environment;
+  }
+
   public Object lookUpVariable(Token name, Expr expr) {
     Integer distance = scopeTable.getLocals().get(expr);
 
@@ -32,17 +56,5 @@ public class ScriptRuntime {
     } else {
       environment.assignAt(distance, expr.name(), value);
     }
-  }
-
-  public EnvironmentHandle newEnvironment() {
-    var previous = this.environment;
-
-    this.environment = new Environment(this.environment);
-
-    return new EnvironmentHandle(previous);
-  }
-
-  public void restoreEnvironment(EnvironmentHandle handle) {
-    this.environment = handle.environment;
   }
 }

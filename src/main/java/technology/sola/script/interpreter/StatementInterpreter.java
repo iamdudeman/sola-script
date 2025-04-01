@@ -37,7 +37,7 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
 
   @Override
   public Void block(Stmt.Block stmt) {
-    var handle = scriptRuntime.newEnvironment();
+    var handle = scriptRuntime.createNestedEnvironment();
 
     try {
       for (var statement : stmt.statements()) {
