@@ -7,3 +7,6 @@
 * protect divide by zero in binary expression interpreter
     * maybe throw an error?
     * or should it be "Infinity"
+* improve how standard library code is added
+    * add more to standard library
+* make it easier to add custom library code
