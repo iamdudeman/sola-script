@@ -167,7 +167,7 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   public Object variable(Expr.Variable expr) {
-    return scriptRuntime.lookUpVariable(expr.name(), expr);
+    return scriptRuntime.lookUpVariable(expr);
   }
 
   @Override

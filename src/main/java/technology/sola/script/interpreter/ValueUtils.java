@@ -4,7 +4,23 @@ import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.tokenizer.Token;
 
+/**
+ * ValueUtils contains various utility methods for sola-script values.
+ */
 public class ValueUtils {
+  /**
+   * Method to make a sola-script value into a string.
+   * <ul>
+   *   <li>null -> "null"</li>
+   *   <li>true -> "true"</li>
+   *   <li>12.0 -> 12</li>
+   *   <li>12.35 -> 12.35</li>
+   *   <li>"test" -> "test"</li>
+   * </ul>
+   *
+   * @param value the value to stringify
+   * @return the stringified value
+   */
   public static String stringify(Object value) {
     if (value == null) {
       return "null";

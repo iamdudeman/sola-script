@@ -4,6 +4,7 @@ import technology.sola.script.error.ErrorContainer;
 import technology.sola.script.interpreter.Interpreter;
 import technology.sola.script.library.StandardLibrary;
 import technology.sola.script.parser.Parser;
+import technology.sola.script.resolver.Resolver;
 import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.tokenizer.Tokenizer;
 
@@ -58,7 +59,7 @@ public class SolaScriptMain {
     InputStreamReader input = new InputStreamReader(System.in, Charset.defaultCharset());
     BufferedReader reader = new BufferedReader(input);
 
-    for (; ; ) {
+    for ( ; ; ) {
       System.out.print("> ");
       String line = reader.readLine();
 
@@ -66,7 +67,11 @@ public class SolaScriptMain {
         break;
       }
 
-      run(line);
+      var errorContainer = run(line);
+
+      if (errorContainer.hasError()) {
+        errorContainer.printErrors();
+      }
     }
   }
 
@@ -80,14 +85,13 @@ public class SolaScriptMain {
     errorContainer.addErrors(tokenizeResult.errors());
     errorContainer.addErrors(parserResult.errors());
 
-    if (errorContainer.hasError()) {
-      errorContainer.printErrors();
-    }
+    var resolver = new Resolver(scriptRuntime);
+    var interpreter = new Interpreter(scriptRuntime);
 
-    // todo hook up resolver
+    var resolverErrors = resolver.resolve(parserResult.statements());
+    var interpretationErrors = interpreter.interpret(parserResult.statements());
 
-    var interpretationErrors = new Interpreter(scriptRuntime).interpret(parserResult.statements());
-
+    errorContainer.addErrors(resolverErrors);
     errorContainer.addErrors(interpretationErrors);
 
     return errorContainer;

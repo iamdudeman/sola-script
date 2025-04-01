@@ -1,6 +1,8 @@
 # sola-script
 
-todo description
+sola-script is an interpreted programming language that I built to learn more about how programming languages are
+designed and implemented. It was developed while working through the material in the
+book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom.
 
 [![Java CI](https://github.com/iamdudeman/sola-script/actions/workflows/ci_build.yml/badge.svg)](https://github.com/iamdudeman/sola-script/actions/workflows/ci_build.yml)
 [![Javadocs Link](https://img.shields.io/badge/Javadocs-blue.svg)](https://iamdudeman.github.io/sola-script/)

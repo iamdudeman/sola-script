@@ -1,26 +1,49 @@
 package technology.sola.script.runtime;
 
-import technology.sola.script.error.ScriptError;
-import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.parser.Expr;
 import technology.sola.script.tokenizer.Token;
 
 import java.util.*;
 
-class ScopeTable {
+/**
+ * ScopeTable holds variable resolutions at various depths of scope.
+ */
+public class ScopeTable {
+  // If variable is in scopes and is false then it has been declared but not defined
   private final Stack<Map<String, Boolean>> scopes = new Stack<>();
   private final Map<Expr, Integer> locals = new HashMap<>();
-  private final List<ScriptError> errors = new ArrayList<>();
 
-  Map<Expr, Integer> getLocals() {
-    return locals;
+  /**
+   * Gets the distance needed to resolve the correct value for the desired variable.
+   *
+   * @param expr the {@link Expr} to get the value for
+   * @return the distance to resolve the variable's value
+   */
+  public Integer getDistance(Expr expr) {
+    return locals.get(expr);
   }
 
-  List<ScriptError> getErrors() {
-    return errors;
+  /**
+   * Begins a new scope for variables to be resolved.
+   */
+  public void beginScope() {
+    scopes.push(new HashMap<>());
   }
 
-  void resolveLocal(Expr expr, Token name) {
+  /**
+   * Ends the current scope for variables to be resolved.
+   */
+  public void endScope() {
+    scopes.pop();
+  }
+
+  /**
+   * Resolves the nested depth of a local variable usage for an {@link Expr}.
+   *
+   * @param expr the expression to resolve the local variable usage for
+   * @param name the {@link Token} for the name of the variable
+   */
+  public void resolveLocal(Expr expr, Token name) {
     for (int i = scopes.size() - 1; i >= 0; i--) {
       if (scopes.get(i).containsKey(name.lexeme())) {
         locals.put(expr, scopes.size() - 1 - i);
@@ -29,39 +52,65 @@ class ScopeTable {
     }
   }
 
-  void beginScope() {
-    scopes.push(new HashMap<>());
-  }
-
-  void endScope() {
-    scopes.pop();
-  }
-
-  void declare(Token name) {
+  /**
+   * Marks a variable as declared for the current scope. A declared variable cannot be used to initialize itself.
+   *
+   * @param name the {@link Token} for the name of the variable
+   */
+  public void declare(Token name) {
     if (scopes.isEmpty()) {
       return;
+    }
+
+    scopes.peek().put(name.lexeme(), false);
+  }
+
+  /**
+   * Marks a variable is defined for the current scope.
+   *
+   * @param name the {@link Token} for the name of the variable
+   */
+  public void define(Token name) {
+    define(name.lexeme());
+  }
+
+  /**
+   * Marks a variable is defined for the current scope.
+   *
+   * @param name the name of the variable
+   */
+  public void define(String name) {
+    if (scopes.isEmpty()) {
+      return;
+    }
+
+    scopes.peek().put(name, true);
+  }
+
+  /**
+   * Checks if a variable has been declared in the current scope or not. Return false if there has been no scope
+   * started.
+   *
+   * @param name the {@link Token} for the name of the variable
+   * @return true if the variable has already been declared in the current scope
+   */
+  public boolean isDeclaredInScope(Token name) {
+    if (scopes.isEmpty()) {
+      return false;
     }
 
     var scope = scopes.peek();
 
-    if (scope.containsKey(name.lexeme())) {
-      errors.add(new ScriptError(ScriptErrorType.ALREADY_DEFINED_VARIABLE, name, name.lexeme()));
-    }
-
-    scope.put(name.lexeme(), false);
+    return scope.containsKey(name.lexeme());
   }
 
-  void define(Token name) {
-    if (scopes.isEmpty()) {
-      return;
-    }
-
-    scopes.peek().put(name.lexeme(), true);
-  }
-
-  void validateSelfVariableInitialization(Expr.Variable variableExpression) {
-    if (!scopes.isEmpty() && scopes.peek().put(variableExpression.name().lexeme(), Boolean.FALSE)) {
-      errors.add(new ScriptError(ScriptErrorType.INVALID_SELF_INITIALIZATION, variableExpression.name(), variableExpression.name().lexeme()));
-    }
+  /**
+   * Utility method to check if a {@link Expr.Variable} expression is being used to initialize itself.
+   *
+   * @param expression the variable expression
+   * @return true if it is a self referencing variable initialization
+   */
+  public boolean isSelfReferenceVariableInitialization(Expr.Variable expression) {
+    return !scopes.isEmpty() && scopes.peek().get(expression.name().lexeme()) == Boolean.FALSE;
   }
 }

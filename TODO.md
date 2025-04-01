@@ -1,5 +1,8 @@
 # TODO list
 
+* improve how standard library code is added (maybe a common interface that ScriptRuntime can import from?)
+    * add more to standard library
+    * make it easier to add custom library code
 * support ternary operator (probably between assignment and logic_or)
     * needs new tokens "?" and ":"
 * consider implementing optional chaining "?." for dealing with null conveniently
