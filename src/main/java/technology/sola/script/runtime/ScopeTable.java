@@ -12,6 +12,7 @@ class ScopeTable {
   private final Map<Expr, Integer> locals = new HashMap<>();
   private final List<ScriptError> errors = new ArrayList<>();
 
+  // todo package only
   Map<Expr, Integer> getLocals() {
     return locals;
   }
@@ -20,6 +21,7 @@ class ScopeTable {
     return errors;
   }
 
+  // todo maybe public
   void resolveLocal(Expr expr, Token name) {
     for (int i = scopes.size() - 1; i >= 0; i--) {
       if (scopes.get(i).containsKey(name.lexeme())) {
@@ -52,15 +54,20 @@ class ScopeTable {
   }
 
   void define(Token name) {
+    define(name.lexeme());
+  }
+
+  void define(String name) {
     if (scopes.isEmpty()) {
       return;
     }
 
-    scopes.peek().put(name.lexeme(), true);
+    scopes.peek().put(name, true);
   }
 
+  // todo can probably be moved up into runtime? just return true/false and add error in runtime?
   void validateSelfVariableInitialization(Expr.Variable variableExpression) {
-    if (!scopes.isEmpty() && scopes.peek().put(variableExpression.name().lexeme(), Boolean.FALSE)) {
+    if (!scopes.isEmpty() && scopes.peek().get(variableExpression.name().lexeme()) == Boolean.FALSE) {
       errors.add(new ScriptError(ScriptErrorType.INVALID_SELF_INITIALIZATION, variableExpression.name(), variableExpression.name().lexeme()));
     }
   }
