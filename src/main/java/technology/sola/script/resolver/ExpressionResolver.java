@@ -1,6 +1,7 @@
 package technology.sola.script.resolver;
 
 import technology.sola.script.error.ScriptError;
+import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.parser.Expr;
 import technology.sola.script.runtime.ScriptRuntime;
 
@@ -77,8 +78,15 @@ class ExpressionResolver implements Expr.Visitor<Void> {
 
   @Override
   public Void variable(Expr.Variable expr) {
-    // todo
-    throw new UnsupportedOperationException("Not supported yet.");
+    var scopes = scriptRuntime.scopes();
+
+    if (scopes.isSelfReferenceVariableInitialization(expr)) {
+      errors.add(new ScriptError(ScriptErrorType.INVALID_SELF_INITIALIZATION, expr.name(), expr.name().lexeme()));
+    }
+
+    scopes.resolveLocal(expr, expr.name());
+
+    return null;
   }
 
   @Override

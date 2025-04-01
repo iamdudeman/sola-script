@@ -7,10 +7,38 @@ import technology.sola.script.tokenizer.Token;
 
 import java.util.*;
 
-class ScopeTable {
+public class ScopeTable {
   private final Stack<Map<String, Boolean>> scopes = new Stack<>();
   private final Map<Expr, Integer> locals = new HashMap<>();
   private final List<ScriptError> errors = new ArrayList<>();
+
+  ScopeTable() {
+  }
+
+  /**
+   * Resolves the nested depth of a local variable usage for an {@link Expr}.
+   *
+   * @param expr the expression to resolve the local variable usage for
+   * @param name the {@link Token} for the name of the variable
+   */
+  public void resolveLocal(Expr expr, Token name) {
+    for (int i = scopes.size() - 1; i >= 0; i--) {
+      if (scopes.get(i).containsKey(name.lexeme())) {
+        locals.put(expr, scopes.size() - 1 - i);
+        return;
+      }
+    }
+  }
+
+  /**
+   * Utility method to check if a {@link Expr.Variable} expression is being used to initialize itself.
+   *
+   * @param expression the variable expression
+   * @return true if it is a self referencing variable initialization
+   */
+  public boolean isSelfReferenceVariableInitialization(Expr.Variable expression) {
+    return !scopes.isEmpty() && scopes.peek().get(expression.name().lexeme()) == Boolean.FALSE;
+  }
 
   // todo package only
   Map<Expr, Integer> getLocals() {
@@ -21,15 +49,6 @@ class ScopeTable {
     return errors;
   }
 
-  // todo maybe public
-  void resolveLocal(Expr expr, Token name) {
-    for (int i = scopes.size() - 1; i >= 0; i--) {
-      if (scopes.get(i).containsKey(name.lexeme())) {
-        locals.put(expr, scopes.size() - 1 - i);
-        return;
-      }
-    }
-  }
 
   void beginScope() {
     scopes.push(new HashMap<>());
@@ -64,12 +83,5 @@ class ScopeTable {
     }
 
     scopes.peek().put(name, true);
-  }
-
-  // todo can probably be moved up into runtime? just return true/false and add error in runtime?
-  void validateSelfVariableInitialization(Expr.Variable variableExpression) {
-    if (!scopes.isEmpty() && scopes.peek().get(variableExpression.name().lexeme()) == Boolean.FALSE) {
-      errors.add(new ScriptError(ScriptErrorType.INVALID_SELF_INITIALIZATION, variableExpression.name(), variableExpression.name().lexeme()));
-    }
   }
 }

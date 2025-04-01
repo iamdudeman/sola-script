@@ -8,8 +8,6 @@ public class ScriptRuntime {
   private Environment environment = globals;
   private final ScopeTable scopeTable = new ScopeTable();
 
-  // todo maybe method to access scope table?
-
   /**
    * Creates a nested environment with the previous environment as its parent. This can be utilized, for example, when
    * entering a new block of code.
@@ -32,6 +30,15 @@ public class ScriptRuntime {
    */
   public void restoreEnvironment(EnvironmentHandle handle) {
     this.environment = handle.environment;
+  }
+
+  /**
+   * Gets the {@link ScopeTable} for the runtime so it can be updated with local variable resolutions.
+   *
+   * @return the {@link ScopeTable} for the runtime
+   */
+  public ScopeTable scopes() {
+    return scopeTable;
   }
 
   public Object lookUpVariable(Token name, Expr expr) {
