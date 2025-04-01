@@ -23,8 +23,10 @@ class ExpressionResolver implements Expr.Visitor<Void> {
 
   @Override
   public Void assign(Expr.Assign expr) {
-    // todo
-    throw new UnsupportedOperationException("Not supported yet.");
+    expr.value().accept(this);
+    scriptRuntime.scopes().resolveLocal(expr, expr.name());
+
+    return null;
   }
 
   @Override
