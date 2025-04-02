@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.script.error.ScriptError;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Expr;
 import technology.sola.script.parser.Stmt;
@@ -12,11 +11,9 @@ import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class StatementInterpreterTest {
   private ScriptRuntime scriptRuntime;
@@ -31,7 +28,31 @@ class StatementInterpreterTest {
   @Nested
   @DisplayName("var")
   class varStmt {
-    // todo
+    @Test
+    void test() {
+      StatementInterpreter statementInterpreter = new StatementInterpreter(scriptRuntime, expressionInterpreter);
+
+      var varToken = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
+      var varExpr = new Expr.Variable(varToken);
+      var stmt = new Stmt.Var(varToken, null);
+
+      statementInterpreter.var(stmt);
+
+      assertNull(scriptRuntime.lookUpVariable(varExpr));
+    }
+
+    @Test
+    void testWithInitializer() {
+      StatementInterpreter statementInterpreter = new StatementInterpreter(scriptRuntime, expressionInterpreter);
+
+      var varToken = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
+      var varExpr = new Expr.Variable(varToken);
+      var stmt = new Stmt.Var(varToken, new Expr.Literal("value"));
+
+      statementInterpreter.var(stmt);
+
+      assertEquals("value", scriptRuntime.lookUpVariable(varExpr));
+    }
   }
 
   @Nested
