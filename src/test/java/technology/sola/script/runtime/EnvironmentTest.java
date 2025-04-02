@@ -6,8 +6,7 @@ import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class EnvironmentTest {
   private final Token identifierToken = new Token(TokenType.IDENTIFIER, "test", "test", 1, 1);
@@ -22,6 +21,15 @@ class EnvironmentTest {
         ScriptInterpretationException.class,
         () -> environment.get(identifierToken)
       );
+    }
+
+    @Test
+    void whenNullValue_shouldNotThrow() {
+      Environment environment = new Environment();
+
+      environment.define(identifierToken.lexeme(), null);
+
+      assertNull(environment.get(identifierToken));
     }
   }
 

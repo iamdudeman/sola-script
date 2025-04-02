@@ -59,10 +59,8 @@ class Environment {
    * @return the value assigned to the variable
    */
   Object get(Token name) {
-    var value = values.get(name.lexeme());
-
-    if (value != null) {
-      return value;
+    if (values.containsKey(name.lexeme())) {
+      return values.get(name.lexeme());
     }
 
     if (parent != null) {

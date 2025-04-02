@@ -31,7 +31,7 @@ class StatementResolverTest {
 
   @Nested
   @DisplayName("var")
-  class varDecl {
+  class varStmt {
     @Test
     void whenVariableAlreadyDeclared_shouldHaveError() {
       var token = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
