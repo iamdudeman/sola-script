@@ -12,7 +12,12 @@ public class ScriptRuntime {
   private Environment environment = globals;
   private final ScopeTable scopeTable = new ScopeTable();
 
-  public void registerScriptModule(ScriptModule scriptModule) {
+  /**
+   * Imports functionality provided by a {@link ScriptModule} into the globals of this runtime.
+   *
+   * @param scriptModule the module to import
+   */
+  public void importModule(ScriptModule scriptModule) {
     for (var entry : scriptModule.variables().entrySet()) {
       defineVariable(entry.getKey(), entry.getValue());
     }

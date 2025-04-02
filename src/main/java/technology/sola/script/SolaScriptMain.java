@@ -28,7 +28,7 @@ public class SolaScriptMain {
    * @throws IOException if there is an issue reading a file as input
    */
   public static void main(String[] args) throws IOException {
-    scriptRuntime.registerScriptModule(new StandardLibraryScriptModule());
+    scriptRuntime.importModule(new StandardLibraryScriptModule());
 
     if (args.length > 1) {
       System.out.println("Usage: sola <file>");
