@@ -17,10 +17,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ExpressionResolverTest {
   private ScriptRuntime scriptRuntime;
+  private List<ScriptError> errors;
+
 
   @BeforeEach
-  void setUp() {
+  void setup() {
     scriptRuntime = new ScriptRuntime();
+    errors = new ArrayList<>();
   }
 
   @Nested
@@ -39,7 +42,6 @@ class ExpressionResolverTest {
 
       var variableExpr = initializeTestVariableExpression();
       var expr = new Expr.Assign(target, variableExpr);
-      var errors = new ArrayList<ScriptError>();
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
       resolver.assign(expr);
@@ -57,7 +59,6 @@ class ExpressionResolverTest {
       var variableExpr = initializeTestVariableExpression();
       var variableExpr2 = initializeTestVariableExpression("rightTest");
       var expr = new Expr.Logical(variableExpr, new Token(TokenType.AMP_AMP, "&&", null, 1, 1), variableExpr2);
-      var errors = new ArrayList<ScriptError>();
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
       resolver.logical(expr);
@@ -75,7 +76,6 @@ class ExpressionResolverTest {
       var variableExpr = initializeTestVariableExpression();
       var variableExpr2 = initializeTestVariableExpression("rightTest");
       var expr = new Expr.Binary(variableExpr, new Token(TokenType.PLUS, "+", null, 1, 1), variableExpr2);
-      var errors = new ArrayList<ScriptError>();
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
       resolver.binary(expr);
@@ -92,7 +92,6 @@ class ExpressionResolverTest {
     void test() {
       var variableExpr = initializeTestVariableExpression();
       var expr = new Expr.Unary(new Token(TokenType.BANG, "!", null, 1, 1), variableExpr);
-      var errors = new ArrayList<ScriptError>();
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
       resolver.unary(expr);
@@ -109,7 +108,6 @@ class ExpressionResolverTest {
       var variableExpr = initializeTestVariableExpression();
       var variableExpr2 = initializeTestVariableExpression("arg");
       var expr = new Expr.Call(variableExpr, new Token(TokenType.LEFT_PAREN, "(", null, 1, 1), List.of(variableExpr2));
-      var errors = new ArrayList<ScriptError>();
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
       resolver.call(expr);
@@ -145,7 +143,6 @@ class ExpressionResolverTest {
       scriptRuntime.scopes().define(token);
 
       var expr = new Expr.Variable(token);
-      var errors = new ArrayList<ScriptError>();
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
       resolver.variable(expr);
@@ -162,7 +159,6 @@ class ExpressionResolverTest {
       scriptRuntime.scopes().declare(token);
 
       var expr = new Expr.Variable(token);
-      var errors = new ArrayList<ScriptError>();
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
       resolver.variable(expr);
@@ -178,7 +174,6 @@ class ExpressionResolverTest {
     void test() {
       var variableExpr = initializeTestVariableExpression();
       var expr = new Expr.Grouping(variableExpr);
-      var errors = new ArrayList<ScriptError>();
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
       resolver.grouping(expr);
@@ -193,7 +188,6 @@ class ExpressionResolverTest {
     @Test
     void test() {
       var expr = new Expr.Literal(3d);
-      var errors = new ArrayList<ScriptError>();
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
       resolver.literal(expr);
