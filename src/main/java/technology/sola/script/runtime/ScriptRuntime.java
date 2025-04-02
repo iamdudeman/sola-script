@@ -1,5 +1,6 @@
 package technology.sola.script.runtime;
 
+import technology.sola.script.library.ScriptModule;
 import technology.sola.script.parser.Expr;
 
 /**
@@ -10,6 +11,17 @@ public class ScriptRuntime {
   private final Environment globals = new Environment();
   private Environment environment = globals;
   private final ScopeTable scopeTable = new ScopeTable();
+
+  /**
+   * Imports functionality provided by a {@link ScriptModule} into the globals of this runtime.
+   *
+   * @param scriptModule the module to import
+   */
+  public void importModule(ScriptModule scriptModule) {
+    for (var entry : scriptModule.variables().entrySet()) {
+      defineVariable(entry.getKey(), entry.getValue());
+    }
+  }
 
   /**
    * Creates a nested environment with the previous environment as its parent. This can be utilized, for example, when

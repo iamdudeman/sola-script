@@ -7,9 +7,24 @@ import technology.sola.script.parser.Expr;
 import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScriptRuntimeTest {
+  @Nested
+  class importModule {
+    @Test
+    void test() {
+      var runtime = new ScriptRuntime();
+      final var token = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
+
+      runtime.importModule(() -> Map.of(token.lexeme(), 12.35d));
+
+      assertEquals(12.35d, runtime.lookUpVariable(new Expr.Variable(token)));
+    }
+  }
+
   @Nested
   class global {
     @Test
