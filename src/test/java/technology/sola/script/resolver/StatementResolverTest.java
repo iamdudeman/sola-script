@@ -51,7 +51,20 @@ class StatementResolverTest {
 
   @Nested
   class block {
-    // todo
+    @Test
+    void test() {
+      var expr = initializeTestVariableExpression();
+      var exprStmt = new Stmt.Expression(expr);
+      var stmt = new Stmt.Block(List.of(exprStmt));
+      var resolver = new StatementResolver(scriptRuntime, expressionResolver, errors);
+
+      resolver.block(stmt);
+      // running twice here to ensure scope is properly ended from previous block
+      resolver.block(stmt);
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(expr, 1);
+    }
   }
 
   private Expr initializeTestVariableExpression() {
