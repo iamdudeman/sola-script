@@ -42,9 +42,19 @@ public enum ScriptErrorType {
   EXPECT_PAREN_AFTER_ARGUMENTS(ScriptErrorStage.PARSE, "Expect ')' after arguments."),
 
   /**
+   * Parsing error when a closing parenthesis was not found after an if statement's condition.
+   */
+  EXPECT_PAREN_AFTER_CONDITION(ScriptErrorStage.PARSE, "Expect ')' after condition."),
+
+  /**
    * Parsing error when a closing parenthesis was not found after an expression that followed an open parenthesis.
    */
   EXPECT_PAREN_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ')' after expression."),
+
+  /**
+   * Parsing error when an opening parenthesis is not found after an if statement is started.
+   */
+  EXPECT_PAREN_AFTER_IF(ScriptErrorStage.PARSE, "Expect '(' after if."),
 
   /**
    * Parsing error when a property name was not found after a '.' property accessor.

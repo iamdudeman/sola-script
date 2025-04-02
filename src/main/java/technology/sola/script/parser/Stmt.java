@@ -33,6 +33,8 @@ public interface Stmt {
      */
     R expression(Expression stmt);
 
+    R ifVisit(If stmt);
+
     R block(Block stmt);
   }
 
@@ -47,6 +49,13 @@ public interface Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.expression(this);
+    }
+  }
+
+  record If(Expr condition, Stmt thenBranch, Stmt elseBranch) implements Stmt {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.ifVisit(this);
     }
   }
 
