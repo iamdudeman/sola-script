@@ -4,6 +4,9 @@
     * add more to standard library
     * make it easier to add custom library code
     * consider namespacing modules ie `std::print("blah")` + `std::clock()`
+        * though, this can be "cleaned up" using a class instance instead `std.print()` or `std.clock()`
+            * if this approach then add a todo after class declarations are implemented
+            * can be added directly as an instance instead of exposing the class
 * implement "val"
 * if statements
 * while statements
