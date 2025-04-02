@@ -14,4 +14,12 @@ var test = "test";
 
 print(test);
 
-print(newVariable);
+if (true) {
+  print("true");
+}
+
+if (false) {
+
+} else {
+  print("false");
+}
