@@ -3,6 +3,8 @@
 * improve how standard library code is added (maybe a common interface that ScriptRuntime can import from?)
     * add more to standard library
     * make it easier to add custom library code
+    * consider namespacing modules ie `std::print("blah")` + `std::clock()`
+* implement "val"
 * if statements
 * while statements
 * function declarations

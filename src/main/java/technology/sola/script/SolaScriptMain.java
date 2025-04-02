@@ -2,7 +2,7 @@ package technology.sola.script;
 
 import technology.sola.script.error.ErrorContainer;
 import technology.sola.script.interpreter.Interpreter;
-import technology.sola.script.library.StandardLibrary;
+import technology.sola.script.library.StandardLibraryScriptModule;
 import technology.sola.script.parser.Parser;
 import technology.sola.script.resolver.Resolver;
 import technology.sola.script.runtime.ScriptRuntime;
@@ -28,7 +28,7 @@ public class SolaScriptMain {
    * @throws IOException if there is an issue reading a file as input
    */
   public static void main(String[] args) throws IOException {
-    new StandardLibrary().addToRuntime(scriptRuntime);
+    scriptRuntime.registerScriptModule(new StandardLibraryScriptModule());
 
     if (args.length > 1) {
       System.out.println("Usage: sola <file>");
