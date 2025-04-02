@@ -56,6 +56,11 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String whileVisit(Stmt.While stmt) {
+      throw new UnsupportedOperationException("not yet implemented");
+    }
+
+    @Override
     public String block(Stmt.Block stmt) {
       if (stmt.statements().isEmpty()) {
         return "{}";

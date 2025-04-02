@@ -49,6 +49,11 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void whileVisit(Stmt.While stmt) {
+    throw new UnsupportedOperationException("not yet implemented");
+  }
+
+  @Override
   public Void block(Stmt.Block stmt) {
     var handle = scriptRuntime.createNestedEnvironment();
 

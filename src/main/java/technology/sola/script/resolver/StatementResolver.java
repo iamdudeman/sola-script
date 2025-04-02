@@ -57,6 +57,11 @@ class StatementResolver implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void whileVisit(Stmt.While stmt) {
+    throw new UnsupportedOperationException("not yet implemented");
+  }
+
+  @Override
   public Void block(Stmt.Block stmt) {
     var scopes = scriptRuntime.scopes();
 

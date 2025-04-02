@@ -48,6 +48,14 @@ public interface Stmt {
     R ifVisit(If stmt);
 
     /**
+     * Executes a {@link While} statement and returns the value.
+     *
+     * @param stmt the {@link While} statement
+     * @return the evaluated value
+     */
+    R whileVisit(While stmt);
+
+    /**
      * Executes a {@link Block} and returns the value.
      *
      * @param stmt the {@link Block} statement
@@ -94,6 +102,21 @@ public interface Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.ifVisit(this);
+    }
+  }
+
+  /**
+   * While statement is a conditional looping statement. If the condition evaluates
+   * to {@link technology.sola.script.interpreter.ValueUtils#isTruthy(Object)} then the body will be executed. After
+   * the body is executed the condition will be evaluated again until it is not truthy.
+   *
+   * @param condition the condition to verify if the loop should continue
+   * @param body      the body to execute while the condition is truthy
+   */
+  record While(Expr condition, Stmt body) implements Stmt {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.whileVisit(this);
     }
   }
 
