@@ -57,7 +57,7 @@ public class ParserResultPrinter {
 
     @Override
     public String whileVisit(Stmt.While stmt) {
-      throw new UnsupportedOperationException("not yet implemented");
+      return "while (" + print(stmt.condition()) + ") " + print(stmt.body());
     }
 
     @Override

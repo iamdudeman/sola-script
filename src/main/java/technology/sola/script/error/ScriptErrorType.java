@@ -57,6 +57,12 @@ public enum ScriptErrorType {
   EXPECT_PAREN_AFTER_IF(ScriptErrorStage.PARSE, "Expect '(' after if."),
 
   /**
+   * Parsing error when an opening parenthesis is not found after a while statement is started.
+   */
+  EXPECT_PAREN_AFTER_WHILE(ScriptErrorStage.PARSE, "Expect '(' after while."),
+
+
+  /**
    * Parsing error when a property name was not found after a '.' property accessor.
    */
   EXPECT_PROPERTY_NAME_AFTER_DOT(ScriptErrorStage.PARSE, "Expect property name after '.'."),
