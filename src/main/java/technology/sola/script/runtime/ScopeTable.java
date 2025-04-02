@@ -105,6 +105,23 @@ public class ScopeTable {
   }
 
   /**
+   * Checks if a variable has been defined in the current scope or not. Return false if there has been no scope
+   * started.
+   *
+   * @param name the {@link Token} for the name of the variable
+   * @return true if the variable has already been defined in the current scope
+   */
+  public boolean isDefinedInScope(Token name) {
+    if (scopes.isEmpty()) {
+      return false;
+    }
+
+    var scope = scopes.peek();
+
+    return scope.get(name.lexeme()) == Boolean.TRUE;
+  }
+
+  /**
    * Utility method to check if a {@link Expr.Variable} expression is being used to initialize itself.
    *
    * @param expression the variable expression

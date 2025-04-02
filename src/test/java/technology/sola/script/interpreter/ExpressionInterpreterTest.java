@@ -21,7 +21,7 @@ class ExpressionInterpreterTest {
   private ScriptRuntime scriptRuntime;
 
   @BeforeEach
-  void setUp() {
+  void setup() {
     scriptRuntime = new ScriptRuntime();
   }
 

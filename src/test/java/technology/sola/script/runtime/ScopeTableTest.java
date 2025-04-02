@@ -30,6 +30,7 @@ class ScopeTableTest {
     scopeTable.declare(token);
 
     assertTrue(scopeTable.isDeclaredInScope(token));
+    assertFalse(scopeTable.isDefinedInScope(token));
 
     scopeTable.endScope();
 
@@ -45,10 +46,12 @@ class ScopeTableTest {
     scopeTable.define(token);
 
     assertTrue(scopeTable.isDeclaredInScope(token));
+    assertTrue(scopeTable.isDefinedInScope(token));
 
     scopeTable.endScope();
 
     assertFalse(scopeTable.isDeclaredInScope(token));
+    assertFalse(scopeTable.isDefinedInScope(token));
   }
 
   @Test
