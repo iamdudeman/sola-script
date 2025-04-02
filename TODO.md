@@ -1,7 +1,6 @@
 # TODO list
 
 * implement "val"
-* while statements
 * function declarations
 * return statements
 * class declarations
@@ -14,3 +13,9 @@
 * protect divide by zero in binary expression interpreter
     * maybe throw an error?
     * or should it be "Infinity"
+
+## Standard library
+
+* get user command line input
+* read file
+* write file
