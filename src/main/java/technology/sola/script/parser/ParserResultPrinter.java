@@ -45,6 +45,17 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String ifVisit(Stmt.If stmt) {
+      var serialized = "if (" + print(stmt.condition()) + ") " + print(stmt.thenBranch());
+
+      if (stmt.elseBranch() != null) {
+        serialized = serialized + "\nelse " + print(stmt.elseBranch());
+      }
+
+      return serialized;
+    }
+
+    @Override
     public String block(Stmt.Block stmt) {
       if (stmt.statements().isEmpty()) {
         return "{}";

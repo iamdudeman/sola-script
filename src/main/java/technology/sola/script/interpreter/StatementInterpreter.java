@@ -36,6 +36,19 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void ifVisit(Stmt.If stmt) {
+    var condition = stmt.condition().accept(expressionInterpreter);
+
+    if (ValueUtils.isTruthy(condition)) {
+      stmt.thenBranch().accept(this);
+    } else if (stmt.elseBranch() != null) {
+      stmt.elseBranch().accept(this);
+    }
+
+    return null;
+  }
+
+  @Override
   public Void block(Stmt.Block stmt) {
     var handle = scriptRuntime.createNestedEnvironment();
 

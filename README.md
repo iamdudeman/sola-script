@@ -46,10 +46,10 @@ valDecl #todo
 ### Statements
 
 ```
-statement       := exprStmt | block
+statement       := exprStmt | ifStmt | block
 exprStmt        := expression ";" ;
 forStmt #todo
-ifStmt #todo
+ifStmt          := "if" "(" expression ")" statement ( "else" statement )? ;
 returnStmt #todo
 whileStmt #todo
 block           := "{" declaration* "}"

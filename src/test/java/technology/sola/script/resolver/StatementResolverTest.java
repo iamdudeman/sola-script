@@ -98,6 +98,25 @@ class StatementResolverTest {
   }
 
   @Nested
+  class stmtIf {
+    @Test
+    void test() {
+      var expr = initializeTestVariableExpression();
+      var exprThen = initializeTestVariableExpression("then");
+      var exprElse = initializeTestVariableExpression("else");
+      var stmt = new Stmt.If(expr, new Stmt.Expression(exprThen), new Stmt.Expression(exprElse));
+      var resolver = new StatementResolver(scriptRuntime, expressionResolver, errors);
+
+      resolver.ifVisit(stmt);
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(expr, 2);
+      assertTestVariableExpression(exprThen, 1);
+      assertTestVariableExpression(exprElse);
+    }
+  }
+
+  @Nested
   class block {
     @Test
     void test() {

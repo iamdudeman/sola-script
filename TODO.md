@@ -1,7 +1,6 @@
 # TODO list
 
 * implement "val"
-* if statements
 * while statements
 * function declarations
 * return statements

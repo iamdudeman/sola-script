@@ -45,6 +45,18 @@ class StatementResolver implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void ifVisit(Stmt.If stmt) {
+    stmt.condition().accept(expressionResolver);
+    stmt.thenBranch().accept(this);
+
+    if (stmt.elseBranch() != null) {
+      stmt.elseBranch().accept(this);
+    }
+
+    return null;
+  }
+
+  @Override
   public Void block(Stmt.Block stmt) {
     var scopes = scriptRuntime.scopes();
 

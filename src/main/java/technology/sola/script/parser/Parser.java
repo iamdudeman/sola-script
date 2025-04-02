@@ -82,7 +82,10 @@ public class Parser {
   }
 
   private Stmt statement() {
-    // todo if
+    if (advanceExpected(TokenType.IF)) {
+      return stmtIf();
+    }
+
     // todo while
     // todo for
     // todo return
@@ -92,6 +95,23 @@ public class Parser {
     }
 
     return stmtExpression();
+  }
+
+  private Stmt stmtIf() {
+    eat(TokenType.LEFT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_IF);
+
+    Expr condition = expression();
+
+    eat(TokenType.RIGHT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_CONDITION);
+
+    Stmt thenBranch = statement();
+    Stmt elseBranch = null;
+
+    if (advanceExpected(TokenType.ELSE)) {
+      elseBranch = statement();
+    }
+
+    return new Stmt.If(condition, thenBranch, elseBranch);
   }
 
   private Stmt stmtExpression() {

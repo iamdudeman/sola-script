@@ -48,37 +48,6 @@ class ParserTest {
   }
 
   @Nested
-  class block {
-    @Test
-    void valid() {
-      var source = """
-        {}
-        { test; }
-        """;
-      var expected = """
-        {}
-        {
-          test
-        }
-        """;
-
-      new ParserTester(source)
-        .verify(expected);
-    }
-
-    @Test
-    void invalid() {
-      var source = """
-        {
-        """;
-
-      new ParserTester(source)
-        .withErrors(ScriptErrorType.EXPECT_BRACE_AFTER_BLOCK)
-        .verify(null);
-    }
-  }
-
-  @Nested
   class stmtExpression {
     @Nested
     class exprAssignment {
@@ -430,6 +399,71 @@ class ParserTest {
           .withErrors(ScriptErrorType.EXPECT_SEMI_AFTER_EXPRESSION)
           .verify("");
       }
+    }
+  }
+
+  @Nested
+  class stmtIf {
+    @Test
+    void valid() {
+      var source = """
+        if (true) {
+
+        } else {
+
+        }
+        """;
+      var expected = """
+        if (true) {}
+        else {}
+        """;
+
+      new ParserTester(source)
+        .verify(expected);
+    }
+
+    @Test
+    void invalid() {
+      var source = """
+        if ;
+        if (true;
+        """;
+
+      new ParserTester(source)
+        .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_IF)
+        .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_CONDITION)
+        .verify(null);
+    }
+  }
+
+  @Nested
+  class block {
+    @Test
+    void valid() {
+      var source = """
+        {}
+        { test; }
+        """;
+      var expected = """
+        {}
+        {
+          test
+        }
+        """;
+
+      new ParserTester(source)
+        .verify(expected);
+    }
+
+    @Test
+    void invalid() {
+      var source = """
+        {
+        """;
+
+      new ParserTester(source)
+        .withErrors(ScriptErrorType.EXPECT_BRACE_AFTER_BLOCK)
+        .verify(null);
     }
   }
 
