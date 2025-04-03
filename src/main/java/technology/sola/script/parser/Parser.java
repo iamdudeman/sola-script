@@ -86,7 +86,10 @@ public class Parser {
       return stmtIf();
     }
 
-    // todo while
+    if (advanceExpected(TokenType.WHILE)) {
+      return stmtWhile();
+    }
+
     // todo for
     // todo return
 
@@ -112,6 +115,18 @@ public class Parser {
     }
 
     return new Stmt.If(condition, thenBranch, elseBranch);
+  }
+
+  private Stmt stmtWhile() {
+    eat(TokenType.LEFT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_WHILE);
+
+    Expr condition = expression();
+
+    eat(TokenType.RIGHT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_CONDITION);
+
+    Stmt body = statement();
+
+    return new Stmt.While(condition, body);
   }
 
   private Stmt stmtExpression() {

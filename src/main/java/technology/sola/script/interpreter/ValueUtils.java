@@ -39,23 +39,14 @@ public class ValueUtils {
     return value.toString();
   }
 
-  static void assertNumberOperand(Token operator, Object operand) {
-    if (operand instanceof Double) {
-      return;
-    }
-
-    throw new ScriptInterpretationException(operator, ScriptErrorType.OPERAND_MUST_BE_NUMBER);
-  }
-
-  static void assertNumberOperands(Token operator, Object left, Object right) {
-    if (left instanceof Double && right instanceof Double) {
-      return;
-    }
-
-    throw new ScriptInterpretationException(operator, ScriptErrorType.OPERANDS_MUST_BE_NUMBERS);
-  }
-
-  static boolean isTruthy(Object value) {
+  /**
+   * Checks to see if a value is considered "truthy" or not. A value is considered truthy if it is not null and not a
+   * boolean false.
+   *
+   * @param value the value to check if truthy
+   * @return true if truthy
+   */
+  public static boolean isTruthy(Object value) {
     if (value == null) {
       return false;
     }
@@ -77,6 +68,22 @@ public class ValueUtils {
     }
 
     return a.equals(b);
+  }
+
+  static void assertNumberOperand(Token operator, Object operand) {
+    if (operand instanceof Double) {
+      return;
+    }
+
+    throw new ScriptInterpretationException(operator, ScriptErrorType.OPERAND_MUST_BE_NUMBER);
+  }
+
+  static void assertNumberOperands(Token operator, Object left, Object right) {
+    if (left instanceof Double && right instanceof Double) {
+      return;
+    }
+
+    throw new ScriptInterpretationException(operator, ScriptErrorType.OPERANDS_MUST_BE_NUMBERS);
   }
 
   private ValueUtils() {

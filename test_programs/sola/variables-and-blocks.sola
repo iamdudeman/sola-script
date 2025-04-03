@@ -13,13 +13,3 @@ var test = "test";
 }
 
 print(test);
-
-if (true) {
-  print("true");
-}
-
-if (false) {
-
-} else {
-  print("false");
-}

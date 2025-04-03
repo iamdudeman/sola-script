@@ -57,6 +57,14 @@ class StatementResolver implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void whileVisit(Stmt.While stmt) {
+    stmt.condition().accept(expressionResolver);
+    stmt.body().accept(this);
+
+    return null;
+  }
+
+  @Override
   public Void block(Stmt.Block stmt) {
     var scopes = scriptRuntime.scopes();
 

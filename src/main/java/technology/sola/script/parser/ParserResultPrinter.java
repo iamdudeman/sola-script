@@ -56,6 +56,11 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String whileVisit(Stmt.While stmt) {
+      return "while (" + print(stmt.condition()) + ") " + print(stmt.body());
+    }
+
+    @Override
     public String block(Stmt.Block stmt) {
       if (stmt.statements().isEmpty()) {
         return "{}";

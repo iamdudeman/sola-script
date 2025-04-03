@@ -437,6 +437,37 @@ class ParserTest {
   }
 
   @Nested
+  class stmtWhile {
+    @Test
+    void valid() {
+      var source = """
+        while (true) {
+
+        }
+        """;
+      var expected = """
+        while (true) {}
+        """;
+
+      new ParserTester(source)
+        .verify(expected);
+    }
+
+    @Test
+    void invalid() {
+      var source = """
+        while ;
+        while (true;
+        """;
+
+      new ParserTester(source)
+        .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_WHILE)
+        .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_CONDITION)
+        .verify(null);
+    }
+  }
+
+  @Nested
   class block {
     @Test
     void valid() {

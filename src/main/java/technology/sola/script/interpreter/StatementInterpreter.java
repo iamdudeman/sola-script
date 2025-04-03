@@ -49,6 +49,15 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void whileVisit(Stmt.While stmt) {
+    while (ValueUtils.isTruthy(stmt.condition().accept(expressionInterpreter))) {
+      stmt.body().accept(this);
+    }
+
+    return null;
+  }
+
+  @Override
   public Void block(Stmt.Block stmt) {
     var handle = scriptRuntime.createNestedEnvironment();
 

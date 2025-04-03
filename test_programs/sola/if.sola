@@ -1,0 +1,9 @@
+if (true) {
+  print("true");
+}
+
+if (false) {
+
+} else {
+  print("false");
+}

@@ -140,6 +140,29 @@ class StatementInterpreterTest {
   }
 
   @Nested
+  class stmtWhile {
+    @Test
+    void test() {
+      StatementInterpreter statementInterpreter = new StatementInterpreter(scriptRuntime, expressionInterpreter);
+
+      var counterToken = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
+      var counterExpr = new Expr.Variable(counterToken);
+
+      scriptRuntime.defineVariable(counterToken.lexeme(), 1d);
+
+      var plusToken = new Token(TokenType.PLUS, "+", null, 1, 1);
+      var stmt = new Stmt.While(
+        new Expr.Binary(counterExpr, new Token(TokenType.LESS, "<", null, 1, 1), new Expr.Literal(3d)),
+        new Stmt.Expression(new Expr.Assign(counterToken, new Expr.Binary(new Expr.Variable(counterToken), plusToken, new Expr.Literal(1d))))
+      );
+
+      statementInterpreter.whileVisit(stmt);
+
+      assertEquals(3d, scriptRuntime.lookUpVariable(counterExpr));
+    }
+  }
+
+  @Nested
   class block {
     @Test
     void test() {
