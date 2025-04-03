@@ -1,0 +1,12 @@
+fun greeting(name) {
+  print("hello " + name + "!");
+}
+
+greeting("test");
+
+
+fun enhancedGreeting(name) {
+  return "hello " + name + "!";
+}
+
+print(enhancedGreeting("test"));

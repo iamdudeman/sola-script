@@ -1,0 +1,15 @@
+var test = "test";
+
+{
+  print(test);
+
+  var test = "new";
+
+  print(test);
+}
+
+{
+  var newVariable = "hi";
+}
+
+print(test);
