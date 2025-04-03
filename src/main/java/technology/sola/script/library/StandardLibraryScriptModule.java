@@ -51,7 +51,7 @@ public class StandardLibraryScriptModule implements ScriptModule {
 
       @Override
       public Object call(List<Object> arguments) {
-        System.out.println(ValueUtils.stringify(arguments.get(0).toString()));
+        System.out.println(ValueUtils.stringify(arguments.get(0)));
 
         return null;
       }
