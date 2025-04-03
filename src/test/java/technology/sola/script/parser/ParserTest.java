@@ -488,6 +488,35 @@ class ParserTest {
   }
 
   @Nested
+  class stmtReturn {
+    @Test
+    void valid() {
+      var source = """
+        return;
+        return true;
+        """;
+      var expected = """
+        return
+        return true
+        """;
+
+      new ParserTester(source)
+        .verify(expected);
+    }
+
+    @Test
+    void invalid() {
+      var source = """
+        return true
+        """;
+
+      new ParserTester(source)
+        .withErrors(ScriptErrorType.EXPECT_SEMI_AFTER_RETURN_VALUE)
+        .verify(null);
+    }
+  }
+
+  @Nested
   class stmtWhile {
     @Test
     void valid() {

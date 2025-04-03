@@ -67,7 +67,9 @@ public class ParserResultPrinter {
 
     @Override
     public String returnVisit(Stmt.Return stmt) {
-      throw new UnsupportedOperationException("Not supported yet.");
+      var value = stmt.value() == null ? "" : " " + print(stmt.value());
+
+      return "return" + value;
     }
 
     @Override

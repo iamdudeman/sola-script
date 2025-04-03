@@ -82,6 +82,11 @@ public enum ScriptErrorType {
   EXPECT_SEMI_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ';' after expression."),
 
   /**
+   * Parsing error when a semicolon was not found after return value.
+   */
+  EXPECT_SEMI_AFTER_RETURN_VALUE(ScriptErrorStage.PARSE, "Expect ';' after return value."),
+
+  /**
    * Parsing error when a semicolon was not found after a variable declaration.
    */
   EXPECT_SEMI_AFTER_VARIABLE_DECLARATION(ScriptErrorStage.PARSE, "Expect ';' after variable declaration."),
