@@ -59,6 +59,17 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void returnVisit(Stmt.Return stmt) {
+    Object value = null;
+
+    if (stmt.value() != null) {
+      value = expressionInterpreter.evaluate(stmt.value());
+    }
+
+    throw new Stmt.Return.Exception(value);
+  }
+
+  @Override
   public Void whileVisit(Stmt.While stmt) {
     while (ValueUtils.isTruthy(stmt.condition().accept(expressionInterpreter))) {
       stmt.body().accept(this);

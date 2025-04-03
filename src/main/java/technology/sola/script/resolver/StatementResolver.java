@@ -11,7 +11,7 @@ class StatementResolver implements Stmt.Visitor<Void> {
   private final ScriptRuntime scriptRuntime;
   private final ExpressionResolver expressionResolver;
   private final List<ScriptError> errors;
-  private FunctionType currentFunction;
+  private FunctionType currentFunction = FunctionType.NONE;
 
   StatementResolver(ScriptRuntime scriptRuntime, ExpressionResolver expressionResolver, List<ScriptError> errors) {
     this.scriptRuntime = scriptRuntime;
@@ -64,6 +64,19 @@ class StatementResolver implements Stmt.Visitor<Void> {
 
     if (stmt.elseBranch() != null) {
       stmt.elseBranch().accept(this);
+    }
+
+    return null;
+  }
+
+  @Override
+  public Void returnVisit(Stmt.Return stmt) {
+    if (currentFunction == FunctionType.NONE) {
+      errors.add(new ScriptError(ScriptErrorType.CANNOT_RETURN_FROM_TOP_LEVEL, stmt.keyword()));
+    }
+
+    if (stmt.value() != null) {
+      stmt.value().accept(expressionResolver);
     }
 
     return null;

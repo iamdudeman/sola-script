@@ -108,6 +108,30 @@ public class SolaScriptFunctionTest {
         () -> scriptRuntime.environment.get(param1)
       );
     }
+
+    @Test
+    void shouldReturnTheValueWhenReturnDetected() {
+      ScriptRuntime scriptRuntime = new ScriptRuntime();
+      Stmt.Function declaration = new Stmt.Function(
+        new Token(TokenType.IDENTIFIER, "test", null, 1 , 1),
+        List.of(),
+        List.of(
+          new Stmt.Return(
+            new Token(TokenType.RETURN, "return", null, 1 , 1),
+            new Expr.Literal("hello")
+          )
+        )
+      );
+      TestInterpreter testInterpreter = new TestInterpreter(stmt -> {
+        throw new Stmt.Return.Exception("hello");
+      });
+      SolaScriptFunction function = new SolaScriptFunction(testInterpreter, scriptRuntime, declaration);
+
+      var result = function.call(List.of());
+
+      assertEquals(1, testInterpreter.statementsExecuted);
+      assertEquals("hello", result);
+    }
   }
 
   private static class TestInterpreter implements Consumer<Stmt> {

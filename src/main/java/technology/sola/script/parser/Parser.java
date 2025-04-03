@@ -98,7 +98,10 @@ public class Parser {
     }
 
     // todo for
-    // todo return
+
+    if (advanceExpected(TokenType.RETURN)) {
+      return stmtReturn();
+    }
 
     if (advanceExpected(TokenType.LEFT_BRACE)) {
       return new Stmt.Block(parseBlockStatements());
@@ -122,6 +125,19 @@ public class Parser {
     }
 
     return new Stmt.If(condition, thenBranch, elseBranch);
+  }
+
+  private Stmt stmtReturn() {
+    var keyword = previous();
+    Expr returnExpression = null;
+
+    if (!check(TokenType.SEMICOLON)) {
+      returnExpression = expression();
+    }
+
+    eat(TokenType.SEMICOLON, ScriptErrorType.EXPECT_SEMI_AFTER_RETURN_VALUE);
+
+    return new Stmt.Return(keyword, returnExpression);
   }
 
   private Stmt stmtWhile() {

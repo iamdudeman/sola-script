@@ -1,5 +1,6 @@
 package technology.sola.script.parser;
 
+import technology.sola.script.interpreter.Interpreter;
 import technology.sola.script.tokenizer.Token;
 
 import java.util.List;
@@ -54,6 +55,14 @@ public interface Stmt {
      * @return the evaluated value
      */
     R ifVisit(If stmt);
+
+    /**
+     * Executes a {@link Return} statement and returns the value.
+     *
+     * @param stmt the {@link Return} statement
+     * @return the evaluated value
+     */
+    R returnVisit(Return stmt);
 
     /**
      * Executes a {@link While} statement and returns the value.
@@ -124,6 +133,42 @@ public interface Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.ifVisit(this);
+    }
+  }
+
+  /**
+   * Return statement exits a function or method while optionally returning a value for the caller to use.
+   *
+   * @param keyword the {@link Token} for the return keyword
+   * @param value   the value to return to the caller or null
+   */
+  record Return(Token keyword, Expr value) implements Stmt {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.returnVisit(this);
+    }
+
+    /**
+     * Return is an exception utilized by the {@link Interpreter} to throw when
+     * a {@link Stmt.Return} is being interpreted so that the wrapping
+     * {@link technology.sola.script.runtime.SolaScriptFunction} can catch it and return the value as the result
+     * of the {@link Expr.Call}.
+     */
+    public static class Exception extends RuntimeException {
+      /**
+       * The value returned by the {@link Stmt.Return}.
+       */
+      public final Object value;
+
+      /**
+       * Creates an instance of this exception with desired return value.
+       *
+       * @param value the return value of the call
+       */
+      public Exception(Object value) {
+        super(null, null, false, false);
+        this.value = value;
+      }
     }
   }
 

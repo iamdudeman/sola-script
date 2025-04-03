@@ -53,6 +53,8 @@ public class SolaScriptFunction implements SolaScriptCallable {
       for (var statement : declaration.body()) {
         executeStatement.accept(statement);
       }
+    } catch (Stmt.Return.Exception returnValue) {
+      return returnValue.value;
     } finally {
       scriptRuntime.restoreEnvironment(currentEnvironmentHandle);
     }

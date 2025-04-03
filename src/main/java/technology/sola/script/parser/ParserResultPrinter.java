@@ -66,6 +66,13 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String returnVisit(Stmt.Return stmt) {
+      var value = stmt.value() == null ? "" : " " + print(stmt.value());
+
+      return "return" + value;
+    }
+
+    @Override
     public String whileVisit(Stmt.While stmt) {
       return "while (" + print(stmt.condition()) + ") " + print(stmt.body());
     }

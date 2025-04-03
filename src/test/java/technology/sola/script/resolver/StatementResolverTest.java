@@ -145,6 +145,43 @@ class StatementResolverTest {
   }
 
   @Nested
+  class stmtReturn {
+    @Test
+    void test() {
+      var token = new Token(TokenType.RETURN, "return", null, 1, 1);
+      var expr = initializeTestVariableExpression();
+      var stmt = new Stmt.Return(token, expr);
+      var resolver = new StatementResolver(scriptRuntime, expressionResolver, errors);
+
+      resolver.function(
+        new Stmt.Function(
+          new Token(TokenType.IDENTIFIER, "test", null, 1, 1),
+          List.of(),
+          List.of(
+            stmt
+          )
+        )
+      );
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(expr, 1);
+    }
+
+    @Test
+    void whenNotInFunction_shouldAddError() {
+      var token = new Token(TokenType.RETURN, "return", null, 1, 1);
+      var expr = initializeTestVariableExpression();
+      var stmt = new Stmt.Return(token, expr);
+      var resolver = new StatementResolver(scriptRuntime, expressionResolver, errors);
+
+      resolver.returnVisit(stmt);
+
+      assertEquals(1, errors.size());
+      assertEquals(ScriptErrorType.CANNOT_RETURN_FROM_TOP_LEVEL, errors.get(0).type());
+    }
+  }
+
+  @Nested
   class stmtWhile {
     @Test
     void test() {

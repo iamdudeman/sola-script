@@ -3,3 +3,10 @@ fun greeting(name) {
 }
 
 greeting("test");
+
+
+fun enhancedGreeting(name) {
+  return "hello " + name + "!";
+}
+
+print(enhancedGreeting("test"));
