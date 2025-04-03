@@ -36,23 +36,30 @@ program         := declaration* EOF ;
 ### Declarations
 
 ```
-declaration     := statement
-classDecl #todo
-funDecl #todo
+declaration     := funDecl | statement ;
+classDecl
+funDecl         := "fun" function ;
 varDecl         := "var" IDENTIFIER ( "=" expression)? ";" ;
-valDecl #todo
+valDecl
+```
+
+#### Declaration helpers
+
+```
+function        := IDENTIFIER "(" parameters? ")" block ;
+parameters      := IDENTIFIER ( "," IDENTIFIER )* ;
 ```
 
 ### Statements
 
 ```
-statement       := exprStmt | ifStmt | whileStmt | block
+statement       := exprStmt | ifStmt | whileStmt | block ;
 exprStmt        := expression ";" ;
-forStmt #todo
+forStmt
 ifStmt          := "if" "(" expression ")" statement ( "else" statement )? ;
-returnStmt #todo
+returnStmt
 whileStmt       := "while" "(" expression ")" statement ;
-block           := "{" declaration* "}"
+block           := "{" declaration* "}" ;
 ```
 
 ### Expressions
@@ -65,7 +72,7 @@ logic_and       := equality ( "&&" equality )* ;
 equality        := comparison ( ( "!=" | "==" ) comparison )* ;
 comparison      := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
 term            := factor ( ( "-" | "+" ) factor )* ;
-factor          := unary ( ( "/" | "*" ) unary )*
+factor          := unary ( ( "/" | "*" ) unary )* ;
 unary           := ( "!" | "-" ) unary | call ;
 call            := primary ( "(" arguments? ")" ) | "." IDENTIFIER )* ;
 primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER | "this" | "super" "." IDENTIFIER ;
