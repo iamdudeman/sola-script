@@ -50,7 +50,11 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
 
   @Override
   public Void whileVisit(Stmt.While stmt) {
-    throw new UnsupportedOperationException("not yet implemented");
+    while (ValueUtils.isTruthy(stmt.condition().accept(expressionInterpreter))) {
+      stmt.body().accept(this);
+    }
+
+    return null;
   }
 
   @Override
