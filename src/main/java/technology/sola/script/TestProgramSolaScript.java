@@ -7,7 +7,8 @@ public class TestProgramSolaScript {
     String[] files = new String[] {
       "variables-and-blocks",
       "if",
-      "while"
+      "while",
+      "function",
     };
 
     for (var file : files) {
@@ -16,7 +17,7 @@ public class TestProgramSolaScript {
   }
 
   private static void runFile(String filename) throws IOException {
-    System.out.println(filename);
+    System.out.println("--" + filename + "--");
     SolaScriptMain.main(new String[] {
       "test_programs/sola/" + filename + ".sola",
     });

@@ -9,7 +9,7 @@ import technology.sola.script.parser.Expr;
  */
 public class ScriptRuntime {
   private final Environment globals = new Environment();
-  private Environment environment = globals;
+  Environment environment = globals;
   private final ScopeTable scopeTable = new ScopeTable();
 
   /**

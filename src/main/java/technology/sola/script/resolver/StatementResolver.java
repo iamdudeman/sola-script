@@ -11,11 +11,24 @@ class StatementResolver implements Stmt.Visitor<Void> {
   private final ScriptRuntime scriptRuntime;
   private final ExpressionResolver expressionResolver;
   private final List<ScriptError> errors;
+  private FunctionType currentFunction;
 
   StatementResolver(ScriptRuntime scriptRuntime, ExpressionResolver expressionResolver, List<ScriptError> errors) {
     this.scriptRuntime = scriptRuntime;
     this.expressionResolver = expressionResolver;
     this.errors = errors;
+  }
+
+  @Override
+  public Void function(Stmt.Function stmt) {
+    var scopes = scriptRuntime.scopes();
+
+    scopes.declare(stmt.name());
+    scopes.define(stmt.name());
+
+    resolveFunction(stmt, FunctionType.FUNCTION);
+
+    return null;
   }
 
   @Override
@@ -77,5 +90,34 @@ class StatementResolver implements Stmt.Visitor<Void> {
     scopes.endScope();
 
     return null;
+  }
+
+  private void resolveFunction(Stmt.Function stmt, FunctionType functionType) {
+    FunctionType enclosingFunction = currentFunction;
+    currentFunction = functionType;
+
+    var scopes = scriptRuntime.scopes();
+
+    scopes.beginScope();
+
+    // declare params and resolve body
+    for (var parameter : stmt.parameters()) {
+      scopes.declare(parameter);
+      scopes.define(parameter);
+    }
+
+    for (var statement : stmt.body()) {
+      statement.accept(this);
+    }
+
+    scopes.endScope();
+    currentFunction = enclosingFunction;
+  }
+
+  private enum FunctionType {
+    NONE,
+    FUNCTION,
+    METHOD,
+    CONSTRUCTOR,
   }
 }

@@ -1,8 +1,7 @@
 # TODO list
 
-* implement "val"
-* function declarations
 * return statements
+* implement "val"
 * class declarations
 * nest standard library functions under a `std` object for "name spacing"
 * implement break keyword within loops

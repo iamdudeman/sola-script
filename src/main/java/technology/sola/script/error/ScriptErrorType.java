@@ -22,19 +22,19 @@ public enum ScriptErrorType {
   EXPECT_BRACE_AFTER_BLOCK(ScriptErrorStage.PARSE, "Expect '}' after block."),
 
   /**
+   * Parsing error when an opening brace is not found before a function body.
+   */
+  EXPECT_BRACE_BEFORE_BODY(ScriptErrorStage.PARSE, "Expect '{' before %s body."),
+
+  /**
    * Parsing error when a '.' property accessor was not found after 'super'.
    */
   EXPECT_DOT_AFTER_SUPER(ScriptErrorStage.PARSE, "Expect '.' after super."),
 
   /**
-   * Parsing error when a semicolon was not found after an expression statement.
+   * Parsing error when a name for a function, variable, or method is expected.
    */
-  EXPECT_SEMI_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ';' after expression."),
-
-  /**
-   * Parsing error when a semicolon was not found after a variable declaration.
-   */
-  EXPECT_SEMI_AFTER_VARIABLE_DECLARATION(ScriptErrorStage.PARSE, "Expect ';' after variable declaration."),
+  EXPECT_NAME(ScriptErrorStage.PARSE, "Expect %s name."),
 
   /**
    * Parsing error when a closing parenthesis was not found after function arguments.
@@ -52,6 +52,16 @@ public enum ScriptErrorType {
   EXPECT_PAREN_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ')' after expression."),
 
   /**
+   * Parsing error when an opening parenthesis was not found after a function or method name.
+   */
+  EXPECT_PAREN_AFTER_NAME(ScriptErrorStage.PARSE, "Expect ')' after %s name."),
+
+  /**
+   * Parsing error when a closing parenthesis was not found after function or method parameters.
+   */
+  EXPECT_PAREN_AFTER_PARAMETERS(ScriptErrorStage.PARSE, "Expect ')' after parameters."),
+
+  /**
    * Parsing error when an opening parenthesis is not found after an if statement is started.
    */
   EXPECT_PAREN_AFTER_IF(ScriptErrorStage.PARSE, "Expect '(' after if."),
@@ -61,21 +71,25 @@ public enum ScriptErrorType {
    */
   EXPECT_PAREN_AFTER_WHILE(ScriptErrorStage.PARSE, "Expect '(' after while."),
 
-
   /**
    * Parsing error when a property name was not found after a '.' property accessor.
    */
   EXPECT_PROPERTY_NAME_AFTER_DOT(ScriptErrorStage.PARSE, "Expect property name after '.'."),
 
   /**
+   * Parsing error when a semicolon was not found after an expression statement.
+   */
+  EXPECT_SEMI_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ';' after expression."),
+
+  /**
+   * Parsing error when a semicolon was not found after a variable declaration.
+   */
+  EXPECT_SEMI_AFTER_VARIABLE_DECLARATION(ScriptErrorStage.PARSE, "Expect ';' after variable declaration."),
+
+  /**
    * Parsing error when a method name was not found after a superclass accessor.
    */
   EXPECT_SUPERCLASS_METHOD_NAME(ScriptErrorStage.PARSE, "Expect superclass method name."),
-
-  /**
-   * Parsing error when a variable name is expected.
-   */
-  EXPECT_VARIABLE_NAME(ScriptErrorStage.PARSE, "Expect variable name."),
 
   /**
    * Runtime error when expected number of arguments were not provided.

@@ -2,6 +2,7 @@ package technology.sola.script.interpreter;
 
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.runtime.ScriptRuntime;
+import technology.sola.script.runtime.SolaScriptFunction;
 
 class StatementInterpreter implements Stmt.Visitor<Void> {
   private final ScriptRuntime scriptRuntime;
@@ -14,6 +15,15 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
 
   void execute(Stmt statement) {
     statement.accept(this);
+  }
+
+  @Override
+  public Void function(Stmt.Function stmt) {
+    SolaScriptFunction solaScriptFunction = new SolaScriptFunction(this::execute, scriptRuntime, stmt);
+
+    scriptRuntime.defineVariable(stmt.name().lexeme(), solaScriptFunction);
+
+    return null;
   }
 
   @Override

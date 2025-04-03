@@ -30,6 +30,34 @@ class StatementResolverTest {
   }
 
   @Nested
+  class function {
+    @Test
+    void test() {
+      scriptRuntime.scopes().beginScope();
+
+      var token = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
+      var paramToken = new Token(TokenType.IDENTIFIER, "param", null, 1, 1);
+      var callVarEXpr = new Expr.Variable(token);
+      var callExpr = new Expr.Call(callVarEXpr, new Token(TokenType.LEFT_PAREN, "(", null, 1, 1), List.of());
+      var paramExpr = new Expr.Variable(paramToken);
+      List<Stmt> body = List.of(
+        new Stmt.Expression(callExpr),
+        new Stmt.Expression(paramExpr)
+      );
+      var stmt = new Stmt.Function(
+        token, List.of(paramToken), body
+      );
+      var resolver = new StatementResolver(scriptRuntime, expressionResolver, errors);
+
+      resolver.function(stmt);
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(callVarEXpr, 1);
+      assertTestVariableExpression(paramExpr);
+    }
+  }
+
+  @Nested
   @DisplayName("var")
   class varStmt {
     @Test

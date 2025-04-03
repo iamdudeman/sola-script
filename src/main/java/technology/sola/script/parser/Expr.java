@@ -183,6 +183,11 @@ public interface Expr {
     }
   }
 
+  /**
+   * Variable expressions hold a name of a variable to evaluate the value of.
+   *
+   * @param name the {@link Token} name of the variable
+   */
   record Variable(Token name) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -190,6 +195,11 @@ public interface Expr {
     }
   }
 
+  /**
+   * Grouping expressions warps an expression to change when it is evaluated.
+   *
+   * @param expression the expression to evaluate
+   */
   record Grouping(Expr expression) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -197,6 +207,11 @@ public interface Expr {
     }
   }
 
+  /**
+   * Literal expressions hold a value such as string, number, boolean or null.
+   *
+   * @param value the literal value
+   */
   record Literal(Object value) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {

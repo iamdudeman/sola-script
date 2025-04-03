@@ -1,5 +1,7 @@
 package technology.sola.script.parser;
 
+import technology.sola.script.tokenizer.Token;
+
 import java.util.stream.Collectors;
 
 /**
@@ -30,6 +32,14 @@ public class ParserResultPrinter {
   }
 
   private class StmtPrinter implements Stmt.Visitor<String> {
+    @Override
+    public String function(Stmt.Function stmt) {
+      return "fun " + stmt.name().lexeme()
+        + "(" + stmt.parameters().stream().map(Token::lexeme).collect(Collectors.joining(",")) + ")"
+        + " {\n" + stmt.body().stream().map(ParserResultPrinter.this::print).collect(Collectors.joining("\n"))
+        + "\n}";
+    }
+
     @Override
     public String var(Stmt.Var stmt) {
       if (stmt.initializer() == null) {
