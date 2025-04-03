@@ -17,6 +17,11 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void function(Stmt.Function stmt) {
+    throw new UnsupportedOperationException("not implemented yet");
+  }
+
+  @Override
   public Void var(Stmt.Var stmt) {
     Object value = null;
 

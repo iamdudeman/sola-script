@@ -31,6 +31,11 @@ public class ParserResultPrinter {
 
   private class StmtPrinter implements Stmt.Visitor<String> {
     @Override
+    public String function(Stmt.Function stmt) {
+      throw new UnsupportedOperationException("not implemented yet");
+    }
+
+    @Override
     public String var(Stmt.Var stmt) {
       if (stmt.initializer() == null) {
         return "var " + stmt.name().lexeme();
