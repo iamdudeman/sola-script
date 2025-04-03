@@ -24,6 +24,14 @@ public interface Stmt {
    */
   interface Visitor<R> {
     /**
+     * Executes a {@link Function} statement and returns the value.
+     *
+     * @param stmt the {@link Function} statement
+     * @return the evaluated value
+     */
+    R function(Function stmt);
+
+    /**
      * Executes a {@link Var} statement and returns the value.
      *
      * @param stmt the {@link Var} statement
@@ -62,6 +70,20 @@ public interface Stmt {
      * @return the evaluated value
      */
     R block(Block stmt);
+  }
+
+  /**
+   * Function statement declares a function in the current scope with desired parameters and body.
+   *
+   * @param name       the {@link Token} name of the function
+   * @param parameters the list of parameter names for the function
+   * @param body       the list of {@link Stmt} that make up the body of the function
+   */
+  record Function(Token name, List<Token> parameters, List<Stmt> body) implements Stmt {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return null;
+    }
   }
 
   /**

@@ -7,7 +7,8 @@ public class TestProgramSolaScript {
     String[] files = new String[] {
       "variables-and-blocks",
       "if",
-      "while"
+      "while",
+      "function",
     };
 
     for (var file : files) {
