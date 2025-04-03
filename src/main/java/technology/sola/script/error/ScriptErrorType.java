@@ -12,6 +12,11 @@ public enum ScriptErrorType {
   ALREADY_DEFINED_VARIABLE(ScriptErrorStage.SEMANTIC, "'%s' is already defined in this scope."),
 
   /**
+   * Semantic error when a return statement is found outside a function or method body.
+   */
+  CANNOT_RETURN_FROM_TOP_LEVEL(ScriptErrorStage.SEMANTIC, "Cannot return from top-level code."),
+
+  /**
    * Parsing error when an expression is expected, but not found.
    */
   EXPECT_EXPRESSION(ScriptErrorStage.PARSE, "Expect expression."),
