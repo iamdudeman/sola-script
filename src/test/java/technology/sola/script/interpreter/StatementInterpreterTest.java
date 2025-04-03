@@ -182,6 +182,37 @@ class StatementInterpreterTest {
   }
 
   @Nested
+  class stmtReturn {
+    @Test
+    void whenValue_shouldReturnValue() {
+      var statementInterpreter = new StatementInterpreter(scriptRuntime, expressionInterpreter);
+      var token = new Token(TokenType.IDENTIFIER, "return", null, 1, 1);
+      var stmt = new Stmt.Return(token, new Expr.Literal(5d));
+
+      var returnException = assertThrows(
+        Return.class,
+        () -> statementInterpreter.returnVisit(stmt)
+      );
+
+      assertEquals(5d, returnException.value);
+    }
+
+    @Test
+    void whenNoValue_shouldReturnNull() {
+      var statementInterpreter = new StatementInterpreter(scriptRuntime, expressionInterpreter);
+      var token = new Token(TokenType.IDENTIFIER, "return", null, 1, 1);
+      var stmt = new Stmt.Return(token, null);
+
+      var returnException = assertThrows(
+        Return.class,
+        () -> statementInterpreter.returnVisit(stmt)
+      );
+
+      assertNull(returnException.value);
+    }
+  }
+
+  @Nested
   class stmtWhile {
     @Test
     void test() {

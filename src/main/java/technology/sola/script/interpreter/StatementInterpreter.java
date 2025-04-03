@@ -60,7 +60,13 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
 
   @Override
   public Void returnVisit(Stmt.Return stmt) {
-    throw new UnsupportedOperationException("Not supported yet.");
+    Object value = null;
+
+    if (stmt.value() != null) {
+      value = expressionInterpreter.evaluate(stmt.value());
+    }
+
+    throw new Return(value);
   }
 
   @Override
