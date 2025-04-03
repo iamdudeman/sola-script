@@ -3,7 +3,6 @@ package technology.sola.script.runtime;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.script.error.ScriptInterpretationException;
-import technology.sola.script.interpreter.Return;
 import technology.sola.script.parser.Expr;
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.tokenizer.Token;
@@ -124,7 +123,7 @@ public class SolaScriptFunctionTest {
         )
       );
       TestInterpreter testInterpreter = new TestInterpreter(stmt -> {
-        throw new Return("hello");
+        throw new Stmt.Return.Exception("hello");
       });
       SolaScriptFunction function = new SolaScriptFunction(testInterpreter, scriptRuntime, declaration);
 

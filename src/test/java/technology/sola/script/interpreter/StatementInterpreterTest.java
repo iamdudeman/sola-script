@@ -190,7 +190,7 @@ class StatementInterpreterTest {
       var stmt = new Stmt.Return(token, new Expr.Literal(5d));
 
       var returnException = assertThrows(
-        Return.class,
+        Stmt.Return.Exception.class,
         () -> statementInterpreter.returnVisit(stmt)
       );
 
@@ -204,7 +204,7 @@ class StatementInterpreterTest {
       var stmt = new Stmt.Return(token, null);
 
       var returnException = assertThrows(
-        Return.class,
+        Stmt.Return.Exception.class,
         () -> statementInterpreter.returnVisit(stmt)
       );
 

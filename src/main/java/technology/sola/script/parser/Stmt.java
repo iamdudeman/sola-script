@@ -1,5 +1,6 @@
 package technology.sola.script.parser;
 
+import technology.sola.script.interpreter.Interpreter;
 import technology.sola.script.tokenizer.Token;
 
 import java.util.List;
@@ -145,6 +146,29 @@ public interface Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.returnVisit(this);
+    }
+
+    /**
+     * Return is an exception utilized by the {@link Interpreter} to throw when
+     * a {@link Stmt.Return} is being interpreted so that the wrapping
+     * {@link technology.sola.script.runtime.SolaScriptFunction} can catch it and return the value as the result
+     * of the {@link Expr.Call}.
+     */
+    public static class Exception extends RuntimeException {
+      /**
+       * The value returned by the {@link Stmt.Return}.
+       */
+      public final Object value;
+
+      /**
+       * Creates an instance of this exception with desired return value.
+       *
+       * @param value the return value of the call
+       */
+      public Exception(Object value) {
+        super(null, null, false, false);
+        this.value = value;
+      }
     }
   }
 

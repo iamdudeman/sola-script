@@ -66,7 +66,7 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
       value = expressionInterpreter.evaluate(stmt.value());
     }
 
-    throw new Return(value);
+    throw new Stmt.Return.Exception(value);
   }
 
   @Override

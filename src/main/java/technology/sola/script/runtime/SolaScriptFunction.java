@@ -1,6 +1,5 @@
 package technology.sola.script.runtime;
 
-import technology.sola.script.interpreter.Return;
 import technology.sola.script.parser.Stmt;
 
 import java.util.List;
@@ -54,7 +53,7 @@ public class SolaScriptFunction implements SolaScriptCallable {
       for (var statement : declaration.body()) {
         executeStatement.accept(statement);
       }
-    } catch (Return returnValue) {
+    } catch (Stmt.Return.Exception returnValue) {
       return returnValue.value;
     } finally {
       scriptRuntime.restoreEnvironment(currentEnvironmentHandle);
