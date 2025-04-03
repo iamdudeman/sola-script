@@ -117,6 +117,23 @@ class StatementResolverTest {
   }
 
   @Nested
+  class stmtWhile {
+    @Test
+    void test() {
+      var expr = initializeTestVariableExpression();
+      var exprBody = initializeTestVariableExpression("body");
+      var stmt = new Stmt.While(expr, new Stmt.Expression(exprBody));
+      var resolver = new StatementResolver(scriptRuntime, expressionResolver, errors);
+
+      resolver.whileVisit(stmt);
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(expr, 1);
+      assertTestVariableExpression(exprBody);
+    }
+  }
+
+  @Nested
   class block {
     @Test
     void test() {

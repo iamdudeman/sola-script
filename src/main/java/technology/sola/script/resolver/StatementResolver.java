@@ -58,7 +58,10 @@ class StatementResolver implements Stmt.Visitor<Void> {
 
   @Override
   public Void whileVisit(Stmt.While stmt) {
-    throw new UnsupportedOperationException("not yet implemented");
+    stmt.condition().accept(expressionResolver);
+    stmt.body().accept(this);
+
+    return null;
   }
 
   @Override
