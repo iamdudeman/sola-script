@@ -82,7 +82,7 @@ public interface Stmt {
   record Function(Token name, List<Token> parameters, List<Stmt> body) implements Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
-      return null;
+      return visitor.function(this);
     }
   }
 

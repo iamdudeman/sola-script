@@ -14,6 +14,57 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParserTest {
   @Nested
+  class declFun {
+    @Test
+    void valid() {
+      var source = """
+        fun greeting(name) {
+          name;
+        }
+        """;
+      var expected = """
+        fun greeting(name) {
+        name
+        }
+        """;
+
+      new ParserTester(source)
+        .verify(expected);
+    }
+
+    @Test
+    void invalid() {
+      // todo populate test
+      var source = """
+
+        """;
+
+      new ParserTester(source)
+        .withErrors(ScriptErrorType.EXPECT_NAME)
+        .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_NAME)
+        .withErrors(ScriptErrorType.EXPECT_NAME)
+        .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_PARAMETERS)
+        .withErrors(ScriptErrorType.EXPECT_BRACE_BEFORE_BODY)
+        .verify(null);
+    }
+
+    @Test
+    void invalid_tooManyArguments() {
+      var arguments = new String[256];
+      Arrays.fill(arguments, "test");
+      var source = """
+          fun tooMany(%s) {
+
+          }
+          """.formatted(Arrays.stream(arguments).map(Object::toString).collect(Collectors.joining(",")));
+
+      new ParserTester(source)
+        .withErrors(ScriptErrorType.TOO_MANY_ARGUMENTS)
+        .verify(null);
+    }
+  }
+
+  @Nested
   class declVar {
     @Test
     void valid() {
@@ -35,9 +86,6 @@ class ParserTest {
       var source = """
         var ;
         var test
-        """;
-      var expected = """
-        var test = 5
         """;
 
       new ParserTester(source)
