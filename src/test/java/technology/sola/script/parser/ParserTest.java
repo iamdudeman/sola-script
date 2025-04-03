@@ -18,12 +18,12 @@ class ParserTest {
     @Test
     void valid() {
       var source = """
-        fun greeting(name) {
+        fun greeting(name, test) {
           name;
         }
         """;
       var expected = """
-        fun greeting(name) {
+        fun greeting(name,test) {
         name
         }
         """;
@@ -34,9 +34,12 @@ class ParserTest {
 
     @Test
     void invalid() {
-      // todo populate test
       var source = """
-
+        fun ;
+        fun name ;
+        fun name( ;
+        fun name(test, test2 ;
+        fun name(test, test2) ;
         """;
 
       new ParserTester(source)
