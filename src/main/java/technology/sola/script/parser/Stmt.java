@@ -56,6 +56,14 @@ public interface Stmt {
     R ifVisit(If stmt);
 
     /**
+     * Executes a {@link Return} statement and returns the value.
+     *
+     * @param stmt the {@link Return} statement
+     * @return the evaluated value
+     */
+    R returnVisit(Return stmt);
+
+    /**
      * Executes a {@link While} statement and returns the value.
      *
      * @param stmt the {@link While} statement
@@ -124,6 +132,19 @@ public interface Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.ifVisit(this);
+    }
+  }
+
+  /**
+   * Return statement exits a function or method while optionally returning a value for the caller to use.
+   *
+   * @param keyword the {@link Token} for the return keyword
+   * @param value   the value to return to the caller or null
+   */
+  record Return(Token keyword, Expr value) implements Stmt {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.returnVisit(this);
     }
   }
 

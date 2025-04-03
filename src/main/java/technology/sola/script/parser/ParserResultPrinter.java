@@ -66,6 +66,11 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String returnVisit(Stmt.Return stmt) {
+      throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
     public String whileVisit(Stmt.While stmt) {
       return "while (" + print(stmt.condition()) + ") " + print(stmt.body());
     }

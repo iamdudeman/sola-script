@@ -53,11 +53,11 @@ parameters      := IDENTIFIER ( "," IDENTIFIER )* ;
 ### Statements
 
 ```
-statement       := exprStmt | ifStmt | whileStmt | block ;
+statement       := exprStmt | ifStmt | returnStmt | whileStmt | block ;
 exprStmt        := expression ";" ;
 forStmt
 ifStmt          := "if" "(" expression ")" statement ( "else" statement )? ;
-returnStmt
+returnStmt      := "return" expression? ";" ;
 whileStmt       := "while" "(" expression ")" statement ;
 block           := "{" declaration* "}" ;
 ```
