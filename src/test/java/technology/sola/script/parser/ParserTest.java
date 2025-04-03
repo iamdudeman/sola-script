@@ -41,7 +41,7 @@ class ParserTest {
         """;
 
       new ParserTester(source)
-        .withErrors(ScriptErrorType.EXPECT_VARIABLE_NAME)
+        .withErrors(ScriptErrorType.EXPECT_NAME)
         .withErrors(ScriptErrorType.EXPECT_SEMI_AFTER_VARIABLE_DECLARATION)
         .verify(null);
     }

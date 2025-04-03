@@ -52,7 +52,10 @@ public class Parser {
 
   private Stmt declaration() {
     try {
-      // todo function
+      if (advanceExpected(TokenType.FUN)) {
+        return declFun();
+      }
+
       // todo class
 
       if (advanceExpected(TokenType.VAR)) {
@@ -68,8 +71,12 @@ public class Parser {
     }
   }
 
+  private Stmt declFun() {
+    return parseFunction("function");
+  }
+
   private Stmt declVar() {
-    Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_VARIABLE_NAME);
+    Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_NAME, "variable");
     Expr initializer = null;
 
     if (advanceExpected(TokenType.EQUAL)) {
@@ -149,6 +156,30 @@ public class Parser {
     return statements;
   }
 
+  private Stmt parseFunction(String kind) {
+    Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_NAME, kind);
+
+    eat(TokenType.LEFT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_NAME, kind);
+
+    List<Token> parameters = new ArrayList<>();
+
+    if (!check(TokenType.RIGHT_PAREN)) {
+      do {
+        if (parameters.size() >= ParserConstants.MAX_ARGUMENTS) {
+          errors.add(new ScriptError(ScriptErrorType.TOO_MANY_ARGUMENTS, peek()));
+        }
+
+        parameters.add(eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_NAME, "parameter"));
+      } while (advanceExpected(TokenType.COMMA));
+    }
+
+    eat(TokenType.RIGHT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_PARAMETERS);
+    eat(TokenType.LEFT_BRACE, ScriptErrorType.EXPECT_BRACE_BEFORE_BODY, kind);
+
+    List<Stmt> body = parseBlockStatements();
+
+    return new Stmt.Function(name, parameters, body);
+  }
 
   // expressions below -------------------------------------------------------------------------------------------------
 
