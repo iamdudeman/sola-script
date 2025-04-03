@@ -8,6 +8,7 @@ import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Expr;
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.runtime.ScriptRuntime;
+import technology.sola.script.runtime.SolaScriptFunction;
 import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
 
@@ -23,6 +24,47 @@ class StatementInterpreterTest {
   void setup() {
     scriptRuntime = new ScriptRuntime();
     expressionInterpreter = new ExpressionInterpreter(scriptRuntime);
+  }
+
+  @Nested
+  class function {
+    @Test
+    void test() {
+      var valueToken = new Token(TokenType.IDENTIFIER, "value", null, 1, 1);
+      var paramToken = new Token(TokenType.IDENTIFIER, "param", null, 1, 1);
+      var paramVarExpr = new Expr.Variable(paramToken);
+      StatementInterpreter statementInterpreter = new StatementInterpreter(scriptRuntime, expressionInterpreter);
+
+      scriptRuntime.defineVariable(valueToken.lexeme(), "initial");
+
+      // initialize resolved variable scope
+      scriptRuntime.scopes().beginScope();
+      scriptRuntime.scopes().declare(paramToken);
+      scriptRuntime.scopes().resolveLocal(paramVarExpr, paramToken);
+      scriptRuntime.scopes().endScope();
+
+      var token = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
+      var stmt = new Stmt.Function(
+        token,
+        List.of(paramToken),
+        List.of(
+          new Stmt.Expression(
+            new Expr.Assign(valueToken, paramVarExpr)
+          )
+        )
+      );
+
+      // declare function
+      statementInterpreter.function(stmt);
+      // then call it to test
+      if (scriptRuntime.lookUpVariable(new Expr.Variable(token)) instanceof SolaScriptFunction solaScriptFunction) {
+        solaScriptFunction.call(List.of("updated"));
+      } else {
+        fail("Function should have been declared");
+      }
+
+      assertEquals("updated", scriptRuntime.lookUpVariable(new Expr.Variable(valueToken)));
+    }
   }
 
   @Nested
