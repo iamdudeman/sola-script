@@ -1,0 +1,9 @@
+module:technology.sola.script
+technology.sola.script
+technology.sola.script.error
+technology.sola.script.interpreter
+technology.sola.script.library
+technology.sola.script.parser
+technology.sola.script.resolver
+technology.sola.script.runtime
+technology.sola.script.tokenizer
