@@ -18,7 +18,6 @@ class ExpressionResolver implements Expr.Visitor<Void> {
 
   @Override
   public Void set(Expr.Set expr) {
-    // todo test
     expr.value().accept(this);
     expr.object().accept(this);
 
@@ -69,7 +68,6 @@ class ExpressionResolver implements Expr.Visitor<Void> {
 
   @Override
   public Void get(Expr.Get expr) {
-    // todo test
     expr.object().accept(this);
 
     return null;
