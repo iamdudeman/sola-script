@@ -127,9 +127,9 @@ public enum ScriptErrorType {
   INVALID_SELF_INITIALIZATION(ScriptErrorStage.SEMANTIC, "Cannot use local variable '%s' in its own initializer."),
 
   /**
-   * Runtime error when a call is detected on something that is not a function or class.
+   * Runtime error when a call is detected on something that is not a function.
    */
-  NOT_CALLABLE(ScriptErrorStage.RUNTIME, "Can only call functions and classes."),
+  NOT_CALLABLE(ScriptErrorStage.RUNTIME, "Can only call functions."),
 
   /**
    * Runtime error when a property accessor is found on something that is not a map.
