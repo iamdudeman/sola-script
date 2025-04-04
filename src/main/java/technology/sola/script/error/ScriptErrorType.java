@@ -12,6 +12,11 @@ public enum ScriptErrorType {
   ALREADY_DEFINED_VARIABLE(ScriptErrorStage.SEMANTIC, "'%s' is already defined in this scope."),
 
   /**
+   * Semantic error when a constant is attempted to be assigned to.
+   */
+  CANNOT_ASSIGN_TO_CONSTANT(ScriptErrorStage.SEMANTIC, "Cannot assign to constant %s."),
+
+  /**
    * Semantic error when a return statement is found outside a function or method body.
    */
   CANNOT_RETURN_FROM_TOP_LEVEL(ScriptErrorStage.SEMANTIC, "Cannot return from top-level code."),

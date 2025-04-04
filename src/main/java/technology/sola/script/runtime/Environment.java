@@ -23,6 +23,10 @@ class Environment {
     definitions.put(name, new VariableDefinition(false, value));
   }
 
+  void defineConstant(String name, Object value) {
+    definitions.put(name, new VariableDefinition(true, value));
+  }
+
   /**
    * Updates a variable's value only if it has already been defined. Otherwise, throws a runtime
    * {@link ScriptInterpretationException}.
@@ -35,6 +39,10 @@ class Environment {
 
     // assign to current scope if present
     if (definition != null) {
+      if (definition.isConstant) {
+        throw new ScriptInterpretationException(name, ScriptErrorType.CANNOT_ASSIGN_TO_CONSTANT, name.lexeme());
+      }
+
       definition.value = value;
       return;
     }
@@ -51,6 +59,10 @@ class Environment {
 
   void assignAt(int distance, Token name, Object value) {
     var definition = getParent(distance).definitions.get(name.lexeme());
+
+    if (definition.isConstant) {
+      throw new ScriptInterpretationException(name, ScriptErrorType.CANNOT_ASSIGN_TO_CONSTANT, name.lexeme());
+    }
 
     definition.value = value;
   }

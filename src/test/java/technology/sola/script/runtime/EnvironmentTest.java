@@ -43,6 +43,15 @@ class EnvironmentTest {
 
       assertEquals(12.23, environment.get(identifierToken));
     }
+
+    @Test
+    void shouldAddConstant() {
+      Environment environment = new Environment();
+
+      environment.defineConstant(identifierToken.lexeme(), 12.23d);
+
+      assertEquals(12.23, environment.get(identifierToken));
+    }
   }
 
   @Nested
@@ -55,6 +64,18 @@ class EnvironmentTest {
       environment.assign(identifierToken, 12.23d);
 
       assertEquals(12.23, environment.get(identifierToken));
+    }
+
+    @Test
+    void whenDefinedAsConstant_shouldThrow() {
+      Environment environment = new Environment();
+
+      environment.defineConstant(identifierToken.lexeme(), null);
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> environment.assign(identifierToken, 12.23d)
+      );
     }
 
     @Test
@@ -76,6 +97,21 @@ class EnvironmentTest {
       assertThrows(
         ScriptInterpretationException.class,
         () -> environment.assign(identifierToken, 12.23d)
+      );
+    }
+  }
+
+  @Nested
+  class assignAt {
+    @Test
+    void whenDefinedAsConstant_shouldThrow() {
+      Environment environment = new Environment();
+
+      environment.defineConstant(identifierToken.lexeme(), null);
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> environment.assignAt(0, identifierToken, 12.23d)
       );
     }
   }
