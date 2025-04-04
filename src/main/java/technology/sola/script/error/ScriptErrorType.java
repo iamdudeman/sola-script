@@ -14,7 +14,7 @@ public enum ScriptErrorType {
   /**
    * Semantic error when a constant is attempted to be assigned to.
    */
-  CANNOT_ASSIGN_TO_CONSTANT(ScriptErrorStage.SEMANTIC, "Cannot assign to constant %s."),
+  CANNOT_ASSIGN_TO_CONSTANT(ScriptErrorStage.RUNTIME, "Cannot assign to constant %s."),
 
   /**
    * Semantic error when a return statement is found outside a function or method body.

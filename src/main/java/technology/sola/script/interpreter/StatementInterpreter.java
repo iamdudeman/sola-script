@@ -41,7 +41,11 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
 
   @Override
   public Void val(Stmt.Val stmt) {
-    return null; // todo
+    Object value = expressionInterpreter.evaluate(stmt.initializer());
+
+    scriptRuntime.defineConstant(stmt.name().lexeme(), value);
+
+    return null;
   }
 
   @Override
