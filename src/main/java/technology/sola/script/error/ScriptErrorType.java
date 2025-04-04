@@ -32,6 +32,11 @@ public enum ScriptErrorType {
   EXPECT_BRACE_AFTER_BLOCK(ScriptErrorStage.PARSE, "Expect '}' after block."),
 
   /**
+   * Parsing error when a closing '}' is not found after creation of a map.
+   */
+  EXPECT_BRACE_AFTER_MAP_CREATION(ScriptErrorStage.PARSE, "Expect '}' after map creation."),
+
+  /**
    * Parsing error when an opening brace is not found before a function body.
    */
   EXPECT_BRACE_BEFORE_BODY(ScriptErrorStage.PARSE, "Expect '{' before %s body."),

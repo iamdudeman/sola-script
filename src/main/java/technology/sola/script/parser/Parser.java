@@ -391,8 +391,7 @@ public class Parser {
 
     // todo test
     if (advanceExpected(TokenType.LEFT_BRACE)) {
-      // todo replace with real error
-      eat(TokenType.RIGHT_BRACE, ScriptErrorType.EXPECT_BRACE_AFTER_BLOCK);
+      eat(TokenType.RIGHT_BRACE, ScriptErrorType.EXPECT_BRACE_AFTER_MAP_CREATION);
 
       return new Expr.Literal(new SolaScriptMap());
     }

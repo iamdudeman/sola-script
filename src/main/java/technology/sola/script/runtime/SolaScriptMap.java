@@ -13,6 +13,10 @@ public class SolaScriptMap {
   }
 
   public void set(Token name, Object value) {
-    fields.put(name.lexeme(), value);
+    set(name.lexeme(), value);
+  }
+
+  public void set(String name, Object value) {
+    fields.put(name, value);
   }
 }
