@@ -27,7 +27,7 @@ class EnvironmentTest {
     void whenNullValue_shouldNotThrow() {
       Environment environment = new Environment();
 
-      environment.define(identifierToken.lexeme(), null);
+      environment.defineVariable(identifierToken.lexeme(), null);
 
       assertNull(environment.get(identifierToken));
     }
@@ -39,7 +39,7 @@ class EnvironmentTest {
     void shouldAddVariable() {
       Environment environment = new Environment();
 
-      environment.define(identifierToken.lexeme(), 12.23d);
+      environment.defineVariable(identifierToken.lexeme(), 12.23d);
 
       assertEquals(12.23, environment.get(identifierToken));
     }
@@ -51,7 +51,7 @@ class EnvironmentTest {
     void whenDefined_shouldAssignToCurrent() {
       Environment environment = new Environment();
 
-      environment.define(identifierToken.lexeme(), null);
+      environment.defineVariable(identifierToken.lexeme(), null);
       environment.assign(identifierToken, 12.23d);
 
       assertEquals(12.23, environment.get(identifierToken));
@@ -62,7 +62,7 @@ class EnvironmentTest {
       Environment parent = new Environment();
       Environment environment = new Environment(parent);
 
-      parent.define(identifierToken.lexeme(), null);
+      parent.defineVariable(identifierToken.lexeme(), null);
       environment.assign(identifierToken, 12.23d);
 
       assertEquals(12.23, parent.get(identifierToken));

@@ -63,7 +63,7 @@ public class ScriptRuntime {
    * @param value the value for the variable
    */
   public void defineVariable(String name, Object value) {
-    environment.define(name, value);
+    environment.defineVariable(name, value);
   }
 
   /**

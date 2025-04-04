@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Environment {
-  private final Map<String, Object> values = new HashMap<>();
+  private final Map<String, VariableDefinition> definitions = new HashMap<>();
   private final Environment parent;
 
   Environment() {
@@ -19,8 +19,8 @@ class Environment {
     this.parent = parent;
   }
 
-  void define(String name, Object value) {
-    values.put(name, value);
+  void defineVariable(String name, Object value) {
+    definitions.put(name, new VariableDefinition(false, value));
   }
 
   /**
@@ -31,9 +31,11 @@ class Environment {
    * @param value the value assigned to the variable
    */
   void assign(Token name, Object value) {
+    var definition = definitions.get(name.lexeme());
+
     // assign to current scope if present
-    if (values.containsKey(name.lexeme())) {
-      values.put(name.lexeme(), value);
+    if (definition != null) {
+      definition.value = value;
       return;
     }
 
@@ -48,7 +50,9 @@ class Environment {
   }
 
   void assignAt(int distance, Token name, Object value) {
-    getParent(distance).values.put(name.lexeme(), value);
+    var definition = getParent(distance).definitions.get(name.lexeme());
+
+    definition.value = value;
   }
 
   /**
@@ -59,8 +63,10 @@ class Environment {
    * @return the value assigned to the variable
    */
   Object get(Token name) {
-    if (values.containsKey(name.lexeme())) {
-      return values.get(name.lexeme());
+    var definition = definitions.get(name.lexeme());
+
+    if (definition != null) {
+      return definition.value;
     }
 
     if (parent != null) {
@@ -71,7 +77,9 @@ class Environment {
   }
 
   Object getAt(int distance, String name) {
-    return getParent(distance).values.get(name);
+    var definition = getParent(distance).definitions.get(name);
+
+    return definition.value;
   }
 
   private Environment getParent(int distance) {
