@@ -111,6 +111,41 @@ class StatementResolverTest {
   }
 
   @Nested
+  class valStmt {
+    @Test
+    void whenConstantAlreadyDeclared_shouldHaveError() {
+      var token = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
+
+      scriptRuntime.scopes().beginScope();
+      scriptRuntime.scopes().declare(token);
+
+      var stmt = new Stmt.Val(token, new Expr.Literal(5d));
+      var resolver = new StatementResolver(scriptRuntime, expressionResolver, errors);
+
+      resolver.val(stmt);
+
+      assertEquals(1, errors.size());
+      assertEquals(ScriptErrorType.ALREADY_DEFINED_VARIABLE, errors.get(0).type());
+    }
+
+    @Test
+    void shouldDefineConstantWithValueFromInitializer() {
+      var initializer = initializeTestVariableExpression();
+      var token = new Token(TokenType.IDENTIFIER, "test2", null, 1, 1);
+      var stmt = new Stmt.Val(token, initializer);
+      var resolver = new StatementResolver(scriptRuntime, expressionResolver, errors);
+
+      assertFalse(scriptRuntime.scopes().isDefinedInScope(token));
+
+      resolver.val(stmt);
+
+      assertEquals(0, errors.size());
+      assertTrue(scriptRuntime.scopes().isDefinedInScope(token));
+      assertTestVariableExpression(initializer);
+    }
+  }
+
+  @Nested
   class expression {
     @Test
     void test() {

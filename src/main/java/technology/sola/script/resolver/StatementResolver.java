@@ -52,7 +52,19 @@ class StatementResolver implements Stmt.Visitor<Void> {
 
   @Override
   public Void val(Stmt.Val stmt) {
-    return null; // todo
+    var scopes = scriptRuntime.scopes();
+
+    if (scopes.isDeclaredInScope(stmt.name())) {
+      errors.add(new ScriptError(ScriptErrorType.ALREADY_DEFINED_VARIABLE, stmt.name(), stmt.name().lexeme()));
+    }
+
+    scopes.declare(stmt.name());
+
+    stmt.initializer().accept(expressionResolver);
+
+    scopes.define(stmt.name());
+
+    return null;
   }
 
   @Override
