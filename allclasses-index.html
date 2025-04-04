@@ -85,7 +85,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Expr.Literal.html" title="class in technology.sola.script.parser">Expr.Literal</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab4">
-<div class="block">Literal expressions hold a value such as string, number, boolean or null.</div>
+<div class="block">Literal expressions hold a value such as string, number, boolean, map or null.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Expr.Logical.html" title="class in technology.sola.script.parser">Expr.Logical</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab4">&nbsp;</div>
@@ -174,77 +174,81 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">SolaScriptMain contains the entry point for running sola scripts from the command line.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="technology.sola.script/technology/sola/script/library/StandardLibraryScriptModule.html" title="class in technology.sola.script.library">StandardLibraryScriptModule</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="technology.sola.script/technology/sola/script/runtime/SolaScriptMap.html" title="class in technology.sola.script.runtime">SolaScriptMap</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">SolaScriptMap is the runtime representation of the sola-script map type.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="technology.sola.script/technology/sola/script/library/StandardLibraryScriptModule.html" title="class in technology.sola.script.library">StandardLibraryScriptModule</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">StandardLibraryScriptModule contains some standard functionality for making useful programs using sola-script.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="technology.sola.script/technology/sola/script/parser/Stmt.html" title="interface in technology.sola.script.parser">Stmt</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="technology.sola.script/technology/sola/script/parser/Stmt.html" title="interface in technology.sola.script.parser">Stmt</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Stmt represents a piece of code that performs an action or controls the flow of the program.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Block.html" title="class in technology.sola.script.parser">Stmt.Block</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Block.html" title="class in technology.sola.script.parser">Stmt.Block</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Block contains a list of <a href="technology.sola.script/technology/sola/script/parser/Stmt.html" title="interface in technology.sola.script.parser"><code>Stmt</code></a>s that are executed in their own scope.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Expression.html" title="class in technology.sola.script.parser">Stmt.Expression</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Expression.html" title="class in technology.sola.script.parser">Stmt.Expression</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Expression statement evaluates an expression.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Function.html" title="class in technology.sola.script.parser">Stmt.Function</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Function.html" title="class in technology.sola.script.parser">Stmt.Function</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Function statement declares a function in the current scope with desired parameters and body.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.If.html" title="class in technology.sola.script.parser">Stmt.If</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.If.html" title="class in technology.sola.script.parser">Stmt.If</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
 <div class="block">If statement is a conditional branching statement.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.html" title="class in technology.sola.script.parser">Stmt.Return</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.html" title="class in technology.sola.script.parser">Stmt.Return</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Return statement exits a function or method while optionally returning a value for the caller to use.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab5"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.Exception.html" title="class in technology.sola.script.parser">Stmt.Return.Exception</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab5">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab5"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.Exception.html" title="class in technology.sola.script.parser">Stmt.Return.Exception</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab5">
 <div class="block">Return is an exception utilized by the <a href="technology.sola.script/technology/sola/script/interpreter/Interpreter.html" title="class in technology.sola.script.interpreter"><code>Interpreter</code></a> to throw when
  a <a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.html" title="class in technology.sola.script.parser"><code>Stmt.Return</code></a> is being interpreted so that the wrapping
  <a href="technology.sola.script/technology/sola/script/runtime/SolaScriptFunction.html" title="class in technology.sola.script.runtime"><code>SolaScriptFunction</code></a> can catch it and return the value as the result
  of the <a href="technology.sola.script/technology/sola/script/parser/Expr.Call.html" title="class in technology.sola.script.parser"><code>Expr.Call</code></a>.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser">Stmt.Val</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser">Stmt.Val</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Val statement declares a constant in the current scope with an initializer.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html" title="class in technology.sola.script.parser">Stmt.Var</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html" title="class in technology.sola.script.parser">Stmt.Var</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Var statement declares a variable in the current scope with an optional initializer.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Visitor.html" title="interface in technology.sola.script.parser">Stmt.Visitor</a>&lt;<a href="technology.sola.script/technology/sola/script/parser/Stmt.Visitor.html" title="type parameter in Stmt.Visitor">R</a>&gt;</div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="technology.sola.script/technology/sola/script/parser/Stmt.Visitor.html" title="interface in technology.sola.script.parser">Stmt.Visitor</a>&lt;<a href="technology.sola.script/technology/sola/script/parser/Stmt.Visitor.html" title="type parameter in Stmt.Visitor">R</a>&gt;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Defines operations for the various <a href="technology.sola.script/technology/sola/script/parser/Stmt.html" title="interface in technology.sola.script.parser"><code>Stmt</code></a> implementations.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.While.html" title="class in technology.sola.script.parser">Stmt.While</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/parser/Stmt.While.html" title="class in technology.sola.script.parser">Stmt.While</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
 <div class="block">While statement is a conditional looping statement.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="technology.sola.script/technology/sola/script/TestProgramSolaScript.html" title="class in technology.sola.script">TestProgramSolaScript</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="technology.sola.script/technology/sola/script/TestProgramSolaScript.html" title="class in technology.sola.script">TestProgramSolaScript</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Token holds information about a recognized token that sola script understands.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="technology.sola.script/technology/sola/script/tokenizer/Tokenizer.html" title="class in technology.sola.script.tokenizer">Tokenizer</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="technology.sola.script/technology/sola/script/tokenizer/Tokenizer.html" title="class in technology.sola.script.tokenizer">Tokenizer</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Tokenizer provides functionality for tokenizing a source string into <a href="technology.sola.script/technology/sola/script/tokenizer/Token.html" title="class in technology.sola.script.tokenizer"><code>Token</code></a>s to be parsed and interpreted.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/tokenizer/TokenizeResult.html" title="class in technology.sola.script.tokenizer">TokenizeResult</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="technology.sola.script/technology/sola/script/tokenizer/TokenizeResult.html" title="class in technology.sola.script.tokenizer">TokenizeResult</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
 <div class="block">The result from <a href="technology.sola.script/technology/sola/script/tokenizer/Tokenizer.html#tokenize()"><code>Tokenizer.tokenize()</code></a> containing the parsed <a href="technology.sola.script/technology/sola/script/tokenizer/Token.html" title="class in technology.sola.script.tokenizer"><code>Token</code></a>s as well as any <a href="technology.sola.script/technology/sola/script/error/ScriptError.html" title="class in technology.sola.script.error"><code>ScriptError</code></a>s.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab3"><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab3">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
 <div class="block">TokenType contains all recognized token types for sola script.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="technology.sola.script/technology/sola/script/interpreter/ValueUtils.html" title="class in technology.sola.script.interpreter">ValueUtils</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="technology.sola.script/technology/sola/script/interpreter/ValueUtils.html" title="class in technology.sola.script.interpreter">ValueUtils</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">ValueUtils contains various utility methods for sola-script values.</div>
 </div>
 </div>
