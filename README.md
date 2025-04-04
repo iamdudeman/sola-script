@@ -37,7 +37,6 @@ program         := declaration* EOF ;
 
 ```
 declaration     := funDecl | varDecl | valDecl | statement ;
-classDecl
 funDecl         := "fun" function ;
 varDecl         := "var" IDENTIFIER ( "=" expression )? ";" ;
 valDecl         := "val" IDENTIFIER "=" expression ";" ;
@@ -75,7 +74,7 @@ term            := factor ( ( "-" | "+" ) factor )* ;
 factor          := unary ( ( "/" | "*" ) unary )* ;
 unary           := ( "!" | "-" ) unary | call ;
 call            := primary ( "(" arguments? ")" ) | "." IDENTIFIER )* ;
-primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER | "this" | "super" "." IDENTIFIER ;
+primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER ;
 ```
 
 #### Expression Helpers
@@ -103,7 +102,7 @@ EOF             := special for end of the file
 "else" | "for" | "if" | "while"
 
 # values
-"false" | "null" | "super" | "this" | "true"
+"false" | "null" | "true"
 
 # etc
 "and" | "or" | "return"
