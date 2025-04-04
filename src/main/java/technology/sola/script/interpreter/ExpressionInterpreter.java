@@ -173,16 +173,6 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   }
 
   @Override
-  public Object thisVisit(Expr.This expr) {
-    throw new UnsupportedOperationException("Not yet implemented.");
-  }
-
-  @Override
-  public Object superVisit(Expr.Super expr) {
-    throw new UnsupportedOperationException("Not yet implemented.");
-  }
-
-  @Override
   public Object variable(Expr.Variable expr) {
     return scriptRuntime.lookUpVariable(expr);
   }

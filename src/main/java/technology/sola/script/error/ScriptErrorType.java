@@ -42,11 +42,6 @@ public enum ScriptErrorType {
   EXPECT_BRACE_BEFORE_BODY(ScriptErrorStage.PARSE, "Expect '{' before %s body."),
 
   /**
-   * Parsing error when a '.' property accessor was not found after 'super'.
-   */
-  EXPECT_DOT_AFTER_SUPER(ScriptErrorStage.PARSE, "Expect '.' after super."),
-
-  /**
    * Parsing error when an initializer expression is not found for a constant.
    */
   EXPECT_INITIALIZER_EXPRESSION(ScriptErrorStage.PARSE, "Expect initializer expression for constants."),
@@ -112,11 +107,6 @@ public enum ScriptErrorType {
   EXPECT_SEMI_AFTER_VARIABLE_DECLARATION(ScriptErrorStage.PARSE, "Expect ';' after variable declaration."),
 
   /**
-   * Parsing error when a method name was not found after a superclass accessor.
-   */
-  EXPECT_SUPERCLASS_METHOD_NAME(ScriptErrorStage.PARSE, "Expect superclass method name."),
-
-  /**
    * Runtime error when expected number of arguments were not provided.
    */
   EXPECTED_ARGUMENTS_MISMATCH(ScriptErrorStage.RUNTIME, "Expected %s arguments but got %s."),
@@ -137,9 +127,9 @@ public enum ScriptErrorType {
   INVALID_SELF_INITIALIZATION(ScriptErrorStage.SEMANTIC, "Cannot use local variable '%s' in its own initializer."),
 
   /**
-   * Runtime error when a call is detected on something that is not a function or class.
+   * Runtime error when a call is detected on something that is not a function.
    */
-  NOT_CALLABLE(ScriptErrorStage.RUNTIME, "Can only call functions and classes."),
+  NOT_CALLABLE(ScriptErrorStage.RUNTIME, "Can only call functions."),
 
   /**
    * Runtime error when a property accessor is found on something that is not a map.

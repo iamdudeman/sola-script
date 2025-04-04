@@ -134,16 +134,6 @@ public class ParserResultPrinter {
     }
 
     @Override
-    public String thisVisit(Expr.This expr) {
-      return "this";
-    }
-
-    @Override
-    public String superVisit(Expr.Super expr) {
-      return "super." + expr.method().lexeme();
-    }
-
-    @Override
     public String variable(Expr.Variable expr) {
       return expr.name().lexeme();
     }

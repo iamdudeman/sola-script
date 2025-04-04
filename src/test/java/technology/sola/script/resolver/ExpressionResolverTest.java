@@ -146,16 +146,6 @@ class ExpressionResolverTest {
   }
 
   @Nested
-  class thisVisit {
-    // todo not yet implemented to test
-  }
-
-  @Nested
-  class superVisit {
-    // todo not yet implemented to test
-  }
-
-  @Nested
   class variable {
     @Test
     void test() {

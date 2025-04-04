@@ -455,8 +455,6 @@ class ParserTest {
           ( true );
           testVar;
           var test = {};
-          this;
-          super.someMethod;
           """;
         var expected = """
           false
@@ -467,8 +465,6 @@ class ParserTest {
           (true)
           testVar
           var test = {}
-          this
-          super.someMethod
           """;
 
         new ParserTester(source)

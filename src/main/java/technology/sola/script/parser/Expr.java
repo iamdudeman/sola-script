@@ -80,22 +80,6 @@ public interface Expr {
     R get(Get expr);
 
     /**
-     * Evaluates a {@link This} expression and returns the value.
-     *
-     * @param expr the {@link This} expression
-     * @return the evaluated value
-     */
-    R thisVisit(This expr);
-
-    /**
-     * Evaluates a {@link Super} expression and returns the value.
-     *
-     * @param expr the {@link Super} expression
-     * @return the evaluated value
-     */
-    R superVisit(Super expr);
-
-    /**
      * Evaluates a {@link Variable} expression and returns the value.
      *
      * @param expr the {@link Variable} expression
@@ -166,20 +150,6 @@ public interface Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.get(this);
-    }
-  }
-
-  record This(Token keyword) implements Expr {
-    @Override
-    public <R> R accept(Visitor<R> visitor) {
-      return visitor.thisVisit(this);
-    }
-  }
-
-  record Super(Token keyword, Token method) implements Expr {
-    @Override
-    public <R> R accept(Visitor<R> visitor) {
-      return visitor.superVisit(this);
     }
   }
 
