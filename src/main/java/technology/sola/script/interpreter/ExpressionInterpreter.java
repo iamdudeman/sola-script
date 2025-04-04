@@ -24,7 +24,6 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   public Object set(Expr.Set expr) {
-    // todo test
     Object object = evaluate(expr.object());
 
     if (object instanceof SolaScriptMap solaScriptMap) {
@@ -164,7 +163,6 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   public Object get(Expr.Get expr) {
-    // todo test
     Object object = evaluate(expr.object());
 
     if (object instanceof SolaScriptMap solaScriptMap) {
