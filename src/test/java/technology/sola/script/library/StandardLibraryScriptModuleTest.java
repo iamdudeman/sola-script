@@ -19,6 +19,16 @@ class StandardLibraryScriptModuleTest {
   }
 
   @Nested
+  class readLine {
+    @Test
+    void test() {
+      var function = new StandardLibraryScriptModule().readLine();
+
+      assertEquals(0, function.arity());
+    }
+  }
+
+  @Nested
   class clock {
     @Test
     void test() {
@@ -34,7 +44,6 @@ class StandardLibraryScriptModuleTest {
       } else {
         fail("clock should return a double (number) value");
       }
-
     }
   }
 }
