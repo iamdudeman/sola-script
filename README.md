@@ -8,24 +8,6 @@ book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystro
 [![Javadocs Link](https://img.shields.io/badge/Javadocs-blue.svg)](https://iamdudeman.github.io/sola-script/)
 [![](https://jitpack.io/v/iamdudeman/sola-script.svg)](https://jitpack.io/#iamdudeman/sola-script)
 
-## Download
-
-### Gradle + Jitpack:
-
-```kotlin
-repositories {
-    maven {
-        url = uri("https://jitpack.io")
-    }
-}
-
-dependencies {
-    implementation("com.github.iamdudeman:sola-script:0.1.0")
-}
-```
-
-[sola-script jar downloads](https://github.com/iamdudeman/sola-script/releases) hosted on GitHub releases.
-
 
 ## Sola grammar
 
@@ -107,3 +89,21 @@ EOF             := special for end of the file
 # etc
 "and" | "or" | "return"
 ```
+
+## Download
+
+### Gradle + Jitpack:
+
+```kotlin
+repositories {
+    maven {
+        url = uri("https://jitpack.io")
+    }
+}
+
+dependencies {
+    implementation("com.github.iamdudeman:sola-script:0.1.0")
+}
+```
+
+[sola-script jar downloads](https://github.com/iamdudeman/sola-script/releases) hosted on GitHub releases.
