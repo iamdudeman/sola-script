@@ -2,6 +2,7 @@ package technology.sola.script.parser;
 
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptError;
+import technology.sola.script.runtime.SolaScriptMap;
 import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
 
@@ -386,6 +387,12 @@ public class Parser {
 
     if (advanceExpected(TokenType.IDENTIFIER)) {
       return new Expr.Variable(previous());
+    }
+
+    if (advanceExpected(TokenType.LEFT_BRACE)) {
+      eat(TokenType.RIGHT_BRACE, ScriptErrorType.EXPECT_BRACE_AFTER_MAP_CREATION);
+
+      return new Expr.Literal(new SolaScriptMap());
     }
 
     if (advanceExpected(TokenType.THIS)) {

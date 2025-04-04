@@ -9,6 +9,7 @@ import technology.sola.script.parser.Parser;
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.runtime.SolaScriptCallable;
+import technology.sola.script.runtime.SolaScriptMap;
 import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
 import technology.sola.script.tokenizer.Tokenizer;
@@ -27,7 +28,24 @@ class ExpressionInterpreterTest {
 
   @Nested
   class set {
-    // todo not yet implemented to test
+    @Test
+    void whenNotMap_shouldThrow() {
+      scriptRuntime.defineVariable("test", 5d);
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> evaluateExpressionStatementSource("test.prop = 5;")
+      );
+    }
+
+    @Test
+    void test() {
+      SolaScriptMap map = new SolaScriptMap();
+
+      scriptRuntime.defineVariable("test", map);
+
+      assertEvaluation("test.prop = 5;", 5d);
+    }
   }
 
   @Nested
@@ -336,7 +354,26 @@ class ExpressionInterpreterTest {
 
   @Nested
   class get {
-    // todo not yet implemented to test
+    @Test
+    void whenNotMap_shouldThrow() {
+      scriptRuntime.defineVariable("test", 5d);
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> evaluateExpressionStatementSource("test.prop;")
+      );
+    }
+
+    @Test
+    void test() {
+      SolaScriptMap map = new SolaScriptMap();
+
+      map.set("prop", 5d);
+
+      scriptRuntime.defineVariable("test", map);
+
+      assertEvaluation("test.prop;", 5d);
+    }
   }
 
   @Nested

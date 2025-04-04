@@ -1,0 +1,9 @@
+val myMap = {};
+val myNestedMap = {};
+
+myMap.prop = "test";
+myMap.nested = myNestedMap;
+myMap.nested.prop = "nestedProp";
+
+print(myMap.prop);
+print(myMap.nested.prop);

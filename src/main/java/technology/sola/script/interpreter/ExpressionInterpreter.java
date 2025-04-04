@@ -5,6 +5,7 @@ import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Expr;
 import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.runtime.SolaScriptCallable;
+import technology.sola.script.runtime.SolaScriptMap;
 import technology.sola.script.tokenizer.TokenType;
 
 import java.util.ArrayList;
@@ -23,7 +24,17 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   public Object set(Expr.Set expr) {
-    throw new UnsupportedOperationException("Not yet implemented.");
+    Object object = evaluate(expr.object());
+
+    if (object instanceof SolaScriptMap solaScriptMap) {
+      Object value = evaluate(expr.value());
+
+      solaScriptMap.set(expr.name(), value);
+
+      return value;
+    }
+
+    throw new ScriptInterpretationException(expr.name(), ScriptErrorType.ONLY_MAPS_HAVE_PROPERTIES);
   }
 
   @Override
@@ -152,7 +163,13 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   public Object get(Expr.Get expr) {
-    throw new UnsupportedOperationException("Not yet implemented.");
+    Object object = evaluate(expr.object());
+
+    if (object instanceof SolaScriptMap solaScriptMap) {
+      return solaScriptMap.get(expr.name());
+    }
+
+    throw new ScriptInterpretationException(expr.name(), ScriptErrorType.ONLY_MAPS_HAVE_PROPERTIES);
   }
 
   @Override

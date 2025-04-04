@@ -208,7 +208,7 @@ public interface Expr {
   }
 
   /**
-   * Literal expressions hold a value such as string, number, boolean or null.
+   * Literal expressions hold a value such as string, number, boolean, map or null.
    *
    * @param value the literal value
    */

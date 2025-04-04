@@ -28,7 +28,19 @@ class ExpressionResolverTest {
 
   @Nested
   class set {
-    // todo not yet implemented to test
+    @Test
+    void test() {
+      var variableExpr = initializeTestVariableExpression();
+      var variableExpr2 = initializeTestVariableExpression("rightTest");
+      var expr = new Expr.Set(variableExpr, new Token(TokenType.AMP_AMP, "&&", null, 1, 1), variableExpr2);
+      var resolver = new ExpressionResolver(scriptRuntime, errors);
+
+      resolver.set(expr);
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(variableExpr, 1);
+      assertTestVariableExpression(variableExpr2);
+    }
   }
 
   @Nested
@@ -120,7 +132,17 @@ class ExpressionResolverTest {
 
   @Nested
   class get {
-    // todo not yet implemented to test
+    @Test
+    void test() {
+      var variableExpr = initializeTestVariableExpression();
+      var expr = new Expr.Get(variableExpr, new Token(TokenType.AMP_AMP, "&&", null, 1, 1));
+      var resolver = new ExpressionResolver(scriptRuntime, errors);
+
+      resolver.get(expr);
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(variableExpr);
+    }
   }
 
   @Nested
