@@ -51,6 +51,11 @@ class StatementResolver implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void val(Stmt.Val stmt) {
+    return null; // todo
+  }
+
+  @Override
   public Void expression(Stmt.Expression stmt) {
     stmt.expr().accept(expressionResolver);
 

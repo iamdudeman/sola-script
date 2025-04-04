@@ -62,7 +62,9 @@ public class Parser {
         return declVar();
       }
 
-      // todo val
+      if (advanceExpected(TokenType.VAL)) {
+        return declVal();
+      }
 
       return statement();
     } catch (ParseError error) {
@@ -86,6 +88,18 @@ public class Parser {
     eat(TokenType.SEMICOLON, ScriptErrorType.EXPECT_SEMI_AFTER_VARIABLE_DECLARATION);
 
     return new Stmt.Var(name, initializer);
+  }
+
+  private Stmt declVal() {
+    Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_NAME, "constant");
+
+    eat(TokenType.EQUAL, ScriptErrorType.EXPECT_INITIALIZER_EXPRESSION);
+
+    Expr initializer = expression();
+
+    eat(TokenType.SEMICOLON, ScriptErrorType.EXPECT_SEMI_AFTER_VARIABLE_DECLARATION);
+
+    return new Stmt.Val(name, initializer);
   }
 
   private Stmt statement() {

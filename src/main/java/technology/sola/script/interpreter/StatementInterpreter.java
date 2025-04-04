@@ -40,6 +40,11 @@ class StatementInterpreter implements Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void val(Stmt.Val stmt) {
+    return null; // todo
+  }
+
+  @Override
   public Void expression(Stmt.Expression stmt) {
     expressionInterpreter.evaluate(stmt.expr());
     return null;

@@ -99,6 +99,39 @@ class ParserTest {
   }
 
   @Nested
+  class declVal {
+    @Test
+    void valid() {
+      var source = """
+        val test = 5;
+        """;
+      var expected = """
+        val test = 5
+        """;
+
+      new ParserTester(source)
+        .verify(expected);
+    }
+
+    @Test
+    void invalid() {
+      var source = """
+        val ;
+        val test;
+        val test =;
+        val test = 5
+        """;
+
+      new ParserTester(source)
+        .withErrors(ScriptErrorType.EXPECT_NAME)
+        .withErrors(ScriptErrorType.EXPECT_INITIALIZER_EXPRESSION)
+        .withErrors(ScriptErrorType.EXPECT_EXPRESSION)
+        .withErrors(ScriptErrorType.EXPECT_SEMI_AFTER_VARIABLE_DECLARATION)
+        .verify(null);
+    }
+  }
+
+  @Nested
   class stmtExpression {
     @Nested
     class exprAssignment {

@@ -42,6 +42,11 @@ public enum ScriptErrorType {
   EXPECT_DOT_AFTER_SUPER(ScriptErrorStage.PARSE, "Expect '.' after super."),
 
   /**
+   * Parsing error when an initializer expression is not found for a constant.
+   */
+  EXPECT_INITIALIZER_EXPRESSION(ScriptErrorStage.PARSE, "Expect initializer expression for constants."),
+
+  /**
    * Parsing error when a name for a function, variable, or method is expected.
    */
   EXPECT_NAME(ScriptErrorStage.PARSE, "Expect %s name."),
