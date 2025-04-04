@@ -98,6 +98,22 @@ class StatementInterpreterTest {
   }
 
   @Nested
+  class valStmt {
+    @Test
+    void test() {
+      StatementInterpreter statementInterpreter = new StatementInterpreter(scriptRuntime, expressionInterpreter);
+
+      var varToken = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
+      var varExpr = new Expr.Variable(varToken);
+      var stmt = new Stmt.Val(varToken, new Expr.Literal("value"));
+
+      statementInterpreter.val(stmt);
+
+      assertEquals("value", scriptRuntime.lookUpVariable(varExpr));
+    }
+  }
+
+  @Nested
   class expression {
     @Test
     void test() {

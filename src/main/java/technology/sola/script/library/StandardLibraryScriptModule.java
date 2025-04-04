@@ -21,6 +21,11 @@ public class StandardLibraryScriptModule implements ScriptModule {
     return variables;
   }
 
+  @Override
+  public Map<String, Object> constants() {
+    return Map.of();
+  }
+
   /**
    * <h4>print</h4>
    *

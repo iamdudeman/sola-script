@@ -12,6 +12,11 @@ public enum ScriptErrorType {
   ALREADY_DEFINED_VARIABLE(ScriptErrorStage.SEMANTIC, "'%s' is already defined in this scope."),
 
   /**
+   * Semantic error when a constant is attempted to be assigned to.
+   */
+  CANNOT_ASSIGN_TO_CONSTANT(ScriptErrorStage.RUNTIME, "Cannot assign to constant %s."),
+
+  /**
    * Semantic error when a return statement is found outside a function or method body.
    */
   CANNOT_RETURN_FROM_TOP_LEVEL(ScriptErrorStage.SEMANTIC, "Cannot return from top-level code."),
@@ -35,6 +40,11 @@ public enum ScriptErrorType {
    * Parsing error when a '.' property accessor was not found after 'super'.
    */
   EXPECT_DOT_AFTER_SUPER(ScriptErrorStage.PARSE, "Expect '.' after super."),
+
+  /**
+   * Parsing error when an initializer expression is not found for a constant.
+   */
+  EXPECT_INITIALIZER_EXPRESSION(ScriptErrorStage.PARSE, "Expect initializer expression for constants."),
 
   /**
    * Parsing error when a name for a function, variable, or method is expected.

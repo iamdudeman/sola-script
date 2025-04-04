@@ -3,6 +3,7 @@ package technology.sola.script.runtime;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.script.error.ScriptInterpretationException;
+import technology.sola.script.library.ScriptModule;
 import technology.sola.script.parser.Expr;
 import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
@@ -18,10 +19,22 @@ class ScriptRuntimeTest {
     void test() {
       var runtime = new ScriptRuntime();
       final var token = new Token(TokenType.IDENTIFIER, "test", null, 1, 1);
+      final var constantToken = new Token(TokenType.IDENTIFIER, "constant", null, 1, 1);
 
-      runtime.importModule(() -> Map.of(token.lexeme(), 12.35d));
+      runtime.importModule(new ScriptModule() {
+        @Override
+        public Map<String, Object> variables() {
+          return Map.of(token.lexeme(), 12.35d);
+        }
+
+        @Override
+        public Map<String, Object> constants() {
+          return Map.of(constantToken.lexeme(), true);
+        }
+      });
 
       assertEquals(12.35d, runtime.lookUpVariable(new Expr.Variable(token)));
+      assertEquals(true, runtime.lookUpVariable(new Expr.Variable(constantToken)));
     }
   }
 
@@ -33,6 +46,16 @@ class ScriptRuntimeTest {
       var variableToken = new Token(TokenType.IDENTIFIER, "myVar", null, 1, 1);
 
       runtime.defineVariable(variableToken.lexeme(), "myValue");
+
+      assertEquals("myValue", runtime.lookUpVariable(new Expr.Variable(variableToken)));
+    }
+
+    @Test
+    void shouldBeAbleToDefineConstant() {
+      var runtime = new ScriptRuntime();
+      var variableToken = new Token(TokenType.IDENTIFIER, "myVar", null, 1, 1);
+
+      runtime.defineConstant(variableToken.lexeme(), "myValue");
 
       assertEquals("myValue", runtime.lookUpVariable(new Expr.Variable(variableToken)));
     }

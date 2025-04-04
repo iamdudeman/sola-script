@@ -50,6 +50,11 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String val(Stmt.Val stmt) {
+      return "val " + stmt.name().lexeme() + " = " + print(stmt.initializer());
+    }
+
+    @Override
     public String expression(Stmt.Expression stmt) {
       return print(stmt.expr());
     }

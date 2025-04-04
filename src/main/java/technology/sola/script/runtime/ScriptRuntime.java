@@ -21,6 +21,10 @@ public class ScriptRuntime {
     for (var entry : scriptModule.variables().entrySet()) {
       defineVariable(entry.getKey(), entry.getValue());
     }
+
+    for (var entry : scriptModule.constants().entrySet()) {
+      defineConstant(entry.getKey(), entry.getValue());
+    }
   }
 
   /**
@@ -63,7 +67,17 @@ public class ScriptRuntime {
    * @param value the value for the variable
    */
   public void defineVariable(String name, Object value) {
-    environment.define(name, value);
+    environment.defineVariable(name, value);
+  }
+
+  /**
+   * Defines a constant with desired value in the current environment.
+   *
+   * @param name  the name of the constant
+   * @param value the value for the constant
+   */
+  public void defineConstant(String name, Object value) {
+    environment.defineConstant(name, value);
   }
 
   /**

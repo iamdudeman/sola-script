@@ -36,11 +36,11 @@ program         := declaration* EOF ;
 ### Declarations
 
 ```
-declaration     := funDecl | varDecl | statement ;
+declaration     := funDecl | varDecl | valDecl | statement ;
 classDecl
 funDecl         := "fun" function ;
-varDecl         := "var" IDENTIFIER ( "=" expression)? ";" ;
-valDecl
+varDecl         := "var" IDENTIFIER ( "=" expression )? ";" ;
+valDecl         := "val" IDENTIFIER "=" expression ";" ;
 ```
 
 #### Declaration helpers

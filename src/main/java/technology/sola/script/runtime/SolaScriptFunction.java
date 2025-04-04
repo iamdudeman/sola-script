@@ -39,7 +39,7 @@ public class SolaScriptFunction implements SolaScriptCallable {
     Environment environment = new Environment(closure);
 
     for (int i = 0; i < declaration.parameters().size(); i++) {
-      environment.define(
+      environment.defineVariable(
         declaration.parameters().get(i).lexeme(),
         arguments.get(i)
       );

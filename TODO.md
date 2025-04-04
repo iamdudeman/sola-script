@@ -1,6 +1,5 @@
 # TODO list
 
-* implement "val"
 * class declarations
 * nest standard library functions under a `std` object for "name spacing"
 * consider implementing nullish coalescence "??"

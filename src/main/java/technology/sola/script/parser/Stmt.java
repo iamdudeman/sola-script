@@ -41,6 +41,14 @@ public interface Stmt {
     R var(Var stmt);
 
     /**
+     * Executes a {@link Val} statement and returns the value.
+     *
+     * @param stmt the {@link Val} statement
+     * @return the evaluated value
+     */
+    R val(Val stmt);
+
+    /**
      * Executes an {@link Expression} statement and returns the value.
      *
      * @param stmt the {@link Expression} statement
@@ -105,6 +113,19 @@ public interface Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.var(this);
+    }
+  }
+
+  /**
+   * Val statement declares a constant in the current scope with an initializer.
+   *
+   * @param name        the {@link Token} name of the constant
+   * @param initializer the expression to initialize the constant with
+   */
+  record Val(Token name, Expr initializer) implements Stmt {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.val(this);
     }
   }
 

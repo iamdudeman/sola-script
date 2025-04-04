@@ -12,4 +12,11 @@ public interface ScriptModule {
    * @return the variable definitions within this module
    */
   Map<String, Object> variables();
+
+  /**
+   * Gets the constant definitions within this module.
+   *
+   * @return the constant definitions within this module
+   */
+  Map<String, Object> constants();
 }
