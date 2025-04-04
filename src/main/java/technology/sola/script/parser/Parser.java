@@ -57,8 +57,6 @@ public class Parser {
         return declFun();
       }
 
-      // todo class
-
       if (advanceExpected(TokenType.VAR)) {
         return declVar();
       }
@@ -395,20 +393,6 @@ public class Parser {
       return new Expr.Literal(new SolaScriptMap());
     }
 
-    if (advanceExpected(TokenType.THIS)) {
-      return new Expr.This(previous());
-    }
-
-    if (advanceExpected(TokenType.SUPER)) {
-      var keyword = previous();
-
-      eat(TokenType.DOT, ScriptErrorType.EXPECT_DOT_AFTER_SUPER);
-
-      var method = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_SUPERCLASS_METHOD_NAME);
-
-      return new Expr.Super(keyword, method);
-    }
-
     if (advanceExpected(
       TokenType.STAR, TokenType.SLASH,
       TokenType.PLUS, // note MINUS is okay since it is unary
@@ -486,7 +470,6 @@ public class Parser {
 
       switch (peek().type()) {
         // declarations
-        case CLASS:
         case FUN:
         case VAR:
         case VAL:

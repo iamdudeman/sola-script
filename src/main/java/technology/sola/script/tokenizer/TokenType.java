@@ -17,13 +17,13 @@ public enum TokenType {
   IDENTIFIER, STRING, NUMBER,
 
   // Keywords - declarations
-  CLASS, FUN, VAR, VAL,
+  FUN, VAR, VAL,
 
   // Keywords - statements
   ELSE, FOR, IF, RETURN, WHILE,
 
   // Keywords - values
-  FALSE, NULL, SUPER, THIS, TRUE,
+  FALSE, NULL, TRUE,
 
   // Special end of file
   EOF

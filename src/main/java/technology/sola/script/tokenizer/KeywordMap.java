@@ -8,7 +8,6 @@ class KeywordMap {
 
   KeywordMap() {
     // declarations
-    keywords.put("class", TokenType.CLASS);
     keywords.put("fun", TokenType.FUN);
     keywords.put("var", TokenType.VAR);
     keywords.put("val", TokenType.VAL);
@@ -23,8 +22,6 @@ class KeywordMap {
     // values
     keywords.put("false", TokenType.FALSE);
     keywords.put("null", TokenType.NULL);
-    keywords.put("super", TokenType.SUPER);
-    keywords.put("this", TokenType.THIS);
     keywords.put("true", TokenType.TRUE);
   }
 

@@ -1,6 +1,5 @@
 # TODO list
 
-* class declarations
 * map creation with values predefined (syntactic sugar)
 * nest standard library functions under a `std` object for "name spacing"
 * consider implementing nullish coalescence "??"

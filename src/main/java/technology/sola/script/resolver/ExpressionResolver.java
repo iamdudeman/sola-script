@@ -74,16 +74,6 @@ class ExpressionResolver implements Expr.Visitor<Void> {
   }
 
   @Override
-  public Void thisVisit(Expr.This expr) {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
-
-  @Override
-  public Void superVisit(Expr.Super expr) {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
-
-  @Override
   public Void variable(Expr.Variable expr) {
     var scopes = scriptRuntime.scopes();
 
