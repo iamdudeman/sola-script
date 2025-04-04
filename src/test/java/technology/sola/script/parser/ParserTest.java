@@ -454,6 +454,7 @@ class ParserTest {
           12.37;
           ( true );
           testVar;
+          var test = {};
           this;
           super.someMethod;
           """;
@@ -465,6 +466,7 @@ class ParserTest {
           12.37
           (true)
           testVar
+          var test = {}
           this
           super.someMethod
           """;
@@ -476,10 +478,14 @@ class ParserTest {
       @Test
       void invalid() {
         var source = """
+          (1 + 1 ;
+          test = { ;
           false
           """;
 
         new ParserTester(source)
+          .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_EXPRESSION)
+          .withErrors(ScriptErrorType.EXPECT_BRACE_AFTER_MAP_CREATION)
           .withErrors(ScriptErrorType.EXPECT_SEMI_AFTER_EXPRESSION)
           .verify("");
       }

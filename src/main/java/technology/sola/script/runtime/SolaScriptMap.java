@@ -40,4 +40,9 @@ public class SolaScriptMap {
   public void set(String name, Object value) {
     properties.put(name, value);
   }
+
+  @Override
+  public String toString() {
+    return "{}";
+  }
 }

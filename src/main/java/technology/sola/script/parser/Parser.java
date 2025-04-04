@@ -389,7 +389,6 @@ public class Parser {
       return new Expr.Variable(previous());
     }
 
-    // todo test
     if (advanceExpected(TokenType.LEFT_BRACE)) {
       eat(TokenType.RIGHT_BRACE, ScriptErrorType.EXPECT_BRACE_AFTER_MAP_CREATION);
 
