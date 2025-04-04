@@ -94,6 +94,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.html#accept(technology.sola.script.parser.Stmt.Visitor)" class="member-name-link">accept(Stmt.Visitor&lt;R&gt;)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.html" title="class in technology.sola.script.parser">Stmt.Return</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html#accept(technology.sola.script.parser.Stmt.Visitor)" class="member-name-link">accept(Stmt.Visitor&lt;R&gt;)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser">Stmt.Val</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html#accept(technology.sola.script.parser.Stmt.Visitor)" class="member-name-link">accept(Stmt.Visitor&lt;R&gt;)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html" title="class in technology.sola.script.parser">Stmt.Var</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.While.html#accept(technology.sola.script.parser.Stmt.Visitor)" class="member-name-link">accept(Stmt.Visitor&lt;R&gt;)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.While.html" title="class in technology.sola.script.parser">Stmt.While</a></dt>
@@ -192,6 +194,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the value of the <code>callee</code> record component.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#CANNOT_ASSIGN_TO_CONSTANT" class="member-name-link">CANNOT_ASSIGN_TO_CONSTANT</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
+<dd>
+<div class="block">Semantic error when a constant is attempted to be assigned to.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#CANNOT_RETURN_FROM_TOP_LEVEL" class="member-name-link">CANNOT_RETURN_FROM_TOP_LEVEL</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
 <div class="block">Semantic error when a return statement is found outside a function or method body.</div>
@@ -220,6 +226,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the value of the <a href="./technology.sola.script/technology/sola/script/parser/Stmt.While.html#param-condition"><code>condition</code></a> record component.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/library/ScriptModule.html#constants()" class="member-name-link">constants()</a> - Method in interface technology.sola.script.library.<a href="technology.sola.script/technology/sola/script/library/ScriptModule.html" title="interface in technology.sola.script.library">ScriptModule</a></dt>
+<dd>
+<div class="block">Gets the constant definitions within this module.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/library/StandardLibraryScriptModule.html#constants()" class="member-name-link">constants()</a> - Method in class technology.sola.script.library.<a href="technology.sola.script/technology/sola/script/library/StandardLibraryScriptModule.html" title="class in technology.sola.script.library">StandardLibraryScriptModule</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/runtime/ScriptRuntime.html#createNestedEnvironment()" class="member-name-link">createNestedEnvironment()</a> - Method in class technology.sola.script.runtime.<a href="technology.sola.script/technology/sola/script/runtime/ScriptRuntime.html" title="class in technology.sola.script.runtime">ScriptRuntime</a></dt>
 <dd>
 <div class="block">Creates a nested environment with the previous environment as its parent.</div>
@@ -238,6 +250,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="technology.sola.script/technology/sola/script/runtime/ScopeTable.html#define(technology.sola.script.tokenizer.Token)" class="member-name-link">define(Token)</a> - Method in class technology.sola.script.runtime.<a href="technology.sola.script/technology/sola/script/runtime/ScopeTable.html" title="class in technology.sola.script.runtime">ScopeTable</a></dt>
 <dd>
 <div class="block">Marks a variable is defined for the current scope.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/runtime/ScriptRuntime.html#defineConstant(java.lang.String,java.lang.Object)" class="member-name-link">defineConstant(String, Object)</a> - Method in class technology.sola.script.runtime.<a href="technology.sola.script/technology/sola/script/runtime/ScriptRuntime.html" title="class in technology.sola.script.runtime">ScriptRuntime</a></dt>
+<dd>
+<div class="block">Defines a constant with desired value in the current environment.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/runtime/ScriptRuntime.html#defineVariable(java.lang.String,java.lang.Object)" class="member-name-link">defineVariable(String, Object)</a> - Method in class technology.sola.script.runtime.<a href="technology.sola.script/technology/sola/script/runtime/ScriptRuntime.html" title="class in technology.sola.script.runtime">ScriptRuntime</a></dt>
 <dd>
@@ -344,6 +360,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser">Stmt.Val</a></dt>
+<dd>
+<div class="block">Indicates whether some other object is "equal to" this one.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html" title="class in technology.sola.script.parser">Stmt.Var</a></dt>
 <dd>
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
@@ -405,6 +425,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_EXPRESSION" class="member-name-link">EXPECT_EXPRESSION</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
 <div class="block">Parsing error when an expression is expected, but not found.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_INITIALIZER_EXPRESSION" class="member-name-link">EXPECT_INITIALIZER_EXPRESSION</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
+<dd>
+<div class="block">Parsing error when an initializer expression is not found for a constant.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_NAME" class="member-name-link">EXPECT_NAME</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
@@ -645,6 +669,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns a hash code value for this object.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser">Stmt.Val</a></dt>
+<dd>
+<div class="block">Returns a hash code value for this object.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html" title="class in technology.sola.script.parser">Stmt.Var</a></dt>
 <dd>
 <div class="block">Returns a hash code value for this object.</div>
@@ -681,6 +709,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="technology.sola.script/technology/sola/script/runtime/ScriptRuntime.html#importModule(technology.sola.script.library.ScriptModule)" class="member-name-link">importModule(ScriptModule)</a> - Method in class technology.sola.script.runtime.<a href="technology.sola.script/technology/sola/script/runtime/ScriptRuntime.html" title="class in technology.sola.script.runtime">ScriptRuntime</a></dt>
 <dd>
 <div class="block">Imports functionality provided by a <a href="technology.sola.script/technology/sola/script/library/ScriptModule.html" title="interface in technology.sola.script.library"><code>ScriptModule</code></a> into the globals of this runtime.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html#initializer()" class="member-name-link">initializer()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser">Stmt.Val</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./technology.sola.script/technology/sola/script/parser/Stmt.Val.html#param-initializer"><code>initializer</code></a> record component.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html#initializer()" class="member-name-link">initializer()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html" title="class in technology.sola.script.parser">Stmt.Var</a></dt>
 <dd>
@@ -837,6 +869,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Function.html#name()" class="member-name-link">name()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Function.html" title="class in technology.sola.script.parser">Stmt.Function</a></dt>
 <dd>
 <div class="block">Returns the value of the <a href="./technology.sola.script/technology/sola/script/parser/Stmt.Function.html#param-name"><code>name</code></a> record component.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html#name()" class="member-name-link">name()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser">Stmt.Val</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./technology.sola.script/technology/sola/script/parser/Stmt.Val.html#param-name"><code>name</code></a> record component.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html#name()" class="member-name-link">name()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html" title="class in technology.sola.script.parser">Stmt.Var</a></dt>
 <dd>
@@ -1143,6 +1179,10 @@ loadScripts(document, 'script');</script>
  <a href="technology.sola.script/technology/sola/script/runtime/SolaScriptFunction.html" title="class in technology.sola.script.runtime"><code>SolaScriptFunction</code></a> can catch it and return the value as the result
  of the <a href="technology.sola.script/technology/sola/script/parser/Expr.Call.html" title="class in technology.sola.script.parser"><code>Expr.Call</code></a>.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" class="type-name-link" title="class in technology.sola.script.parser">Stmt.Val</a> - Record Class in <a href="technology.sola.script/technology/sola/script/parser/package-summary.html">technology.sola.script.parser</a></dt>
+<dd>
+<div class="block">Val statement declares a constant in the current scope with an initializer.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html" class="type-name-link" title="class in technology.sola.script.parser">Stmt.Var</a> - Record Class in <a href="technology.sola.script/technology/sola/script/parser/package-summary.html">technology.sola.script.parser</a></dt>
 <dd>
 <div class="block">Var statement declares a variable in the current scope with an optional initializer.</div>
@@ -1338,6 +1378,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns a string representation of this record class.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html#toString()" class="member-name-link">toString()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser">Stmt.Val</a></dt>
+<dd>
+<div class="block">Returns a string representation of this record class.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html#toString()" class="member-name-link">toString()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Var.html" title="class in technology.sola.script.parser">Stmt.Var</a></dt>
 <dd>
 <div class="block">Returns a string representation of this record class.</div>
@@ -1391,6 +1435,14 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">
+<dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Visitor.html#val(technology.sola.script.parser.Stmt.Val)" class="member-name-link">val(Stmt.Val)</a> - Method in interface technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Visitor.html" title="interface in technology.sola.script.parser">Stmt.Visitor</a></dt>
+<dd>
+<div class="block">Executes a <a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser"><code>Stmt.Val</code></a> statement and returns the value.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html#%3Cinit%3E(technology.sola.script.tokenizer.Token,technology.sola.script.parser.Expr)" class="member-name-link">Val(Token, Expr)</a> - Constructor for record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Val.html" title="class in technology.sola.script.parser">Stmt.Val</a></dt>
+<dd>
+<div class="block">Creates an instance of a <code>Val</code> record class.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html#VAL" class="member-name-link">VAL</a> - Enum constant in enum class technology.sola.script.tokenizer.<a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.Exception.html#value" class="member-name-link">value</a> - Variable in exception technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.Exception.html" title="class in technology.sola.script.parser">Stmt.Return.Exception</a></dt>

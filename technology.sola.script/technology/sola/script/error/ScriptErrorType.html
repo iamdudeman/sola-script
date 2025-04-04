@@ -109,25 +109,33 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Semantic error when a variable was already defined in this scope.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#CANNOT_RETURN_FROM_TOP_LEVEL" class="member-name-link">CANNOT_RETURN_FROM_TOP_LEVEL</a></code></div>
+<div class="col-first odd-row-color"><code><a href="#CANNOT_ASSIGN_TO_CONSTANT" class="member-name-link">CANNOT_ASSIGN_TO_CONSTANT</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">Semantic error when a constant is attempted to be assigned to.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#CANNOT_RETURN_FROM_TOP_LEVEL" class="member-name-link">CANNOT_RETURN_FROM_TOP_LEVEL</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Semantic error when a return statement is found outside a function or method body.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#EXPECT_BRACE_AFTER_BLOCK" class="member-name-link">EXPECT_BRACE_AFTER_BLOCK</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#EXPECT_BRACE_AFTER_BLOCK" class="member-name-link">EXPECT_BRACE_AFTER_BLOCK</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Parsing error when a closing '}' is not found after a block.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#EXPECT_BRACE_BEFORE_BODY" class="member-name-link">EXPECT_BRACE_BEFORE_BODY</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#EXPECT_BRACE_BEFORE_BODY" class="member-name-link">EXPECT_BRACE_BEFORE_BODY</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Parsing error when an opening brace is not found before a function body.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#EXPECT_DOT_AFTER_SUPER" class="member-name-link">EXPECT_DOT_AFTER_SUPER</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#EXPECT_DOT_AFTER_SUPER" class="member-name-link">EXPECT_DOT_AFTER_SUPER</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Parsing error when a '.' property accessor was not found after 'super'.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#EXPECT_EXPRESSION" class="member-name-link">EXPECT_EXPRESSION</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#EXPECT_EXPRESSION" class="member-name-link">EXPECT_EXPRESSION</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Parsing error when an expression is expected, but not found.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="#EXPECT_INITIALIZER_EXPRESSION" class="member-name-link">EXPECT_INITIALIZER_EXPRESSION</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Parsing error when an initializer expression is not found for a constant.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#EXPECT_NAME" class="member-name-link">EXPECT_NAME</a></code></div>
 <div class="col-last even-row-color">
@@ -309,6 +317,13 @@ the order they are declared.</div>
 </section>
 </li>
 <li>
+<section class="detail" id="CANNOT_ASSIGN_TO_CONSTANT">
+<h3>CANNOT_ASSIGN_TO_CONSTANT</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">CANNOT_ASSIGN_TO_CONSTANT</span></div>
+<div class="block">Semantic error when a constant is attempted to be assigned to.</div>
+</section>
+</li>
+<li>
 <section class="detail" id="CANNOT_RETURN_FROM_TOP_LEVEL">
 <h3>CANNOT_RETURN_FROM_TOP_LEVEL</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">CANNOT_RETURN_FROM_TOP_LEVEL</span></div>
@@ -341,6 +356,13 @@ the order they are declared.</div>
 <h3>EXPECT_DOT_AFTER_SUPER</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">EXPECT_DOT_AFTER_SUPER</span></div>
 <div class="block">Parsing error when a '.' property accessor was not found after 'super'.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="EXPECT_INITIALIZER_EXPRESSION">
+<h3>EXPECT_INITIALIZER_EXPRESSION</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">EXPECT_INITIALIZER_EXPRESSION</span></div>
+<div class="block">Parsing error when an initializer expression is not found for a constant.</div>
 </section>
 </li>
 <li>

@@ -119,29 +119,35 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates a nested environment with the previous environment as its parent.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#defineVariable(java.lang.String,java.lang.Object)" class="member-name-link">defineVariable</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#defineConstant(java.lang.String,java.lang.Object)" class="member-name-link">defineConstant</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Defines a constant with desired value in the current environment.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#defineVariable(java.lang.String,java.lang.Object)" class="member-name-link">defineVariable</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Defines a variable with desired value in the current environment.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#importModule(technology.sola.script.library.ScriptModule)" class="member-name-link">importModule</a><wbr>(<a href="../library/ScriptModule.html" title="interface in technology.sola.script.library">ScriptModule</a>&nbsp;scriptModule)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#importModule(technology.sola.script.library.ScriptModule)" class="member-name-link">importModule</a><wbr>(<a href="../library/ScriptModule.html" title="interface in technology.sola.script.library">ScriptModule</a>&nbsp;scriptModule)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Imports functionality provided by a <a href="../library/ScriptModule.html" title="interface in technology.sola.script.library"><code>ScriptModule</code></a> into the globals of this runtime.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#lookUpVariable(technology.sola.script.parser.Expr.Variable)" class="member-name-link">lookUpVariable</a><wbr>(<a href="../parser/Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a>&nbsp;expr)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#lookUpVariable(technology.sola.script.parser.Expr.Variable)" class="member-name-link">lookUpVariable</a><wbr>(<a href="../parser/Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a>&nbsp;expr)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Looks up a variable's value utilizing the variable resolutions in the <a href="ScopeTable.html" title="class in technology.sola.script.runtime"><code>ScopeTable</code></a> for the runtime.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#restoreEnvironment(technology.sola.script.runtime.EnvironmentHandle)" class="member-name-link">restoreEnvironment</a><wbr>(<a href="EnvironmentHandle.html" title="class in technology.sola.script.runtime">EnvironmentHandle</a>&nbsp;handle)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#restoreEnvironment(technology.sola.script.runtime.EnvironmentHandle)" class="member-name-link">restoreEnvironment</a><wbr>(<a href="EnvironmentHandle.html" title="class in technology.sola.script.runtime">EnvironmentHandle</a>&nbsp;handle)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Restores an environment utilizing its <a href="EnvironmentHandle.html" title="class in technology.sola.script.runtime"><code>EnvironmentHandle</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ScopeTable.html" title="class in technology.sola.script.runtime">ScopeTable</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scopes()" class="member-name-link">scopes</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ScopeTable.html" title="class in technology.sola.script.runtime">ScopeTable</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scopes()" class="member-name-link">scopes</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the <a href="ScopeTable.html" title="class in technology.sola.script.runtime"><code>ScopeTable</code></a> for the runtime so it can be updated with local variable resolutions.</div>
 </div>
 </div>
@@ -231,6 +237,19 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>name</code> - the name of the variable</dd>
 <dd><code>value</code> - the value for the variable</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="defineConstant(java.lang.String,java.lang.Object)">
+<h3>defineConstant</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">defineConstant</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</span></div>
+<div class="block">Defines a constant with desired value in the current environment.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - the name of the constant</dd>
+<dd><code>value</code> - the value for the constant</dd>
 </dl>
 </section>
 </li>
