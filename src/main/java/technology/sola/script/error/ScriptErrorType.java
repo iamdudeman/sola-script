@@ -137,9 +137,9 @@ public enum ScriptErrorType {
   NOT_CALLABLE(ScriptErrorStage.RUNTIME, "Can only call functions and classes."),
 
   /**
-   * Runtime error when a property accessor is found on something that is not an object.
+   * Runtime error when a property accessor is found on something that is not a map.
    */
-  ONLY_INSTANCES_HAVE_PROPERTIES(ScriptErrorStage.RUNTIME, "Only instances have properties."),
+  ONLY_MAPS_HAVE_PROPERTIES(ScriptErrorStage.RUNTIME, "Only maps have properties."),
 
   /**
    * Runtime error when an operand was expected to be a number.

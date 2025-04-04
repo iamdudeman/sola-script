@@ -18,7 +18,11 @@ class ExpressionResolver implements Expr.Visitor<Void> {
 
   @Override
   public Void set(Expr.Set expr) {
-    throw new UnsupportedOperationException("Not supported yet.");
+    // todo test
+    expr.value().accept(this);
+    expr.object().accept(this);
+
+    return null;
   }
 
   @Override
@@ -65,7 +69,10 @@ class ExpressionResolver implements Expr.Visitor<Void> {
 
   @Override
   public Void get(Expr.Get expr) {
-    throw new UnsupportedOperationException("Not supported yet.");
+    // todo test
+    expr.object().accept(this);
+
+    return null;
   }
 
   @Override

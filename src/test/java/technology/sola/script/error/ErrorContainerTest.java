@@ -29,7 +29,7 @@ class ErrorContainerTest {
     assertFalse(errorContainer.hasRuntimeError());
 
     errorContainer.addError(
-      new ScriptError(ScriptErrorType.ONLY_INSTANCES_HAVE_PROPERTIES, 10, 1)
+      new ScriptError(ScriptErrorType.ONLY_MAPS_HAVE_PROPERTIES, 10, 1)
     );
 
     assertTrue(errorContainer.hasError());

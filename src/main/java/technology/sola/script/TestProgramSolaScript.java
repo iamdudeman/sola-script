@@ -9,6 +9,7 @@ public class TestProgramSolaScript {
       "if",
       "while",
       "function",
+      "map"
     };
 
     for (var file : files) {
