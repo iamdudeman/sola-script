@@ -1,5 +1,7 @@
 package technology.sola.script.library;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.interpreter.ValueUtils;
 import technology.sola.script.runtime.SolaScriptCallable;
 
@@ -11,6 +13,7 @@ import java.util.Scanner;
 /**
  * StandardLibraryScriptModule contains some standard functionality for making useful programs using sola-script.
  */
+@NullMarked
 public class StandardLibraryScriptModule implements ScriptModule {
   @Override
   public Map<String, Object> variables() {
@@ -57,6 +60,7 @@ public class StandardLibraryScriptModule implements ScriptModule {
       }
 
       @Override
+      @Nullable
       public Object call(List<Object> arguments) {
         System.out.println(ValueUtils.stringify(arguments.get(0)));
 

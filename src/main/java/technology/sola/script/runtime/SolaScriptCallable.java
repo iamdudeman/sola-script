@@ -1,5 +1,7 @@
 package technology.sola.script.runtime;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.List;
 
 /**
@@ -19,5 +21,5 @@ public interface SolaScriptCallable {
    * @param arguments the arguments for the call
    * @return the evaluated value
    */
-  Object call(List<Object> arguments);
+  @Nullable Object call(List<Object> arguments);
 }
