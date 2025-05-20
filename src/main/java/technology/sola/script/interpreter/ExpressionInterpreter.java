@@ -1,5 +1,7 @@
 package technology.sola.script.interpreter;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.parser.Expr;
@@ -11,6 +13,7 @@ import technology.sola.script.tokenizer.TokenType;
 import java.util.ArrayList;
 import java.util.List;
 
+@NullMarked
 class ExpressionInterpreter implements Expr.Visitor<Object> {
   private final ScriptRuntime scriptRuntime;
 
@@ -18,11 +21,13 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
     this.scriptRuntime = scriptRuntime;
   }
 
+  @Nullable
   Object evaluate(Expr expr) {
     return expr.accept(this);
   }
 
   @Override
+  @Nullable
   public Object set(Expr.Set expr) {
     Object object = evaluate(expr.object());
 
@@ -38,6 +43,7 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   }
 
   @Override
+  @Nullable
   public Object assign(Expr.Assign expr) {
     Object value = evaluate(expr.value());
 
@@ -47,6 +53,7 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   }
 
   @Override
+  @Nullable
   public Object logical(Expr.Logical expr) {
     Object left = evaluate(expr.left());
     var operator = expr.operator().type();
@@ -142,9 +149,10 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   }
 
   @Override
+  @Nullable
   public Object call(Expr.Call expr) {
     Object callee = evaluate(expr.callee());
-    List<Object> arguments = new ArrayList<>();
+    List<@Nullable Object> arguments = new ArrayList<>();
 
     for (Expr argument : expr.arguments()) {
       arguments.add(evaluate(argument));
@@ -162,6 +170,7 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   }
 
   @Override
+  @Nullable
   public Object get(Expr.Get expr) {
     Object object = evaluate(expr.object());
 
@@ -173,16 +182,19 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   }
 
   @Override
+  @Nullable
   public Object variable(Expr.Variable expr) {
     return scriptRuntime.lookUpVariable(expr);
   }
 
   @Override
+  @Nullable
   public Object grouping(Expr.Grouping expr) {
     return evaluate(expr.expression());
   }
 
   @Override
+  @Nullable
   public Object literal(Expr.Literal expr) {
     return expr.value();
   }

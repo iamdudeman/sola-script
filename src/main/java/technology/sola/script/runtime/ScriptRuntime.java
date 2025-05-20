@@ -1,6 +1,7 @@
 package technology.sola.script.runtime;
 
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.library.ScriptModule;
 import technology.sola.script.parser.Expr;
 
@@ -90,6 +91,7 @@ public class ScriptRuntime {
    * @param expr the {@link Expr.Variable} to get the value for
    * @return the variable's value
    */
+  @Nullable
   public Object lookUpVariable(Expr.Variable expr) {
     var distance = scopeTable.getDistance(expr);
     var name = expr.name();
@@ -109,7 +111,7 @@ public class ScriptRuntime {
    * @param expr  the {@link Expr.Assign} expression
    * @param value the value to assign to the variable
    */
-  public void assignVariable(Expr.Assign expr, Object value) {
+  public void assignVariable(Expr.Assign expr, @Nullable Object value) {
     Integer distance = scopeTable.getDistance(expr);
 
     if (distance == null) {

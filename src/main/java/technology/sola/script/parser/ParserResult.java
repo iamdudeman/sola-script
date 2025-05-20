@@ -1,5 +1,6 @@
 package technology.sola.script.parser;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.error.ScriptError;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @param statements the list of {@link Stmt}s
  * @param errors     the list of {@link ScriptError}s
  */
+@NullMarked
 public record ParserResult(
   List<Stmt> statements,
   List<ScriptError> errors

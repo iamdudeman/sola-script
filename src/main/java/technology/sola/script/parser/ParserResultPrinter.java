@@ -1,5 +1,6 @@
 package technology.sola.script.parser;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.tokenizer.Token;
 
 import java.util.stream.Collectors;
@@ -7,6 +8,7 @@ import java.util.stream.Collectors;
 /**
  * ParserResultPrinter serializes a {@link ParserResult} in a human-readable way.
  */
+@NullMarked
 public class ParserResultPrinter {
   private final StmtPrinter stmtPrinter = new StmtPrinter();
   private final ExprPrinter exprPrinter = new ExprPrinter();

@@ -23,5 +23,5 @@ public interface SolaScriptCallable {
    * @param arguments the arguments for the call
    * @return the evaluated value
    */
-  @Nullable Object call(List<Object> arguments);
+  @Nullable Object call(List<@Nullable Object> arguments);
 }

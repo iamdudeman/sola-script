@@ -37,7 +37,7 @@ class Environment {
    * @param name  the {@link Token} of the name of the variable
    * @param value the value assigned to the variable
    */
-  void assign(Token name, Object value) {
+  void assign(Token name, @Nullable Object value) {
     var definition = definitions.get(name.lexeme());
 
     // assign to current scope if present
@@ -60,7 +60,7 @@ class Environment {
     throw new ScriptInterpretationException(name, ScriptErrorType.UNDEFINED_VARIABLE, name.lexeme());
   }
 
-  void assignAt(int distance, Token name, Object value) {
+  void assignAt(int distance, Token name, @Nullable Object value) {
     var definition = getParent(distance).definitions.get(name.lexeme());
 
     if (definition.isConstant) {
