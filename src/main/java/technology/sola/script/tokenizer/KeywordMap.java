@@ -1,5 +1,7 @@
 package technology.sola.script.tokenizer;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +34,7 @@ class KeywordMap {
    * @param identifier the identifier that might be a keyword
    * @return the specific keyword token type or {@link TokenType#IDENTIFIER}
    */
-  TokenType getTokenType(String identifier) {
+  TokenType getTokenType(@NonNull String identifier) {
     return keywords.getOrDefault(identifier, TokenType.IDENTIFIER);
   }
 }

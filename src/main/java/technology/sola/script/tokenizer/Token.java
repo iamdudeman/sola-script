@@ -1,5 +1,8 @@
 package technology.sola.script.tokenizer;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
+
 /**
  * Token holds information about a recognized token that sola script understands.
  *
@@ -9,10 +12,11 @@ package technology.sola.script.tokenizer;
  * @param line    the line number the token was found on
  * @param column  the column number the token was found at
  */
+@NullMarked
 public record Token(
   TokenType type,
   String lexeme,
-  Object literal,
+  @Nullable Object literal,
   int line,
   int column
 ) {

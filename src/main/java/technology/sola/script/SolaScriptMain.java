@@ -1,5 +1,6 @@
 package technology.sola.script;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.error.ErrorContainer;
 import technology.sola.script.interpreter.Interpreter;
 import technology.sola.script.library.StandardLibraryScriptModule;
@@ -18,6 +19,7 @@ import java.nio.file.Paths;
 /**
  * SolaScriptMain contains the entry point for running sola scripts from the command line.
  */
+@NullMarked
 public class SolaScriptMain {
   private static final ScriptRuntime scriptRuntime = new ScriptRuntime();
 

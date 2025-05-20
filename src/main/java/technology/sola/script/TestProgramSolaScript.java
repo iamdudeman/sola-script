@@ -1,7 +1,10 @@
 package technology.sola.script;
 
+import org.jspecify.annotations.NullMarked;
+
 import java.io.IOException;
 
+@NullMarked
 public class TestProgramSolaScript {
   public static void main(String[] args) throws IOException {
     String[] files = new String[] {
