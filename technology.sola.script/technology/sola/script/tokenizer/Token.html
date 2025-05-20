@@ -86,7 +86,8 @@ loadScripts(document, 'script');</script>
 <dd><code><span id="param-column">column</span></code> - the column number the token was found at</dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">Token</span>(<a href="TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a>&nbsp;type, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;lexeme, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;literal, int&nbsp;line, int&nbsp;column)
+<div class="type-signature"><span class="annotations">@NullMarked
+</span><span class="modifiers">public record </span><span class="element-name type-name-label">Token</span>(<a href="TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a>&nbsp;type, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;lexeme, @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;literal, int&nbsp;line, int&nbsp;column)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">Token holds information about a recognized token that sola script understands.</div>
 </section>
@@ -102,7 +103,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(technology.sola.script.tokenizer.TokenType,java.lang.String,java.lang.Object,int,int)" class="member-name-link">Token</a><wbr>(<a href="TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;lexeme,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;literal,
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;literal,
  int&nbsp;line,
  int&nbsp;column)</code></div>
 <div class="col-last even-row-color">
@@ -147,7 +148,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-line"><code>line</code></a> record component.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#literal()" class="member-name-link">literal</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-literal"><code>literal</code></a> record component.</div>
@@ -184,7 +185,7 @@ loadScripts(document, 'script');</script>
 <h3>Token</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Token</span><wbr><span class="parameters">(<a href="TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;lexeme,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;literal,
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;literal,
  int&nbsp;line,
  int&nbsp;column)</span></div>
 <div class="block">Creates an instance of a <code>Token</code> record class.</div>
@@ -272,7 +273,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="literal()">
 <h3>literal</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">literal</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">literal</span>()</div>
 <div class="block">Returns the value of the <a href="#param-literal"><code>literal</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>

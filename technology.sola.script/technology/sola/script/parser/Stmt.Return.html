@@ -91,7 +91,7 @@ loadScripts(document, 'script');</script>
 <dd><a href="Stmt.html" title="interface in technology.sola.script.parser">Stmt</a></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">Stmt.Return</span>(<a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a>&nbsp;keyword, <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;value)
+<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">Stmt.Return</span>(<a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a>&nbsp;keyword, @Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;value)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a>
 implements <a href="Stmt.html" title="interface in technology.sola.script.parser">Stmt</a></span></div>
 <div class="block">Return statement exits a function or method while optionally returning a value for the caller to use.</div>
@@ -130,7 +130,7 @@ implements <a href="Stmt.html" title="interface in technology.sola.script.parser
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(technology.sola.script.tokenizer.Token,technology.sola.script.parser.Expr)" class="member-name-link">Return</a><wbr>(<a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a>&nbsp;keyword,
- <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;value)</code></div>
+ @Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;value)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates an instance of a <code>Return</code> record class.</div>
 </div>
@@ -173,7 +173,7 @@ implements <a href="Stmt.html" title="interface in technology.sola.script.parser
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a string representation of this record class.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#value()" class="member-name-link">value</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-value"><code>value</code></a> record component.</div>
@@ -199,7 +199,7 @@ implements <a href="Stmt.html" title="interface in technology.sola.script.parser
 <section class="detail" id="&lt;init&gt;(technology.sola.script.tokenizer.Token,technology.sola.script.parser.Expr)">
 <h3>Return</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Return</span><wbr><span class="parameters">(<a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a>&nbsp;keyword,
- <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;value)</span></div>
+ @Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;value)</span></div>
 <div class="block">Creates an instance of a <code>Return</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -289,7 +289,7 @@ implements <a href="Stmt.html" title="interface in technology.sola.script.parser
 <li>
 <section class="detail" id="value()">
 <h3>value</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span>&nbsp;<span class="element-name">value</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">@Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span>&nbsp;<span class="element-name">value</span>()</div>
 <div class="block">Returns the value of the <a href="#param-value"><code>value</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>

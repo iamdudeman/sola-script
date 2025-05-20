@@ -76,7 +76,8 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ScriptRuntime</span>
+<div class="type-signature"><span class="annotations">@NullMarked
+</span><span class="modifiers">public class </span><span class="element-name type-name-label">ScriptRuntime</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">ScriptRuntime contains environment state information as well as a <a href="ScopeTable.html" title="class in technology.sola.script.runtime"><code>ScopeTable</code></a> to keep track of nested scope
  variable resolutions.</div>
@@ -109,7 +110,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#assignVariable(technology.sola.script.parser.Expr.Assign,java.lang.Object)" class="member-name-link">assignVariable</a><wbr>(<a href="../parser/Expr.Assign.html" title="class in technology.sola.script.parser">Expr.Assign</a>&nbsp;expr,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</code></div>
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Assigns a variable's value utilizing the variable resolutions in the <a href="ScopeTable.html" title="class in technology.sola.script.runtime"><code>ScopeTable</code></a> for the runtime.</div>
 </div>
@@ -120,13 +121,13 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#defineConstant(java.lang.String,java.lang.Object)" class="member-name-link">defineConstant</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</code></div>
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Defines a constant with desired value in the current environment.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#defineVariable(java.lang.String,java.lang.Object)" class="member-name-link">defineVariable</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</code></div>
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Defines a variable with desired value in the current environment.</div>
 </div>
@@ -135,7 +136,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Imports functionality provided by a <a href="../library/ScriptModule.html" title="interface in technology.sola.script.library"><code>ScriptModule</code></a> into the globals of this runtime.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#lookUpVariable(technology.sola.script.parser.Expr.Variable)" class="member-name-link">lookUpVariable</a><wbr>(<a href="../parser/Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a>&nbsp;expr)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Looks up a variable's value utilizing the variable resolutions in the <a href="ScopeTable.html" title="class in technology.sola.script.runtime"><code>ScopeTable</code></a> for the runtime.</div>
@@ -231,7 +232,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="defineVariable(java.lang.String,java.lang.Object)">
 <h3>defineVariable</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">defineVariable</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</span></div>
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</span></div>
 <div class="block">Defines a variable with desired value in the current environment.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -244,7 +245,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="defineConstant(java.lang.String,java.lang.Object)">
 <h3>defineConstant</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">defineConstant</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</span></div>
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</span></div>
 <div class="block">Defines a constant with desired value in the current environment.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -256,7 +257,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="lookUpVariable(technology.sola.script.parser.Expr.Variable)">
 <h3>lookUpVariable</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">lookUpVariable</span><wbr><span class="parameters">(<a href="../parser/Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a>&nbsp;expr)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">lookUpVariable</span><wbr><span class="parameters">(<a href="../parser/Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a>&nbsp;expr)</span></div>
 <div class="block">Looks up a variable's value utilizing the variable resolutions in the <a href="ScopeTable.html" title="class in technology.sola.script.runtime"><code>ScopeTable</code></a> for the runtime.
  <p>
  If there is not a scope resolution for the expression then it will be retrieved as a global.</div>
@@ -272,7 +273,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="assignVariable(technology.sola.script.parser.Expr.Assign,java.lang.Object)">
 <h3>assignVariable</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">assignVariable</span><wbr><span class="parameters">(<a href="../parser/Expr.Assign.html" title="class in technology.sola.script.parser">Expr.Assign</a>&nbsp;expr,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</span></div>
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</span></div>
 <div class="block">Assigns a variable's value utilizing the variable resolutions in the <a href="ScopeTable.html" title="class in technology.sola.script.runtime"><code>ScopeTable</code></a> for the runtime.
  <p>
  If there is not a scope resolution for the expression then it will be assigned as a global.</div>

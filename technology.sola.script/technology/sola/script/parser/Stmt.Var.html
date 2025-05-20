@@ -91,7 +91,7 @@ loadScripts(document, 'script');</script>
 <dd><a href="Stmt.html" title="interface in technology.sola.script.parser">Stmt</a></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">Stmt.Var</span>(<a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a>&nbsp;name, <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;initializer)
+<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">Stmt.Var</span>(<a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a>&nbsp;name, @Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;initializer)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a>
 implements <a href="Stmt.html" title="interface in technology.sola.script.parser">Stmt</a></span></div>
 <div class="block">Var statement declares a variable in the current scope with an optional initializer.</div>
@@ -116,7 +116,7 @@ implements <a href="Stmt.html" title="interface in technology.sola.script.parser
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(technology.sola.script.tokenizer.Token,technology.sola.script.parser.Expr)" class="member-name-link">Var</a><wbr>(<a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a>&nbsp;name,
- <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;initializer)</code></div>
+ @Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;initializer)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates an instance of a <code>Var</code> record class.</div>
 </div>
@@ -149,7 +149,7 @@ implements <a href="Stmt.html" title="interface in technology.sola.script.parser
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a hash code value for this object.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initializer()" class="member-name-link">initializer</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-initializer"><code>initializer</code></a> record component.</div>
@@ -185,7 +185,7 @@ implements <a href="Stmt.html" title="interface in technology.sola.script.parser
 <section class="detail" id="&lt;init&gt;(technology.sola.script.tokenizer.Token,technology.sola.script.parser.Expr)">
 <h3>Var</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Var</span><wbr><span class="parameters">(<a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a>&nbsp;name,
- <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;initializer)</span></div>
+ @Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;initializer)</span></div>
 <div class="block">Creates an instance of a <code>Var</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -275,7 +275,7 @@ implements <a href="Stmt.html" title="interface in technology.sola.script.parser
 <li>
 <section class="detail" id="initializer()">
 <h3>initializer</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span>&nbsp;<span class="element-name">initializer</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">@Nullable <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span>&nbsp;<span class="element-name">initializer</span>()</div>
 <div class="block">Returns the value of the <a href="#param-initializer"><code>initializer</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>

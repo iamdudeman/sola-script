@@ -85,7 +85,8 @@ loadScripts(document, 'script');</script>
 <dd><code><span id="param-errorArgs">errorArgs</span></code> - the additional details about the error</dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">ScriptError</span>(<a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a>&nbsp;type, int&nbsp;line, int&nbsp;column, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;errorArgs)
+<div class="type-signature"><span class="annotations">@NullMarked
+</span><span class="modifiers">public record </span><span class="element-name type-name-label">ScriptError</span>(<a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a>&nbsp;type, int&nbsp;line, int&nbsp;column, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;errorArgs)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">ScriptError holds information about what kind of error happened, where it happened, and a longer description for a
  user to resolve it.</div>
