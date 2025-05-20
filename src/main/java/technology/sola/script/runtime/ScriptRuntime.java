@@ -1,5 +1,6 @@
 package technology.sola.script.runtime;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.library.ScriptModule;
 import technology.sola.script.parser.Expr;
 
@@ -7,6 +8,7 @@ import technology.sola.script.parser.Expr;
  * ScriptRuntime contains environment state information as well as a {@link ScopeTable} to keep track of nested scope
  * variable resolutions.
  */
+@NullMarked
 public class ScriptRuntime {
   private final Environment globals = new Environment();
   Environment environment = globals;

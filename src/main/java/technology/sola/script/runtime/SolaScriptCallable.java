@@ -1,5 +1,6 @@
 package technology.sola.script.runtime;
 
+import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 /**
  * SolaScriptCallable specifies the contract for something that is callable in a sola script.
  */
+@NullMarked
 public interface SolaScriptCallable {
   /**
    * The number of expected arguments.

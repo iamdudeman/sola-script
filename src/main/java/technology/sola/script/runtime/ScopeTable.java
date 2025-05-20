@@ -1,5 +1,7 @@
 package technology.sola.script.runtime;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.parser.Expr;
 import technology.sola.script.tokenizer.Token;
 
@@ -8,6 +10,7 @@ import java.util.*;
 /**
  * ScopeTable holds variable resolutions at various depths of scope.
  */
+@NullMarked
 public class ScopeTable {
   // If variable is in scopes and is false then it has been declared but not defined
   private final Stack<Map<String, Boolean>> scopes = new Stack<>();
@@ -19,6 +22,7 @@ public class ScopeTable {
    * @param expr the {@link Expr} to get the value for
    * @return the distance to resolve the variable's value
    */
+  @Nullable
   public Integer getDistance(Expr expr) {
     return locals.get(expr);
   }

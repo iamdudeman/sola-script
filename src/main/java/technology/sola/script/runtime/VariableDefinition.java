@@ -1,14 +1,16 @@
 package technology.sola.script.runtime;
 
+import org.jspecify.annotations.Nullable;
+
 class VariableDefinition {
   final boolean isConstant;
-  Object value;
+  @Nullable Object value;
 
-  VariableDefinition(Object value) {
+  VariableDefinition(@Nullable Object value) {
     this(false, value);
   }
 
-  VariableDefinition(boolean isConstant, Object value) {
+  VariableDefinition(boolean isConstant, @Nullable Object value) {
     this.isConstant = isConstant;
     this.value = value;
   }

@@ -1,5 +1,7 @@
 package technology.sola.script.runtime;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.parser.Stmt;
 
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.function.Consumer;
  * SolaScriptFunction is a runtime definition of a function declaration that is callable (implements
  * {@link SolaScriptCallable} interface).
  */
+@NullMarked
 public class SolaScriptFunction implements SolaScriptCallable {
   private final Consumer<Stmt> executeStatement;
   private final Stmt.Function declaration;
@@ -35,6 +38,7 @@ public class SolaScriptFunction implements SolaScriptCallable {
   }
 
   @Override
+  @Nullable
   public Object call(List<Object> arguments) {
     Environment environment = new Environment(closure);
 
