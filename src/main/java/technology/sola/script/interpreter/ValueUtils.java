@@ -1,5 +1,7 @@
 package technology.sola.script.interpreter;
 
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.tokenizer.Token;
@@ -21,7 +23,8 @@ public class ValueUtils {
    * @param value the value to stringify
    * @return the stringified value
    */
-  public static String stringify(Object value) {
+  @NonNull
+  public static String stringify(@Nullable Object value) {
     if (value == null) {
       return "null";
     }
@@ -46,7 +49,7 @@ public class ValueUtils {
    * @param value the value to check if truthy
    * @return true if truthy
    */
-  public static boolean isTruthy(Object value) {
+  public static boolean isTruthy(@Nullable Object value) {
     if (value == null) {
       return false;
     }
@@ -58,7 +61,7 @@ public class ValueUtils {
     return true;
   }
 
-  static boolean isEqual(Object a, Object b) {
+  static boolean isEqual(@Nullable Object a, @Nullable Object b) {
     if (a == null && b == null) {
       return true;
     }
@@ -70,7 +73,7 @@ public class ValueUtils {
     return a.equals(b);
   }
 
-  static void assertNumberOperand(Token operator, Object operand) {
+  static void assertNumberOperand(Token operator, @Nullable Object operand) {
     if (operand instanceof Double) {
       return;
     }
@@ -78,7 +81,7 @@ public class ValueUtils {
     throw new ScriptInterpretationException(operator, ScriptErrorType.OPERAND_MUST_BE_NUMBER);
   }
 
-  static void assertNumberOperands(Token operator, Object left, Object right) {
+  static void assertNumberOperands(Token operator, @Nullable Object left, @Nullable Object right) {
     if (left instanceof Double && right instanceof Double) {
       return;
     }

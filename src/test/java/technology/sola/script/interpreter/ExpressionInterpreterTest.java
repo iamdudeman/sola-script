@@ -1,5 +1,6 @@
 package technology.sola.script.interpreter;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -313,7 +314,7 @@ class ExpressionInterpreterTest {
         }
 
         @Override
-        public Object call(List<Object> arguments) {
+        public Object call(@NonNull List<Object> arguments) {
           return null;
         }
       });
@@ -343,7 +344,7 @@ class ExpressionInterpreterTest {
         }
 
         @Override
-        public Object call(List<Object> arguments) {
+        public Object call(@NonNull List<Object> arguments) {
           return arguments.get(0);
         }
       });

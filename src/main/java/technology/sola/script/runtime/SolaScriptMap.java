@@ -1,5 +1,6 @@
 package technology.sola.script.runtime;
 
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.tokenizer.Token;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ public class SolaScriptMap {
    * @param name the {@link Token} name of the property
    * @return the value associated with the property or null
    */
+  @Nullable
   public Object get(Token name) {
     return properties.get(name.lexeme());
   }
@@ -27,7 +29,7 @@ public class SolaScriptMap {
    * @param name  the {@link Token} name of the property
    * @param value the value of the property
    */
-  public void set(Token name, Object value) {
+  public void set(Token name, @Nullable Object value) {
     set(name.lexeme(), value);
   }
 
@@ -37,7 +39,7 @@ public class SolaScriptMap {
    * @param name  the string name of the property
    * @param value the value of the property
    */
-  public void set(String name, Object value) {
+  public void set(String name, @Nullable Object value) {
     properties.put(name, value);
   }
 

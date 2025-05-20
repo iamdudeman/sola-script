@@ -1,5 +1,7 @@
 package technology.sola.script.tokenizer;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptError;
 
@@ -9,6 +11,7 @@ import java.util.List;
 /**
  * Tokenizer provides functionality for tokenizing a source string into {@link Token}s to be parsed and interpreted.
  */
+@NullMarked
 public class Tokenizer {
   private final KeywordMap keywordMap = new KeywordMap();
   private final String source;
@@ -206,7 +209,7 @@ public class Tokenizer {
     addToken(type, null);
   }
 
-  private void addToken(TokenType type, Object literal) {
+  private void addToken(TokenType type, @Nullable Object literal) {
     String lexeme = source.substring(start, current);
 
     tokens.add(new Token(type, lexeme, literal, line, startColumn));

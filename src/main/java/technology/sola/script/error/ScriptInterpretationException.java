@@ -1,11 +1,13 @@
 package technology.sola.script.error;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.tokenizer.Token;
 
 /**
  * ScriptErrorException is a runtime exception that is thrown while trying to interpret a sola script containing
  * information about the {@link ScriptErrorType} cause and the {@link Token} it was found at.
  */
+@NullMarked
 public class ScriptInterpretationException extends RuntimeException {
   /**
    * The {@link Token} where the error occurred.

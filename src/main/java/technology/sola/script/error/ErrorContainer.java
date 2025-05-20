@@ -1,5 +1,7 @@
 package technology.sola.script.error;
 
+import org.jspecify.annotations.NullMarked;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
  * ErrorContainer contains a list of {@link ScriptError}s found for a particular script. It provides several convenience
  * methods for interacting with errors.
  */
+@NullMarked
 public class ErrorContainer {
   private final List<ScriptError> errorList = new ArrayList<>();
 

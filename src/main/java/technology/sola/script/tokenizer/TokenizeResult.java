@@ -1,5 +1,6 @@
 package technology.sola.script.tokenizer;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.error.ScriptError;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @param tokens the parsed tokens
  * @param errors the errors found while tokenizing
  */
+@NullMarked
 public record TokenizeResult(
   List<Token> tokens,
   List<ScriptError> errors

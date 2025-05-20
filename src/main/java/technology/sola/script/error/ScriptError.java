@@ -1,5 +1,6 @@
 package technology.sola.script.error;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.tokenizer.Token;
 
 /**
@@ -11,6 +12,7 @@ import technology.sola.script.tokenizer.Token;
  * @param column    the column where the error was detected
  * @param errorArgs the additional details about the error
  */
+@NullMarked
 public record ScriptError(
   ScriptErrorType type,
   int line,

@@ -1,5 +1,6 @@
 package technology.sola.script.resolver;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.error.ScriptError;
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.runtime.ScriptRuntime;
@@ -11,6 +12,7 @@ import java.util.List;
  * Resolver handles updating {@link technology.sola.script.runtime.ScopeTable} information for a {@link ScriptRuntime}
  * for a list of {@link Stmt}s.
  */
+@NullMarked
 public class Resolver {
   private final StatementResolver statementResolver;
   private final List<ScriptError> errors = new ArrayList<>();

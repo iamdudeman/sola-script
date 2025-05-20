@@ -1,5 +1,7 @@
 package technology.sola.script.parser;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptError;
 import technology.sola.script.runtime.SolaScriptMap;
@@ -12,6 +14,7 @@ import java.util.List;
 /**
  * Parser takes a list of {@link Token}s and parses them into {@link Stmt}s that can be later interpreted.
  */
+@NullMarked
 public class Parser {
   private final List<Token> tokens;
   private final List<Stmt> statements = new ArrayList<>();
@@ -51,6 +54,7 @@ public class Parser {
 
   // declarations, statements below ------------------------------------------------------------------------------------
 
+  @Nullable
   private Stmt declaration() {
     try {
       if (advanceExpected(TokenType.FUN)) {
@@ -177,7 +181,11 @@ public class Parser {
     List<Stmt> statements = new ArrayList<>();
 
     while (!check(TokenType.RIGHT_BRACE) && !isAtEnd()) {
-      statements.add(declaration());
+      var declaration = declaration();
+
+      if (declaration != null) {
+        statements.add(declaration);
+      }
     }
 
     eat(TokenType.RIGHT_BRACE, ScriptErrorType.EXPECT_BRACE_AFTER_BLOCK);

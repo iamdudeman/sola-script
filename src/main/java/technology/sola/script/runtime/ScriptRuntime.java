@@ -1,5 +1,7 @@
 package technology.sola.script.runtime;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.library.ScriptModule;
 import technology.sola.script.parser.Expr;
 
@@ -7,6 +9,7 @@ import technology.sola.script.parser.Expr;
  * ScriptRuntime contains environment state information as well as a {@link ScopeTable} to keep track of nested scope
  * variable resolutions.
  */
+@NullMarked
 public class ScriptRuntime {
   private final Environment globals = new Environment();
   Environment environment = globals;
@@ -66,7 +69,7 @@ public class ScriptRuntime {
    * @param name  the name of the variable
    * @param value the value for the variable
    */
-  public void defineVariable(String name, Object value) {
+  public void defineVariable(String name, @Nullable Object value) {
     environment.defineVariable(name, value);
   }
 
@@ -76,7 +79,7 @@ public class ScriptRuntime {
    * @param name  the name of the constant
    * @param value the value for the constant
    */
-  public void defineConstant(String name, Object value) {
+  public void defineConstant(String name, @Nullable Object value) {
     environment.defineConstant(name, value);
   }
 
@@ -88,6 +91,7 @@ public class ScriptRuntime {
    * @param expr the {@link Expr.Variable} to get the value for
    * @return the variable's value
    */
+  @Nullable
   public Object lookUpVariable(Expr.Variable expr) {
     var distance = scopeTable.getDistance(expr);
     var name = expr.name();
@@ -107,7 +111,7 @@ public class ScriptRuntime {
    * @param expr  the {@link Expr.Assign} expression
    * @param value the value to assign to the variable
    */
-  public void assignVariable(Expr.Assign expr, Object value) {
+  public void assignVariable(Expr.Assign expr, @Nullable Object value) {
     Integer distance = scopeTable.getDistance(expr);
 
     if (distance == null) {

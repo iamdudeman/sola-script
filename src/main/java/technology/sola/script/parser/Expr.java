@@ -1,5 +1,6 @@
 package technology.sola.script.parser;
 
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.tokenizer.Token;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public interface Expr {
    * @param <R>     the return type
    * @return the evaluated value
    */
+  @Nullable
   <R> R accept(Visitor<R> visitor);
 
   /**
@@ -182,7 +184,7 @@ public interface Expr {
    *
    * @param value the literal value
    */
-  record Literal(Object value) implements Expr {
+  record Literal(@Nullable Object value) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.literal(this);

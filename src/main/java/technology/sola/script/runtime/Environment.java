@@ -1,5 +1,7 @@
 package technology.sola.script.runtime;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.error.ScriptInterpretationException;
 import technology.sola.script.tokenizer.Token;
@@ -7,23 +9,24 @@ import technology.sola.script.tokenizer.Token;
 import java.util.HashMap;
 import java.util.Map;
 
+@NullMarked
 class Environment {
   private final Map<String, VariableDefinition> definitions = new HashMap<>();
-  private final Environment parent;
+  private final @Nullable Environment parent;
 
   Environment() {
     this(null);
   }
 
-  Environment(Environment parent) {
+  Environment(@Nullable Environment parent) {
     this.parent = parent;
   }
 
-  void defineVariable(String name, Object value) {
+  void defineVariable(String name, @Nullable Object value) {
     definitions.put(name, new VariableDefinition(false, value));
   }
 
-  void defineConstant(String name, Object value) {
+  void defineConstant(String name, @Nullable Object value) {
     definitions.put(name, new VariableDefinition(true, value));
   }
 
@@ -34,7 +37,7 @@ class Environment {
    * @param name  the {@link Token} of the name of the variable
    * @param value the value assigned to the variable
    */
-  void assign(Token name, Object value) {
+  void assign(Token name, @Nullable Object value) {
     var definition = definitions.get(name.lexeme());
 
     // assign to current scope if present
@@ -57,7 +60,7 @@ class Environment {
     throw new ScriptInterpretationException(name, ScriptErrorType.UNDEFINED_VARIABLE, name.lexeme());
   }
 
-  void assignAt(int distance, Token name, Object value) {
+  void assignAt(int distance, Token name, @Nullable Object value) {
     var definition = getParent(distance).definitions.get(name.lexeme());
 
     if (definition.isConstant) {
@@ -74,7 +77,7 @@ class Environment {
    * @param name the {@link Token} of the name of the variable
    * @return the value assigned to the variable
    */
-  Object get(Token name) {
+  @Nullable Object get(Token name) {
     var definition = definitions.get(name.lexeme());
 
     if (definition != null) {
@@ -88,7 +91,7 @@ class Environment {
     throw new ScriptInterpretationException(name, ScriptErrorType.UNDEFINED_VARIABLE, name.lexeme());
   }
 
-  Object getAt(int distance, String name) {
+  @Nullable Object getAt(int distance, String name) {
     var definition = getParent(distance).definitions.get(name);
 
     return definition.value;
@@ -99,6 +102,10 @@ class Environment {
 
     for (int i = 0; i < distance; i++) {
       environment = environment.parent;
+
+      if (environment == null) {
+        throw new IllegalStateException("Environment has no parent at distance " + distance);
+      }
     }
 
     return environment;

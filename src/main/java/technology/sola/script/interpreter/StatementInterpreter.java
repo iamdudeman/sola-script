@@ -1,9 +1,11 @@
 package technology.sola.script.interpreter;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.parser.Stmt;
 import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.runtime.SolaScriptFunction;
 
+@NullMarked
 class StatementInterpreter implements Stmt.Visitor<Void> {
   private final ScriptRuntime scriptRuntime;
   private final ExpressionInterpreter expressionInterpreter;
