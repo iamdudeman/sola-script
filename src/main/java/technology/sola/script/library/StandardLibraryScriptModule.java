@@ -61,7 +61,7 @@ public class StandardLibraryScriptModule implements ScriptModule {
 
       @Override
       @Nullable
-      public Object call(List<Object> arguments) {
+      public Object call(List<@Nullable Object> arguments) {
         System.out.println(ValueUtils.stringify(arguments.get(0)));
 
         return null;
@@ -98,7 +98,7 @@ public class StandardLibraryScriptModule implements ScriptModule {
       }
 
       @Override
-      public Object call(List<Object> arguments) {
+      public Object call(List<@Nullable Object> arguments) {
         Scanner scanner = new Scanner(System.in);
 
         return scanner.nextLine();
@@ -135,7 +135,7 @@ public class StandardLibraryScriptModule implements ScriptModule {
       }
 
       @Override
-      public Object call(List<Object> arguments) {
+      public Object call(List<@Nullable Object> arguments) {
         return (double) System.currentTimeMillis();
       }
 
