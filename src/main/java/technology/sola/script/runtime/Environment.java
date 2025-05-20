@@ -22,11 +22,11 @@ class Environment {
     this.parent = parent;
   }
 
-  void defineVariable(String name, Object value) {
+  void defineVariable(String name, @Nullable Object value) {
     definitions.put(name, new VariableDefinition(false, value));
   }
 
-  void defineConstant(String name, Object value) {
+  void defineConstant(String name, @Nullable Object value) {
     definitions.put(name, new VariableDefinition(true, value));
   }
 

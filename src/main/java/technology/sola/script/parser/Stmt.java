@@ -1,5 +1,7 @@
 package technology.sola.script.parser;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.script.interpreter.Interpreter;
 import technology.sola.script.tokenizer.Token;
 
@@ -8,6 +10,7 @@ import java.util.List;
 /**
  * Stmt represents a piece of code that performs an action or controls the flow of the program.
  */
+@NullMarked
 public interface Stmt {
   /**
    * Executes this statement via the desired {@link Stmt.Visitor}
@@ -109,7 +112,7 @@ public interface Stmt {
    * @param name        the {@link Token} name of the variable
    * @param initializer the expression to initialize the variable with
    */
-  record Var(Token name, Expr initializer) implements Stmt {
+  record Var(Token name, @Nullable Expr initializer) implements Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.var(this);
@@ -150,7 +153,7 @@ public interface Stmt {
    * @param thenBranch the truthy branch to execute
    * @param elseBranch the optional not truthy branch to execute
    */
-  record If(Expr condition, Stmt thenBranch, Stmt elseBranch) implements Stmt {
+  record If(Expr condition, Stmt thenBranch, @Nullable Stmt elseBranch) implements Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.ifVisit(this);
@@ -163,7 +166,7 @@ public interface Stmt {
    * @param keyword the {@link Token} for the return keyword
    * @param value   the value to return to the caller or null
    */
-  record Return(Token keyword, Expr value) implements Stmt {
+  record Return(Token keyword, @Nullable Expr value) implements Stmt {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.returnVisit(this);
@@ -179,6 +182,7 @@ public interface Stmt {
       /**
        * The value returned by the {@link Stmt.Return}.
        */
+      @Nullable
       public final Object value;
 
       /**
@@ -186,7 +190,7 @@ public interface Stmt {
        *
        * @param value the return value of the call
        */
-      public Exception(Object value) {
+      public Exception(@Nullable Object value) {
         super(null, null, false, false);
         this.value = value;
       }

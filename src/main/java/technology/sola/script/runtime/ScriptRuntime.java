@@ -69,7 +69,7 @@ public class ScriptRuntime {
    * @param name  the name of the variable
    * @param value the value for the variable
    */
-  public void defineVariable(String name, Object value) {
+  public void defineVariable(String name, @Nullable Object value) {
     environment.defineVariable(name, value);
   }
 
@@ -79,7 +79,7 @@ public class ScriptRuntime {
    * @param name  the name of the constant
    * @param value the value for the constant
    */
-  public void defineConstant(String name, Object value) {
+  public void defineConstant(String name, @Nullable Object value) {
     environment.defineConstant(name, value);
   }
 

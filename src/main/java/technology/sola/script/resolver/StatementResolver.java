@@ -1,5 +1,6 @@
 package technology.sola.script.resolver;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.error.ScriptError;
 import technology.sola.script.error.ScriptErrorType;
 import technology.sola.script.parser.Stmt;
@@ -7,6 +8,7 @@ import technology.sola.script.runtime.ScriptRuntime;
 
 import java.util.List;
 
+@NullMarked
 class StatementResolver implements Stmt.Visitor<Void> {
   private final ScriptRuntime scriptRuntime;
   private final ExpressionResolver expressionResolver;
