@@ -20,6 +20,10 @@ repositories {
 }
 
 dependencies {
+  // nullability annotations
+  api("org.jspecify:jspecify:1.0.0")
+
+  // unit testing
   testImplementation(platform("org.junit:junit-bom:5.10.2"))
   testImplementation("org.junit.jupiter:junit-jupiter")
 }
