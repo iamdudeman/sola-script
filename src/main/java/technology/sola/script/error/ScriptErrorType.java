@@ -1,10 +1,12 @@
 package technology.sola.script.error;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.script.parser.ParserConstants;
 
 /**
  * ScriptErrorType contains various expected errors that may occur while parsing and executing a sola script.
  */
+@NullMarked
 public enum ScriptErrorType {
   /**
    * Semantic error when a variable was already defined in this scope.
@@ -172,7 +174,6 @@ public enum ScriptErrorType {
    * terminated.
    */
   UNTERMINATED_STRING(ScriptErrorStage.PARSE, "Unterminated string."),
-
   ;
 
   /**
