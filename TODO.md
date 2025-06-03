@@ -1,8 +1,13 @@
 # TODO list
 
+nullish coalescence "??"
+
+* update grammar
+* implement parser support
+* implement interpreter + resolver support
+
 ## Features
 
-* consider implementing nullish coalescence "??"
 * implement break keyword within loops
 * implement arrays
 * support ternary operator (probably between assignment and logic_or)
