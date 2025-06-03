@@ -42,6 +42,14 @@ public interface Expr {
     R assign(Assign expr);
 
     /**
+     * Evaluates a {@link NullishCoalescence} expression and returns the value.
+     *
+     * @param expr the {@link NullishCoalescence} expression
+     * @return the evaluated value
+     */
+    R nullishCoalescence(NullishCoalescence expr);
+
+    /**
      * Evaluates a {@link Logical} expression and returns the value.
      *
      * @param expr the {@link Logical} expression
@@ -117,6 +125,13 @@ public interface Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.assign(this);
+    }
+  }
+
+  record NullishCoalescence(Expr left, Token operator, Expr right) implements Expr {
+    @Override
+    public <R> @Nullable R accept(Visitor<R> visitor) {
+      return visitor.nullishCoalescence(this);
     }
   }
 

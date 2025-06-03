@@ -164,6 +164,37 @@ class ParserTest {
     }
 
     @Nested
+    class exprNullishCoalescence {
+      @Test
+      void valid() {
+        var source = """
+          12.32 ?? 5;
+          """;
+        var expected = """
+          12.32 ?? 5
+          """;
+
+        new ParserTester(source)
+          .verify(expected);
+      }
+
+      @Test
+      void invalid() {
+        var source = """
+          2 ?? 5;
+          ?? 5;
+          """;
+        var expected = """
+          2 ?? 5
+          """;
+
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.INVALID_BINARY_EXPRESSION)
+          .verify(expected);
+      }
+    }
+
+    @Nested
     class exprLogicOr {
       @Test
       void valid() {

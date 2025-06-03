@@ -106,6 +106,11 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String nullishCoalescence(Expr.NullishCoalescence expr) {
+      return print(expr.left()) + " " + expr.operator().lexeme() + " " + print(expr.right());
+    }
+
+    @Override
     public String logical(Expr.Logical expr) {
       return print(expr.left()) + " " + expr.operator().lexeme() + " " + print(expr.right());
     }
