@@ -65,6 +65,27 @@ class ExpressionInterpreterTest {
   }
 
   @Nested
+  class nullishCoalescence {
+    @Test
+    void whenLeftNull_shouldReturnRight() {
+      assertEvaluation("null ?? 5;", 5d);
+      assertEvaluation("null ?? true;", true);
+      assertEvaluation("null ?? null;", null);
+    }
+
+    @Test
+    void whenLeftFalse_shouldReturnLeft() {
+      assertEvaluation("false ?? 5;", false);
+    }
+
+    @Test
+    void whenLeftTruthy_shouldReturnLeft() {
+      assertEvaluation("true ?? 5;", true);
+      assertEvaluation("4 ?? 5;", 4d);
+    }
+  }
+
+  @Nested
   class logical {
     @Nested
     class or {

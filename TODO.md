@@ -1,9 +1,5 @@
 # TODO list
 
-nullish coalescence "??"
-
-* implement interpreter + resolver support
-
 ## Features
 
 * implement break keyword within loops

@@ -53,8 +53,15 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   }
 
   @Override
+  @Nullable
   public Object nullishCoalescence(Expr.NullishCoalescence expr) {
-    throw new RuntimeException("Nullish not supported yet"); // todo
+    Object left = evaluate(expr.left());
+
+    if (left == null) {
+      return evaluate(expr.right());
+    }
+
+    return left;
   }
 
   @Override
