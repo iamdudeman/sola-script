@@ -1,5 +1,11 @@
 # TODO list
 
+* tokenizer support
+* grammar updates
+* parser support
+* resolver support
+* interpreter support
+
 ## Features
 
 * implement break keyword within loops
