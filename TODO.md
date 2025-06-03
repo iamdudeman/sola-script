@@ -2,7 +2,6 @@
 
 nullish coalescence "??"
 
-* update grammar
 * implement parser support
 * implement interpreter + resolver support
 
