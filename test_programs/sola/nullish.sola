@@ -1,0 +1,6 @@
+val test = null;
+val first = test ?? "hello world";
+val second = first ?? "second text";
+
+print(first);
+print(second);

@@ -21,7 +21,8 @@ public class TestProgramSolaScript {
       "if",
       "while",
       "function",
-      "map"
+      "map",
+      "nullish"
     };
 
     for (var file : files) {
