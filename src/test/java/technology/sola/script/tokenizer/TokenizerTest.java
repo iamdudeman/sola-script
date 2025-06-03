@@ -34,7 +34,7 @@ class TokenizerTest {
   @Test
   void singleCharacter() {
     var source = """
-      ( ) { } , . - + ; *
+      ( ) { } , . - + : ; *
       """;
 
     new TokenizerTester()
@@ -46,6 +46,7 @@ class TokenizerTest {
       .next(TokenType.DOT)
       .next(TokenType.MINUS)
       .next(TokenType.PLUS)
+      .next(TokenType.COLON)
       .next(TokenType.SEMICOLON)
       .next(TokenType.STAR)
       .next(TokenType.EOF)

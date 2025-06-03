@@ -82,6 +82,9 @@ public class Tokenizer {
       case '+':
         addToken(TokenType.PLUS);
         break;
+      case ':':
+        addToken(TokenType.COLON);
+        break;
       case ';':
         addToken(TokenType.SEMICOLON);
         break;
