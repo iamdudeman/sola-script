@@ -74,7 +74,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="Expr.Assign.html" title="class in technology.sola.script.parser">Expr.Assign</a></code>, <code><a href="Expr.Binary.html" title="class in technology.sola.script.parser">Expr.Binary</a></code>, <code><a href="Expr.Call.html" title="class in technology.sola.script.parser">Expr.Call</a></code>, <code><a href="Expr.Get.html" title="class in technology.sola.script.parser">Expr.Get</a></code>, <code><a href="Expr.Grouping.html" title="class in technology.sola.script.parser">Expr.Grouping</a></code>, <code><a href="Expr.Literal.html" title="class in technology.sola.script.parser">Expr.Literal</a></code>, <code><a href="Expr.Logical.html" title="class in technology.sola.script.parser">Expr.Logical</a></code>, <code><a href="Expr.Set.html" title="class in technology.sola.script.parser">Expr.Set</a></code>, <code><a href="Expr.Unary.html" title="class in technology.sola.script.parser">Expr.Unary</a></code>, <code><a href="Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a></code></dd>
+<dd><code><a href="Expr.Assign.html" title="class in technology.sola.script.parser">Expr.Assign</a></code>, <code><a href="Expr.Binary.html" title="class in technology.sola.script.parser">Expr.Binary</a></code>, <code><a href="Expr.Call.html" title="class in technology.sola.script.parser">Expr.Call</a></code>, <code><a href="Expr.Get.html" title="class in technology.sola.script.parser">Expr.Get</a></code>, <code><a href="Expr.Grouping.html" title="class in technology.sola.script.parser">Expr.Grouping</a></code>, <code><a href="Expr.Literal.html" title="class in technology.sola.script.parser">Expr.Literal</a></code>, <code><a href="Expr.Logical.html" title="class in technology.sola.script.parser">Expr.Logical</a></code>, <code><a href="Expr.NullishCoalescence.html" title="class in technology.sola.script.parser">Expr.NullishCoalescence</a></code>, <code><a href="Expr.Set.html" title="class in technology.sola.script.parser">Expr.Set</a></code>, <code><a href="Expr.Unary.html" title="class in technology.sola.script.parser">Expr.Unary</a></code>, <code><a href="Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Expr</span></div>
@@ -117,19 +117,22 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color"><code><a href="Expr.Logical.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Logical</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>static final record&nbsp;</code></div>
-<div class="col-second odd-row-color"><code><a href="Expr.Set.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Set</a></code></div>
+<div class="col-second odd-row-color"><code><a href="Expr.NullishCoalescence.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.NullishCoalescence</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="Expr.Unary.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Unary</a></code></div>
+<div class="col-second even-row-color"><code><a href="Expr.Set.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Set</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>static final record&nbsp;</code></div>
-<div class="col-second odd-row-color"><code><a href="Expr.Variable.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Variable</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-second odd-row-color"><code><a href="Expr.Unary.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Unary</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
+<div class="col-second even-row-color"><code><a href="Expr.Variable.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Variable</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Variable expressions hold a name of a variable to evaluate the value of.</div>
 </div>
-<div class="col-first even-row-color"><code>static interface&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="Expr.Visitor.html" class="type-name-link" title="interface in technology.sola.script.parser">Expr.Visitor</a>&lt;<a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a>&gt;</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>static interface&nbsp;</code></div>
+<div class="col-second odd-row-color"><code><a href="Expr.Visitor.html" class="type-name-link" title="interface in technology.sola.script.parser">Expr.Visitor</a>&lt;<a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a>&gt;</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Defines operations for the various <a href="Expr.html" title="interface in technology.sola.script.parser"><code>Expr</code></a> implementations.</div>
 </div>
 </div>
