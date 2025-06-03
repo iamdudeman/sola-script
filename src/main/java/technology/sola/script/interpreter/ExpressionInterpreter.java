@@ -54,6 +54,18 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   @Nullable
+  public Object nullishCoalescence(Expr.NullishCoalescence expr) {
+    Object left = evaluate(expr.left());
+
+    if (left == null) {
+      return evaluate(expr.right());
+    }
+
+    return left;
+  }
+
+  @Override
+  @Nullable
   public Object logical(Expr.Logical expr) {
     Object left = evaluate(expr.left());
     var operator = expr.operator().type();

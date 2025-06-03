@@ -11,7 +11,7 @@ public enum TokenType {
   // One or two character tokens
   BANG, BANG_EQUAL, EQUAL, EQUAL_EQUAL,
   GREATER, GREATER_EQUAL, LESS, LESS_EQUAL,
-  AMP_AMP, BAR_BAR,
+  AMP_AMP, BAR_BAR, QUESTION, QUESTION_QUESTION,
 
   // Literals
   IDENTIFIER, STRING, NUMBER,

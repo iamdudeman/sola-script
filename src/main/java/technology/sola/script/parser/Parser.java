@@ -225,7 +225,7 @@ public class Parser {
   }
 
   private Expr exprAssignment() {
-    Expr expr = exprLogicOr();
+    Expr expr = exprNullishCoalescence();
 
     if (advanceExpected(TokenType.EQUAL)) {
       Token equals = previous();
@@ -240,6 +240,19 @@ public class Parser {
       }
 
       errors.add(new ScriptError(ScriptErrorType.INVALID_ASSIGNMENT_TARGET, equals));
+    }
+
+    return expr;
+  }
+
+  private Expr exprNullishCoalescence() {
+    Expr expr = exprLogicOr();
+
+    while (advanceExpected(TokenType.QUESTION_QUESTION)) {
+      Token operator = previous();
+      Expr right = exprLogicOr();
+
+      expr = new Expr.NullishCoalescence(expr, operator, right);
     }
 
     return expr;
@@ -406,7 +419,7 @@ public class Parser {
       TokenType.PLUS, // note MINUS is okay since it is unary
       TokenType.EQUAL_EQUAL, TokenType.BANG_EQUAL,
       TokenType.LESS, TokenType.GREATER, TokenType.LESS_EQUAL, TokenType.GREATER_EQUAL,
-      TokenType.AMP_AMP, TokenType.BAR_BAR,
+      TokenType.AMP_AMP, TokenType.BAR_BAR, TokenType.QUESTION_QUESTION,
       TokenType.EQUAL
     )) {
 

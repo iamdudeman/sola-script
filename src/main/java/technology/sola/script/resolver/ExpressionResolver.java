@@ -35,6 +35,14 @@ class ExpressionResolver implements Expr.Visitor<Void> {
   }
 
   @Override
+  public Void nullishCoalescence(Expr.NullishCoalescence expr) {
+    expr.left().accept(this);
+    expr.right().accept(this);
+
+    return null;
+  }
+
+  @Override
   public Void logical(Expr.Logical expr) {
     expr.left().accept(this);
     expr.right().accept(this);

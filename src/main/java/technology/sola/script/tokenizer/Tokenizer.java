@@ -102,6 +102,9 @@ public class Tokenizer {
       case '>':
         addToken(advanceExpected('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER);
         break;
+      case '?':
+        addToken(advanceExpected('?') ? TokenType.QUESTION_QUESTION : TokenType.QUESTION);
+        break;
 
       // double character
       case '&':

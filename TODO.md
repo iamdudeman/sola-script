@@ -2,7 +2,6 @@
 
 ## Features
 
-* consider implementing nullish coalescence "??"
 * implement break keyword within loops
 * implement arrays
 * support ternary operator (probably between assignment and logic_or)

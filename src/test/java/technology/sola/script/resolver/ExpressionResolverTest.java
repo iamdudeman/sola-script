@@ -65,6 +65,23 @@ class ExpressionResolverTest {
   }
 
   @Nested
+  class nullishCoalescence {
+    @Test
+    void test() {
+      var variableExpr = initializeTestVariableExpression();
+      var variableExpr2 = initializeTestVariableExpression("rightTest");
+      var expr = new Expr.Logical(variableExpr, new Token(TokenType.QUESTION_QUESTION, "??", null, 1, 1), variableExpr2);
+      var resolver = new ExpressionResolver(scriptRuntime, errors);
+
+      resolver.logical(expr);
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(variableExpr, 1);
+      assertTestVariableExpression(variableExpr2);
+    }
+  }
+
+  @Nested
   class logical {
     @Test
     void test() {
