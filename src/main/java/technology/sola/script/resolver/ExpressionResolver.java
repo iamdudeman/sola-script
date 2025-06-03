@@ -36,7 +36,10 @@ class ExpressionResolver implements Expr.Visitor<Void> {
 
   @Override
   public Void nullishCoalescence(Expr.NullishCoalescence expr) {
-    throw new RuntimeException("Nullish not supported yet"); // todo
+    expr.left().accept(this);
+    expr.right().accept(this);
+
+    return null;
   }
 
   @Override
