@@ -12,67 +12,68 @@ book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystro
 ## Sola grammar
 
 ```
-program         := declaration* EOF ;
+program              := declaration* EOF ;
 ```
 
 ### Declarations
 
 ```
-declaration     := funDecl | varDecl | valDecl | statement ;
-funDecl         := "fun" function ;
-varDecl         := "var" IDENTIFIER ( "=" expression )? ";" ;
-valDecl         := "val" IDENTIFIER "=" expression ";" ;
+declaration          := funDecl | varDecl | valDecl | statement ;
+funDecl              := "fun" function ;
+varDecl              := "var" IDENTIFIER ( "=" expression )? ";" ;
+valDecl              := "val" IDENTIFIER "=" expression ";" ;
 ```
 
 #### Declaration helpers
 
 ```
-function        := IDENTIFIER "(" parameters? ")" block ;
-parameters      := IDENTIFIER ( "," IDENTIFIER )* ;
+function             := IDENTIFIER "(" parameters? ")" block ;
+parameters           := IDENTIFIER ( "," IDENTIFIER )* ;
 ```
 
 ### Statements
 
 ```
-statement       := exprStmt | ifStmt | returnStmt | whileStmt | block ;
-exprStmt        := expression ";" ;
+statement            := exprStmt | ifStmt | returnStmt | whileStmt | block ;
+exprStmt             := expression ";" ;
 forStmt
-ifStmt          := "if" "(" expression ")" statement ( "else" statement )? ;
-returnStmt      := "return" expression? ";" ;
-whileStmt       := "while" "(" expression ")" statement ;
-block           := "{" declaration* "}" ;
+ifStmt               := "if" "(" expression ")" statement ( "else" statement )? ;
+returnStmt           := "return" expression? ";" ;
+whileStmt            := "while" "(" expression ")" statement ;
+block                := "{" declaration* "}" ;
 ```
 
 ### Expressions
 
 ```
-expression      := assignment ;
-assignment      := ( call ".")? IDENTIFIER "=" assignment | nullish_coales ;
-nullish_coales  := logic_or ( "??" logic_or )* ;
-logic_or        := logic_and ( "||" logic_and )* ;
-logic_and       := equality ( "&&" equality )* ;
-equality        := comparison ( ( "!=" | "==" ) comparison )* ;
-comparison      := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
-term            := factor ( ( "-" | "+" ) factor )* ;
-factor          := unary ( ( "/" | "*" ) unary )* ;
-unary           := ( "!" | "-" ) unary | call ;
-call            := primary ( "(" arguments? ")" ) | "." IDENTIFIER )* ;
-primary         := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER ;
+expression           := assignment ;
+assignment           := ( call ".")? IDENTIFIER "=" assignment | ternary | nullish_coalescence ;
+ternary              := nullish_coalescence "?" nullish_coalescence ":" nullish_coalescence ;
+nullish_coalescence  := logic_or ( "??" logic_or )* ;
+logic_or             := logic_and ( "||" logic_and )* ;
+logic_and            := equality ( "&&" equality )* ;
+equality             := comparison ( ( "!=" | "==" ) comparison )* ;
+comparison           := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+term                 := factor ( ( "-" | "+" ) factor )* ;
+factor               := unary ( ( "/" | "*" ) unary )* ;
+unary                := ( "!" | "-" ) unary | call ;
+call                 := primary ( "(" arguments? ")" ) | "." IDENTIFIER )* ;
+primary              := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER ;
 ```
 
 #### Expression Helpers
 
 ```
-arguments       := expression ( "," expression )* ;
+arguments            := expression ( "," expression )* ;
 ```
 
 ### Terminals
 
 ```
-STRING          := \".*\"
-NUMBER          := [1-9][0-9]*(\.[0-9]+)?
-IDENTIFIER      := [a-zA-Z_][a-zA-Z0-9_]*
-EOF             := special for end of the file
+STRING               := \".*\"
+NUMBER               := [1-9][0-9]*(\.[0-9]+)?
+IDENTIFIER           := [a-zA-Z_][a-zA-Z0-9_]*
+EOF                  := special for end of the file
 ```
 
 ### Keywords

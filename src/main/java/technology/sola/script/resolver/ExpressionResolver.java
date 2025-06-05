@@ -35,6 +35,15 @@ class ExpressionResolver implements Expr.Visitor<Void> {
   }
 
   @Override
+  public Void ternary(Expr.Ternary expr) {
+    expr.condition().accept(this);
+    expr.trueExpr().accept(this);
+    expr.falseExpr().accept(this);
+
+    return null;
+  }
+
+  @Override
   public Void nullishCoalescence(Expr.NullishCoalescence expr) {
     expr.left().accept(this);
     expr.right().accept(this);

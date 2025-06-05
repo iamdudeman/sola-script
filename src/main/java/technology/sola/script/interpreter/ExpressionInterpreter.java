@@ -54,6 +54,18 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   @Nullable
+  public Object ternary(Expr.Ternary expr) {
+    Object conditionValue = evaluate(expr.condition());
+
+    if (ValueUtils.isTruthy(conditionValue)) {
+      return evaluate(expr.trueExpr());
+    }
+
+    return evaluate(expr.falseExpr());
+  }
+
+  @Override
+  @Nullable
   public Object nullishCoalescence(Expr.NullishCoalescence expr) {
     Object left = evaluate(expr.left());
 

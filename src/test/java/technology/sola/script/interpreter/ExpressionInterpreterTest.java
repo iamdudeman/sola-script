@@ -65,6 +65,29 @@ class ExpressionInterpreterTest {
   }
 
   @Nested
+  class ternary {
+    @Test
+    void whenFalse_shouldReturnLeft() {
+      assertEvaluation("false ? 5 : 4;", 4d);
+      assertEvaluation("false ? 4 : 5;", 5d);
+    }
+
+    @Test
+    void whenNull_shouldReturnLeft() {
+      assertEvaluation("null ? 5 : 4;", 4d);
+      assertEvaluation("null ? 4 : 5;", 5d);
+    }
+
+    @Test
+    void whenTruthy_shouldReturnRight() {
+      assertEvaluation("true ? 5 : 4;", 5d);
+      assertEvaluation("true ? 4 : 5;", 4d);
+      assertEvaluation("\"true\" ? 5 : 4;", 5d);
+      assertEvaluation("1 ? 5 : 4;", 5d);
+    }
+  }
+
+  @Nested
   class nullishCoalescence {
     @Test
     void whenLeftNull_shouldReturnRight() {

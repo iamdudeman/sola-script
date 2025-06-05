@@ -227,7 +227,9 @@ public class Parser {
   private Expr exprAssignment() {
     Expr expr = exprNullishCoalescence();
 
-    if (advanceExpected(TokenType.EQUAL)) {
+    if (advanceExpected(TokenType.QUESTION)) {
+      return exprTernary(expr);
+    } else if (advanceExpected(TokenType.EQUAL)) {
       Token equals = previous();
       Expr value = exprAssignment();
 
@@ -243,6 +245,16 @@ public class Parser {
     }
 
     return expr;
+  }
+
+  private Expr exprTernary(Expr condition) {
+    Expr trueExpr = exprNullishCoalescence();
+
+    eat(TokenType.COLON, ScriptErrorType.EXPECT_COLON_AFTER_TERNARY_TRUE_EXPR);
+
+    Expr falseExpr = exprNullishCoalescence();
+
+    return new Expr.Ternary(condition, trueExpr, falseExpr);
   }
 
   private Expr exprNullishCoalescence() {

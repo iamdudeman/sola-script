@@ -164,6 +164,35 @@ class ParserTest {
     }
 
     @Nested
+    class exprTernary {
+      @Test
+      void valid() {
+        var source = """
+          test ? 5 : 4;
+          """;
+        var expected = """
+          test ? 5 : 4
+          """;
+
+        new ParserTester(source)
+          .verify(expected);
+      }
+
+      @Test
+      void invalid() {
+        var source = """
+          test ? 5 : ;
+          test ? 5 ;
+          test ? ;
+          """;
+
+        new ParserTester(source)
+          .withErrors(ScriptErrorType.EXPECT_EXPRESSION, ScriptErrorType.EXPECT_COLON_AFTER_TERNARY_TRUE_EXPR, ScriptErrorType.EXPECT_EXPRESSION)
+          .verify("");
+      }
+    }
+
+    @Nested
     class exprNullishCoalescence {
       @Test
       void valid() {

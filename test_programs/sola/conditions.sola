@@ -1,0 +1,17 @@
+if (true) {
+  print("true");
+}
+
+if (false) {
+
+} else {
+  print("false");
+}
+
+val trueTernary = true ? "true" : "false";
+
+print(trueTernary);
+
+val falseTernary = false ? "true" : "false";
+
+print(falseTernary);
