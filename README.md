@@ -57,7 +57,7 @@ comparison           := term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
 term                 := factor ( ( "-" | "+" ) factor )* ;
 factor               := unary ( ( "/" | "*" ) unary )* ;
 unary                := ( "!" | "-" ) unary | call ;
-call                 := primary ( "(" arguments? ")" ) | "." IDENTIFIER )* ;
+call                 := primary ( "(" arguments? ")" ) | "?"? "." IDENTIFIER )* ;
 primary              := "false" | "true" | "null" | NUMBER | STRING | "(" expression ")" | IDENTIFIER ;
 ```
 

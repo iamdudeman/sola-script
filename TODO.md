@@ -1,5 +1,9 @@
 # TODO list
 
+* parser support
+* resolver support
+* interpreter support
+
 ## Features
 
 * implement break keyword within loops
