@@ -47,7 +47,8 @@ block                := "{" declaration* "}" ;
 
 ```
 expression           := assignment ;
-assignment           := ( call ".")? IDENTIFIER "=" assignment | nullish_coalescence ;
+assignment           := ( call ".")? IDENTIFIER "=" assignment | ternary | nullish_coalescence ;
+ternary              := nullish_coalescence "?" nullish_coalescence ":" nullish_coalescence ;
 nullish_coalescence  := logic_or ( "??" logic_or )* ;
 logic_or             := logic_and ( "||" logic_and )* ;
 logic_and            := equality ( "&&" equality )* ;

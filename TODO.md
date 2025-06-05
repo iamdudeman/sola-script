@@ -1,6 +1,5 @@
 # TODO list
 
-* grammar updates
 * parser support
 * resolver support
 * interpreter support
