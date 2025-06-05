@@ -18,8 +18,8 @@ public class TestProgramSolaScript {
   public static void main(String[] args) throws IOException {
     String[] files = new String[]{
       "variables-and-blocks",
-      "if",
-      "while",
+      "conditions",
+      "loops",
       "function",
       "map",
       "nullish"
