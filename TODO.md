@@ -4,8 +4,6 @@
 
 * implement break keyword within loops
 * implement arrays
-* support ternary operator (probably between assignment and logic_or)
-    * needs new tokens "?" and ":"
 * consider implementing optional chaining "?." for dealing with null conveniently
 
 ## Syntax sugar
