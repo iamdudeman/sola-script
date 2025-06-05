@@ -53,8 +53,15 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   }
 
   @Override
+  @Nullable
   public Object ternary(Expr.Ternary expr) {
-    throw new RuntimeException("Not implemented yet"); // todo
+    Object conditionValue = evaluate(expr.condition());
+
+    if (ValueUtils.isTruthy(conditionValue)) {
+      return evaluate(expr.trueExpr());
+    }
+
+    return evaluate(expr.falseExpr());
   }
 
   @Override
