@@ -74,6 +74,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Set.html#accept(technology.sola.script.parser.Expr.Visitor)" class="member-name-link">accept(Expr.Visitor&lt;R&gt;)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Set.html" title="class in technology.sola.script.parser">Expr.Set</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html#accept(technology.sola.script.parser.Expr.Visitor)" class="member-name-link">accept(Expr.Visitor&lt;R&gt;)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Unary.html#accept(technology.sola.script.parser.Expr.Visitor)" class="member-name-link">accept(Expr.Visitor&lt;R&gt;)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Unary.html" title="class in technology.sola.script.parser">Expr.Unary</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Variable.html#accept(technology.sola.script.parser.Expr.Visitor)" class="member-name-link">accept(Expr.Visitor&lt;R&gt;)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a></dt>
@@ -204,6 +206,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">clock</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html#COLON" class="member-name-link">COLON</a> - Enum constant in enum class technology.sola.script.tokenizer.<a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptError.html#column()" class="member-name-link">column()</a> - Method in record class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptError.html" title="class in technology.sola.script.error">ScriptError</a></dt>
 <dd>
 <div class="block">Returns the value of the <a href="./technology.sola.script/technology/sola/script/error/ScriptError.html#param-column"><code>column</code></a> record component.</div>
@@ -214,6 +218,10 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html#COMMA" class="member-name-link">COMMA</a> - Enum constant in enum class technology.sola.script.tokenizer.<a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html#condition()" class="member-name-link">condition()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>condition</code> record component.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.If.html#condition()" class="member-name-link">condition()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.If.html" title="class in technology.sola.script.parser">Stmt.If</a></dt>
 <dd>
 <div class="block">Returns the value of the <a href="./technology.sola.script/technology/sola/script/parser/Stmt.If.html#param-condition"><code>condition</code></a> record component.</div>
@@ -320,6 +328,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a></dt>
+<dd>
+<div class="block">Indicates whether some other object is "equal to" this one.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Unary.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Unary.html" title="class in technology.sola.script.parser">Expr.Unary</a></dt>
 <dd>
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
@@ -414,6 +426,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Parsing error when an opening brace is not found before a function body.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_COLON_AFTER_TERNARY_TRUE_EXPR" class="member-name-link">EXPECT_COLON_AFTER_TERNARY_TRUE_EXPR</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
+<dd>
+<div class="block">Parsing error when a ternary operator has been started, but a colon was not found after its true expression.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_EXPRESSION" class="member-name-link">EXPECT_EXPRESSION</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
 <div class="block">Parsing error when an expression is expected, but not found.</div>
@@ -504,6 +520,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Set.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Set</a> - Record Class in <a href="technology.sola.script/technology/sola/script/parser/package-summary.html">technology.sola.script.parser</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Ternary</a> - Record Class in <a href="technology.sola.script/technology/sola/script/parser/package-summary.html">technology.sola.script.parser</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Unary.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Unary</a> - Record Class in <a href="technology.sola.script/technology/sola/script/parser/package-summary.html">technology.sola.script.parser</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Variable.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Variable</a> - Record Class in <a href="technology.sola.script/technology/sola/script/parser/package-summary.html">technology.sola.script.parser</a></dt>
@@ -531,6 +549,10 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html#FALSE" class="member-name-link">FALSE</a> - Enum constant in enum class technology.sola.script.tokenizer.<a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html#falseExpr()" class="member-name-link">falseExpr()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>falseExpr</code> record component.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html#FOR" class="member-name-link">FOR</a> - Enum constant in enum class technology.sola.script.tokenizer.<a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#formatMessage(java.lang.Object...)" class="member-name-link">formatMessage(Object...)</a> - Method in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
@@ -620,6 +642,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns a hash code value for this object.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Set.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Set.html" title="class in technology.sola.script.parser">Expr.Set</a></dt>
+<dd>
+<div class="block">Returns a hash code value for this object.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a></dt>
 <dd>
 <div class="block">Returns a hash code value for this object.</div>
 </dd>
@@ -1251,6 +1277,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">This package provides tokenization functionality for sola-script.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Visitor.html#ternary(technology.sola.script.parser.Expr.Ternary)" class="member-name-link">ternary(Expr.Ternary)</a> - Method in interface technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Visitor.html" title="interface in technology.sola.script.parser">Expr.Visitor</a></dt>
+<dd>
+<div class="block">Evaluates a <a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" title="class in technology.sola.script.parser"><code>Expr.Ternary</code></a> expression and returns the value.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html#%3Cinit%3E(technology.sola.script.parser.Expr,technology.sola.script.parser.Expr,technology.sola.script.parser.Expr)" class="member-name-link">Ternary(Expr, Expr, Expr)</a> - Constructor for record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a></dt>
+<dd>
+<div class="block">Creates an instance of a <code>Ternary</code> record class.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/TestProgramSolaScript.html" class="type-name-link" title="class in technology.sola.script">TestProgramSolaScript</a> - Class in <a href="technology.sola.script/technology/sola/script/package-summary.html">technology.sola.script</a></dt>
 <dd>
 <div class="block">Small program for running test sola scripts.</div>
@@ -1345,6 +1379,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns a string representation of this record class.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html#toString()" class="member-name-link">toString()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a></dt>
+<dd>
+<div class="block">Returns a string representation of this record class.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Unary.html#toString()" class="member-name-link">toString()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Unary.html" title="class in technology.sola.script.parser">Expr.Unary</a></dt>
 <dd>
 <div class="block">Returns a string representation of this record class.</div>
@@ -1401,6 +1439,10 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html#TRUE" class="member-name-link">TRUE</a> - Enum constant in enum class technology.sola.script.tokenizer.<a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html#trueExpr()" class="member-name-link">trueExpr()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>trueExpr</code> record component.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptError.html#type()" class="member-name-link">type()</a> - Method in record class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptError.html" title="class in technology.sola.script.error">ScriptError</a></dt>
 <dd>
 <div class="block">Returns the value of the <a href="./technology.sola.script/technology/sola/script/error/ScriptError.html#param-type"><code>type</code></a> record component.</div>

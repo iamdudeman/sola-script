@@ -143,13 +143,18 @@ loadScripts(document, 'script');</script>
 <div class="block">Evaluates a <a href="Expr.Set.html" title="class in technology.sola.script.parser"><code>Expr.Set</code></a> expression and returns the value.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unary(technology.sola.script.parser.Expr.Unary)" class="member-name-link">unary</a><wbr>(<a href="Expr.Unary.html" title="class in technology.sola.script.parser">Expr.Unary</a>&nbsp;expr)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#ternary(technology.sola.script.parser.Expr.Ternary)" class="member-name-link">ternary</a><wbr>(<a href="Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a>&nbsp;expr)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Evaluates a <a href="Expr.Unary.html" title="class in technology.sola.script.parser"><code>Expr.Unary</code></a> expression and returns the value.</div>
+<div class="block">Evaluates a <a href="Expr.Ternary.html" title="class in technology.sola.script.parser"><code>Expr.Ternary</code></a> expression and returns the value.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#variable(technology.sola.script.parser.Expr.Variable)" class="member-name-link">variable</a><wbr>(<a href="Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a>&nbsp;expr)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unary(technology.sola.script.parser.Expr.Unary)" class="member-name-link">unary</a><wbr>(<a href="Expr.Unary.html" title="class in technology.sola.script.parser">Expr.Unary</a>&nbsp;expr)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Evaluates a <a href="Expr.Unary.html" title="class in technology.sola.script.parser"><code>Expr.Unary</code></a> expression and returns the value.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#variable(technology.sola.script.parser.Expr.Variable)" class="member-name-link">variable</a><wbr>(<a href="Expr.Variable.html" title="class in technology.sola.script.parser">Expr.Variable</a>&nbsp;expr)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Evaluates a <a href="Expr.Variable.html" title="class in technology.sola.script.parser"><code>Expr.Variable</code></a> expression and returns the value.</div>
 </div>
 </div>
@@ -187,6 +192,19 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>expr</code> - the <a href="Expr.Assign.html" title="class in technology.sola.script.parser"><code>Expr.Assign</code></a> expression</dd>
+<dt>Returns:</dt>
+<dd>the evaluated value</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ternary(technology.sola.script.parser.Expr.Ternary)">
+<h3>ternary</h3>
+<div class="member-signature"><span class="return-type"><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></span>&nbsp;<span class="element-name">ternary</span><wbr><span class="parameters">(<a href="Expr.Ternary.html" title="class in technology.sola.script.parser">Expr.Ternary</a>&nbsp;expr)</span></div>
+<div class="block">Evaluates a <a href="Expr.Ternary.html" title="class in technology.sola.script.parser"><code>Expr.Ternary</code></a> expression and returns the value.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>expr</code> - the <a href="Expr.Ternary.html" title="class in technology.sola.script.parser"><code>Expr.Ternary</code></a> expression</dd>
 <dt>Returns:</dt>
 <dd>the evaluated value</dd>
 </dl>
