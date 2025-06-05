@@ -65,15 +65,34 @@ class ExpressionResolverTest {
   }
 
   @Nested
+  class ternary {
+    @Test
+    void test() {
+      var variableExpr = initializeTestVariableExpression();
+      var variableExpr2 = initializeTestVariableExpression("trueTest");
+      var variableExpr3 = initializeTestVariableExpression("falseTest");
+      var expr = new Expr.Ternary(variableExpr, variableExpr2, variableExpr3);
+      var resolver = new ExpressionResolver(scriptRuntime, errors);
+
+      resolver.ternary(expr);
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(variableExpr, 2);
+      assertTestVariableExpression(variableExpr2, 1);
+      assertTestVariableExpression(variableExpr3);
+    }
+  }
+
+  @Nested
   class nullishCoalescence {
     @Test
     void test() {
       var variableExpr = initializeTestVariableExpression();
       var variableExpr2 = initializeTestVariableExpression("rightTest");
-      var expr = new Expr.Logical(variableExpr, new Token(TokenType.QUESTION_QUESTION, "??", null, 1, 1), variableExpr2);
+      var expr = new Expr.NullishCoalescence(variableExpr, new Token(TokenType.QUESTION_QUESTION, "??", null, 1, 1), variableExpr2);
       var resolver = new ExpressionResolver(scriptRuntime, errors);
 
-      resolver.logical(expr);
+      resolver.nullishCoalescence(expr);
 
       assertEquals(0, errors.size());
       assertTestVariableExpression(variableExpr, 1);
