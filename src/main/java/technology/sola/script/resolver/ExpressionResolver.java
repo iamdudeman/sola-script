@@ -35,6 +35,11 @@ class ExpressionResolver implements Expr.Visitor<Void> {
   }
 
   @Override
+  public Void ternary(Expr.Ternary expr) {
+    throw new RuntimeException("Not implemented yet"); // todo
+  }
+
+  @Override
   public Void nullishCoalescence(Expr.NullishCoalescence expr) {
     expr.left().accept(this);
     expr.right().accept(this);

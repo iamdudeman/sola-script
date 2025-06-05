@@ -44,6 +44,11 @@ public enum ScriptErrorType {
   EXPECT_BRACE_BEFORE_BODY(ScriptErrorStage.PARSE, "Expect '{' before %s body."),
 
   /**
+   * Parsing error when a ternary operator has been started, but a colon was not found after its true expression.
+   */
+  EXPECT_COLON_AFTER_TERNARY_TRUE_EXPR(ScriptErrorStage.PARSE, "Expect ':' after a ternary's true expression."),
+
+  /**
    * Parsing error when an initializer expression is not found for a constant.
    */
   EXPECT_INITIALIZER_EXPRESSION(ScriptErrorStage.PARSE, "Expect initializer expression for constants."),

@@ -53,6 +53,11 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   }
 
   @Override
+  public Object ternary(Expr.Ternary expr) {
+    throw new RuntimeException("Not implemented yet"); // todo
+  }
+
+  @Override
   @Nullable
   public Object nullishCoalescence(Expr.NullishCoalescence expr) {
     Object left = evaluate(expr.left());

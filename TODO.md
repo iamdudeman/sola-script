@@ -1,6 +1,5 @@
 # TODO list
 
-* parser support
 * resolver support
 * interpreter support
 

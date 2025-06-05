@@ -106,6 +106,11 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String ternary(Expr.Ternary expr) {
+      return print(expr.condition()) + " ? " + print(expr.trueExpr()) + " : " + print(expr.falseExpr());
+    }
+
+    @Override
     public String nullishCoalescence(Expr.NullishCoalescence expr) {
       return print(expr.left()) + " " + expr.operator().lexeme() + " " + print(expr.right());
     }
