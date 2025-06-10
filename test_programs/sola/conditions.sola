@@ -15,3 +15,8 @@ print(trueTernary);
 val falseTernary = false ? "true" : "false";
 
 print(falseTernary);
+
+// nested ternary requires parens
+val nestedTernary = true ? (false ? "wrong" : "correct") : "wrong";
+
+print(nestedTernary);
