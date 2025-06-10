@@ -414,6 +414,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Creates an instance of this exception with desired return value.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/SolaScript.html#execute(java.lang.String)" class="member-name-link">execute(String)</a> - Method in class technology.sola.script.<a href="technology.sola.script/technology/sola/script/SolaScript.html" title="class in technology.sola.script">SolaScript</a></dt>
+<dd>
+<div class="block">Executes a sola script using the current state of the <a href="technology.sola.script/technology/sola/script/SolaScript.html" title="class in technology.sola.script"><code>SolaScript</code></a> runtime.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_BRACE_AFTER_BLOCK" class="member-name-link">EXPECT_BRACE_AFTER_BLOCK</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
 <div class="block">Parsing error when a closing '}' is not found after a block.</div>
@@ -843,10 +847,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Main entry point for running sola script as an executable.</div>
 </dd>
-<dt><a href="technology.sola.script/technology/sola/script/TestProgramSolaScript.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class technology.sola.script.<a href="technology.sola.script/technology/sola/script/TestProgramSolaScript.html" title="class in technology.sola.script">TestProgramSolaScript</a></dt>
-<dd>
-<div class="block">Main method for running test sola scripts.</div>
-</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/ParserConstants.html#MAX_ARGUMENTS" class="member-name-link">MAX_ARGUMENTS</a> - Static variable in class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/ParserConstants.html" title="class in technology.sola.script.parser">ParserConstants</a></dt>
 <dd>
 <div class="block">The maximum number of arguments allowed for a function or method.</div>
@@ -1150,6 +1150,18 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html#SLASH" class="member-name-link">SLASH</a> - Enum constant in enum class technology.sola.script.tokenizer.<a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="technology.sola.script/technology/sola/script/SolaScript.html" class="type-name-link" title="class in technology.sola.script">SolaScript</a> - Class in <a href="technology.sola.script/technology/sola/script/package-summary.html">technology.sola.script</a></dt>
+<dd>
+<div class="block">SolaScript is a runtime container for executing sola scripts.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/SolaScript.html#%3Cinit%3E()" class="member-name-link">SolaScript()</a> - Constructor for class technology.sola.script.<a href="technology.sola.script/technology/sola/script/SolaScript.html" title="class in technology.sola.script">SolaScript</a></dt>
+<dd>
+<div class="block">Creates an instance of the SolaScript runtime with the <a href="technology.sola.script/technology/sola/script/library/StandardLibraryScriptModule.html" title="class in technology.sola.script.library"><code>StandardLibraryScriptModule</code></a> imported.</div>
+</dd>
+<dt><a href="technology.sola.script/technology/sola/script/SolaScript.html#%3Cinit%3E(java.util.List)" class="member-name-link">SolaScript(List&lt;ScriptModule&gt;)</a> - Constructor for class technology.sola.script.<a href="technology.sola.script/technology/sola/script/SolaScript.html" title="class in technology.sola.script">SolaScript</a></dt>
+<dd>
+<div class="block">Creates an instance of the SolaScript runtime with the desired <a href="technology.sola.script/technology/sola/script/library/ScriptModule.html" title="interface in technology.sola.script.library"><code>ScriptModule</code></a>s imported.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/runtime/SolaScriptCallable.html" class="type-name-link" title="interface in technology.sola.script.runtime">SolaScriptCallable</a> - Interface in <a href="technology.sola.script/technology/sola/script/runtime/package-summary.html">technology.sola.script.runtime</a></dt>
 <dd>
 <div class="block">SolaScriptCallable specifies the contract for something that is callable in a sola script.</div>
@@ -1285,12 +1297,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Creates an instance of a <code>Ternary</code> record class.</div>
 </dd>
-<dt><a href="technology.sola.script/technology/sola/script/TestProgramSolaScript.html" class="type-name-link" title="class in technology.sola.script">TestProgramSolaScript</a> - Class in <a href="technology.sola.script/technology/sola/script/package-summary.html">technology.sola.script</a></dt>
-<dd>
-<div class="block">Small program for running test sola scripts.</div>
-</dd>
-<dt><a href="technology.sola.script/technology/sola/script/TestProgramSolaScript.html#%3Cinit%3E()" class="member-name-link">TestProgramSolaScript()</a> - Constructor for class technology.sola.script.<a href="technology.sola.script/technology/sola/script/TestProgramSolaScript.html" title="class in technology.sola.script">TestProgramSolaScript</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.If.html#thenBranch()" class="member-name-link">thenBranch()</a> - Method in record class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/Stmt.If.html" title="class in technology.sola.script.parser">Stmt.If</a></dt>
 <dd>
 <div class="block">Returns the value of the <a href="./technology.sola.script/technology/sola/script/parser/Stmt.If.html#param-thenBranch"><code>thenBranch</code></a> record component.</div>
