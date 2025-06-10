@@ -8,7 +8,7 @@ import java.io.IOException;
  * Small program for running test sola scripts.
  */
 @NullMarked
-public class TestProgramSolaScript {
+class TestProgramSolaScript {
   /**
    * Main method for running test sola scripts.
    *

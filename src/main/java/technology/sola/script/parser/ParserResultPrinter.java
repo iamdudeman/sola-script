@@ -30,7 +30,9 @@ public class ParserResultPrinter {
   }
 
   private String print(Expr expr) {
-    return expr.accept(exprPrinter);
+    var result = expr.accept(exprPrinter);
+
+    return result == null ? "" : result;
   }
 
   private class StmtPrinter implements Stmt.Visitor<String> {

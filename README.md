@@ -109,3 +109,14 @@ dependencies {
 ```
 
 [sola-script jar downloads](https://github.com/iamdudeman/sola-script/releases) hosted on GitHub releases.
+
+## Packaging fat jar for release
+
+Run the following gradle command
+
+```shell
+.\gradlew.bat distFatJar
+```
+
+The output will be at `dist/sola-script-<version>.jar`. Users will need to have Java 17 installed to run the jar
+via `java -jar dist/sola-script-<version>.jar`.

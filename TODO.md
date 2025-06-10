@@ -9,6 +9,7 @@
 * implement break keyword within loops
 * implement arrays
 * consider implementing optional chaining "?." for dealing with null conveniently
+* consider adding a way to return a result from SolaScript#execute
 
 ## Syntax sugar
 
