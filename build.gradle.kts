@@ -57,3 +57,19 @@ idea {
     isDownloadSources = true
   }
 }
+
+project.task("distFatJar", Jar::class) {
+  group = "distribution"
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+  manifest {
+    attributes["Main-Class"] = "technology.sola.script.SolaScriptMain"
+  }
+
+  val dependencies = configurations.getByName("runtimeClasspath").map(::zipTree)
+
+  from(dependencies)
+  with(project.tasks.getByName("jar", CopySpec::class))
+  destinationDirectory.set(file("${project.rootDir}/dist"))
+  dependsOn(configurations.getByName("runtimeClasspath"))
+}

@@ -1,13 +1,6 @@
 package technology.sola.script;
 
 import org.jspecify.annotations.NullMarked;
-import technology.sola.script.error.ErrorContainer;
-import technology.sola.script.interpreter.Interpreter;
-import technology.sola.script.library.StandardLibraryScriptModule;
-import technology.sola.script.parser.Parser;
-import technology.sola.script.resolver.Resolver;
-import technology.sola.script.runtime.ScriptRuntime;
-import technology.sola.script.tokenizer.Tokenizer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +14,7 @@ import java.nio.file.Paths;
  */
 @NullMarked
 public class SolaScriptMain {
-  private static final ScriptRuntime scriptRuntime = new ScriptRuntime();
+  private static final SolaScript solaScript = new SolaScript();
 
   /**
    * Main entry point for running sola script as an executable.
@@ -30,8 +23,6 @@ public class SolaScriptMain {
    * @throws IOException if there is an issue reading a file as input
    */
   public static void main(String[] args) throws IOException {
-    scriptRuntime.importModule(new StandardLibraryScriptModule());
-
     if (args.length > 1) {
       System.out.println("Usage: sola <file>");
       System.exit(64);
@@ -45,7 +36,7 @@ public class SolaScriptMain {
   private static void runFile(String fileName) throws IOException {
     byte[] bytes = Files.readAllBytes(Paths.get(fileName));
 
-    var errorContainer = run(new String(bytes, Charset.defaultCharset()));
+    var errorContainer = solaScript.execute(new String(bytes, Charset.defaultCharset()));
 
     if (errorContainer.hasError()) {
       errorContainer.printErrors();
@@ -69,33 +60,11 @@ public class SolaScriptMain {
         break;
       }
 
-      var errorContainer = run(line);
+      var errorContainer = solaScript.execute(line);
 
       if (errorContainer.hasError()) {
         errorContainer.printErrors();
       }
     }
-  }
-
-  private static ErrorContainer run(String source) {
-    var errorContainer = new ErrorContainer();
-    var tokenizer = new Tokenizer(source);
-    var tokenizeResult = tokenizer.tokenize();
-    var parser = new Parser(tokenizeResult.tokens());
-    var parserResult = parser.parse();
-
-    errorContainer.addErrors(tokenizeResult.errors());
-    errorContainer.addErrors(parserResult.errors());
-
-    var resolver = new Resolver(scriptRuntime);
-    var interpreter = new Interpreter(scriptRuntime);
-
-    var resolverErrors = resolver.resolve(parserResult.statements());
-    var interpretationErrors = interpreter.interpret(parserResult.statements());
-
-    errorContainer.addErrors(resolverErrors);
-    errorContainer.addErrors(interpretationErrors);
-
-    return errorContainer;
   }
 }
