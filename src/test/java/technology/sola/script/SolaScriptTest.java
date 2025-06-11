@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @NullMarked
 public class SolaScriptTest {
@@ -79,9 +80,14 @@ public class SolaScriptTest {
     TestScriptModule testScriptModule = new TestScriptModule();
     SolaScript solaScript = new SolaScript(List.of(new StandardLibraryScriptModule(), testScriptModule));
 
-    solaScript.execute(script);
+    var errorContainer = solaScript.execute(script);
 
-    assertEquals(expected.trim(), testScriptModule.getOutput().trim(), "Error in " + fileName);
+    if (errorContainer.hasError()) {
+      errorContainer.printErrors();
+      fail("Expected that there were no runtime errors in " + fileName + ". See errors messages above.");
+    }
+
+    assertEquals(expected.trim(), testScriptModule.getOutput().trim(), "Error in " + fileName + ".");
   }
 
   private static class TestScriptModule implements ScriptModule {
