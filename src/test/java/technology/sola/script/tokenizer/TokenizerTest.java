@@ -61,6 +61,7 @@ class TokenizerTest {
       < <=
       > >=
       ? ??
+      ?.
       """;
 
     new TokenizerTester()
@@ -74,6 +75,7 @@ class TokenizerTest {
       .next(TokenType.GREATER_EQUAL)
       .next(TokenType.QUESTION)
       .next(TokenType.QUESTION_QUESTION)
+      .next(TokenType.QUESTION_DOT)
       .next(TokenType.EOF)
       .verify(source);
   }
