@@ -98,6 +98,14 @@ public interface Expr {
     R get(Get expr);
 
     /**
+     * Evaluates a {@link GetOptional} expression and returns the value.
+     *
+     * @param expr the {@link GetOptional} expression
+     * @return the evaluated value
+     */
+    R getOptional(GetOptional expr);
+
+    /**
      * Evaluates a {@link Variable} expression and returns the value.
      *
      * @param expr the {@link Variable} expression
@@ -182,6 +190,13 @@ public interface Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.get(this);
+    }
+  }
+
+  record GetOptional(Expr object, Token name) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.getOptional(this);
     }
   }
 

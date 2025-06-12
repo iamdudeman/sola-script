@@ -148,6 +148,11 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String getOptional(Expr.GetOptional expr) {
+      return print(expr.object()) + "?." + expr.name().lexeme();
+    }
+
+    @Override
     public String variable(Expr.Variable expr) {
       return expr.name().lexeme();
     }

@@ -383,6 +383,10 @@ public class Parser {
         Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_PROPERTY_NAME_AFTER_DOT);
 
         expr = new Expr.Get(expr, name);
+      } else if (advanceExpected(TokenType.QUESTION_DOT)) {
+        Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_PROPERTY_NAME_AFTER_DOT);
+
+        expr = new Expr.GetOptional(expr, name);
       } else {
         break;
       }

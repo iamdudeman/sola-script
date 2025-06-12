@@ -422,6 +422,32 @@ class ExpressionInterpreterTest {
   }
 
   @Nested
+  class getOptional {
+    @Test
+    void whenNotMap_shouldThrow() {
+      scriptRuntime.defineVariable("test", 5d);
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> evaluateExpressionStatementSource("test?.prop;")
+      );
+    }
+
+    @Test
+    void test() {
+      SolaScriptMap map = new SolaScriptMap();
+
+      map.set("prop", 5d);
+
+      scriptRuntime.defineVariable("test", map);
+
+      assertEvaluation("test?.prop;", 5d);
+      assertEvaluation("test?.missing;", null);
+      assertEvaluation("test?.missing?.nestedMissing;", null);
+    }
+  }
+
+  @Nested
   class variable {
     @Test
     void test() {

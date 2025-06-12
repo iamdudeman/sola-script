@@ -93,6 +93,13 @@ class ExpressionResolver implements Expr.Visitor<Void> {
   }
 
   @Override
+  public Void getOptional(Expr.GetOptional expr) {
+    expr.object().accept(this);
+
+    return null;
+  }
+
+  @Override
   public Void variable(Expr.Variable expr) {
     var scopes = scriptRuntime.scopes();
 

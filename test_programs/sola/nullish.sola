@@ -4,3 +4,11 @@ val second = first ?? "second text";
 
 print(first);
 print(second);
+
+val object = {};
+
+object.test = "test";
+
+print(object?.test);
+print(object?.missing);
+print(object.missing?.nestedMissing);

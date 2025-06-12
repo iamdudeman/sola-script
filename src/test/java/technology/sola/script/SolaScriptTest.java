@@ -51,6 +51,9 @@ public class SolaScriptTest {
     testFileExpectedResults.put("nullish", """
       hello world
       hello world
+      test
+      null
+      null
       """);
     testFileExpectedResults.put("variables-and-blocks", """
       test

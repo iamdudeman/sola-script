@@ -207,6 +207,22 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
 
   @Override
   @Nullable
+  public Object getOptional(Expr.GetOptional expr) {
+    Object object = evaluate(expr.object());
+
+    if (object == null) {
+      return null;
+    }
+
+    if (object instanceof SolaScriptMap solaScriptMap) {
+      return solaScriptMap.get(expr.name());
+    }
+
+    throw new ScriptInterpretationException(expr.name(), ScriptErrorType.ONLY_MAPS_HAVE_PROPERTIES);
+  }
+
+  @Override
+  @Nullable
   public Object variable(Expr.Variable expr) {
     return scriptRuntime.lookUpVariable(expr);
   }
