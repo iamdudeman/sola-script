@@ -4,3 +4,20 @@ val second = first ?? "second text";
 
 print(first);
 print(second);
+
+fun myFunc() {
+
+}
+
+val object = {};
+
+object.test = "test";
+object.testFun = myFunc;
+
+print(object?.test);
+print(object?.missing);
+print(object.missing?.nestedMissing);
+
+print(object.testFun?.());
+print(object.missing?.());
+print(object.missing?.nestedMissing?.());

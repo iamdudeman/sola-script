@@ -465,11 +465,15 @@ class ParserTest {
           methodCall();
           methodCallArgs("test", 5);
           objectGetter.someValue;
+          objectGetter?.someValue;
+          methodCallArgs?.("test", 5);
           """;
         var expected = """
           methodCall()
           methodCallArgs(test, 5)
           objectGetter.someValue
+          objectGetter?.someValue
+          methodCallArgs?.(test, 5)
           """;
 
         new ParserTester(source)

@@ -398,6 +398,63 @@ class ExpressionInterpreterTest {
   }
 
   @Nested
+  class callOptional {
+    @Test
+    void whenWrongArguments_shouldThrow() {
+      scriptRuntime.defineVariable("test", new SolaScriptCallable() {
+        @Override
+        public int arity() {
+          return 0;
+        }
+
+        @Override
+        public Object call(@NonNull List<Object> arguments) {
+          return null;
+        }
+      });
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> evaluateExpressionStatementSource("test(5);")
+      );
+    }
+
+    @Test
+    void whenNotCallable_shouldThrow() {
+      scriptRuntime.defineVariable("test", 5d);
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> evaluateExpressionStatementSource("test();")
+      );
+    }
+
+    @Test
+    void whenMissingProperty_shouldReturnNull() {
+      scriptRuntime.defineVariable("object", new SolaScriptMap());
+
+      assertNull(evaluateExpressionStatementSource("object.missingFunc?.(5);"));
+    }
+
+    @Test
+    void valid() {
+      scriptRuntime.defineVariable("test", new SolaScriptCallable() {
+        @Override
+        public int arity() {
+          return 1;
+        }
+
+        @Override
+        public Object call(@NonNull List<Object> arguments) {
+          return arguments.get(0);
+        }
+      });
+
+      assertEquals(5d, evaluateExpressionStatementSource("test(5);"));
+    }
+  }
+
+  @Nested
   class get {
     @Test
     void whenNotMap_shouldThrow() {
@@ -418,6 +475,32 @@ class ExpressionInterpreterTest {
       scriptRuntime.defineVariable("test", map);
 
       assertEvaluation("test.prop;", 5d);
+    }
+  }
+
+  @Nested
+  class getOptional {
+    @Test
+    void whenNotMap_shouldThrow() {
+      scriptRuntime.defineVariable("test", 5d);
+
+      assertThrows(
+        ScriptInterpretationException.class,
+        () -> evaluateExpressionStatementSource("test?.prop;")
+      );
+    }
+
+    @Test
+    void test() {
+      SolaScriptMap map = new SolaScriptMap();
+
+      map.set("prop", 5d);
+
+      scriptRuntime.defineVariable("test", map);
+
+      assertEvaluation("test?.prop;", 5d);
+      assertEvaluation("test?.missing;", null);
+      assertEvaluation("test?.missing?.nestedMissing;", null);
     }
   }
 

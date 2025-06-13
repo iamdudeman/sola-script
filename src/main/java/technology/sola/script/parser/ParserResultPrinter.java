@@ -143,8 +143,23 @@ public class ParserResultPrinter {
     }
 
     @Override
+    public String callOptional(Expr.CallOptional expr) {
+      var arguments = expr.arguments()
+        .stream()
+        .map(ParserResultPrinter.this::print)
+        .collect(Collectors.joining(", "));
+
+      return print(expr.callee()) + "?.(" + arguments +  ")";
+    }
+
+    @Override
     public String get(Expr.Get expr) {
       return print(expr.object()) + "." + expr.name().lexeme();
+    }
+
+    @Override
+    public String getOptional(Expr.GetOptional expr) {
+      return print(expr.object()) + "?." + expr.name().lexeme();
     }
 
     @Override

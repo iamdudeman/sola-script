@@ -90,12 +90,28 @@ public interface Expr {
     R call(Call expr);
 
     /**
+     * Evaluates a {@link CallOptional} expression and returns the value.
+     *
+     * @param expr the {@link CallOptional} expression
+     * @return the evaluated value
+     */
+    R callOptional(CallOptional expr);
+
+    /**
      * Evaluates a {@link Get} expression and returns the value.
      *
      * @param expr the {@link Get} expression
      * @return the evaluated value
      */
     R get(Get expr);
+
+    /**
+     * Evaluates a {@link GetOptional} expression and returns the value.
+     *
+     * @param expr the {@link GetOptional} expression
+     * @return the evaluated value
+     */
+    R getOptional(GetOptional expr);
 
     /**
      * Evaluates a {@link Variable} expression and returns the value.
@@ -178,10 +194,24 @@ public interface Expr {
     }
   }
 
+  record CallOptional(Expr callee, Token paren, List<Expr> arguments) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.callOptional(this);
+    }
+  }
+
   record Get(Expr object, Token name) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.get(this);
+    }
+  }
+
+  record GetOptional(Expr object, Token name) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.getOptional(this);
     }
   }
 

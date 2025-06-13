@@ -106,7 +106,9 @@ public class Tokenizer {
         addToken(advanceExpected('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER);
         break;
       case '?':
-        addToken(advanceExpected('?') ? TokenType.QUESTION_QUESTION : TokenType.QUESTION);
+        addToken(advanceExpected('?')
+          ? TokenType.QUESTION_QUESTION
+          : (advanceExpected('.') ? TokenType.QUESTION_DOT : TokenType.QUESTION));
         break;
 
       // double character
