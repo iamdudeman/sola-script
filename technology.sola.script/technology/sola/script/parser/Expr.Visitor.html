@@ -113,9 +113,19 @@ loadScripts(document, 'script');</script>
 <div class="block">Evaluates a <a href="Expr.Call.html" title="class in technology.sola.script.parser"><code>Expr.Call</code></a> expression and returns the value.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#get(technology.sola.script.parser.Expr.Get)" class="member-name-link">get</a><wbr>(<a href="Expr.Get.html" title="class in technology.sola.script.parser">Expr.Get</a>&nbsp;expr)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#callOptional(technology.sola.script.parser.Expr.CallOptional)" class="member-name-link">callOptional</a><wbr>(<a href="Expr.CallOptional.html" title="class in technology.sola.script.parser">Expr.CallOptional</a>&nbsp;expr)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Evaluates a <a href="Expr.CallOptional.html" title="class in technology.sola.script.parser"><code>Expr.CallOptional</code></a> expression and returns the value.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#get(technology.sola.script.parser.Expr.Get)" class="member-name-link">get</a><wbr>(<a href="Expr.Get.html" title="class in technology.sola.script.parser">Expr.Get</a>&nbsp;expr)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Evaluates a <a href="Expr.Get.html" title="class in technology.sola.script.parser"><code>Expr.Get</code></a> expression and returns the value.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getOptional(technology.sola.script.parser.Expr.GetOptional)" class="member-name-link">getOptional</a><wbr>(<a href="Expr.GetOptional.html" title="class in technology.sola.script.parser">Expr.GetOptional</a>&nbsp;expr)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Evaluates a <a href="Expr.GetOptional.html" title="class in technology.sola.script.parser"><code>Expr.GetOptional</code></a> expression and returns the value.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#grouping(technology.sola.script.parser.Expr.Grouping)" class="member-name-link">grouping</a><wbr>(<a href="Expr.Grouping.html" title="class in technology.sola.script.parser">Expr.Grouping</a>&nbsp;expr)</code></div>
@@ -276,6 +286,19 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="callOptional(technology.sola.script.parser.Expr.CallOptional)">
+<h3>callOptional</h3>
+<div class="member-signature"><span class="return-type"><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></span>&nbsp;<span class="element-name">callOptional</span><wbr><span class="parameters">(<a href="Expr.CallOptional.html" title="class in technology.sola.script.parser">Expr.CallOptional</a>&nbsp;expr)</span></div>
+<div class="block">Evaluates a <a href="Expr.CallOptional.html" title="class in technology.sola.script.parser"><code>Expr.CallOptional</code></a> expression and returns the value.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>expr</code> - the <a href="Expr.CallOptional.html" title="class in technology.sola.script.parser"><code>Expr.CallOptional</code></a> expression</dd>
+<dt>Returns:</dt>
+<dd>the evaluated value</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="get(technology.sola.script.parser.Expr.Get)">
 <h3>get</h3>
 <div class="member-signature"><span class="return-type"><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></span>&nbsp;<span class="element-name">get</span><wbr><span class="parameters">(<a href="Expr.Get.html" title="class in technology.sola.script.parser">Expr.Get</a>&nbsp;expr)</span></div>
@@ -283,6 +306,19 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>expr</code> - the <a href="Expr.Get.html" title="class in technology.sola.script.parser"><code>Expr.Get</code></a> expression</dd>
+<dt>Returns:</dt>
+<dd>the evaluated value</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getOptional(technology.sola.script.parser.Expr.GetOptional)">
+<h3>getOptional</h3>
+<div class="member-signature"><span class="return-type"><a href="Expr.Visitor.html" title="type parameter in Expr.Visitor">R</a></span>&nbsp;<span class="element-name">getOptional</span><wbr><span class="parameters">(<a href="Expr.GetOptional.html" title="class in technology.sola.script.parser">Expr.GetOptional</a>&nbsp;expr)</span></div>
+<div class="block">Evaluates a <a href="Expr.GetOptional.html" title="class in technology.sola.script.parser"><code>Expr.GetOptional</code></a> expression and returns the value.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>expr</code> - the <a href="Expr.GetOptional.html" title="class in technology.sola.script.parser"><code>Expr.GetOptional</code></a> expression</dd>
 <dt>Returns:</dt>
 <dd>the evaluated value</dd>
 </dl>
