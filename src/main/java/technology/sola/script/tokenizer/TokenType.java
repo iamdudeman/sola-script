@@ -112,14 +112,38 @@ public enum TokenType {
   IDENTIFIER, STRING, NUMBER,
 
   // Keywords - declarations
-  FUN, VAR, VAL,
+  /**
+   * Keyword for function declaration - "fun"
+   */
+  FUN,
+  /**
+   * Keyword for variable declaration - "var"
+   */
+  VAR,
+  /**
+   * Keyword for value (constant) declaration - "val"
+   */
+  VAL,
 
   // Keywords - statements
   ELSE, FOR, IF, RETURN, WHILE,
 
   // Keywords - values
-  FALSE, NULL, TRUE,
+  /**
+   * Keyword - "false"
+   */
+  FALSE,
+  /**
+   * Keyword - "null"
+   */
+  NULL,
+  /**
+   * Keyword - "true"
+   */
+  TRUE,
 
-  // Special end of file
+  /**
+   * Special end of file
+   */
   EOF
 }
