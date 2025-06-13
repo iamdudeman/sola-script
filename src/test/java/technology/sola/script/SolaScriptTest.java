@@ -54,6 +54,9 @@ public class SolaScriptTest {
       test
       null
       null
+      null
+      null
+      null
       """);
     testFileExpectedResults.put("variables-and-blocks", """
       test

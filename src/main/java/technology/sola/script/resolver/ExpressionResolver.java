@@ -86,6 +86,17 @@ class ExpressionResolver implements Expr.Visitor<Void> {
   }
 
   @Override
+  public Void callOptional(Expr.CallOptional expr) {
+    expr.callee().accept(this);
+
+    for (var argument : expr.arguments()) {
+      argument.accept(this);
+    }
+
+    return null;
+  }
+
+  @Override
   public Void get(Expr.Get expr) {
     expr.object().accept(this);
 

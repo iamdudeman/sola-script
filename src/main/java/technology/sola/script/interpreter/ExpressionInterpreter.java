@@ -8,6 +8,7 @@ import technology.sola.script.parser.Expr;
 import technology.sola.script.runtime.ScriptRuntime;
 import technology.sola.script.runtime.SolaScriptCallable;
 import technology.sola.script.runtime.SolaScriptMap;
+import technology.sola.script.tokenizer.Token;
 import technology.sola.script.tokenizer.TokenType;
 
 import java.util.ArrayList;
@@ -176,21 +177,20 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   @Nullable
   public Object call(Expr.Call expr) {
     Object callee = evaluate(expr.callee());
-    List<@Nullable Object> arguments = new ArrayList<>();
 
-    for (Expr argument : expr.arguments()) {
-      arguments.add(evaluate(argument));
+    return handleCall(callee, expr.arguments(), expr.paren());
+  }
+
+  @Override
+  @Nullable
+  public Object callOptional(Expr.CallOptional expr) {
+    Object callee = evaluate(expr.callee());
+
+    if (callee == null) {
+      return null;
     }
 
-    if (callee instanceof SolaScriptCallable solaScriptCallable) {
-      if (arguments.size() != solaScriptCallable.arity()) {
-        throw new ScriptInterpretationException(expr.paren(), ScriptErrorType.EXPECTED_ARGUMENTS_MISMATCH, solaScriptCallable.arity(), arguments.size());
-      }
-
-      return solaScriptCallable.call(arguments);
-    }
-
-    throw new ScriptInterpretationException(expr.paren(), ScriptErrorType.NOT_CALLABLE);
+    return handleCall(callee, expr.arguments(), expr.paren());
   }
 
   @Override
@@ -237,5 +237,24 @@ class ExpressionInterpreter implements Expr.Visitor<Object> {
   @Nullable
   public Object literal(Expr.Literal expr) {
     return expr.value();
+  }
+
+  @Nullable
+  private Object handleCall(@Nullable Object callee, List<Expr> argumentExpressions, Token parentToken) {
+    if (callee instanceof SolaScriptCallable solaScriptCallable) {
+      List<@Nullable Object> arguments = new ArrayList<>();
+
+      for (Expr argument : argumentExpressions) {
+        arguments.add(evaluate(argument));
+      }
+
+      if (arguments.size() != solaScriptCallable.arity()) {
+        throw new ScriptInterpretationException(parentToken, ScriptErrorType.EXPECTED_ARGUMENTS_MISMATCH, solaScriptCallable.arity(), arguments.size());
+      }
+
+      return solaScriptCallable.call(arguments);
+    }
+
+    throw new ScriptInterpretationException(parentToken, ScriptErrorType.NOT_CALLABLE);
   }
 }

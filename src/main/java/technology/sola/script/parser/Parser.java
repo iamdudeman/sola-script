@@ -361,34 +361,37 @@ public class Parser {
 
   private Expr exprCall() {
     Expr expr = exprPrimary();
+    boolean isOptional = false;
 
     while (true) {
-      if (advanceExpected(TokenType.LEFT_PAREN)) {
-        List<Expr> arguments = new ArrayList<>();
-
-        if (!check(TokenType.RIGHT_PAREN)) {
-          do {
-            if (arguments.size() >= ParserConstants.MAX_ARGUMENTS) {
-              errors.add(new ScriptError(ScriptErrorType.TOO_MANY_ARGUMENTS, peek()));
-            }
-
-            arguments.add(expression());
-          } while (advanceExpected(TokenType.COMMA));
-        }
-
-        Token paren = eat(TokenType.RIGHT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_ARGUMENTS);
-
-        expr = new Expr.Call(expr, paren, arguments);
-      } else if (advanceExpected(TokenType.DOT)) {
-        Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_PROPERTY_NAME_AFTER_DOT);
-
-        expr = new Expr.Get(expr, name);
-      } else if (advanceExpected(TokenType.QUESTION_DOT)) {
-        Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_PROPERTY_NAME_AFTER_DOT);
-
-        expr = new Expr.GetOptional(expr, name);
+      if (advanceExpected(TokenType.QUESTION_DOT)) {
+        isOptional = true;
       } else {
-        break;
+        if (advanceExpected(TokenType.LEFT_PAREN)) {
+          List<Expr> arguments = new ArrayList<>();
+
+          if (!check(TokenType.RIGHT_PAREN)) {
+            do {
+              if (arguments.size() >= ParserConstants.MAX_ARGUMENTS) {
+                errors.add(new ScriptError(ScriptErrorType.TOO_MANY_ARGUMENTS, peek()));
+              }
+
+              arguments.add(expression());
+            } while (advanceExpected(TokenType.COMMA));
+          }
+
+          Token paren = eat(TokenType.RIGHT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_ARGUMENTS);
+
+          expr = isOptional ? new Expr.CallOptional(expr, paren, arguments) : new Expr.Call(expr, paren, arguments);
+          isOptional = false;
+        } else if (isOptional || advanceExpected(TokenType.DOT)) {
+          Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_PROPERTY_NAME_AFTER_DOT);
+
+          expr = isOptional ? new Expr.GetOptional(expr, name) : new Expr.Get(expr, name);
+          isOptional = false;
+        } else {
+          break;
+        }
       }
     }
 

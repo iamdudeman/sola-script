@@ -1,11 +1,5 @@
 # TODO list
 
-* consider implementing optional chaining "?." for dealing with null conveniently
-    * callOptional
-        * parser support
-        * resolver support
-        * interpreter support
-
 ## Cleanup
 
 * add missing JavaDocs

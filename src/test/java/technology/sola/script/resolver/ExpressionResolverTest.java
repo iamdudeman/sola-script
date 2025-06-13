@@ -167,6 +167,23 @@ class ExpressionResolverTest {
   }
 
   @Nested
+  class callOptional {
+    @Test
+    void test() {
+      var variableExpr = initializeTestVariableExpression();
+      var variableExpr2 = initializeTestVariableExpression("arg");
+      var expr = new Expr.CallOptional(variableExpr, new Token(TokenType.LEFT_PAREN, "(", null, 1, 1), List.of(variableExpr2));
+      var resolver = new ExpressionResolver(scriptRuntime, errors);
+
+      resolver.callOptional(expr);
+
+      assertEquals(0, errors.size());
+      assertTestVariableExpression(variableExpr, 1);
+      assertTestVariableExpression(variableExpr2);
+    }
+  }
+
+  @Nested
   class get {
     @Test
     void test() {
