@@ -80,15 +80,15 @@ public enum TokenType {
    */
   GREATER_EQUAL,
   /**
-   * Single or double character token - "<"
+   * Single or double character token - "&lt;"
    */
   LESS,
   /**
-   * Single or double character token - "<="
+   * Single or double character token - "&lt;="
    */
   LESS_EQUAL,
   /**
-   * Single or double character token - "&&"
+   * Single or double character token - "&amp;&amp;"
    */
   AMP_AMP,
   /**
@@ -109,7 +109,18 @@ public enum TokenType {
   QUESTION_DOT,
 
   // Literals
-  IDENTIFIER, STRING, NUMBER,
+  /**
+   * An identifier for a function, variable or value - [a-zA-Z_][a-zA-Z0-9_]*
+   */
+  IDENTIFIER,
+  /**
+   * A string value - \".*\"
+   */
+  STRING,
+  /**
+   * A number value - [1-9][0-9]*(\.[0-9]+)?
+   */
+  NUMBER,
 
   // Keywords - declarations
   /**
@@ -126,7 +137,26 @@ public enum TokenType {
   VAL,
 
   // Keywords - statements
-  ELSE, FOR, IF, RETURN, WHILE,
+  /**
+   * Keyword - "else"
+   */
+  ELSE,
+  /**
+   * Keyword - "for"
+   */
+  FOR,
+  /**
+   * Keyword - "if"
+   */
+  IF,
+  /**
+   * Keyword - "return"
+   */
+  RETURN,
+  /**
+   * Keyword - "while"
+   */
+  WHILE,
 
   // Keywords - values
   /**
