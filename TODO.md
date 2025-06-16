@@ -2,7 +2,7 @@
 
 ## Cleanup
 
-* add missing JavaDocs
+* remove "kind" from `parseFunction(String kind)`
 
 ## Features
 
