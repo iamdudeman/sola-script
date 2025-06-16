@@ -78,6 +78,12 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-object">object</span></code> - the <a href="../runtime/SolaScriptMap.html" title="class in technology.sola.script.runtime"><code>SolaScriptMap</code></a></dd>
+<dd><code><span id="param-name">name</span></code> - the <a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer"><code>Token</code></a> of the property to set</dd>
+<dd><code><span id="param-value">value</span></code> - the expression to set the value to</dd>
+</dl>
+<dl class="notes">
 <dt>All Implemented Interfaces:</dt>
 <dd><code><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></dd>
 </dl>
@@ -89,6 +95,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">Expr.Set</span>(<a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;object, <a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a>&nbsp;name, <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;value)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a>
 implements <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span></div>
+<div class="block">Expression that sets a property on a <a href="../runtime/SolaScriptMap.html" title="class in technology.sola.script.runtime"><code>SolaScriptMap</code></a>.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -147,12 +154,12 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#name()" class="member-name-link">name</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>name</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-name"><code>name</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#object()" class="member-name-link">object</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>object</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-object"><code>object</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -162,7 +169,7 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#value()" class="member-name-link">value</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>value</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-value"><code>value</code></a> record component.</div>
 </div>
 </div>
 </div>
@@ -190,9 +197,9 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <div class="block">Creates an instance of a <code>Set</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>object</code> - the value for the <code>object</code> record component</dd>
-<dd><code>name</code> - the value for the <code>name</code> record component</dd>
-<dd><code>value</code> - the value for the <code>value</code> record component</dd>
+<dd><code>object</code> - the value for the <a href="#param-object"><code>object</code></a> record component</dd>
+<dd><code>name</code> - the value for the <a href="#param-name"><code>name</code></a> record component</dd>
+<dd><code>value</code> - the value for the <a href="#param-value"><code>value</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -267,10 +274,10 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <section class="detail" id="object()">
 <h3>object</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span>&nbsp;<span class="element-name">object</span>()</div>
-<div class="block">Returns the value of the <code>object</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-object"><code>object</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>object</code> record component</dd>
+<dd>the value of the <a href="#param-object"><code>object</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -278,10 +285,10 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <section class="detail" id="name()">
 <h3>name</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../tokenizer/Token.html" title="class in technology.sola.script.tokenizer">Token</a></span>&nbsp;<span class="element-name">name</span>()</div>
-<div class="block">Returns the value of the <code>name</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-name"><code>name</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>name</code> record component</dd>
+<dd>the value of the <a href="#param-name"><code>name</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -289,10 +296,10 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <section class="detail" id="value()">
 <h3>value</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span>&nbsp;<span class="element-name">value</span>()</div>
-<div class="block">Returns the value of the <code>value</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-value"><code>value</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>value</code> record component</dd>
+<dd>the value of the <a href="#param-value"><code>value</code></a> record component</dd>
 </dl>
 </section>
 </li>

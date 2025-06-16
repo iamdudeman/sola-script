@@ -93,22 +93,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Expr.Assign.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Assign</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Expression that assigns a value to a variable.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="Expr.Binary.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Binary</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Expression for binary operators that operate on two expression (such as "+" to sum numbers).</div>
+</div>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Expr.Call.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Call</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Expression that calls a <a href="../runtime/SolaScriptCallable.html" title="interface in technology.sola.script.runtime"><code>SolaScriptCallable</code></a> with desired arguments.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="Expr.CallOptional.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.CallOptional</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Expression that calls a <a href="../runtime/SolaScriptCallable.html" title="interface in technology.sola.script.runtime"><code>SolaScriptCallable</code></a> with desired arguments.</div>
+</div>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Expr.Get.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Get</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Expression that gets a property from a <a href="../runtime/SolaScriptMap.html" title="class in technology.sola.script.runtime"><code>SolaScriptMap</code></a> and returns its.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="Expr.GetOptional.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.GetOptional</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Expression that gets a property from a <a href="../runtime/SolaScriptMap.html" title="class in technology.sola.script.runtime"><code>SolaScriptMap</code></a> and returns its.</div>
+</div>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Expr.Grouping.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Grouping</a></code></div>
 <div class="col-last even-row-color">
@@ -121,19 +133,30 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Expr.Logical.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Logical</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Expression for logical operators that operate on two expression (such as "||" to evaluate a logical or).</div>
+</div>
 <div class="col-first odd-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="Expr.NullishCoalescence.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.NullishCoalescence</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Expression for nullish coalescence operator that evaluates to the right side expression if the left side expression
+ evaluates to null.</div>
+</div>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Expr.Set.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Set</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Expression that sets a property on a <a href="../runtime/SolaScriptMap.html" title="class in technology.sola.script.runtime"><code>SolaScriptMap</code></a>.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="Expr.Ternary.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Ternary</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Expression for a ternary operation.</div>
+</div>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Expr.Unary.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Unary</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Expression for unary operators that operate on one expression (such as "!" to invert a boolean).</div>
+</div>
 <div class="col-first odd-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="Expr.Variable.html" class="type-name-link" title="class in technology.sola.script.parser">Expr.Variable</a></code></div>
 <div class="col-last odd-row-color">

@@ -78,6 +78,12 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-condition">condition</span></code> - the condition to determine which expression to evaluate</dd>
+<dd><code><span id="param-trueExpr">trueExpr</span></code> - the true branch expression to evaluate</dd>
+<dd><code><span id="param-falseExpr">falseExpr</span></code> - the false branch expression to evaluate</dd>
+</dl>
+<dl class="notes">
 <dt>All Implemented Interfaces:</dt>
 <dd><code><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></dd>
 </dl>
@@ -89,6 +95,8 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">Expr.Ternary</span>(<a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;condition, <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;trueExpr, <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a>&nbsp;falseExpr)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a>
 implements <a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span></div>
+<div class="block">Expression for a ternary operation. If the condition evaluates to truthy then the expression will evaluate the
+ trueExpr, otherwise it will evaluate the falseExpr.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -137,7 +145,7 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#condition()" class="member-name-link">condition</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>condition</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-condition"><code>condition</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
@@ -147,7 +155,7 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#falseExpr()" class="member-name-link">falseExpr</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>falseExpr</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-falseExpr"><code>falseExpr</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
@@ -162,7 +170,7 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#trueExpr()" class="member-name-link">trueExpr</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>trueExpr</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-trueExpr"><code>trueExpr</code></a> record component.</div>
 </div>
 </div>
 </div>
@@ -190,9 +198,9 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <div class="block">Creates an instance of a <code>Ternary</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>condition</code> - the value for the <code>condition</code> record component</dd>
-<dd><code>trueExpr</code> - the value for the <code>trueExpr</code> record component</dd>
-<dd><code>falseExpr</code> - the value for the <code>falseExpr</code> record component</dd>
+<dd><code>condition</code> - the value for the <a href="#param-condition"><code>condition</code></a> record component</dd>
+<dd><code>trueExpr</code> - the value for the <a href="#param-trueExpr"><code>trueExpr</code></a> record component</dd>
+<dd><code>falseExpr</code> - the value for the <a href="#param-falseExpr"><code>falseExpr</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -267,10 +275,10 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <section class="detail" id="condition()">
 <h3>condition</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span>&nbsp;<span class="element-name">condition</span>()</div>
-<div class="block">Returns the value of the <code>condition</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-condition"><code>condition</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>condition</code> record component</dd>
+<dd>the value of the <a href="#param-condition"><code>condition</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -278,10 +286,10 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <section class="detail" id="trueExpr()">
 <h3>trueExpr</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span>&nbsp;<span class="element-name">trueExpr</span>()</div>
-<div class="block">Returns the value of the <code>trueExpr</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-trueExpr"><code>trueExpr</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>trueExpr</code> record component</dd>
+<dd>the value of the <a href="#param-trueExpr"><code>trueExpr</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -289,10 +297,10 @@ implements <a href="Expr.html" title="interface in technology.sola.script.parser
 <section class="detail" id="falseExpr()">
 <h3>falseExpr</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expr.html" title="interface in technology.sola.script.parser">Expr</a></span>&nbsp;<span class="element-name">falseExpr</span>()</div>
-<div class="block">Returns the value of the <code>falseExpr</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-falseExpr"><code>falseExpr</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>falseExpr</code> record component</dd>
+<dd>the value of the <a href="#param-falseExpr"><code>falseExpr</code></a> record component</dd>
 </dl>
 </section>
 </li>
