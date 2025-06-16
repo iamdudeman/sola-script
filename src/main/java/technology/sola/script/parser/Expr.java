@@ -138,6 +138,13 @@ public interface Expr {
     R literal(Literal expr);
   }
 
+  /**
+   * Expression that sets a property on a {@link technology.sola.script.runtime.SolaScriptMap}.
+   *
+   * @param object the {@link technology.sola.script.runtime.SolaScriptMap}
+   * @param name   the {@link Token} of the property to set
+   * @param value  the expression to set the value to
+   */
   record Set(Expr object, Token name, Expr value) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -145,6 +152,12 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression that assigns a value to a variable.
+   *
+   * @param name  the {@link Token} of the variable to assign to
+   * @param value the expression of the value to assign
+   */
   record Assign(Token name, Expr value) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -152,6 +165,14 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression for a ternary operation. If the condition evaluates to truthy then the expression will evaluate the
+   * trueExpr, otherwise it will evaluate the falseExpr.
+   *
+   * @param condition the condition to determine which expression to evaluate
+   * @param trueExpr  the true branch expression to evaluate
+   * @param falseExpr the false branch expression to evaluate
+   */
   record Ternary(Expr condition, Expr trueExpr, Expr falseExpr) implements Expr {
     @Override
     public <R> @Nullable R accept(Visitor<R> visitor) {
@@ -159,6 +180,14 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression for nullish coalescence operator that evaluates to the right side expression if the left side expression
+   * evaluates to null.
+   *
+   * @param left     the left side expression to operate on
+   * @param operator the {@link Token} for the nullish coalescence operator
+   * @param right    the right side expression to operate on
+   */
   record NullishCoalescence(Expr left, Token operator, Expr right) implements Expr {
     @Override
     public <R> @Nullable R accept(Visitor<R> visitor) {
@@ -166,6 +195,13 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression for logical operators that operate on two expression (such as "||" to evaluate a logical or).
+   *
+   * @param left     the left side expression to operate on
+   * @param operator the {@link Token} for the binary operator
+   * @param right    the right side expression to operate on
+   */
   record Logical(Expr left, Token operator, Expr right) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -173,6 +209,13 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression for binary operators that operate on two expression (such as "+" to sum numbers).
+   *
+   * @param left     the left side expression to operate on
+   * @param operator the {@link Token} for the binary operator
+   * @param right    the right side expression to operate on
+   */
   record Binary(Expr left, Token operator, Expr right) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -180,6 +223,12 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression for unary operators that operate on one expression (such as "!" to invert a boolean).
+   *
+   * @param operator the {@link Token} for the unary operator
+   * @param right    the expression to operate on
+   */
   record Unary(Token operator, Expr right) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -187,6 +236,13 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression that calls a {@link technology.sola.script.runtime.SolaScriptCallable} with desired arguments.
+   *
+   * @param callee    the {@link technology.sola.script.runtime.SolaScriptCallable}
+   * @param paren     the {@link Token} of where the arguments list starts
+   * @param arguments the list of argument expressions
+   */
   record Call(Expr callee, Token paren, List<Expr> arguments) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -194,6 +250,14 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression that calls a {@link technology.sola.script.runtime.SolaScriptCallable} with desired arguments. If the
+   * callee is null then it will evaluate to null.
+   *
+   * @param callee    the {@link technology.sola.script.runtime.SolaScriptCallable}
+   * @param paren     the {@link Token} of where the arguments list starts
+   * @param arguments the list of argument expressions
+   */
   record CallOptional(Expr callee, Token paren, List<Expr> arguments) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -201,6 +265,12 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression that gets a property from a {@link technology.sola.script.runtime.SolaScriptMap} and returns its.
+   *
+   * @param object the {@link technology.sola.script.runtime.SolaScriptMap}
+   * @param name   the {@link Token} of the property to get
+   */
   record Get(Expr object, Token name) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
@@ -208,6 +278,13 @@ public interface Expr {
     }
   }
 
+  /**
+   * Expression that gets a property from a {@link technology.sola.script.runtime.SolaScriptMap} and returns its. If the
+   * expression for the object is null then it will evaluate to null.
+   *
+   * @param object the {@link technology.sola.script.runtime.SolaScriptMap}
+   * @param name   the {@link Token} of the property to get
+   */
   record GetOptional(Expr object, Token name) implements Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
