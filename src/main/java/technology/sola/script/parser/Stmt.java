@@ -161,7 +161,7 @@ public interface Stmt {
   }
 
   /**
-   * Return statement exits a function or method while optionally returning a value for the caller to use.
+   * Return statement exits a function while optionally returning a value for the caller to use.
    *
    * @param keyword the {@link Token} for the return keyword
    * @param value   the value to return to the caller or null

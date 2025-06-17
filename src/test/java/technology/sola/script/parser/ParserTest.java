@@ -44,10 +44,10 @@ class ParserTest {
 
       new ParserTester(source)
         .withErrors(ScriptErrorType.EXPECT_NAME)
-        .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_NAME)
+        .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_FUNCTION_NAME)
         .withErrors(ScriptErrorType.EXPECT_NAME)
         .withErrors(ScriptErrorType.EXPECT_PAREN_AFTER_PARAMETERS)
-        .withErrors(ScriptErrorType.EXPECT_BRACE_BEFORE_BODY)
+        .withErrors(ScriptErrorType.EXPECT_BRACE_BEFORE_FUNCTION_BODY)
         .verify(null);
     }
 
@@ -462,18 +462,18 @@ class ParserTest {
       @Test
       void valid() {
         var source = """
-          methodCall();
-          methodCallArgs("test", 5);
+          functionCall();
+          functionCallArgs("test", 5);
           objectGetter.someValue;
           objectGetter?.someValue;
-          methodCallArgs?.("test", 5);
+          functionCallArgs?.("test", 5);
           """;
         var expected = """
-          methodCall()
-          methodCallArgs(test, 5)
+          functionCall()
+          functionCallArgs(test, 5)
           objectGetter.someValue
           objectGetter?.someValue
-          methodCallArgs?.(test, 5)
+          functionCallArgs?.(test, 5)
           """;
 
         new ParserTester(source)
@@ -483,7 +483,7 @@ class ParserTest {
       @Test
       void invalid() {
         var source = """
-          invalidMethodCall(test;
+          invalidFunctionCall(test;
           invalidGetter.;
           """;
 
@@ -497,7 +497,7 @@ class ParserTest {
         var arguments = new String[256];
         Arrays.fill(arguments, "test");
         var source = """
-          methodCall(%s);
+          functionCall(%s);
           """.formatted(Arrays.stream(arguments).map(Object::toString).collect(Collectors.joining(",")));
 
         new ParserTester(source)

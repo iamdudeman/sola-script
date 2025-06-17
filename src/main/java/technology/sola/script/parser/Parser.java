@@ -40,7 +40,7 @@ public class Parser {
       return new ParserResult(statements, errors);
     }
 
-    while (!isAtEnd()) {
+    while (hasMoreTokens()) {
       var declaration = declaration();
 
       if (declaration != null) {
@@ -77,7 +77,28 @@ public class Parser {
   }
 
   private Stmt declFun() {
-    return parseFunction("function");
+    Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_NAME, "function");
+
+    eat(TokenType.LEFT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_FUNCTION_NAME);
+
+    List<Token> parameters = new ArrayList<>();
+
+    if (!check(TokenType.RIGHT_PAREN)) {
+      do {
+        if (parameters.size() >= ParserConstants.MAX_ARGUMENTS) {
+          errors.add(new ScriptError(ScriptErrorType.TOO_MANY_ARGUMENTS, peek()));
+        }
+
+        parameters.add(eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_NAME, "parameter"));
+      } while (advanceExpected(TokenType.COMMA));
+    }
+
+    eat(TokenType.RIGHT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_PARAMETERS);
+    eat(TokenType.LEFT_BRACE, ScriptErrorType.EXPECT_BRACE_BEFORE_FUNCTION_BODY);
+
+    List<Stmt> body = parseBlockStatements();
+
+    return new Stmt.Function(name, parameters, body);
   }
 
   private Stmt declVar() {
@@ -180,7 +201,7 @@ public class Parser {
   private List<Stmt> parseBlockStatements() {
     List<Stmt> statements = new ArrayList<>();
 
-    while (!check(TokenType.RIGHT_BRACE) && !isAtEnd()) {
+    while (!check(TokenType.RIGHT_BRACE) && hasMoreTokens()) {
       var declaration = declaration();
 
       if (declaration != null) {
@@ -191,31 +212,6 @@ public class Parser {
     eat(TokenType.RIGHT_BRACE, ScriptErrorType.EXPECT_BRACE_AFTER_BLOCK);
 
     return statements;
-  }
-
-  private Stmt parseFunction(String kind) {
-    Token name = eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_NAME, kind);
-
-    eat(TokenType.LEFT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_NAME, kind);
-
-    List<Token> parameters = new ArrayList<>();
-
-    if (!check(TokenType.RIGHT_PAREN)) {
-      do {
-        if (parameters.size() >= ParserConstants.MAX_ARGUMENTS) {
-          errors.add(new ScriptError(ScriptErrorType.TOO_MANY_ARGUMENTS, peek()));
-        }
-
-        parameters.add(eat(TokenType.IDENTIFIER, ScriptErrorType.EXPECT_NAME, "parameter"));
-      } while (advanceExpected(TokenType.COMMA));
-    }
-
-    eat(TokenType.RIGHT_PAREN, ScriptErrorType.EXPECT_PAREN_AFTER_PARAMETERS);
-    eat(TokenType.LEFT_BRACE, ScriptErrorType.EXPECT_BRACE_BEFORE_BODY, kind);
-
-    List<Stmt> body = parseBlockStatements();
-
-    return new Stmt.Function(name, parameters, body);
   }
 
   // expressions below -------------------------------------------------------------------------------------------------
@@ -466,7 +462,7 @@ public class Parser {
   }
 
   private Token advance() {
-    if (!isAtEnd()) {
+    if (hasMoreTokens()) {
       current++;
     }
 
@@ -496,14 +492,14 @@ public class Parser {
     return tokens.get(current - 1);
   }
 
-  private boolean isAtEnd() {
-    return peek().type() == TokenType.EOF;
+  private boolean hasMoreTokens() {
+    return peek().type() != TokenType.EOF;
   }
 
   private void synchronize() {
     advance();
 
-    while (!isAtEnd()) {
+    while (hasMoreTokens()) {
       if (previous().type() == TokenType.SEMICOLON) {
         return;
       }

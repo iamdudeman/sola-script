@@ -5,7 +5,7 @@ package technology.sola.script.parser;
  */
 public class ParserConstants {
   /**
-   * The maximum number of arguments allowed for a function or method.
+   * The maximum number of arguments allowed for a function.
    */
   public static final int MAX_ARGUMENTS = 255;
 

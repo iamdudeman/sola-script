@@ -19,7 +19,7 @@ public enum ScriptErrorType {
   CANNOT_ASSIGN_TO_CONSTANT(ScriptErrorStage.RUNTIME, "Cannot assign to constant %s."),
 
   /**
-   * Semantic error when a return statement is found outside a function or method body.
+   * Semantic error when a return statement is found outside a function body.
    */
   CANNOT_RETURN_FROM_TOP_LEVEL(ScriptErrorStage.SEMANTIC, "Cannot return from top-level code."),
 
@@ -41,7 +41,7 @@ public enum ScriptErrorType {
   /**
    * Parsing error when an opening brace is not found before a function body.
    */
-  EXPECT_BRACE_BEFORE_BODY(ScriptErrorStage.PARSE, "Expect '{' before %s body."),
+  EXPECT_BRACE_BEFORE_FUNCTION_BODY(ScriptErrorStage.PARSE, "Expect '{' before function body."),
 
   /**
    * Parsing error when a ternary operator has been started, but a colon was not found after its true expression.
@@ -54,7 +54,7 @@ public enum ScriptErrorType {
   EXPECT_INITIALIZER_EXPRESSION(ScriptErrorStage.PARSE, "Expect initializer expression for constants."),
 
   /**
-   * Parsing error when a name for a function, variable, or method is expected.
+   * Parsing error when a name for a function or variable is expected.
    */
   EXPECT_NAME(ScriptErrorStage.PARSE, "Expect %s name."),
 
@@ -74,12 +74,12 @@ public enum ScriptErrorType {
   EXPECT_PAREN_AFTER_EXPRESSION(ScriptErrorStage.PARSE, "Expect ')' after expression."),
 
   /**
-   * Parsing error when an opening parenthesis was not found after a function or method name.
+   * Parsing error when an opening parenthesis was not found after a function name.
    */
-  EXPECT_PAREN_AFTER_NAME(ScriptErrorStage.PARSE, "Expect ')' after %s name."),
+  EXPECT_PAREN_AFTER_FUNCTION_NAME(ScriptErrorStage.PARSE, "Expect ')' after function name."),
 
   /**
-   * Parsing error when a closing parenthesis was not found after function or method parameters.
+   * Parsing error when a closing parenthesis was not found after function parameters.
    */
   EXPECT_PAREN_AFTER_PARAMETERS(ScriptErrorStage.PARSE, "Expect ')' after parameters."),
 
@@ -159,7 +159,7 @@ public enum ScriptErrorType {
   OPERANDS_MUST_BE_TWO_NUMBERS_OR_ONE_STRING(ScriptErrorStage.RUNTIME, "Operands must be two numbers or one must be a string."),
 
   /**
-   * Semantic error when a function or method has been declared with too many arguments. Maximum number of arguments
+   * Semantic error when a function has been declared with too many arguments. Maximum number of arguments
    * allowed is {@link technology.sola.script.parser.ParserConstants#MAX_ARGUMENTS}.
    */
   TOO_MANY_ARGUMENTS(ScriptErrorStage.SEMANTIC, "Can't have more than " + ParserConstants.MAX_ARGUMENTS + " arguments."),

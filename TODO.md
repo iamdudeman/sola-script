@@ -1,9 +1,5 @@
 # TODO list
 
-## Cleanup
-
-* remove "kind" from `parseFunction(String kind)`
-
 ## Features
 
 * implement break keyword within loops
