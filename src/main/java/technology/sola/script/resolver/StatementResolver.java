@@ -28,7 +28,7 @@ class StatementResolver implements Stmt.Visitor<Void> {
     scopes.declare(stmt.name());
     scopes.define(stmt.name());
 
-    resolveFunction(stmt, FunctionType.FUNCTION);
+    resolveFunction(stmt);
 
     return null;
   }
@@ -124,9 +124,9 @@ class StatementResolver implements Stmt.Visitor<Void> {
     return null;
   }
 
-  private void resolveFunction(Stmt.Function stmt, FunctionType functionType) {
+  private void resolveFunction(Stmt.Function stmt) {
     FunctionType enclosingFunction = currentFunction;
-    currentFunction = functionType;
+    currentFunction = FunctionType.FUNCTION;
 
     var scopes = scriptRuntime.scopes();
 
@@ -149,7 +149,5 @@ class StatementResolver implements Stmt.Visitor<Void> {
   private enum FunctionType {
     NONE,
     FUNCTION,
-    METHOD,
-    CONSTRUCTOR,
   }
 }
