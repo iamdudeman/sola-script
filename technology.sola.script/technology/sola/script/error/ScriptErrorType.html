@@ -116,7 +116,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color"><code><a href="#CANNOT_RETURN_FROM_TOP_LEVEL" class="member-name-link">CANNOT_RETURN_FROM_TOP_LEVEL</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Semantic error when a return statement is found outside a function or method body.</div>
+<div class="block">Semantic error when a return statement is found outside a function body.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#EXPECT_BRACE_AFTER_BLOCK" class="member-name-link">EXPECT_BRACE_AFTER_BLOCK</a></code></div>
 <div class="col-last odd-row-color">
@@ -126,7 +126,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Parsing error when a closing '}' is not found after creation of a map.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#EXPECT_BRACE_BEFORE_BODY" class="member-name-link">EXPECT_BRACE_BEFORE_BODY</a></code></div>
+<div class="col-first odd-row-color"><code><a href="#EXPECT_BRACE_BEFORE_FUNCTION_BODY" class="member-name-link">EXPECT_BRACE_BEFORE_FUNCTION_BODY</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Parsing error when an opening brace is not found before a function body.</div>
 </div>
@@ -144,7 +144,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first odd-row-color"><code><a href="#EXPECT_NAME" class="member-name-link">EXPECT_NAME</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Parsing error when a name for a function, variable, or method is expected.</div>
+<div class="block">Parsing error when a name for a function or variable is expected.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#EXPECT_PAREN_AFTER_ARGUMENTS" class="member-name-link">EXPECT_PAREN_AFTER_ARGUMENTS</a></code></div>
 <div class="col-last even-row-color">
@@ -158,17 +158,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Parsing error when a closing parenthesis was not found after an expression that followed an open parenthesis.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#EXPECT_PAREN_AFTER_IF" class="member-name-link">EXPECT_PAREN_AFTER_IF</a></code></div>
+<div class="col-first odd-row-color"><code><a href="#EXPECT_PAREN_AFTER_FUNCTION_NAME" class="member-name-link">EXPECT_PAREN_AFTER_FUNCTION_NAME</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Parsing error when an opening parenthesis is not found after an if statement is started.</div>
+<div class="block">Parsing error when an opening parenthesis was not found after a function name.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#EXPECT_PAREN_AFTER_NAME" class="member-name-link">EXPECT_PAREN_AFTER_NAME</a></code></div>
+<div class="col-first even-row-color"><code><a href="#EXPECT_PAREN_AFTER_IF" class="member-name-link">EXPECT_PAREN_AFTER_IF</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Parsing error when an opening parenthesis was not found after a function or method name.</div>
+<div class="block">Parsing error when an opening parenthesis is not found after an if statement is started.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#EXPECT_PAREN_AFTER_PARAMETERS" class="member-name-link">EXPECT_PAREN_AFTER_PARAMETERS</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Parsing error when a closing parenthesis was not found after function or method parameters.</div>
+<div class="block">Parsing error when a closing parenthesis was not found after function parameters.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#EXPECT_PAREN_AFTER_WHILE" class="member-name-link">EXPECT_PAREN_AFTER_WHILE</a></code></div>
 <div class="col-last even-row-color">
@@ -228,7 +228,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color"><code><a href="#TOO_MANY_ARGUMENTS" class="member-name-link">TOO_MANY_ARGUMENTS</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Semantic error when a function or method has been declared with too many arguments.</div>
+<div class="block">Semantic error when a function has been declared with too many arguments.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#UNDEFINED_VARIABLE" class="member-name-link">UNDEFINED_VARIABLE</a></code></div>
 <div class="col-last odd-row-color">
@@ -328,7 +328,7 @@ the order they are declared.</div>
 <section class="detail" id="CANNOT_RETURN_FROM_TOP_LEVEL">
 <h3>CANNOT_RETURN_FROM_TOP_LEVEL</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">CANNOT_RETURN_FROM_TOP_LEVEL</span></div>
-<div class="block">Semantic error when a return statement is found outside a function or method body.</div>
+<div class="block">Semantic error when a return statement is found outside a function body.</div>
 </section>
 </li>
 <li>
@@ -353,9 +353,9 @@ the order they are declared.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="EXPECT_BRACE_BEFORE_BODY">
-<h3>EXPECT_BRACE_BEFORE_BODY</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">EXPECT_BRACE_BEFORE_BODY</span></div>
+<section class="detail" id="EXPECT_BRACE_BEFORE_FUNCTION_BODY">
+<h3>EXPECT_BRACE_BEFORE_FUNCTION_BODY</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">EXPECT_BRACE_BEFORE_FUNCTION_BODY</span></div>
 <div class="block">Parsing error when an opening brace is not found before a function body.</div>
 </section>
 </li>
@@ -377,7 +377,7 @@ the order they are declared.</div>
 <section class="detail" id="EXPECT_NAME">
 <h3>EXPECT_NAME</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">EXPECT_NAME</span></div>
-<div class="block">Parsing error when a name for a function, variable, or method is expected.</div>
+<div class="block">Parsing error when a name for a function or variable is expected.</div>
 </section>
 </li>
 <li>
@@ -402,17 +402,17 @@ the order they are declared.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="EXPECT_PAREN_AFTER_NAME">
-<h3>EXPECT_PAREN_AFTER_NAME</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">EXPECT_PAREN_AFTER_NAME</span></div>
-<div class="block">Parsing error when an opening parenthesis was not found after a function or method name.</div>
+<section class="detail" id="EXPECT_PAREN_AFTER_FUNCTION_NAME">
+<h3>EXPECT_PAREN_AFTER_FUNCTION_NAME</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">EXPECT_PAREN_AFTER_FUNCTION_NAME</span></div>
+<div class="block">Parsing error when an opening parenthesis was not found after a function name.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="EXPECT_PAREN_AFTER_PARAMETERS">
 <h3>EXPECT_PAREN_AFTER_PARAMETERS</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">EXPECT_PAREN_AFTER_PARAMETERS</span></div>
-<div class="block">Parsing error when a closing parenthesis was not found after function or method parameters.</div>
+<div class="block">Parsing error when a closing parenthesis was not found after function parameters.</div>
 </section>
 </li>
 <li>
@@ -524,7 +524,7 @@ the order they are declared.</div>
 <section class="detail" id="TOO_MANY_ARGUMENTS">
 <h3>TOO_MANY_ARGUMENTS</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></span>&nbsp;<span class="element-name">TOO_MANY_ARGUMENTS</span></div>
-<div class="block">Semantic error when a function or method has been declared with too many arguments. Maximum number of arguments
+<div class="block">Semantic error when a function has been declared with too many arguments. Maximum number of arguments
  allowed is <a href="../parser/ParserConstants.html#MAX_ARGUMENTS"><code>ParserConstants.MAX_ARGUMENTS</code></a>.</div>
 </section>
 </li>

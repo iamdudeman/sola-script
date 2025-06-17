@@ -228,7 +228,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#CANNOT_RETURN_FROM_TOP_LEVEL" class="member-name-link">CANNOT_RETURN_FROM_TOP_LEVEL</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
-<div class="block">Semantic error when a return statement is found outside a function or method body.</div>
+<div class="block">Semantic error when a return statement is found outside a function body.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/library/StandardLibraryScriptModule.html#clock()" class="member-name-link">clock()</a> - Method in class technology.sola.script.library.<a href="technology.sola.script/technology/sola/script/library/StandardLibraryScriptModule.html" title="class in technology.sola.script.library">StandardLibraryScriptModule</a></dt>
 <dd>
@@ -476,7 +476,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Parsing error when a closing '}' is not found after creation of a map.</div>
 </dd>
-<dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_BRACE_BEFORE_BODY" class="member-name-link">EXPECT_BRACE_BEFORE_BODY</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
+<dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_BRACE_BEFORE_FUNCTION_BODY" class="member-name-link">EXPECT_BRACE_BEFORE_FUNCTION_BODY</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
 <div class="block">Parsing error when an opening brace is not found before a function body.</div>
 </dd>
@@ -494,7 +494,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_NAME" class="member-name-link">EXPECT_NAME</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
-<div class="block">Parsing error when a name for a function, variable, or method is expected.</div>
+<div class="block">Parsing error when a name for a function or variable is expected.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_PAREN_AFTER_ARGUMENTS" class="member-name-link">EXPECT_PAREN_AFTER_ARGUMENTS</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
@@ -508,17 +508,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Parsing error when a closing parenthesis was not found after an expression that followed an open parenthesis.</div>
 </dd>
+<dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_PAREN_AFTER_FUNCTION_NAME" class="member-name-link">EXPECT_PAREN_AFTER_FUNCTION_NAME</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
+<dd>
+<div class="block">Parsing error when an opening parenthesis was not found after a function name.</div>
+</dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_PAREN_AFTER_IF" class="member-name-link">EXPECT_PAREN_AFTER_IF</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
 <div class="block">Parsing error when an opening parenthesis is not found after an if statement is started.</div>
 </dd>
-<dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_PAREN_AFTER_NAME" class="member-name-link">EXPECT_PAREN_AFTER_NAME</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
-<dd>
-<div class="block">Parsing error when an opening parenthesis was not found after a function or method name.</div>
-</dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_PAREN_AFTER_PARAMETERS" class="member-name-link">EXPECT_PAREN_AFTER_PARAMETERS</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
-<div class="block">Parsing error when a closing parenthesis was not found after function or method parameters.</div>
+<div class="block">Parsing error when a closing parenthesis was not found after function parameters.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#EXPECT_PAREN_AFTER_WHILE" class="member-name-link">EXPECT_PAREN_AFTER_WHILE</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
@@ -964,7 +964,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/ParserConstants.html#MAX_ARGUMENTS" class="member-name-link">MAX_ARGUMENTS</a> - Static variable in class technology.sola.script.parser.<a href="technology.sola.script/technology/sola/script/parser/ParserConstants.html" title="class in technology.sola.script.parser">ParserConstants</a></dt>
 <dd>
-<div class="block">The maximum number of arguments allowed for a function or method.</div>
+<div class="block">The maximum number of arguments allowed for a function.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html#MINUS" class="member-name-link">MINUS</a> - Enum constant in enum class technology.sola.script.tokenizer.<a href="technology.sola.script/technology/sola/script/tokenizer/TokenType.html" title="enum class in technology.sola.script.tokenizer">TokenType</a></dt>
 <dd>
@@ -1384,7 +1384,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.html" class="type-name-link" title="class in technology.sola.script.parser">Stmt.Return</a> - Record Class in <a href="technology.sola.script/technology/sola/script/parser/package-summary.html">technology.sola.script.parser</a></dt>
 <dd>
-<div class="block">Return statement exits a function or method while optionally returning a value for the caller to use.</div>
+<div class="block">Return statement exits a function while optionally returning a value for the caller to use.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/parser/Stmt.Return.Exception.html" class="type-name-link" title="class in technology.sola.script.parser">Stmt.Return.Exception</a> - Exception in <a href="technology.sola.script/technology/sola/script/parser/package-summary.html">technology.sola.script.parser</a></dt>
 <dd>
@@ -1500,7 +1500,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html#TOO_MANY_ARGUMENTS" class="member-name-link">TOO_MANY_ARGUMENTS</a> - Enum constant in enum class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptErrorType.html" title="enum class in technology.sola.script.error">ScriptErrorType</a></dt>
 <dd>
-<div class="block">Semantic error when a function or method has been declared with too many arguments.</div>
+<div class="block">Semantic error when a function has been declared with too many arguments.</div>
 </dd>
 <dt><a href="technology.sola.script/technology/sola/script/error/ScriptError.html#toString()" class="member-name-link">toString()</a> - Method in record class technology.sola.script.error.<a href="technology.sola.script/technology/sola/script/error/ScriptError.html" title="class in technology.sola.script.error">ScriptError</a></dt>
 <dd>
